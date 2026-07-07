@@ -1,10 +1,11 @@
 [build]
   command = "npm run build"
-  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
   NPM_FLAGS = "--legacy-peer-deps"
+  # NEXT_PUBLIC_* do Supabase são inlined no bundle — não são segredos
+  SECRETS_SCAN_OMIT_PATHS = ".next/**,.netlify/**,node_modules/**"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
