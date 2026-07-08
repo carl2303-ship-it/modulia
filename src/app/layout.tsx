@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,7 +12,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
 export const metadata: Metadata = {
+  metadataBase: new URL("https://moduliahome.com"),
   title: "Modulia | Casas Modulares",
   description:
     "Modulia — casas modulares sustentáveis, personalizáveis e prontas para viver. Construímos o seu futuro, módulo a módulo.",
@@ -23,6 +35,11 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_PT",
     siteName: "Modulia",
+    images: [{ url: "/logo-modulia.png", width: 512, height: 512, alt: "Modulia" }],
+  },
+  icons: {
+    icon: "/logo-modulia.png",
+    apple: "/logo-modulia.png",
   },
 };
 
@@ -33,8 +50,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable} font-ui antialiased`}
+      >        {children}
       </body>
     </html>
   );

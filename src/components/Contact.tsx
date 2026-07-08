@@ -107,6 +107,7 @@ export function Contact() {
                 className="mt-1 w-full rounded-xl border border-modulia-200 bg-white px-4 py-2.5 text-sm outline-none ring-modulia-500 focus:ring-2"
               >
                 <option value="">Selecionar...</option>
+                <option value="EQUILIBRO">EQUILIBRO</option>
                 <option value="Modulia S">Modulia S</option>
                 <option value="Modulia M">Modulia M</option>
                 <option value="Modulia L">Modulia L</option>

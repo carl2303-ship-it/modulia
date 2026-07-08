@@ -5,6 +5,9 @@
 :root {
   --background: #faf8f5;
   --foreground: #2a3527;
+  --luxury-forest: #2e7d46;
+  --luxury-graphite: #111111;
+  --luxury-papyrus: #f9f9f8;
 }
 
 body {
@@ -16,4 +19,35 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* ─── EQUILIBRO: filtros de cor exterior (mix-blend-mode) ─── */
+.exterior-overlay {
+  transition: background-color 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* Scrollbar premium no painel de configuração */
+.config-panel-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.config-panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.config-panel-scroll::-webkit-scrollbar-thumb {
+  background: #d4d2cd;
+  border-radius: 4px;
+}
+.config-panel-scroll::-webkit-scrollbar-thumb:hover {
+  background: #2e7d46;
+}
+
+/* Toggle switch estilo cápsula (inspirado no logótipo Modulia) */
+.toggle-capsule {
+  @apply relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-500 ease-luxury;
+}
+.toggle-capsule-knob {
+  @apply absolute h-5 w-5 rounded-full bg-white shadow-luxury-sm transition-transform duration-500 ease-luxury;
 }

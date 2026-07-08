@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const models = [
   {
     name: "Modulia S",
@@ -5,14 +7,19 @@ const models = [
     rooms: "T1",
     price: "desde 89.000 €",
     description: "Compacta e eficiente — ideal para primeiro lar ou investimento.",
+    cta: "#contacto",
+    ctaLabel: "Solicitar informação",
   },
   {
-    name: "Modulia M",
-    area: "75 m²",
+    name: "EQUILIBRO",
+    area: "46 m²",
     rooms: "T2",
-    price: "desde 129.000 €",
-    description: "O equilíbrio perfeito entre espaço, conforto e preço.",
+    price: "desde 71.000 €",
+    description: "L'équilibre parfait entre espace, lumière et fonctionnalité.",
     featured: true,
+    cta: "/equilibro",
+    ctaLabel: "Configurer",
+    image: "/equilibro/hero-1.png",
   },
   {
     name: "Modulia L",
@@ -20,18 +27,23 @@ const models = [
     rooms: "T3",
     price: "desde 179.000 €",
     description: "Espaço generoso para famílias que valorizam qualidade de vida.",
+    cta: "#contacto",
+    ctaLabel: "Solicitar informação",
   },
 ];
 
 export function Models() {
   return (
-    <section id="modelos" className="bg-sand-50 py-24">
+    <section id="modelos" className="bg-luxury-papyrus py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-modulia-950 sm:text-4xl">
+          <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-luxury-forest">
+            Collection
+          </p>
+          <h2 className="mt-3 font-serif text-4xl text-luxury-graphite sm:text-5xl">
             Os nossos modelos
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-modulia-700">
+          <p className="mx-auto mt-4 max-w-2xl font-ui text-luxury-muted">
             Três linhas base, infinitas possibilidades de personalização.
           </p>
         </div>
@@ -51,7 +63,17 @@ export function Models() {
                   Mais popular
                 </span>
               )}
-              <div className="mb-6 aspect-video rounded-2xl bg-gradient-to-br from-modulia-100 to-modulia-200" />
+              <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl bg-gradient-to-br from-modulia-100 to-modulia-200">
+                {"image" in model && model.image && (
+                  <Image
+                    src={model.image}
+                    alt={model.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                  />
+                )}
+              </div>
               <h3 className="text-2xl font-bold text-modulia-900">{model.name}</h3>
               <p className="mt-1 text-sm text-modulia-600">
                 {model.area} · {model.rooms}
@@ -61,14 +83,14 @@ export function Models() {
               </p>
               <p className="mt-6 text-xl font-bold text-modulia-800">{model.price}</p>
               <a
-                href="#contacto"
+                href={model.cta}
                 className={`mt-6 block rounded-full py-3 text-center text-sm font-semibold transition ${
                   model.featured
                     ? "bg-modulia-700 text-white hover:bg-modulia-800"
                     : "border border-modulia-300 text-modulia-800 hover:border-modulia-500"
                 }`}
               >
-                Solicitar informação
+                {model.ctaLabel}
               </a>
             </article>
           ))}
