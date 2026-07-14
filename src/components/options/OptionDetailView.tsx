@@ -61,11 +61,21 @@ export function OptionDetailView({ option }: OptionDetailViewProps) {
             {formatOptionPrice(option)}
           </p>
 
+          {option.includedChoice ? (
+            <p className="mt-3 font-ui text-sm text-luxury-muted">
+              Choix de finition inclus dans le prix de votre modèle — sans supplément.
+            </p>
+          ) : null}
+
           <Link
-            href={`/#contact?option=${option.id}`}
+            href={
+              option.includedChoice
+                ? "/modelos"
+                : `/#contact?option=${option.id}`
+            }
             className="mt-8 inline-block rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs uppercase tracking-wider text-white transition hover:bg-luxury-forest-dark"
           >
-            Demander un devis
+            {option.includedChoice ? "Configurer votre modèle" : "Demander un devis"}
           </Link>
         </div>
       </section>
@@ -119,7 +129,7 @@ export function OptionDetailView({ option }: OptionDetailViewProps) {
         </section>
       )}
 
-      {rich?.variants && rich.variants.length > 0 && (
+      {rich?.variants && rich.variants.length > 0 && !option.includedChoice && (
         <section className="border-t border-luxury-stone/60 py-16">
           <div className="mx-auto max-w-7xl px-6">
             <h2 className="font-serif text-3xl text-luxury-graphite">Formats & tarifs</h2>

@@ -73,7 +73,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Anti-humidité / anti-moisissure",
       "Durable dans le temps",
     ],
-    gallery: [op("cores decoracao exterior.jpg")],
+    gallery: [op("decor exterieur.jpg")],
   },
 
   "lames-terrasse": {
@@ -134,7 +134,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "100 % recyclable",
       "Installation rapide et simple",
     ],
-    gallery: [op("terrasses.jpg")],
+    gallery: [op("terrasses.png")],
   },
 
   "murs-interieurs": {
@@ -162,7 +162,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Entretien facile",
       "Solution écologique",
     ],
-    gallery: [op("cores muros interiores.jpg")],
+    gallery: [op("plaquages bois.jpg")],
   },
 
   "murs-decoratifs": {
@@ -202,7 +202,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Écologique",
       "Design moderne et élégant",
     ],
-    gallery: [op("couleurs e finitons murs interiors decoratifs.jpg")],
+    gallery: [op("revetements muraux decoratifs.jpg")],
   },
 
   parquet: {
@@ -236,7 +236,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Pose rapide sans colle",
       "Écologique et recyclable",
     ],
-    gallery: [op("couleurs parquet flottant.jpg")],
+    gallery: [op("parquet flottant.jpg")],
   },
 
   "sdb-couleurs": {
@@ -258,34 +258,13 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { name: "Marbre blanc", code: "S-413", description: "Effet marbre" },
     ],
     footerHighlights: ["Étanche", "Résistant à l'humidité", "Facile à nettoyer", "Écologique"],
-    gallery: [op("couleurs murs salle de bains.jpg")],
+    gallery: [op("murs salle de bains.jpg")],
   },
 
   "kit-sdb": {
     tagline: "Design moderne noir mat",
     intro:
-      "Kit d'accessoires salle de bains en finition noir mat — élégant, discret et facile à installer.",
-    includes: [
-      { title: "Porte-serviettes", description: "Pratique et élégant" },
-      { title: "Porte-savon", description: "Verre dépoli, facile à nettoyer" },
-      { title: "Porte-papier", description: "Protection et design contemporain" },
-      { title: "Patère murale", description: "Solide et discrète" },
-      { title: "Brosse WC", description: "Hygiénique et pratique" },
-      { title: "Porte-verre", description: "Verre dépoli élégant" },
-    ],
-    footerHighlights: [
-      "Design moderne noir mat",
-      "Résistant à l'humidité",
-      "Facile à nettoyer",
-      "Installation simple",
-    ],
-    gallery: [op("kit salle bains.jpg")],
-  },
-
-  "kit-sdb-complet": {
-    tagline: "Design moderne noir mat — kit complet",
-    intro:
-      "Ensemble complet d'accessoires salle de bains noir mat, prêt à installer dans votre module Modulia.",
+      "Kit d'accessoires salle de bains en finition noir mat — élégant, discret et prêt à installer dans votre module Modulia.",
     includes: [
       { title: "Porte-serviettes", description: "Pratique et élégant, espace optimisé" },
       { title: "Porte-savon", description: "Robuste et raffiné, facile à nettoyer" },
@@ -294,6 +273,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Brosse WC", description: "Hygiénique, finition haut de gamme" },
       { title: "Porte-verre", description: "Verre dépoli, fixation sécurisée" },
     ],
+    specs: [{ label: "Prix", value: "149 € TTC" }],
     footerHighlights: [
       "Résistant à l'humidité",
       "Durable et fiable",
@@ -301,7 +281,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Installation simple",
       "Design moderne noir mat",
     ],
-    gallery: [op("kit salle de bains - 1.jpg"), op("kit salle bains.jpg")],
+    gallery: [op("kit salle de bains.jpg")],
   },
 
   "vmc-sdb": {
@@ -333,7 +313,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Silencieuse et efficace",
       "Économique et durable",
     ],
-    gallery: [op("option ventilation mecanique salle de bains.jpg")],
+    gallery: [op("ventilation mecanique.png")],
   },
 
   rideaux: {
@@ -365,7 +345,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Entretien facile — lavable machine",
       "Qualité premium 100 % occultant",
     ],
-    gallery: [op("rideaux.jpg")],
+    gallery: [op("rideaux.png")],
   },
 
   poignee: {
@@ -390,7 +370,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Autonomie longue",
       "Installation facile",
     ],
-    gallery: [op("poignée connectée.jpg")],
+    gallery: [op("poignee connectee.png")],
   },
 
   "chauffe-eau-solaire": {
@@ -409,7 +389,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Eau chaude garantie toute l'année",
       "Solution durable",
     ],
-    gallery: [op("chauffe eau solaire.jpg"), op("chauffe eau solaire 1.jpg")],
+    gallery: [op("chauffe eau solaire.jpg")],
   },
 
   climatisation: {
@@ -437,7 +417,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Installation rapide",
       "Confort toute l'année",
     ],
-    gallery: [op("climatisation.jpg"), op("climatisation 1.jpg")],
+    gallery: [op("climatisation.jpg")],
   },
 
   "genie-civil": {
@@ -457,7 +437,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Équipe qualifiée et matériel adapté",
       "Accompagnement personnalisé",
     ],
-    gallery: [op("genie civil.jpg")],
+    gallery: [op("terrassement.png")],
   },
 
   raccordement: {
@@ -476,7 +456,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Travail soigné et professionnel",
       "Intervention rapide",
     ],
-    gallery: [op("raccordement.jpg")],
+    gallery: [op("raccordement.png")],
   },
 
   transport: {
@@ -515,7 +495,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Facile à installer",
       "Matériaux durables",
     ],
-    gallery: [op("kit exterieur.jpg")],
+    gallery: [op("kit exterieur.png")],
   },
 };
 

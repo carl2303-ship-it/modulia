@@ -16,6 +16,7 @@ export type OptionItem = {
   rich?: OptionRichContent;
   categoryId?: string;
   categoryTitle?: string;
+  includedChoice?: boolean;
 };
 
 export type OptionCategory = {
@@ -29,18 +30,21 @@ const op = (file: string) => `/opcoes/${file}`;
 const cz = (file: string) => `/cozinhas/${file}`;
 const ps = (file: string) => `/piscina/${file}`;
 
-export const OPTION_CATEGORIES: OptionCategory[] = [
+/** Choix de finitions inclus dans le prix du modèle — pas des options payantes */
+export const FINITION_CATEGORIES: OptionCategory[] = [
   {
-    id: "exterior",
-    title: "Décor extérieur",
-    subtitle: "Façades à claire-voie et finitions",
+    id: "exterior-inclus",
+    title: "Extérieur — choix inclus",
+    subtitle: "Façade et lames de terrasse — personnalisation sans supplément",
     items: [
       {
         id: "decor-exterior",
         title: "Décor extérieur à claire-voie",
         description: "Esthétique, durable et sans entretien — 6 coloris premium + 8 standards.",
-        image: op("cores decoracao exterior.jpg"),
-        priceType: "sur-devis",
+        image: op("decor exterieur.jpg"),
+        priceType: "inclus",
+        priceLabel: "Inclus dans le prix",
+        includedChoice: true,
         highlights: ["Design moderne", "Résistant UV", "Sans entretien", "Écologique"],
       },
       {
@@ -48,13 +52,69 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Lames de terrasse",
         description: "Bois composite premium, résistant aux intempéries.",
         image: op("lames terrasse.jpg"),
-        priceType: "sur-devis",
+        priceType: "inclus",
+        priceLabel: "Inclus dans le prix",
+        includedChoice: true,
       },
+    ],
+  },
+  {
+    id: "interior-inclus",
+    title: "Intérieur — choix inclus",
+    subtitle: "Murs, sols et salle de bains — inclus dans le prix du modèle",
+    items: [
+      {
+        id: "murs-interieurs",
+        title: "Plaquages bois — murs intérieurs",
+        description: "Palette de finitions bois pour vos murs intérieurs.",
+        image: op("plaquages bois.jpg"),
+        priceType: "inclus",
+        priceLabel: "Inclus dans le prix",
+        includedChoice: true,
+      },
+      {
+        id: "murs-decoratifs",
+        title: "Revêtements muraux décoratifs",
+        description: "Couleurs et finitions décoratives haut de gamme.",
+        image: op("revetements muraux decoratifs.jpg"),
+        priceType: "inclus",
+        priceLabel: "Inclus dans le prix",
+        includedChoice: true,
+      },
+      {
+        id: "parquet",
+        title: "Parquet flottant",
+        description: "12 coloris disponibles — pose rapide sans colle.",
+        image: op("parquet flottant.jpg"),
+        priceType: "inclus",
+        priceLabel: "Inclus dans le prix",
+        includedChoice: true,
+        highlights: ["Chêne, noyer, gris…", "Anti-humidité", "Écologique"],
+      },
+      {
+        id: "sdb-couleurs",
+        title: "Revêtements muraux — salle de bains",
+        description: "Finitions étanches pour votre espace sanitaire.",
+        image: op("murs salle de bains.jpg"),
+        priceType: "inclus",
+        priceLabel: "Inclus dans le prix",
+        includedChoice: true,
+      },
+    ],
+  },
+];
+
+export const OPTION_CATEGORIES: OptionCategory[] = [
+  {
+    id: "exterior",
+    title: "Options extérieur",
+    subtitle: "Terrasses et aménagements en supplément",
+    items: [
       {
         id: "terrasses",
         title: "Terrasses",
         description: "Grande terrasse 11,80 m ou format compact 5,90 m.",
-        image: op("terrasses.jpg"),
+        image: op("terrasses.png"),
         priceLabel: "7 000 – 11 000 € TTC",
         highlights: ["11,80 m · 11 000 € TTC", "5,90 m · 7 000 € TTC"],
       },
@@ -62,50 +122,14 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
   },
   {
     id: "interior",
-    title: "Intérieur & finitions",
-    subtitle: "Murs, sols et décoration",
+    title: "Options intérieur",
+    subtitle: "Équipements et accessoires en supplément",
     items: [
-      {
-        id: "murs-interieurs",
-        title: "Couleurs murs intérieurs",
-        description: "Palette de finitions pour murs intérieurs.",
-        image: op("cores muros interiores.jpg"),
-        priceType: "sur-devis",
-      },
-      {
-        id: "murs-decoratifs",
-        title: "Murs intérieurs décoratifs",
-        description: "Couleurs et finitions décoratives haut de gamme.",
-        image: op("couleurs e finitons murs interiors decoratifs.jpg"),
-        priceType: "sur-devis",
-      },
-      {
-        id: "parquet",
-        title: "Parquet flottant",
-        description: "12 coloris disponibles — pose rapide sans colle.",
-        image: op("couleurs parquet flottant.jpg"),
-        priceType: "sur-devis",
-        highlights: ["Chêne, noyer, gris…", "Anti-humidité", "Écologique"],
-      },
-      {
-        id: "sdb-couleurs",
-        title: "Couleurs salle de bains",
-        description: "Finitions pour votre espace sanitaire.",
-        image: op("couleurs murs salle de bains.jpg"),
-        priceType: "sur-devis",
-      },
       {
         id: "kit-sdb",
         title: "Kit salle de bains",
         description: "Accessoires design noir mat — porte-serviettes, porte-savon, etc.",
-        image: op("kit salle bains.jpg"),
-        priceType: "sur-devis",
-      },
-      {
-        id: "kit-sdb-complet",
-        title: "Kit salle de bains complet",
-        description: "Ensemble complet d'accessoires pour salle de bains.",
-        image: op("kit salle de bains - 1.jpg"),
+        image: op("kit salle de bains.jpg"),
         price: 149,
         priceType: "ttc",
       },
@@ -113,7 +137,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         id: "vmc-sdb",
         title: "Ventilation mécanique salle de bains",
         description: "Option ventilation pour confort et hygiène.",
-        image: op("option ventilation mecanique salle de bains.jpg"),
+        image: op("ventilation mecanique.png"),
         price: 49,
         priceType: "ttc",
       },
@@ -121,7 +145,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         id: "rideaux",
         title: "Rideaux occultants",
         description: "Rideaux sur mesure pour vos baies vitrées — vendus au mètre linéaire.",
-        image: op("rideaux.jpg"),
+        image: op("rideaux.png"),
         price: 220,
         priceType: "ttc",
         priceLabel: "220 € TTC / mètre linéaire",
@@ -130,7 +154,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         id: "poignee",
         title: "Poignée connectée",
         description: "Serrure intelligente pour sécurité et confort.",
-        image: op("poignée connectée.jpg"),
+        image: op("poignee connectee.png"),
         price: 225,
         priceType: "ttc",
       },
@@ -162,7 +186,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         id: "genie-civil",
         title: "Génie civil / Terrassement",
         description: "Préparation des plots sur votre terrain.",
-        image: op("genie civil.jpg"),
+        image: op("terrassement.png"),
         price: 3000,
         priceType: "ht",
       },
@@ -170,7 +194,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         id: "raccordement",
         title: "Raccordement du module",
         description: "Eau, électricité et écoulement — installation conforme.",
-        image: op("raccordement.jpg"),
+        image: op("raccordement.png"),
         price: 2000,
         priceType: "ht",
       },
@@ -192,7 +216,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         id: "kit-exterieur",
         title: "Kit extérieur",
         description: "Appliques, prises IP44, robinet 2 sorties, tuyau et arrosoir.",
-        image: op("kit exterieur.jpg"),
+        image: op("kit exterieur.png"),
         price: 149,
         priceType: "ttc",
       },
@@ -334,8 +358,8 @@ export const CONFIGURATOR_PRICES = {
 } as const;
 
 export function formatOptionPrice(item: OptionItem): string {
-  if (item.priceType === "inclus") return "Inclus";
   if (item.priceLabel) return item.priceLabel;
+  if (item.priceType === "inclus") return "Inclus";
   if (item.price == null) return "Sur devis";
   const suffix = item.priceType === "ht" ? " € HT" : " € TTC";
   return new Intl.NumberFormat("fr-FR").format(item.price) + suffix;
@@ -355,7 +379,7 @@ function enrichOption(
 }
 
 export function getAllCatalogOptions(): OptionItem[] {
-  return OPTION_CATEGORIES.flatMap((category) =>
+  return [...FINITION_CATEGORIES, ...OPTION_CATEGORIES].flatMap((category) =>
     category.items.map((item) =>
       enrichOption(item, category.id, category.title),
     ),

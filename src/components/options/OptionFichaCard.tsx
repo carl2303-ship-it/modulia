@@ -41,7 +41,7 @@ export function OptionFichaCard({ item, onSelect }: OptionFichaCardProps) {
         </p>
         {!onSelect && (
           <span className="mt-4 font-ui text-[11px] uppercase tracking-wider text-luxury-forest">
-            Voir le détail →
+            {item.includedChoice ? "Voir les coloris →" : "Voir le détail →"}
           </span>
         )}
         {onSelect && (

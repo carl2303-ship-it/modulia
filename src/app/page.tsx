@@ -5,7 +5,6 @@ import { ConstructionPrinciple } from "@/components/ConstructionPrinciple";
 import { Features } from "@/components/Features";
 import { Models } from "@/components/Models";
 import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
         <Models />
         <Contact />
       </main>
-      <Footer />
     </div>
   );
 }

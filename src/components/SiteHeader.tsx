@@ -27,8 +27,8 @@ export function SiteHeader({ variant = "dark" }: SiteHeaderProps) {
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         <Logo
-          size="md"
-          className={isDark ? "brightness-0 invert" : ""}
+          size="header"
+          variant={isDark ? "white" : "default"}
         />
 
         <nav className="hidden items-center gap-8 md:flex">

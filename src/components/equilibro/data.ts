@@ -159,7 +159,7 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
   civil: {
     id: "civil",
     title: "Génie Civil / Terrassement",
-    image: "/opcoes/genie civil.jpg",
+    image: "/opcoes/terrassement.png",
     description:
       "Préparation complète du terrain : fondations, raccordements et terrassement pour une installation clé en main.",
     specs: [
@@ -171,21 +171,21 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
   raccordement: {
     id: "raccordement",
     title: "Raccordement du module",
-    image: "/opcoes/raccordement.jpg",
+    image: "/opcoes/raccordement.png",
     description: "Raccordement eau, électricité et évacuation — installation conforme.",
     specs: ["Eau · Électricité · Écoulement", "Installation sécurisée", "2 000 € HT"],
   },
   "kit-exterieur": {
     id: "kit-exterieur",
     title: "Kit extérieur",
-    image: "/opcoes/kit exterieur.jpg",
+    image: "/opcoes/kit exterieur.png",
     description: "Appliques, prises IP44, robinet et tuyau — prêt à l'emploi.",
     specs: ["2 appliques murales", "2 prises étanches IP44", "Robinet 2 sorties + tuyau"],
   },
   terrasse: {
     id: "terrasse",
     title: "Terrasse bois composite",
-    image: "/opcoes/terrasses.jpg",
+    image: "/opcoes/terrasses.png",
     description: "Terrasse premium résistante aux intempéries.",
     specs: ["5,90 m · 7 000 € TTC", "11,80 m · 11 000 € TTC", "100 % recyclable"],
   },

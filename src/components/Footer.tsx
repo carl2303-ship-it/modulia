@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="border-t border-modulia-200 bg-modulia-950 py-12 text-modulia-300">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col items-center justify-between gap-8 sm:flex-row sm:items-start">
-          <Logo size="lg" linked={false} />
+          <Logo size="lg" variant="white" linked={false} />
           <div className="text-center sm:text-right">
             <p className="font-ui text-[10px] uppercase tracking-wider text-modulia-400">
               Contact
@@ -35,12 +35,20 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 flex flex-col items-center gap-3 border-t border-modulia-800 pt-8 sm:flex-row sm:justify-between">
-          <Link
-            href="/cgv"
-            className="font-ui text-xs uppercase tracking-wider text-modulia-300 transition hover:text-white"
-          >
-            CGV · FR / PT / EN
-          </Link>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-start">
+            <Link
+              href="/cgv"
+              className="font-ui text-xs uppercase tracking-wider text-modulia-300 transition hover:text-white"
+            >
+              CGV · FR / PT / EN
+            </Link>
+            <Link
+              href="/confidentialite"
+              className="font-ui text-xs uppercase tracking-wider text-modulia-300 transition hover:text-white"
+            >
+              Confidentialité · FR / PT / EN
+            </Link>
+          </div>
           <p className="text-sm">
             © {new Date().getFullYear()} Modulia. Maisons modulaires durables.
           </p>

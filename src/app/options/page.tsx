@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { OptionFichaCard } from "@/components/options/OptionFichaCard";
 import { SiteHeader } from "@/components/SiteHeader";
-import { OPTION_CATEGORIES, getAllCatalogOptions } from "@/data/options-catalog";
+import { FINITION_CATEGORIES, OPTION_CATEGORIES, getAllCatalogOptions } from "@/data/options-catalog";
 
 export const metadata: Metadata = {
   title: "Options & Personnalisation | Modulia",
@@ -25,11 +25,11 @@ export default function OptionsPage() {
             Personnalisation
           </p>
           <h1 className="mt-4 max-w-3xl font-serif text-4xl text-luxury-graphite sm:text-5xl">
-            Options & finitions
+            Personnalisation & options
           </h1>
           <p className="mt-6 max-w-2xl font-ui text-luxury-muted">
-            Personnalisez votre module Modulia avec nos finitions, équipements et
-            services. Configurez en ligne{" "}
+            Choisissez vos finitions incluses dans le prix du modèle, puis ajoutez
+            les options en supplément. Configurez en ligne{" "}
             <Link href="/modelos" className="text-luxury-forest hover:underline">
               tous nos modèles
             </Link>{" "}
@@ -48,6 +48,35 @@ export default function OptionsPage() {
             >
               Piscine →
             </Link>
+          </div>
+        </section>
+
+        {FINITION_CATEGORIES.map((category) => (
+          <section
+            key={category.id}
+            id={category.id}
+            className="scroll-mt-28 border-t border-luxury-stone/60 py-16"
+          >
+            <div className="mx-auto max-w-7xl px-6">
+              <h2 className="font-serif text-3xl text-luxury-graphite">{category.title}</h2>
+              {category.subtitle && (
+                <p className="mt-2 font-ui text-sm text-luxury-muted">{category.subtitle}</p>
+              )}
+              <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {category.items.map((item) => (
+                  <OptionFichaCard key={item.id} item={optionsById[item.id]} />
+                ))}
+              </div>
+            </div>
+          </section>
+        ))}
+
+        <section className="border-t border-luxury-stone/60 bg-white/40 py-12">
+          <div className="mx-auto max-w-7xl px-6 text-center">
+            <h2 className="font-serif text-3xl text-luxury-graphite">Options en supplément</h2>
+            <p className="mx-auto mt-3 max-w-2xl font-ui text-sm text-luxury-muted">
+              Équipements, terrasses, raccordements et services complémentaires.
+            </p>
           </div>
         </section>
 
