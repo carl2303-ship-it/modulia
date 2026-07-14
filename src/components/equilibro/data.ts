@@ -1,40 +1,44 @@
 /** Dados estáticos e tipos do configurador EQUILIBRO */
 
+import { getModelAssets } from "@/lib/model-catalog";
+import { CONFIGURATOR_PRICES } from "@/data/options-catalog";
+
+const assets = getModelAssets("equilibro");
+
 export const BASE_PRICE = 71_000;
 
-/** Imagens oficiais do modelo EQUILIBRO */
+/** Renders 3D officiels — dossier public/equilibro/ */
 export const HERO_IMAGES = [
-  { id: "vue-1", src: "/equilibro/hero-1.png", alt: "EQUILIBRO — vue 3D paysage oliviers" },
-  { id: "vue-2", src: "/equilibro/hero-2.png", alt: "EQUILIBRO — vue 3D façade vitrée" },
-  { id: "vue-3", src: "/equilibro/hero-3.png", alt: "EQUILIBRO — vue 3D perspective latérale" },
+  { id: "vue-1", src: assets.hero1, alt: "EQUILIBRO — vue 3D paysage oliviers" },
+  { id: "vue-2", src: assets.hero2, alt: "EQUILIBRO — vue 3D façade vitrée" },
 ] as const;
 
-export const PLAN_IMAGE = {
-  src: "/equilibro/plan.png",
-  alt: "Plan architectural EQUILIBRO-07 — 11,80 × 6,75 m",
-};
+export const PLAN_IMAGE = assets.planImage;
 
-export const FICHA_IMAGE = {
-  src: "/equilibro/ficha-tecnica.png",
-  alt: "Fiche technique Modèle EQUILIBRO",
-};
-
-/** Características técnicas oficiais */
+/** Características técnicas oficiais — fiche EQUILIBRO */
 export const TECHNICAL_SPECS = [
-  { label: "Dimensions ext.", value: "11,80 × 4,50 m" },
-  { label: "Hauteur int.", value: "2,25 m" },
-  { label: "Surface int.", value: "~46 m²" },
+  { label: "Dimensions hors tout", value: "11,80 × 4,50 m" },
+  { label: "Hauteur intérieure", value: "2,25 m" },
+  { label: "Surface intérieure", value: "≈ 46 m²" },
   { label: "Capacité", value: "4 personnes" },
   { label: "Structure", value: "Acier galvanisé" },
   { label: "Isolation", value: "Haute performance" },
 ] as const;
 
+export const KEY_FEATURES = [
+  { title: "Longueur", value: "11,80 m" },
+  { title: "Largeur", value: "4,50 m" },
+  { title: "Terrasse", value: "Intégrée toute longueur" },
+  { title: "Distribution", value: "2 chambres" },
+  { title: "Pièces de vie", value: "Spacieuses et ouvertes" },
+] as const;
+
 export const VALUE_PROPS = [
-  "Design Épuré",
-  "Confort Optimal",
-  "Matériaux Durables",
-  "Installation Rapide",
-  "Respect Environnement",
+  { title: "Design épuré", description: "Lignes modernes et intemporelles" },
+  { title: "Confort optimal", description: "Espaces fonctionnels et bien pensés" },
+  { title: "Matériaux durables", description: "Construction robuste et résistante" },
+  { title: "Installation rapide", description: "Module prêt à l'emploi" },
+  { title: "Respect environnement", description: "Matériaux écologiques et faible impact" },
 ] as const;
 
 export type ExteriorFinish = {
@@ -56,9 +60,13 @@ export type EquipmentId =
   | "climate"
   | "kitchen"
   | "appliances"
-  | "civil";
+  | "civil"
+  | "raccordement"
+  | "kit-exterieur"
+  | "terrasse";
 
 export type ClimateOption = "none" | "standard" | "solar";
+export type TerraceOption = "none" | "compact" | "large";
 
 export type EquipmentState = {
   solarWater: boolean;
@@ -67,6 +75,9 @@ export type EquipmentState = {
   kitchenMl: number;
   appliances: boolean;
   civil: boolean;
+  raccordement: boolean;
+  kitExterieur: boolean;
+  terrace: TerraceOption;
 };
 
 export type EquipmentInfo = {
@@ -74,6 +85,7 @@ export type EquipmentInfo = {
   title: string;
   description: string;
   specs: string[];
+  image?: string;
 };
 
 /** Acabamentos exteriores à claire-voie */
@@ -99,6 +111,7 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
   "solar-water": {
     id: "solar-water",
     title: "Chauffe-eau Solaire",
+    image: "/opcoes/chauffe eau solaire.jpg",
     description:
       "Système thermodynamique haute performance pour eau chaude sanitaire, réduisant votre empreinte énergétique jusqu'à 70%.",
     specs: [
@@ -110,6 +123,7 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
   climate: {
     id: "climate",
     title: "Climatisation",
+    image: "/opcoes/climatisation.jpg",
     description:
       "Confort thermique toute l'année avec des solutions adaptées à l'architecture modulaire EQUILIBRO.",
     specs: [
@@ -121,6 +135,7 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
   kitchen: {
     id: "kitchen",
     title: "Cuisine Contemporaine",
+    image: "/cozinhas/cozinha base.jpg",
     description:
       "Aménagement sur mesure avec finitions premium, plan de travail en pierre reconstituée et éclairage LED intégré.",
     specs: [
@@ -132,6 +147,7 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
   appliances: {
     id: "appliances",
     title: "Kit Électroménager",
+    image: "/cozinhas/kit electromenager base.jpg",
     description:
       "Pack complet d'appareils encastrables haut de gamme pour une cuisine fonctionnelle dès l'emménagement.",
     specs: [
@@ -143,6 +159,7 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
   civil: {
     id: "civil",
     title: "Génie Civil / Terrassement",
+    image: "/opcoes/genie civil.jpg",
     description:
       "Préparation complète du terrain : fondations, raccordements et terrassement pour une installation clé en main.",
     specs: [
@@ -151,16 +168,41 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
       "Nivellement et préparation d'accès",
     ],
   },
+  raccordement: {
+    id: "raccordement",
+    title: "Raccordement du module",
+    image: "/opcoes/raccordement.jpg",
+    description: "Raccordement eau, électricité et évacuation — installation conforme.",
+    specs: ["Eau · Électricité · Écoulement", "Installation sécurisée", "2 000 € HT"],
+  },
+  "kit-exterieur": {
+    id: "kit-exterieur",
+    title: "Kit extérieur",
+    image: "/opcoes/kit exterieur.jpg",
+    description: "Appliques, prises IP44, robinet et tuyau — prêt à l'emploi.",
+    specs: ["2 appliques murales", "2 prises étanches IP44", "Robinet 2 sorties + tuyau"],
+  },
+  terrasse: {
+    id: "terrasse",
+    title: "Terrasse bois composite",
+    image: "/opcoes/terrasses.jpg",
+    description: "Terrasse premium résistante aux intempéries.",
+    specs: ["5,90 m · 7 000 € TTC", "11,80 m · 11 000 € TTC", "100 % recyclable"],
+  },
 };
 
-/** Preços unitários dos equipamentos (€) */
+/** Preços unitários dos equipamentos (€) — sync options-catalog */
 export const PRICES = {
-  solarWater: 875,
-  climateStandard: 349,
-  climateSolar: 1850,
-  kitchenPerMl: 250,
-  appliances: 990,
-  civil: 3000,
+  solarWater: CONFIGURATOR_PRICES.solarWater,
+  climateStandard: CONFIGURATOR_PRICES.climateStandard,
+  climateSolar: CONFIGURATOR_PRICES.climateSolar,
+  kitchenPerMl: CONFIGURATOR_PRICES.kitchenPerMl,
+  appliances: CONFIGURATOR_PRICES.appliances,
+  civil: CONFIGURATOR_PRICES.civil,
+  raccordement: CONFIGURATOR_PRICES.raccordement,
+  kitExterieur: CONFIGURATOR_PRICES.kitExterieur,
+  terrasseCompact: CONFIGURATOR_PRICES.terrasseCompact,
+  terrasseLarge: CONFIGURATOR_PRICES.terrasseLarge,
 } as const;
 
 /** Calcula o preço total com base nas seleções do utilizador */
@@ -173,6 +215,10 @@ export function calculateTotalPrice(equipment: EquipmentState): number {
   if (equipment.kitchen) total += PRICES.kitchenPerMl * equipment.kitchenMl;
   if (equipment.appliances) total += PRICES.appliances;
   if (equipment.civil) total += PRICES.civil;
+  if (equipment.raccordement) total += PRICES.raccordement;
+  if (equipment.kitExterieur) total += PRICES.kitExterieur;
+  if (equipment.terrace === "compact") total += PRICES.terrasseCompact;
+  if (equipment.terrace === "large") total += PRICES.terrasseLarge;
 
   return total;
 }

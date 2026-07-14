@@ -21,7 +21,7 @@ export function Logo({ size = "md", linked = true, className = "" }: LogoProps) 
   const image = (
     <Image
       src="/logo-modulia.png"
-      alt="Modulia — Casas Modulares"
+      alt="Modulia — Maisons modulaires"
       width={width}
       height={height}
       className={`${sizeClass} ${className}`}

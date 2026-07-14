@@ -25,15 +25,15 @@ const inter = Inter({
 });
 export const metadata: Metadata = {
   metadataBase: new URL("https://moduliahome.com"),
-  title: "Modulia | Casas Modulares",
+  title: "Modulia | Maisons Modulaires",
   description:
-    "Modulia — casas modulares sustentáveis, personalizáveis e prontas para viver. Construímos o seu futuro, módulo a módulo.",
-  keywords: ["casas modulares", "habitação modular", "construção sustentável", "Modulia"],
+    "Modulia — maisons modulaires durables, personnalisables et prêtes à vivre. Nous construisons votre avenir, module par module.",
+  keywords: ["maisons modulaires", "habitation modulaire", "construction durable", "Modulia"],
   openGraph: {
-    title: "Modulia | Casas Modulares",
-    description: "Casas modulares sustentáveis, personalizáveis e prontas para viver.",
+    title: "Modulia | Maisons Modulaires",
+    description: "Maisons modulaires durables, personnalisables et prêtes à vivre.",
     type: "website",
-    locale: "pt_PT",
+    locale: "fr_FR",
     siteName: "Modulia",
     images: [{ url: "/logo-modulia.png", width: 512, height: 512, alt: "Modulia" }],
   },
@@ -49,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt">
+    <html lang="fr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${inter.variable} font-ui antialiased`}
       >        {children}

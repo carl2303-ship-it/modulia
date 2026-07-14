@@ -1,41 +1,41 @@
 const features = [
   {
-    title: "Construção rápida",
+    title: "Construction rapide",
     description:
-      "Módulos pré-fabricados em fábrica controlada reduzem o tempo de obra em até 60% face à construção tradicional.",
+      "Modules préfabriqués en usine contrôlée — jusqu'à 60 % de temps en moins qu'une construction traditionnelle.",
     icon: "⚡",
   },
   {
-    title: "Sustentabilidade",
+    title: "Durabilité",
     description:
-      "Materiais selecionados, desperdício mínimo e isolamento de alto desempenho para um consumo energético reduzido.",
+      "Matériaux sélectionnés, déchets minimisés et isolation haute performance pour une consommation énergétique réduite.",
     icon: "🌿",
   },
   {
-    title: "Personalização total",
+    title: "Personnalisation totale",
     description:
-      "Layouts, acabamentos e dimensões adaptados às suas necessidades — expanda módulos conforme a família cresce.",
+      "Agencements, finitions et dimensions adaptés à vos besoins — agrandissez les modules au fil de la vie.",
     icon: "✦",
   },
   {
-    title: "Qualidade garantida",
+    title: "Qualité garantie",
     description:
-      "Controlo de qualidade rigoroso em ambiente industrial, com garantia estrutural e acompanhamento pós-entrega.",
+      "Contrôle qualité rigoureux en environnement industriel, avec garantie structurelle et suivi après livraison.",
     icon: "✓",
   },
 ];
 
 export function Features() {
   return (
-    <section id="vantagens" className="border-t border-modulia-100 bg-white py-24">
+    <section id="avantages" className="border-t border-modulia-100 bg-white py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-modulia-950 sm:text-4xl">
-            Porquê escolher a Modulia?
+            Pourquoi choisir Modulia ?
           </h2>
           <p className="mt-4 text-lg text-modulia-700">
-            Combinamos engenharia de precisão com design contemporâneo para
-            entregar casas modulares que superam expectativas.
+            Nous allions ingénierie de précision et design contemporain pour
+            livrer des maisons modulaires qui dépassent les attentes.
           </p>
         </div>
 

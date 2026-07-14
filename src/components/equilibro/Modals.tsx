@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, type ReactNode } from "react";
 
 type InfoModalProps = {
@@ -8,10 +9,11 @@ type InfoModalProps = {
   title: string;
   description: string;
   specs: string[];
+  image?: string;
 };
 
 /** Modal informativo minimalista para fichas técnicas */
-export function InfoModal({ isOpen, onClose, title, description, specs }: InfoModalProps) {
+export function InfoModal({ isOpen, onClose, title, description, specs, image }: InfoModalProps) {
   useEffect(() => {
     if (!isOpen) return;
     const handleKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -45,6 +47,11 @@ export function InfoModal({ isOpen, onClose, title, description, specs }: InfoMo
         <h2 id="info-modal-title" className="pr-10 font-serif text-2xl text-luxury-graphite">
           {title}
         </h2>
+        {image && (
+          <div className="relative mt-4 aspect-video overflow-hidden rounded-xl border border-luxury-stone">
+            <Image src={image} alt={title} fill className="object-cover object-top" sizes="400px" />
+          </div>
+        )}
         <p className="mt-4 font-ui text-sm leading-relaxed text-luxury-muted">{description}</p>
         <ul className="mt-6 space-y-2 border-t border-luxury-stone pt-6">
           {specs.map((spec) => (

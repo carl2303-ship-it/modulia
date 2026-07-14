@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: "EQUILIBRO | Modulia",
     description: "L'équilibre parfait entre espace, lumière et fonctionnalité.",
     type: "website",
-    images: [{ url: "/equilibro/hero-1.png", width: 1200, height: 800, alt: "Modulia EQUILIBRO" }],
+    images: [{ url: "/equilibro/EQUILIBRO VUE 3D 1.png", width: 1200, height: 800, alt: "Modulia EQUILIBRO" }],
   },
 };
 

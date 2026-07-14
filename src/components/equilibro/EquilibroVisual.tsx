@@ -8,7 +8,7 @@ import { HERO_IMAGES, type ExteriorFinish } from "./data";
 const NAV_LINKS = [
   { href: "/", label: "Accueil" },
   { href: "/#modelos", label: "Modèles" },
-  { href: "/#contacto", label: "Contact" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 type EquilibroVisualProps = {

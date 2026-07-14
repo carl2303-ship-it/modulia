@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { ConfigSection } from "./ConfigSection";
 import { EquilibroVisual } from "./EquilibroVisual";
@@ -10,6 +11,7 @@ import {
   ClimateCard,
   EquipmentCard,
   KitchenCard,
+  TerraceCard,
   type EquipmentId,
 } from "./EquipmentCards";
 import { ContactModal, InfoModal } from "./Modals";
@@ -30,14 +32,10 @@ const INITIAL_EQUIPMENT: EquipmentState = {
   kitchenMl: 4,
   appliances: false,
   civil: false,
+  raccordement: false,
+  kitExterieur: false,
+  terrace: "none",
 };
-
-const SPECS = [
-  { label: "46 m²" },
-  { label: "11,80 m" },
-  { label: "2 Chambres" },
-  { label: "4 Personnes" },
-];
 
 /**
  * Configurador interativo premium do modelo EQUILIBRO.
@@ -74,6 +72,11 @@ export function EquilibroConfigurator() {
       {equipment.kitchen && <li>Cuisine {equipment.kitchenMl} ML</li>}
       {equipment.appliances && <li>Kit Électroménager</li>}
       {equipment.civil && <li>Génie Civil</li>}
+      {equipment.raccordement && <li>Raccordement</li>}
+      {equipment.kitExterieur && <li>Kit extérieur</li>}
+      {equipment.terrace !== "none" && (
+        <li>Terrasse {equipment.terrace === "large" ? "11,80 m" : "5,90 m"}</li>
+      )}
     </ul>
   );
 
@@ -100,14 +103,17 @@ export function EquilibroConfigurator() {
               <p className="mt-4 font-serif text-base italic leading-relaxed text-luxury-muted lg:text-lg">
                 L&apos;équilibre parfait entre espace, lumière et fonctionnalité.
               </p>
+              <p className="mt-2 font-serif text-sm italic text-luxury-muted/80">
+                Conçu pour une vie harmonieuse au quotidien.
+              </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                {SPECS.map((spec) => (
+                {["≈ 46 m²", "11,80 m", "2 Chambres", "4 Personnes"].map((label) => (
                   <span
-                    key={spec.label}
+                    key={label}
                     className="rounded-full border border-luxury-stone bg-white px-4 py-2 font-ui text-[11px] uppercase tracking-wider text-luxury-muted"
                   >
-                    {spec.label}
+                    {label}
                   </span>
                 ))}
               </div>
@@ -150,7 +156,7 @@ export function EquilibroConfigurator() {
             <ConfigSection
               id="equipment"
               phase="Phase 03"
-              title="Équipements & Engenharia"
+              title="Équipements & Ingénierie"
               subtitle="Personnalisez votre installation"
               isOpen={openSection === "equipment"}
               onToggle={() => toggleSection("equipment")}
@@ -197,8 +203,55 @@ export function EquilibroConfigurator() {
                   onToggle={(v) => updateEquipment("civil", v)}
                   onInfo={() => setInfoModalId("civil")}
                 />
+
+                <EquipmentCard
+                  title="Raccordement du module"
+                  priceLabel={`+${PRICES.raccordement} € HT`}
+                  enabled={equipment.raccordement}
+                  onToggle={(v) => updateEquipment("raccordement", v)}
+                  onInfo={() => setInfoModalId("raccordement")}
+                />
+
+                <TerraceCard
+                  value={equipment.terrace}
+                  onChange={(v) => updateEquipment("terrace", v)}
+                  enabled={equipment.terrace !== "none"}
+                  onToggle={(v) =>
+                    updateEquipment("terrace", v ? "compact" : "none")
+                  }
+                  onInfo={() => setInfoModalId("terrasse")}
+                />
+
+                <EquipmentCard
+                  title="Kit extérieur"
+                  priceLabel={`+${PRICES.kitExterieur} €`}
+                  enabled={equipment.kitExterieur}
+                  onToggle={(v) => updateEquipment("kitExterieur", v)}
+                  onInfo={() => setInfoModalId("kit-exterieur")}
+                />
               </div>
             </ConfigSection>
+
+            <div className="mt-6 flex flex-wrap gap-3 border-t border-luxury-stone/60 pt-6">
+              <Link
+                href="/options"
+                className="font-ui text-[11px] uppercase tracking-wider text-luxury-forest hover:underline"
+              >
+                Toutes les options →
+              </Link>
+              <Link
+                href="/cuisines"
+                className="font-ui text-[11px] uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
+              >
+                Cuisines
+              </Link>
+              <Link
+                href="/piscine"
+                className="font-ui text-[11px] uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
+              >
+                Piscine
+              </Link>
+            </div>
           </div>
         </main>
       </div>
@@ -214,6 +267,7 @@ export function EquilibroConfigurator() {
           title={EQUIPMENT_INFO[infoModalId].title}
           description={EQUIPMENT_INFO[infoModalId].description}
           specs={EQUIPMENT_INFO[infoModalId].specs}
+          image={EQUIPMENT_INFO[infoModalId].image}
         />
       )}
 

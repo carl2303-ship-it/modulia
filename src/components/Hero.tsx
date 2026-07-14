@@ -3,63 +3,71 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-luxury-graphite pt-20">
-      {/* Imagem cinematográfica EQUILIBRO */}
-      <div className="absolute inset-0">
+    <section className="relative overflow-hidden bg-luxury-graphite md:min-h-[100svh] md:pt-20">
+      {/* Image — bandeau mobile + plein écran desktop */}
+      <div className="relative h-[52svh] min-h-[300px] max-h-[520px] w-full md:absolute md:inset-0 md:h-full md:max-h-none">
         <Image
-          src="/equilibro/hero-1.png"
-          alt="Modulia EQUILIBRO — casa modular de luxo"
+          src="/home/hero.png"
+          alt="Modulia — maison modulaire MATÉRIA en paysage méditerranéen"
           fill
           priority
-          className="object-cover opacity-90"
+          className="object-cover object-[50%_38%] md:object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-luxury-graphite via-luxury-graphite/70 to-luxury-graphite/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-luxury-graphite/80 via-transparent to-luxury-graphite/40" />
+        {/* Fondu vers le fond — léger sur mobile, plus marqué sur desktop */}
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-luxury-graphite/10 via-transparent to-luxury-graphite
+            md:bg-gradient-to-t md:from-luxury-graphite/80 md:via-luxury-graphite/25 md:to-luxury-graphite/5"
+        />
+        <div className="absolute inset-y-0 left-0 hidden w-[45%] bg-gradient-to-r from-luxury-graphite/55 via-luxury-graphite/20 to-transparent lg:block" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[calc(100vh-5rem)] max-w-7xl flex-col justify-center px-6 py-20 lg:py-28">
-        <p className="animate-fade-in font-ui text-[11px] font-medium uppercase tracking-[0.35em] text-luxury-forest">
-          Casas modulares · Portugal
-        </p>
+      {/* Contenu — sous l'image sur mobile, superposé sur desktop */}
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-12 pt-8 md:flex md:min-h-[calc(100svh-5rem)] md:flex-col md:justify-end md:pb-16 md:pt-20 lg:justify-center lg:pb-28 lg:pt-28">
+        <div className="max-w-xl lg:max-w-lg">
+          <p className="font-ui text-[11px] font-medium uppercase tracking-[0.35em] text-luxury-forest">
+            Maisons modulaires · Haut de gamme
+          </p>
 
-        <h1 className="mt-6 max-w-3xl font-serif text-5xl leading-[1.1] tracking-tight text-white sm:text-6xl lg:text-7xl">
-          L&apos;art de vivre
-          <span className="block text-white/90">en harmonie avec la nature</span>
-        </h1>
+          <h1 className="mt-4 font-serif text-3xl leading-tight text-white sm:text-4xl lg:text-5xl">
+            L&apos;élégance à partir de{" "}
+            <span className="font-semibold">920 € HT / m²</span>
+          </h1>
 
-        <p className="mt-8 max-w-xl font-ui text-base leading-relaxed text-white/70 sm:text-lg">
-          A Modulia projeta e fabrica casas modulares de luxo — sustentáveis,
-          personalizáveis e prontas para viver. Descubra o modelo{" "}
-          <strong className="font-medium text-white">EQUILIBRO</strong>.
-        </p>
+          <p className="mt-4 font-ui text-base leading-relaxed text-white/85 sm:text-lg">
+            Solutions modulaires haut de gamme — durables, personnalisables et
+            prêtes à vivre.
+          </p>
 
-        <div className="mt-12 flex flex-wrap gap-4">
-          <Link
-            href="/equilibro"
-            className="rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs font-medium uppercase tracking-[0.2em] text-white shadow-glow transition hover:bg-luxury-forest-dark"
-          >
-            Configurar EQUILIBRO
-          </Link>
-          <Link
-            href="#modelos"
-            className="rounded-full border border-white/25 bg-white/5 px-8 py-4 font-ui text-xs font-medium uppercase tracking-[0.2em] text-white backdrop-blur-sm transition hover:bg-white/10"
-          >
-            Ver modelos
-          </Link>
+          <div className="mt-8 flex flex-wrap gap-3 sm:gap-4">
+            <Link
+              href="/modelos"
+              className="rounded-full bg-luxury-forest px-6 py-3.5 font-ui text-xs font-medium uppercase tracking-[0.2em] text-white shadow-glow transition hover:bg-luxury-forest-dark sm:px-8 sm:py-4"
+            >
+              Découvrir les modèles
+            </Link>
+            <Link
+              href="#philosophie"
+              className="rounded-full border border-white/25 bg-white/5 px-6 py-3.5 font-ui text-xs font-medium uppercase tracking-[0.2em] text-white backdrop-blur-sm transition hover:bg-white/10 sm:px-8 sm:py-4"
+            >
+              Notre philosophie
+            </Link>
+          </div>
         </div>
 
-        <dl className="mt-16 flex flex-wrap gap-8 border-t border-white/10 pt-10">
+        <dl className="mt-10 flex flex-wrap gap-6 border-t border-white/10 pt-6 sm:gap-8 sm:pt-8 lg:mt-16 lg:pt-10">
           {[
-            { label: "Surface", value: "46 m²" },
-            { label: "Prix dès", value: "71 000 €" },
+            { label: "À partir de", value: "920 € HT / m²" },
+            { label: "Modèles", value: "14" },
             { label: "Livraison", value: "8–12 sem." },
           ].map((item) => (
             <div key={item.label}>
               <dt className="font-ui text-[10px] uppercase tracking-wider text-white/50">
                 {item.label}
               </dt>
-              <dd className="mt-1 font-serif text-2xl text-white">{item.value}</dd>
+              <dd className="mt-1 font-serif text-xl text-white sm:text-2xl">
+                {item.value}
+              </dd>
             </div>
           ))}
         </dl>

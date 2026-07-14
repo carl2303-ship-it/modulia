@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import type { ClimateOption } from "./data";
+import type { ClimateOption, TerraceOption } from "./data";
 import { PRICES } from "./data";
 import type { EquipmentId } from "./data";
 
@@ -171,7 +171,62 @@ export function KitchenCard({ enabled, ml, onToggle, onMlChange, onInfo }: Kitch
           </button>
         </div>
       </div>
-      <p className="mt-2 font-ui text-[10px] text-luxury-muted">{PRICES.kitchenPerMl} € / ML</p>
+      <p className="mt-2 font-ui text-[10px] text-luxury-muted">
+        {PRICES.kitchenPerMl} € / ML ·{" "}
+        <a href="/cuisines" className="text-luxury-forest hover:underline">
+          Voir les cuisines
+        </a>
+      </p>
+    </EquipmentCard>
+  );
+}
+
+type TerraceCardProps = {
+  value: TerraceOption;
+  onChange: (value: TerraceOption) => void;
+  enabled: boolean;
+  onToggle: (value: boolean) => void;
+  onInfo: () => void;
+};
+
+export function TerraceCard({ value, onChange, enabled, onToggle, onInfo }: TerraceCardProps) {
+  const priceLabel =
+    !enabled
+      ? "—"
+      : value === "large"
+        ? `+${PRICES.terrasseLarge} €`
+        : `+${PRICES.terrasseCompact} €`;
+
+  return (
+    <EquipmentCard
+      title="Terrasse bois composite"
+      priceLabel={priceLabel}
+      enabled={enabled}
+      onToggle={onToggle}
+      onInfo={onInfo}
+    >
+      <div className="flex gap-2">
+        {(
+          [
+            { id: "compact" as const, label: "5,90 m", price: PRICES.terrasseCompact },
+            { id: "large" as const, label: "11,80 m", price: PRICES.terrasseLarge },
+          ] as const
+        ).map((opt) => (
+          <button
+            key={opt.id}
+            type="button"
+            onClick={() => onChange(opt.id)}
+            className={`flex-1 rounded-xl border px-3 py-3 font-ui text-xs transition-all duration-300 ${
+              value === opt.id
+                ? "border-luxury-forest bg-luxury-forest/5 text-luxury-forest"
+                : "border-luxury-stone text-luxury-muted hover:border-luxury-muted"
+            }`}
+          >
+            <span className="block font-medium">{opt.label}</span>
+            <span className="mt-0.5 block tabular-nums">+{opt.price} €</span>
+          </button>
+        ))}
+      </div>
     </EquipmentCard>
   );
 }
