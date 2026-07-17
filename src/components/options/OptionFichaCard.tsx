@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import type { OptionItem } from "@/data/options-catalog";
 import { formatOptionPrice } from "@/data/options-catalog";
+import type { Locale } from "@/i18n/config";
 
 type OptionFichaCardProps = {
   item: OptionItem;
@@ -10,6 +14,8 @@ type OptionFichaCardProps = {
 };
 
 export function OptionFichaCard({ item, onSelect, detailPath = "/options" }: OptionFichaCardProps) {
+  const t = useTranslations("common");
+  const locale = useLocale() as Locale;
   const content = (
     <>
       <div className="relative aspect-[4/3] overflow-hidden bg-luxury-stone">
@@ -39,12 +45,12 @@ export function OptionFichaCard({ item, onSelect, detailPath = "/options" }: Opt
         )}
         {!item.includedChoice && (
           <p className="mt-4 font-serif text-xl text-luxury-graphite">
-            {formatOptionPrice(item)}
+            {formatOptionPrice(item, locale)}
           </p>
         )}
         {!onSelect && (
           <span className="mt-4 font-ui text-[11px] uppercase tracking-wider text-luxury-forest">
-            {item.includedChoice ? "Voir les coloris →" : "Voir le détail →"}
+            {item.includedChoice ? t("seeColors") : t("seeDetail")}
           </span>
         )}
         {onSelect && (
@@ -53,7 +59,7 @@ export function OptionFichaCard({ item, onSelect, detailPath = "/options" }: Opt
             onClick={onSelect}
             className="mt-4 text-left font-ui text-[11px] uppercase tracking-wider text-luxury-forest hover:underline"
           >
-            En savoir plus
+            {t("learnMore")}
           </button>
         )}
       </div>

@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, type ReactNode } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/config";
 
 type InfoModalProps = {
   isOpen: boolean;
@@ -14,6 +16,8 @@ type InfoModalProps = {
 
 /** Modal informativo minimalista para fichas técnicas */
 export function InfoModal({ isOpen, onClose, title, description, specs, image }: InfoModalProps) {
+  const t = useTranslations("common");
+
   useEffect(() => {
     if (!isOpen) return;
     const handleKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -33,14 +37,14 @@ export function InfoModal({ isOpen, onClose, title, description, specs, image }:
         type="button"
         className="absolute inset-0 bg-luxury-graphite/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
-        aria-label="Fermer"
+        aria-label={t("close")}
       />
       <div className="relative w-full max-w-md animate-slide-up rounded-3xl bg-luxury-papyrus p-8 shadow-luxury">
         <button
           type="button"
           onClick={onClose}
           className="absolute right-6 top-6 flex h-8 w-8 items-center justify-center rounded-full border border-luxury-stone font-ui text-luxury-muted transition hover:border-luxury-graphite hover:text-luxury-graphite"
-          aria-label="Fermer"
+          aria-label={t("close")}
         >
           ×
         </button>
@@ -74,6 +78,8 @@ type ContactModalProps = {
   modelName?: string;
 };
 
+const NUMBER_LOCALE: Record<Locale, string> = { fr: "fr-FR", pt: "pt-PT", en: "en-GB" };
+
 /** Formulaire de contact intégré pour réservation / devis */
 export function ContactModal({
   isOpen,
@@ -82,6 +88,10 @@ export function ContactModal({
   configSummary,
   modelName = "EQUILIBRO",
 }: ContactModalProps) {
+  const t = useTranslations("personnaliser");
+  const tCommon = useTranslations("common");
+  const locale = useLocale() as Locale;
+
   useEffect(() => {
     if (!isOpen) return;
     const handleKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -97,13 +107,13 @@ export function ContactModal({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true">
-      <button type="button" className="absolute inset-0 bg-luxury-graphite/50 backdrop-blur-md" onClick={onClose} aria-label="Fermer" />
+      <button type="button" className="absolute inset-0 bg-luxury-graphite/50 backdrop-blur-md" onClick={onClose} aria-label={tCommon("close")} />
       <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-luxury-papyrus p-8 shadow-luxury sm:rounded-3xl animate-slide-up">
         <button
           type="button"
           onClick={onClose}
           className="absolute right-6 top-6 text-luxury-muted hover:text-luxury-graphite"
-          aria-label="Fermer"
+          aria-label={tCommon("close")}
         >
           ×
         </button>
@@ -111,11 +121,11 @@ export function ContactModal({
         <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-forest">
           {modelName}
         </p>
-        <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">Demander un Devis</h2>
+        <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">{t("contact.title")}</h2>
         <p className="mt-2 font-ui text-sm text-luxury-muted">
-          Configuration estimée à{" "}
+          {t("contact.estimatedAt")}{" "}
           <strong className="text-luxury-graphite">
-            {new Intl.NumberFormat("fr-FR").format(totalPrice)} € TTC
+            {new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(totalPrice)} € {tCommon("ttc")}
           </strong>
         </p>
 
@@ -131,26 +141,26 @@ export function ContactModal({
           }}
         >
           <label className="block">
-            <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">Nom complet</span>
+            <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">{t("contact.name")}</span>
             <input required className="mt-2 w-full border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest" />
           </label>
           <label className="block">
-            <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">Email</span>
+            <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">{t("contact.email")}</span>
             <input type="email" required className="mt-2 w-full border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest" />
           </label>
           <label className="block">
-            <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">Téléphone</span>
+            <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">{t("contact.phone")}</span>
             <input type="tel" className="mt-2 w-full border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest" />
           </label>
           <label className="block">
-            <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">Message</span>
-            <textarea rows={3} className="mt-2 w-full resize-none border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest" placeholder="Parlez-nous de votre projet..." />
+            <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">{t("contact.message")}</span>
+            <textarea rows={3} className="mt-2 w-full resize-none border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest" placeholder={t("contact.messagePlaceholder")} />
           </label>
           <button
             type="submit"
             className="w-full rounded-full bg-luxury-forest py-4 font-ui text-sm font-medium uppercase tracking-[0.15em] text-white transition hover:bg-luxury-forest-dark"
           >
-            Envoyer ma demande
+            {t("contact.submit")}
           </button>
         </form>
       </div>

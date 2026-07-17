@@ -1,18 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getLocale, getTranslations } from "next-intl/server";
 import { OptionFichaCard } from "@/components/options/OptionFichaCard";
 import { SiteHeader } from "@/components/SiteHeader";
-import { FINITION_CATEGORIES, getAllFinitions } from "@/data/options-catalog";
+import { getAllFinitions, getLocalizedFinitionCategories } from "@/data/options-catalog";
+import type { Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Personnalisation | Modulia",
-  description:
-    "Finitions et coloris inclus dans le prix de votre modèle Modulia — façade, murs, sols et salle de bains.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("personnalisation");
+  return {
+    title: `${t("title")} | Modulia`,
+    description: t("intro"),
+  };
+}
 
-export default function PersonnalisationPage() {
+export default async function PersonnalisationPage() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("personnalisation");
+  const finitionCategories = getLocalizedFinitionCategories(locale);
   const finitionsById = Object.fromEntries(
-    getAllFinitions().map((item) => [item.id, item]),
+    getAllFinitions(locale).map((item) => [item.id, item]),
   );
 
   return (
@@ -22,42 +29,37 @@ export default function PersonnalisationPage() {
       <main className="pt-20">
         <section className="mx-auto max-w-7xl px-6 py-16">
           <p className="font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-forest">
-            Modulia
+            {t("eyebrow")}
           </p>
           <h1 className="mt-4 max-w-3xl font-serif text-4xl text-luxury-graphite sm:text-5xl">
-            Personnalisation
+            {t("title")}
           </h1>
           <p className="mt-6 max-w-2xl font-ui text-luxury-muted">
-            Choisissez vos finitions et coloris — inclus dans le prix de votre
-            modèle, sans supplément. Pour les équipements et services en plus,{" "}
-            <Link href="/options" className="text-luxury-forest hover:underline">
-              voir nos options
-            </Link>
-            .
+            {t("intro")}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/personnaliser"
               className="rounded-full bg-luxury-forest px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-white transition hover:bg-luxury-forest-dark"
             >
-              Personnaliser →
+              {t("ctaPersonnaliser")}
             </Link>
             <Link
               href="/modelos"
               className="rounded-full border border-luxury-stone bg-white px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-luxury-graphite transition hover:border-luxury-forest"
             >
-              Nos modèles →
+              {t("ctaModels")}
             </Link>
             <Link
               href="/options"
               className="rounded-full border border-luxury-stone bg-white px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-luxury-graphite transition hover:border-luxury-forest"
             >
-              Options →
+              {t("ctaOptions")}
             </Link>
           </div>
         </section>
 
-        {FINITION_CATEGORIES.map((category) => (
+        {finitionCategories.map((category) => (
           <section
             key={category.id}
             id={category.id}
@@ -83,22 +85,22 @@ export default function PersonnalisationPage() {
 
         <section className="mx-auto max-w-7xl px-6 py-20">
           <div className="rounded-3xl bg-luxury-graphite p-10 text-center lg:p-16">
-            <h2 className="font-serif text-3xl text-white">Prêt à personnaliser ?</h2>
+            <h2 className="font-serif text-3xl text-white">{t("readyTitle")}</h2>
             <p className="mx-auto mt-4 max-w-lg font-ui text-sm text-white/60">
-              Configurez votre modèle et choisissez vos finitions incluses.
+              {t("readyText")}
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/personnaliser"
                 className="rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs uppercase tracking-wider text-white"
               >
-                Personnaliser
+                {t("personnaliser")}
               </Link>
               <Link
                 href="/#contact"
                 className="rounded-full border border-white/20 px-8 py-4 font-ui text-xs uppercase tracking-wider text-white"
               >
-                Demander un devis
+                {t("devis")}
               </Link>
             </div>
           </div>

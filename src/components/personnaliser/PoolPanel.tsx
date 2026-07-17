@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/config";
 import {
-  POOL_MODEL,
-  POOL_OPTIONS,
   formatOptionPrice,
+  getLocalizedPoolModel,
+  getLocalizedPoolOptions,
   type OptionItem,
 } from "@/data/options-catalog";
 import type { PoolSelection } from "./types";
@@ -15,7 +17,15 @@ type PoolPanelProps = {
   onOpenDetail: (option: OptionItem) => void;
 };
 
+const NUMBER_LOCALE: Record<Locale, string> = { fr: "fr-FR", pt: "pt-PT", en: "en-GB" };
+
 export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
+  const t = useTranslations("personnaliser");
+  const locale = useLocale() as Locale;
+  const poolModel = getLocalizedPoolModel(locale);
+  const poolOptions = getLocalizedPoolOptions(locale);
+  const categoryTitle = t("phasePiscine");
+
   const toggleOption = (id: string) => {
     const options = pool.options.includes(id)
       ? pool.options.filter((o) => o !== id)
@@ -25,14 +35,14 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
 
   const poolAsOption: OptionItem = {
     id: "sofa-pool",
-    title: POOL_MODEL.name,
-    description: POOL_MODEL.description,
-    image: POOL_MODEL.heroImage,
-    price: POOL_MODEL.priceFrom,
+    title: poolModel.name,
+    description: poolModel.description,
+    image: poolModel.heroImage,
+    price: poolModel.priceFrom,
     priceType: "ttc",
-    priceLabel: `dès ${new Intl.NumberFormat("fr-FR").format(POOL_MODEL.priceFrom)} € TTC`,
-    highlights: POOL_MODEL.highlights,
-    categoryTitle: "Piscine",
+    priceLabel: `${t("from")} ${new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(poolModel.priceFrom)} €`,
+    highlights: poolModel.highlights,
+    categoryTitle,
   };
 
   return (
@@ -51,8 +61,8 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
             className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl"
           >
             <Image
-              src={POOL_MODEL.heroImage}
-              alt={POOL_MODEL.name}
+              src={poolModel.heroImage}
+              alt={poolModel.name}
               fill
               className="object-cover"
               sizes="64px"
@@ -65,13 +75,12 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
                 onClick={() => onOpenDetail(poolAsOption)}
                 className="text-left"
               >
-                <p className="font-ui text-sm text-luxury-graphite">{POOL_MODEL.name}</p>
+                <p className="font-ui text-sm text-luxury-graphite">{poolModel.name}</p>
                 <p className="mt-0.5 font-ui text-[11px] text-luxury-muted">
-                  dès {new Intl.NumberFormat("fr-FR").format(POOL_MODEL.priceFrom)} €
-                  TTC
+                  {poolAsOption.priceLabel}
                 </p>
                 <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                  Voir le détail →
+                  {t("seeDetail")}
                 </p>
               </button>
               <button
@@ -97,7 +106,7 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
               </button>
             </div>
             <p className="mt-2 font-ui text-[11px] leading-relaxed text-luxury-muted">
-              {POOL_MODEL.tagline}
+              {poolModel.tagline}
             </p>
           </div>
         </div>
@@ -106,10 +115,11 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
       {pool.enabled && (
         <div className="space-y-2">
           <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
-            Options piscine
+            {t("optionsPiscine")}
           </p>
-          {POOL_OPTIONS.map((item) => {
+          {poolOptions.map((item) => {
             const on = pool.options.includes(item.id);
+            const optionWithCategory = { ...item, categoryTitle };
             return (
               <div
                 key={item.id}
@@ -121,9 +131,7 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
               >
                 <button
                   type="button"
-                  onClick={() =>
-                    onOpenDetail({ ...item, categoryTitle: "Piscine" })
-                  }
+                  onClick={() => onOpenDetail(optionWithCategory)}
                   className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg"
                 >
                   <Image
@@ -136,17 +144,15 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
                 </button>
                 <button
                   type="button"
-                  onClick={() =>
-                    onOpenDetail({ ...item, categoryTitle: "Piscine" })
-                  }
+                  onClick={() => onOpenDetail(optionWithCategory)}
                   className="min-w-0 flex-1 text-left"
                 >
                   <p className="font-ui text-xs text-luxury-graphite">{item.title}</p>
                   <p className="mt-0.5 font-ui text-[11px] text-luxury-muted">
-                    {formatOptionPrice(item)}
+                    {formatOptionPrice(item, locale)}
                   </p>
                   <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                    Voir le détail →
+                    {t("seeDetail")}
                   </p>
                 </button>
                 <button

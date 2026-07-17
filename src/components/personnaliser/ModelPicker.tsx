@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import type { ModelData } from "@/data/models";
 import { formatPrice } from "@/components/equilibro/useAnimatedPrice";
 
@@ -11,6 +12,8 @@ type ModelPickerProps = {
 };
 
 export function ModelPicker({ models, selectedSlug, onSelect }: ModelPickerProps) {
+  const t = useTranslations("personnaliser");
+
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
       {models.map((model) => {
@@ -46,7 +49,7 @@ export function ModelPicker({ models, selectedSlug, onSelect }: ModelPickerProps
                 {model.name}
               </p>
               <p className="mt-1 font-ui text-[10px] text-luxury-muted">
-                dès {formatPrice(model.priceFrom)} €
+                {t("from")} {formatPrice(model.priceFrom)} €
               </p>
             </div>
           </button>

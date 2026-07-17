@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import type { ModelRichContent } from "@/data/models";
 
 type ModelRichSectionsProps = {
@@ -7,7 +8,9 @@ type ModelRichSectionsProps = {
 /**
  * Sections HTML traduisibles — données extraites des fiches (sans image officielle).
  */
-export function ModelRichSections({ rich }: ModelRichSectionsProps) {
+export async function ModelRichSections({ rich }: ModelRichSectionsProps) {
+  const t = await getTranslations("modelDetail");
+
   return (
     <>
       {/* Barra d'attributs clés */}
@@ -36,14 +39,14 @@ export function ModelRichSections({ rich }: ModelRichSectionsProps) {
         <section className="py-16">
           <div className="mx-auto max-w-7xl px-6">
             <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-              Plan & Dimensions
+              {t("planDimensions")}
             </p>
             <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">
-              Distribution intérieure
+              {t("interiorDistribution")}
             </h2>
             {rich.planFootprint && (
               <p className="mt-3 font-ui text-sm text-luxury-forest">
-                Empreinte totale : {rich.planFootprint}
+                {t("totalFootprint")} {rich.planFootprint}
               </p>
             )}
 
@@ -87,7 +90,7 @@ export function ModelRichSections({ rich }: ModelRichSectionsProps) {
               Modulia
             </p>
             <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">
-              Nos engagements
+              {t("ourCommitments")}
             </h2>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">

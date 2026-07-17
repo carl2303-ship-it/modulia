@@ -1,6 +1,8 @@
 "use client";
 
-import { FINITION_CATEGORIES, getAllFinitions } from "@/data/options-catalog";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/config";
+import { getLocalizedFinitionCategories } from "@/data/options-catalog";
 import { getOptionRich } from "@/data/options-rich";
 
 type FinitionPickersProps = {
@@ -10,18 +12,20 @@ type FinitionPickersProps = {
 
 /** Pickers de couleurs pour chaque finition incluse */
 export function FinitionPickers({ selections, onSelect }: FinitionPickersProps) {
-  const finitions = getAllFinitions();
+  const t = useTranslations("personnaliser");
+  const locale = useLocale() as Locale;
+  const categories = getLocalizedFinitionCategories(locale);
 
   return (
     <div className="space-y-8">
-      {FINITION_CATEGORIES.map((category) => (
+      {categories.map((category) => (
         <div key={category.id}>
           <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
             {category.title}
           </p>
           <div className="mt-4 space-y-6">
             {category.items.map((item) => {
-              const rich = getOptionRich(item.id) ?? finitions.find((f) => f.id === item.id)?.rich;
+              const rich = item.rich ?? getOptionRich(item.id, locale);
               const colors = rich?.colors ?? [];
               if (colors.length === 0) return null;
               const selected = selections[item.id];
@@ -30,7 +34,7 @@ export function FinitionPickers({ selections, onSelect }: FinitionPickersProps) 
                 <div key={item.id}>
                   <h4 className="font-serif text-base text-luxury-graphite">{item.title}</h4>
                   <p className="mt-1 font-ui text-[11px] text-luxury-muted">
-                    Inclus — sans supplément
+                    {t("included")}
                   </p>
                   <div className="mt-4 grid grid-cols-3 gap-4 sm:grid-cols-4">
                     {colors.map((color) => {
@@ -106,10 +110,10 @@ export function FinitionPickers({ selections, onSelect }: FinitionPickersProps) 
 }
 
 /** Initialise les finitions avec la première couleur de chaque palette */
-export function buildDefaultFinitions(): Record<string, string> {
+export function buildDefaultFinitions(locale: Locale = "fr"): Record<string, string> {
   const defaults: Record<string, string> = {};
-  for (const item of getAllFinitions()) {
-    const colors = getOptionRich(item.id)?.colors;
+  for (const item of getLocalizedFinitionCategories(locale).flatMap((c) => c.items)) {
+    const colors = item.rich?.colors ?? getOptionRich(item.id, locale)?.colors;
     if (colors?.[0]) defaults[item.id] = colors[0].name;
   }
   return defaults;

@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 import {
   PRIVACY_CONTENT,
-  PRIVACY_LOCALES,
   type PrivacyLocale,
 } from "@/data/privacy-content";
 
@@ -15,7 +14,7 @@ const BACK_LABELS: Record<PrivacyLocale, string> = {
 };
 
 export function PrivacyView() {
-  const [locale, setLocale] = useState<PrivacyLocale>("fr");
+  const locale = useLocale() as PrivacyLocale;
   const content = PRIVACY_CONTENT[locale];
 
   return (
@@ -32,23 +31,6 @@ export function PrivacyView() {
       <p className="mt-2 font-ui text-xs uppercase tracking-wider text-luxury-muted">
         {content.lastUpdated}
       </p>
-
-      <div className="mt-8 flex flex-wrap gap-2">
-        {PRIVACY_LOCALES.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => setLocale(item.id)}
-            className={`rounded-full px-5 py-2 font-ui text-xs uppercase tracking-wider transition ${
-              locale === item.id
-                ? "bg-luxury-forest text-white"
-                : "border border-luxury-stone bg-white text-luxury-muted hover:border-luxury-forest"
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
 
       <div className="mt-12 space-y-10">
         {content.articles.map((article, index) => (

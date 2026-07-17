@@ -1,8 +1,13 @@
 import Link from "next/link";
-import { MODULIA_PHILOSOPHY } from "@/data/philosophy";
+import { getLocale, getTranslations } from "next-intl/server";
+import { getPhilosophy } from "@/data/philosophy-i18n";
+import { isLocale, defaultLocale } from "@/i18n/config";
 
-export function ModuliaPhilosophy() {
-  const { eyebrow, title, intro, body, closing, highlights } = MODULIA_PHILOSOPHY;
+export async function ModuliaPhilosophy() {
+  const raw = await getLocale();
+  const locale = isLocale(raw) ? raw : defaultLocale;
+  const t = await getTranslations("philosophy");
+  const { eyebrow, title, intro, body, closing, highlights } = getPhilosophy(locale);
 
   return (
     <section id="philosophie" className="scroll-mt-28 border-t border-luxury-stone/60 py-24">
@@ -62,13 +67,13 @@ export function ModuliaPhilosophy() {
             href="/modelos"
             className="rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs uppercase tracking-[0.18em] text-white transition hover:bg-luxury-forest-dark"
           >
-            Découvrir les modèles
+            {t("ctaModels")}
           </Link>
           <Link
             href="#constructif"
             className="rounded-full border border-luxury-stone bg-white px-8 py-4 font-ui text-xs uppercase tracking-[0.18em] text-luxury-graphite transition hover:border-luxury-forest"
           >
-            Principe constructif
+            {t("ctaConstructif")}
           </Link>
         </div>
       </div>

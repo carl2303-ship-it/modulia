@@ -1,19 +1,24 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { getTranslations } from "next-intl/server";
 import { PersonnaliserConfigurator } from "@/components/personnaliser/PersonnaliserConfigurator";
 
-export const metadata: Metadata = {
-  title: "Personnaliser | Modulia — Configurateur",
-  description:
-    "Configurez votre module Modulia : modèle, finitions incluses, options, cuisine et piscine — devis instantané.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("personnaliser");
+  return {
+    title: `${t("title")} | Modulia — Configurateur`,
+    description: t("intro"),
+  };
+}
 
-export default function PersonnaliserPage() {
+export default async function PersonnaliserPage() {
+  const t = await getTranslations("common");
+
   return (
     <Suspense
       fallback={
         <div className="flex min-h-screen items-center justify-center bg-luxury-papyrus">
-          <p className="font-ui text-sm text-luxury-muted">Chargement…</p>
+          <p className="font-ui text-sm text-luxury-muted">{t("loading")}</p>
         </div>
       }
     >

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import type { ModelData } from "@/data/models";
 
 type ModelVisualProps = {
@@ -9,6 +10,7 @@ type ModelVisualProps = {
 
 /** Visuel sticky à gauche — modèle entier visible, sous le header */
 export function ModelVisual({ model }: ModelVisualProps) {
+  const t = useTranslations("personnaliser");
   const image = model?.images[0]?.src ?? "/logo-modulia.png";
   const alt = model?.images[0]?.alt ?? "Modulia";
 
@@ -45,7 +47,7 @@ export function ModelVisual({ model }: ModelVisualProps) {
       ) : (
         <div className="absolute inset-0 flex items-center justify-center">
           <p className="font-serif text-2xl text-luxury-muted">
-            Choisissez votre modèle
+            {t("chooseModel")}
           </p>
         </div>
       )}

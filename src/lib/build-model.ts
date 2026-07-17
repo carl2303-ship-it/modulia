@@ -1,9 +1,15 @@
 import type { ModelData, ModelRichContent, ModelSpec } from "@/data/models";
+import type { ModelOverride } from "@/data/model-overrides";
 import {
-  MODEL_OVERRIDES,
-  STANDARD_HIGHLIGHTS,
-  STANDARD_VALUE_PROPS,
-} from "@/data/model-overrides";
+  getStandardHighlights,
+  getStandardValueProps,
+  localizeKeyFeatureDesc,
+  localizeKeyFeatureTitle,
+  localizeSpecLabel,
+  localizeSpecValue,
+  resolveModelOverride,
+} from "@/data/model-overrides-i18n";
+import { defaultLocale, type Locale } from "@/i18n/config";
 import {
   getModelAssets,
   MODEL_SLUGS,
@@ -14,59 +20,115 @@ function formatDimensions(length: string, width: string): string {
   return `${length.replace(" m", "")} × ${width}`;
 }
 
-function buildSpecs(override: (typeof MODEL_OVERRIDES)[ModelSlug]): ModelSpec[] {
+function buildSpecs(override: ModelOverride, locale: Locale): ModelSpec[] {
   const specs: ModelSpec[] = [
     {
-      label: "Dimensions hors tout",
+      label: localizeSpecLabel("Dimensions hors tout", locale),
       value: formatDimensions(override.length, override.width),
     },
-    { label: "Hauteur intérieure", value: "2,25 m" },
-    { label: "Surface intérieure", value: override.area },
-    { label: "Capacité", value: override.capacity },
-    { label: "Structure", value: "Acier galvanisé" },
-    { label: "Isolation", value: "Haute performance" },
+    {
+      label: localizeSpecLabel("Hauteur intérieure", locale),
+      value: "2,25 m",
+    },
+    {
+      label: localizeSpecLabel("Surface intérieure", locale),
+      value: override.area,
+    },
+    {
+      label: localizeSpecLabel("Capacité", locale),
+      value: override.capacity,
+    },
+    {
+      label: localizeSpecLabel("Structure", locale),
+      value: localizeSpecValue("Acier galvanisé", locale),
+    },
+    {
+      label: localizeSpecLabel("Isolation", locale),
+      value: localizeSpecValue("Haute performance", locale),
+    },
   ];
 
   if (override.terrace) {
-    specs.push({ label: "Terrasse", value: override.terrace });
+    specs.push({
+      label: localizeSpecLabel("Terrasse", locale),
+      value: override.terrace,
+    });
   }
 
-  specs.push({ label: "Distribution", value: override.distribution });
+  specs.push({
+    label: localizeSpecLabel("Distribution", locale),
+    value: override.distribution,
+  });
 
   return specs;
 }
 
 function buildKeyFeatures(
-  override: (typeof MODEL_OVERRIDES)[ModelSlug],
+  override: ModelOverride,
+  locale: Locale,
 ): NonNullable<ModelRichContent["keyFeatures"]> {
+  const livingDesc =
+    locale === "pt"
+      ? "Amplos e abertos"
+      : locale === "en"
+        ? "Spacious and open"
+        : "Spacieuses et ouvertes";
+
   if (override.terrace && override.length.startsWith("11")) {
     return [
-      { title: "Longueur", description: override.length },
-      { title: "Largeur", description: override.width },
-      { title: "Terrasse", description: override.terrace },
-      { title: "Distribution", description: override.distribution },
-      { title: "Pièces de vie", description: "Spacieuses et ouvertes" },
+      { title: localizeKeyFeatureTitle("Longueur", locale), description: override.length },
+      { title: localizeKeyFeatureTitle("Largeur", locale), description: override.width },
+      { title: localizeKeyFeatureTitle("Terrasse", locale), description: override.terrace },
+      {
+        title: localizeKeyFeatureTitle("Distribution", locale),
+        description: override.distribution,
+      },
+      {
+        title: localizeKeyFeatureTitle("Pièces de vie", locale),
+        description: livingDesc,
+      },
     ];
   }
 
   return [
-    { title: "Longueur", description: override.length },
-    { title: "Largeur", description: override.width },
-    { title: "Surface", description: override.area },
-    { title: "Distribution", description: override.distribution },
-    { title: "Capacité", description: override.capacity },
+    { title: localizeKeyFeatureTitle("Longueur", locale), description: override.length },
+    { title: localizeKeyFeatureTitle("Largeur", locale), description: override.width },
+    { title: localizeKeyFeatureTitle("Surface", locale), description: override.area },
+    {
+      title: localizeKeyFeatureTitle("Distribution", locale),
+      description: override.distribution,
+    },
+    { title: localizeKeyFeatureTitle("Capacité", locale), description: override.capacity },
   ];
 }
 
-export function buildModelFromSlug(slug: ModelSlug): ModelData {
+const IMAGE_ALT: Record<Locale, (name: string, n: 1 | 2) => string> = {
+  fr: (name, n) => `${name} — vue 3D ${n}`,
+  pt: (name, n) => `${name} — vista 3D ${n}`,
+  en: (name, n) => `${name} — 3D view ${n}`,
+};
+
+const PLAN_LABEL: Record<Locale, (dimensions: string) => string> = {
+  fr: (d) => `Plan & Dimensions · ${d}`,
+  pt: (d) => `Planta e dimensões · ${d}`,
+  en: (d) => `Plan & dimensions · ${d}`,
+};
+
+export function buildModelFromSlug(
+  slug: ModelSlug,
+  locale: Locale = defaultLocale,
+): ModelData {
   const assets = getModelAssets(slug);
-  const override = MODEL_OVERRIDES[slug];
+  const override = resolveModelOverride(slug, locale);
   const dimensions = formatDimensions(override.length, override.width);
 
   const rich: ModelRichContent = {
     introSubline: override.introSubline,
-    keyFeatures: buildKeyFeatures(override),
-    valueProps: STANDARD_VALUE_PROPS,
+    keyFeatures: buildKeyFeatures(override, locale).map((f) => ({
+      title: f.title,
+      description: localizeKeyFeatureDesc(f.description, locale),
+    })),
+    valueProps: getStandardValueProps(locale),
     layoutZones: override.layoutZones,
     planFootprint: dimensions,
     planInternalMeasures: override.planInternalMeasures,
@@ -82,13 +144,13 @@ export function buildModelFromSlug(slug: ModelSlug): ModelData {
     category: "particuliers",
     featured: override.featured,
     images: [
-      { src: assets.hero1, alt: `${override.name} — vue 3D 1` },
-      { src: assets.hero2, alt: `${override.name} — vue 3D 2` },
+      { src: assets.hero1, alt: IMAGE_ALT[locale](override.name, 1) },
+      { src: assets.hero2, alt: IMAGE_ALT[locale](override.name, 2) },
     ],
     planImage: assets.planImage,
-    planLabel: `Plan & Dimensions · ${dimensions}`,
-    specs: buildSpecs(override),
-    highlights: STANDARD_HIGHLIGHTS,
+    planLabel: PLAN_LABEL[locale](dimensions),
+    specs: buildSpecs(override, locale),
+    highlights: getStandardHighlights(locale),
     rooms: override.rooms,
     area: override.area,
     capacity: override.capacity,
@@ -97,8 +159,8 @@ export function buildModelFromSlug(slug: ModelSlug): ModelData {
   };
 }
 
-export function buildAllModels(): ModelData[] {
-  return MODEL_SLUGS.map(buildModelFromSlug).sort(
+export function buildAllModels(locale: Locale = defaultLocale): ModelData[] {
+  return MODEL_SLUGS.map((slug) => buildModelFromSlug(slug, locale)).sort(
     (a, b) => b.priceFrom - a.priceFrom,
   );
 }

@@ -1,41 +1,24 @@
-const features = [
-  {
-    title: "Construction rapide",
-    description:
-      "Modules préfabriqués en usine contrôlée — jusqu'à 60 % de temps en moins qu'une construction traditionnelle.",
-    icon: "⚡",
-  },
-  {
-    title: "Durabilité",
-    description:
-      "Matériaux sélectionnés, déchets minimisés et isolation haute performance pour une consommation énergétique réduite.",
-    icon: "🌿",
-  },
-  {
-    title: "Personnalisation totale",
-    description:
-      "Agencements, finitions et dimensions adaptés à vos besoins — agrandissez les modules au fil de la vie.",
-    icon: "✦",
-  },
-  {
-    title: "Qualité garantie",
-    description:
-      "Contrôle qualité rigoureux en environnement industriel, avec garantie structurelle et suivi après livraison.",
-    icon: "✓",
-  },
-];
+import { getTranslations } from "next-intl/server";
 
-export function Features() {
+type FeatureItem = {
+  title: string;
+  description: string;
+  icon: string;
+};
+
+export async function Features() {
+  const t = await getTranslations("features");
+  const features = t.raw("items") as FeatureItem[];
+
   return (
     <section id="avantages" className="border-t border-modulia-100 bg-white py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-modulia-950 sm:text-4xl">
-            Pourquoi choisir Modulia ?
+            {t("title")}
           </h2>
           <p className="mt-4 text-lg text-modulia-700">
-            Nous allions ingénierie de précision et design contemporain pour
-            livrer des maisons modulaires qui dépassent les attentes.
+            {t("subtitle")}
           </p>
         </div>
 

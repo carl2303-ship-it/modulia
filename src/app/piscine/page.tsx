@@ -1,19 +1,28 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getLocale, getTranslations } from "next-intl/server";
 import { OptionFichaCard } from "@/components/options/OptionFichaCard";
 import { SiteHeader } from "@/components/SiteHeader";
-import { POOL_MODEL, POOL_OPTIONS } from "@/data/options-catalog";
+import { getLocalizedPoolModel, getLocalizedPoolOptions } from "@/data/options-catalog";
 import { formatModelPrice } from "@/data/models";
+import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
 
-export const metadata: Metadata = {
-  title: "Sofa Pool | Piscine Modulaire Modulia",
-  description:
-    "Piscine modulaire Sofa Pool — 9 450 € TTC clé en main. Compacte, élégante, sans terrassement.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("piscine");
+  const pool = getLocalizedPoolModel(isLocale(locale) ? locale : defaultLocale);
+  return {
+    title: `${pool.name} | ${t("badge")} Modulia`,
+    description: t("metaDescription", { price: formatModelPrice(pool.priceFrom) }),
+  };
+}
 
-export default function PiscinePage() {
-  const pool = POOL_MODEL;
+export default async function PiscinePage() {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations("piscine");
+  const pool = getLocalizedPoolModel(locale);
+  const poolOptions = getLocalizedPoolOptions(locale);
 
   return (
     <div className="min-h-screen bg-luxury-papyrus">
@@ -34,7 +43,7 @@ export default function PiscinePage() {
 
           <div>
             <p className="font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-forest">
-              Piscine modulaire
+              {t("badge")}
             </p>
             <h1 className="mt-4 font-serif text-4xl text-luxury-graphite sm:text-5xl">
               {pool.name}
@@ -56,7 +65,7 @@ export default function PiscinePage() {
             </dl>
 
             <p className="mt-10 font-ui text-[10px] uppercase tracking-wider text-luxury-muted">
-              Prix clé en main
+              {t("priceLabel")}
             </p>
             <p className="font-serif text-4xl text-luxury-graphite">
               {formatModelPrice(pool.priceFrom)}
@@ -67,14 +76,14 @@ export default function PiscinePage() {
               href="/#contact?model=piscine-sofa-pool"
               className="mt-8 inline-block rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs uppercase tracking-wider text-white"
             >
-              Demander un devis
+              {t("devis")}
             </Link>
           </div>
         </section>
 
         <section className="border-t border-luxury-stone/60 bg-white py-16">
           <div className="mx-auto max-w-7xl px-6">
-            <h2 className="font-serif text-3xl text-luxury-graphite">Points forts</h2>
+            <h2 className="font-serif text-3xl text-luxury-graphite">{t("highlightsTitle")}</h2>
             <div className="mt-8 flex flex-wrap gap-3">
               {pool.highlights.map((h) => (
                 <span
@@ -87,7 +96,7 @@ export default function PiscinePage() {
             </div>
 
             <h3 className="mt-12 font-ui text-sm font-medium uppercase tracking-wider text-luxury-muted">
-              Équipements inclus
+              {t("includedTitle")}
             </h3>
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
               {pool.included.map((item) => (
@@ -102,9 +111,9 @@ export default function PiscinePage() {
 
         <section className="border-t border-luxury-stone/60 py-16">
           <div className="mx-auto max-w-7xl px-6">
-            <h2 className="font-serif text-3xl text-luxury-graphite">Options</h2>
+            <h2 className="font-serif text-3xl text-luxury-graphite">{t("optionsTitle")}</h2>
             <div className="mt-10 grid gap-8 sm:grid-cols-2">
-              {POOL_OPTIONS.map((item) => (
+              {poolOptions.map((item) => (
                 <OptionFichaCard key={item.id} item={item} />
               ))}
             </div>
@@ -114,13 +123,13 @@ export default function PiscinePage() {
         <section className="border-t border-luxury-stone/60 py-16">
           <div className="mx-auto max-w-7xl px-6">
             <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-              Architecture
+              {t("architectureLabel")}
             </p>
-            <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">Dimensions</h2>
+            <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">{t("dimensionsTitle")}</h2>
             <div className="mt-8 max-w-2xl overflow-hidden rounded-3xl border border-luxury-stone bg-white p-4">
               <Image
                 src={pool.planImage}
-                alt="Dimensions Sofa Pool"
+                alt={`${t("dimensionsTitle")} ${pool.name}`}
                 width={800}
                 height={600}
                 className="h-auto w-full rounded-2xl"
@@ -138,7 +147,7 @@ export default function PiscinePage() {
 
         <section className="mx-auto max-w-7xl px-6 py-12">
           <Link href="/options" className="font-ui text-xs uppercase tracking-wider text-luxury-forest hover:underline">
-            ← Toutes les options
+            ← {t("backToOptions")}
           </Link>
         </section>
       </main>

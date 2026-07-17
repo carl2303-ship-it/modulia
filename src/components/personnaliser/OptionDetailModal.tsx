@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/config";
 import type { OptionItem } from "@/data/options-catalog";
-import { formatOptionPrice, POOL_MODEL } from "@/data/options-catalog";
+import { formatOptionPrice, getLocalizedPoolModel } from "@/data/options-catalog";
 import { getOptionRich } from "@/data/options-rich";
-import { getKitchenSection } from "@/data/kitchen-content";
+import { getLocalizedKitchenSection } from "@/data/kitchen-content";
 
 type OptionDetailModalProps = {
   option: OptionItem | null;
@@ -19,6 +21,9 @@ export function OptionDetailModal({
   isOpen,
   onClose,
 }: OptionDetailModalProps) {
+  const t = useTranslations("common");
+  const locale = useLocale() as Locale;
+
   useEffect(() => {
     if (!isOpen) return;
     const handleKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -32,8 +37,9 @@ export function OptionDetailModal({
 
   if (!isOpen || !option) return null;
 
-  const rich = getOptionRich(option.id) ?? option.rich;
-  const kitchen = getKitchenSection(
+  const poolModel = getLocalizedPoolModel(locale);
+  const rich = option.rich ?? getOptionRich(option.id, locale);
+  const kitchen = getLocalizedKitchenSection(
     option.id === "cuisine-base"
       ? "base"
       : option.id === "electro-option"
@@ -41,6 +47,7 @@ export function OptionDetailModal({
         : option.id === "electro-base"
           ? "electro-base"
           : option.id,
+    locale,
   );
   const image =
     rich?.gallery?.[0] ?? kitchen?.image ?? option.image;
@@ -48,12 +55,12 @@ export function OptionDetailModal({
     rich?.features?.map((f) => `${f.title} — ${f.description}`) ??
     kitchen?.features?.map((f) => `${f.title} — ${f.description}`) ??
     option.highlights ??
-    (option.id === "sofa-pool" ? POOL_MODEL.highlights : undefined) ??
+    (option.id === "sofa-pool" ? poolModel.highlights : undefined) ??
     [];
   const includes =
     rich?.includes?.map((i) => i.title) ??
     kitchen?.includes ??
-    (option.id === "sofa-pool" ? POOL_MODEL.included : []) ??
+    (option.id === "sofa-pool" ? poolModel.included : []) ??
     [];
   const variants = rich?.variants ?? [];
   const colors = rich?.colors ?? [];
@@ -62,8 +69,8 @@ export function OptionDetailModal({
   const priceDisplay =
     kitchen?.priceLabel ??
     (kitchen?.included || option.priceType === "inclus"
-      ? "Inclus"
-      : formatOptionPrice(option));
+      ? t("inclus")
+      : formatOptionPrice(option, locale));
 
   return (
     <div
@@ -76,14 +83,14 @@ export function OptionDetailModal({
         type="button"
         className="absolute inset-0 bg-luxury-graphite/50 backdrop-blur-md"
         onClick={onClose}
-        aria-label="Fermer"
+        aria-label={t("close")}
       />
       <div className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-3xl bg-luxury-papyrus p-8 shadow-luxury animate-slide-up sm:rounded-3xl">
         <button
           type="button"
           onClick={onClose}
           className="absolute right-6 top-6 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-luxury-stone font-ui text-luxury-muted transition hover:border-luxury-graphite hover:text-luxury-graphite"
-          aria-label="Fermer"
+          aria-label={t("close")}
         >
           ×
         </button>
@@ -124,7 +131,7 @@ export function OptionDetailModal({
         {colors.length > 0 && (
           <div className="mt-6 border-t border-luxury-stone pt-6">
             <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
-              Coloris disponibles
+              {t("colorsAvailable")}
             </p>
             <div className="mt-3 flex flex-wrap gap-3">
               {colors.map((color) => (
@@ -192,7 +199,7 @@ export function OptionDetailModal({
           onClick={onClose}
           className="mt-8 w-full rounded-full bg-luxury-graphite py-3.5 font-ui text-xs uppercase tracking-wider text-white transition hover:bg-luxury-forest"
         >
-          Fermer
+          {t("close")}
         </button>
       </div>
     </div>

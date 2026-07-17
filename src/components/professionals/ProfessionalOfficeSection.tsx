@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { formatModelPrice, type ModelSpec } from "@/data/models";
 import type { ProfessionalModel } from "@/data/professionals";
 
@@ -28,10 +29,12 @@ function SpecGrid({ specs }: { specs: ModelSpec[] }) {
   );
 }
 
-export function ProfessionalOfficeSection({
+export async function ProfessionalOfficeSection({
   model,
   reversed = false,
 }: ProfessionalOfficeSectionProps) {
+  const t = await getTranslations("professionnels");
+
   return (
     <section id={model.slug} className="scroll-mt-28 border-t border-luxury-stone/60 py-20">
       <div className="mx-auto max-w-7xl px-6">
@@ -52,7 +55,7 @@ export function ProfessionalOfficeSection({
 
           <div>
             <p className="font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-forest">
-              Professionnels
+              {t("sectionEyebrow")}
             </p>
             <h2 className="mt-3 font-serif text-4xl tracking-wide text-luxury-graphite sm:text-5xl">
               {model.name}
@@ -79,7 +82,7 @@ export function ProfessionalOfficeSection({
             </dl>
 
             <p className="mt-10 font-ui text-[10px] uppercase tracking-wider text-luxury-muted">
-              À partir de
+              {t("fromLabel")}
             </p>
             <p className="font-serif text-4xl text-luxury-graphite">
               {formatModelPrice(model.priceFrom)}
@@ -91,7 +94,7 @@ export function ProfessionalOfficeSection({
               href={`/#contact?model=${model.slug}`}
               className="mt-8 inline-block rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs font-medium uppercase tracking-[0.18em] text-white transition hover:bg-luxury-forest-dark"
             >
-              Demander un devis
+              {t("ctaDevis")}
             </Link>
           </div>
         </div>
@@ -99,23 +102,23 @@ export function ProfessionalOfficeSection({
         {(model.interiorImage || model.bathroomImages?.length) && (
           <div className="mt-16">
             <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-              Espaces intérieurs
+              {t("interiorEyebrow")}
             </p>
             <h3 className="mt-2 font-serif text-2xl text-luxury-graphite">
-              Vue intérieure & sanitaires
+              {t("interiorTitle")}
             </h3>
             <div className="mt-8 grid gap-4">
               {model.interiorImage && (
                 <div className="overflow-hidden rounded-3xl border border-luxury-stone bg-white p-3 shadow-luxury-sm">
                   <Image
                     src={model.interiorImage}
-                    alt={`Vue intérieure — ${model.name}`}
+                    alt={`${t("interiorViewLabel")} — ${model.name}`}
                     width={1200}
                     height={600}
                     className="h-auto w-full rounded-2xl"
                   />
                   <p className="mt-3 text-center font-ui text-[10px] uppercase tracking-wider text-luxury-muted">
-                    Vue intérieure
+                    {t("interiorViewLabel")}
                   </p>
                 </div>
               )}
@@ -128,13 +131,13 @@ export function ProfessionalOfficeSection({
                     >
                       <Image
                         src={src}
-                        alt={`Salle de bains ${model.name} — vue ${index + 1}`}
+                        alt={`${model.name} — ${index === 0 ? t("wcLabel") : t("sinkLabel")}`}
                         width={500}
                         height={500}
                         className="mx-auto h-auto max-h-80 w-full rounded-2xl object-cover"
                       />
                       <p className="mt-3 text-center font-ui text-[10px] uppercase tracking-wider text-luxury-muted">
-                        {index === 0 ? "WC intégré" : "Lavabo"}
+                        {index === 0 ? t("wcLabel") : t("sinkLabel")}
                       </p>
                     </div>
                   ))}
@@ -147,15 +150,15 @@ export function ProfessionalOfficeSection({
         <div className="mt-16 grid gap-12 lg:grid-cols-2">
           <div>
             <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-              Plan
+              {t("planEyebrow")}
             </p>
             <h3 className="mt-2 font-serif text-2xl text-luxury-graphite">
-              Agencement · {model.dimensions}
+              {t("layoutTitle")} · {model.dimensions}
             </h3>
             <div className="mt-6 overflow-hidden rounded-3xl border border-luxury-stone bg-white p-4 shadow-luxury-sm">
               <Image
                 src={model.planImage}
-                alt={`Plan ${model.name}`}
+                alt={`${t("planEyebrow")} ${model.name}`}
                 width={1000}
                 height={600}
                 className="h-auto w-full rounded-2xl"
@@ -165,10 +168,10 @@ export function ProfessionalOfficeSection({
 
           <div>
             <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-              Infrastructure
+              {t("infrastructureEyebrow")}
             </p>
             <h3 className="mt-2 font-serif text-2xl text-luxury-graphite">
-              Réseaux & sanitaires
+              {t("infrastructureTitle")}
             </h3>
             <ul className="mt-6 space-y-3">
               {model.infrastructure.map((item) => (
@@ -183,7 +186,7 @@ export function ProfessionalOfficeSection({
             </ul>
 
             <p className="mt-10 font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-              Idéal pour
+              {t("idealForLabel")}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               {model.useCases.map((useCase) => (
@@ -200,9 +203,9 @@ export function ProfessionalOfficeSection({
 
         <div className="mt-16">
           <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-            Caractéristiques
+            {t("specsEyebrow")}
           </p>
-          <h3 className="mt-2 font-serif text-2xl text-luxury-graphite">Fiche technique</h3>
+          <h3 className="mt-2 font-serif text-2xl text-luxury-graphite">{t("specsTitle")}</h3>
           <div className="mt-8">
             <SpecGrid specs={model.specs} />
           </div>
@@ -210,7 +213,7 @@ export function ProfessionalOfficeSection({
 
         <div className="mt-12">
           <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-            Options
+            {t("optionsLabel")}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {model.options.map((option) => (

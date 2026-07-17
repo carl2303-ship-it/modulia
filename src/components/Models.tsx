@@ -1,47 +1,48 @@
+"use client";
+
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 import { ModelThumbnail } from "@/components/models/ModelThumbnail";
-import { MODELS_PARTICULIERS, formatModelPrice } from "@/data/models";
+import { formatModelPrice, getModels } from "@/data/models";
+import { defaultLocale, isLocale } from "@/i18n/config";
 
 export function Models() {
+  const t = useTranslations("models");
+  const raw = useLocale();
+  const locale = isLocale(raw) ? raw : defaultLocale;
+  const models = getModels(locale);
+
   return (
     <section id="modelos" className="bg-luxury-papyrus py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-luxury-forest">
-            Collection
+            {t("eyebrow")}
           </p>
           <h2 className="mt-3 font-serif text-4xl text-luxury-graphite sm:text-5xl">
-            Nos modèles
+            {t("title")}
           </h2>
           <p className="mx-auto mt-4 max-w-2xl font-ui text-luxury-muted">
-            Quatorze modèles pour particuliers, du studio compact à la villa
-            familiale — classés par gamme de prix.
+            {t("subtitle")}
           </p>
           <Link
             href="/modelos"
             className="mt-6 inline-block font-ui text-xs uppercase tracking-wider text-luxury-forest transition hover:text-luxury-forest-dark"
           >
-            Voir tous les modèles →
+            {t("seeAll")}
           </Link>
         </div>
 
         <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {MODELS_PARTICULIERS.map((model) => (
+          {models.map((model) => (
             <article
               key={model.slug}
-              className={`relative flex flex-col overflow-hidden rounded-3xl border bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-luxury ${
-                model.featured
-                  ? "border-luxury-forest/30 ring-1 ring-luxury-forest/20"
-                  : "border-luxury-stone"
-              }`}
+              className="relative flex flex-col overflow-hidden rounded-3xl border border-luxury-stone bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-luxury"
             >
-              {model.featured && (
-                <span className="absolute right-4 top-4 z-10 rounded-full bg-luxury-forest px-3 py-1 font-ui text-[10px] uppercase tracking-wider text-white">
-                  Signature
-                </span>
-              )}
-
-              <Link href={`/modelos/${model.slug}`} className="relative block aspect-video overflow-hidden bg-luxury-stone">
+              <Link
+                href={`/modelos/${model.slug}`}
+                className="relative block aspect-video overflow-hidden bg-luxury-stone"
+              >
                 <ModelThumbnail
                   src={model.images[0]?.src ?? "/logo-modulia.png"}
                   alt={model.name}
@@ -59,17 +60,13 @@ export function Models() {
                   {model.tagline}
                 </p>
                 <p className="mt-6 font-serif text-xl text-luxury-graphite">
-                  dès {formatModelPrice(model.priceFrom)} €
+                  {t("from")} {formatModelPrice(model.priceFrom, locale)} €
                 </p>
                 <Link
-                  href={model.configuratorUrl ?? `/modelos/${model.slug}`}
-                  className={`mt-6 block rounded-full py-3 text-center font-ui text-xs font-medium uppercase tracking-wider transition ${
-                    model.featured
-                      ? "bg-luxury-forest text-white hover:bg-luxury-forest-dark"
-                      : "border border-luxury-stone text-luxury-graphite hover:border-luxury-graphite"
-                  }`}
+                  href={`/modelos/${model.slug}`}
+                  className="mt-6 block rounded-full border border-luxury-stone py-3 text-center font-ui text-xs font-medium uppercase tracking-wider text-luxury-graphite transition hover:border-luxury-graphite"
                 >
-                  Personnaliser
+                  {t("viewModel")}
                 </Link>
               </div>
             </article>

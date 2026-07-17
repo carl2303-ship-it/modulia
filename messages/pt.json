@@ -1,0 +1,437 @@
+{
+  "meta": {
+    "title": "Modulia | Casas Modulares",
+    "description": "Modulia — casas modulares sustentáveis, personalizáveis e prontas a habitar. Construímos o seu futuro, módulo a módulo."
+  },
+  "nav": {
+    "particuliers": "Particulares",
+    "personnaliser": "Personalizar",
+    "personnalisation": "Personalização",
+    "options": "Opções",
+    "pro": "Profissionais",
+    "craft": "Saber-fazer",
+    "contact": "Contacto",
+    "devis": "Pedir orçamento"
+  },
+  "footer": {
+    "contact": "Contacto",
+    "cgv": "CGV",
+    "privacy": "Privacidade",
+    "rights": "Todos os direitos reservados."
+  },
+  "home": {
+    "heroEyebrow": "Casas modulares · Alta gama",
+    "heroTitle": "A elegância a partir de",
+    "heroPrice": "920 € HT / m²",
+    "heroText": "Soluções modulares de alta gama — sustentáveis, personalizáveis e prontas a habitar.",
+    "heroCta": "Descobrir os modelos",
+    "heroPhilosophy": "A nossa filosofia",
+    "statFrom": "A partir de",
+    "statModels": "Modelos",
+    "statDelivery": "Entrega",
+    "statDeliveryValue": "8–12 sem."
+  },
+  "models": {
+    "eyebrow": "Coleção",
+    "title": "Os nossos modelos",
+    "subtitle": "Catorze modelos para particulares, do estúdio compacto à villa familiar — ordenados por gama de preço.",
+    "seeAll": "Ver todos os modelos →",
+    "from": "desde",
+    "configure": "Personalizar",
+    "discover": "Descobrir",
+    "pageEyebrow": "Coleção Particulares",
+    "pageIntro": "Cada modelo Modulia é concebido para se integrar harmoniosamente no seu ambiente. Explore as características, as plantas e as vistas 3D de cada casa.",
+    "discoverPro": "Descubra também os nossos escritórios profissionais →",
+    "signature": "Assinatura",
+    "viewModel": "Ver o modelo →"
+  },
+  "modelCatalogLinks": {
+    "eyebrow": "Configurar o seu projeto",
+    "title": "Personalização e opções",
+    "text": "Escolha os acabamentos incluídos e os equipamentos em suplemento — ou compose o seu módulo no configurador.",
+    "personnalisation": "Personalização →",
+    "options": "Opções →",
+    "personnaliser": "Personalizar →"
+  },
+  "modelDetail": {
+    "home": "Início",
+    "eyebrow": "Particulares",
+    "breadcrumb": "Modelos",
+    "configure": "Personalizar",
+    "contact": "Contactar-nos",
+    "devis": "Pedir orçamento",
+    "specs": "Características",
+    "fiche": "Ficha técnica",
+    "ready": "Pronto a concretizar o seu projeto {name}?",
+    "configureOnline": "Personalizar online",
+    "startingFrom": "A partir de",
+    "planDimensions": "Planta & Dimensões",
+    "interiorDistribution": "Distribuição interior",
+    "totalFootprint": "Área total:",
+    "ourCommitments": "Os nossos compromissos",
+    "exploreCollection": "Explorar a coleção",
+    "previousModel": "Modelo anterior",
+    "nextModel": "Próximo modelo",
+    "viewModelPrev": "← Ver o modelo",
+    "viewModelNext": "Ver o modelo →",
+    "architecture": "Arquitetura",
+    "planTitle": "Planta do modelo",
+    "planComingSoon": "Planta brevemente disponível",
+    "planComingSoonText": "A imagem da planta estará brevemente disponível.",
+    "defaultClosing": "A nossa equipa acompanha-o da conceção à instalação.",
+    "notFound": "Modelo não encontrado"
+  },
+  "personnaliser": {
+    "eyebrow": "Configurador",
+    "title": "Personalizar",
+    "intro": "Escolha o seu modelo, os acabamentos incluídos e depois as opções em suplemento.",
+    "phaseModel": "Modelo",
+    "phaseModelSub": "Selecione o seu módulo Modulia",
+    "phaseFinitions": "Personalização incluída",
+    "phaseFinitionsSub": "Cores e acabamentos — sem suplemento",
+    "phaseOptions": "Opções",
+    "phaseOptionsSub": "Equipamentos e serviços em suplemento",
+    "phaseCuisine": "Cozinha",
+    "phaseCuisineSub": "Base incluída + opções e eletrodomésticos",
+    "phasePiscine": "Piscina",
+    "phasePiscineSub": "Sofa Pool e opções",
+    "included": "Incluído — sem suplemento",
+    "seeDetail": "Ver detalhe →",
+    "catalogFinitions": "Catálogo acabamentos →",
+    "catalogOptions": "Catálogo opções →",
+    "modelsLink": "Modelos",
+    "chooseModel": "Escolha o seu modelo",
+    "priceTotal": "Preço total",
+    "devisCta": "Pedir orçamento personalizado",
+    "modelLabel": "Modelo:",
+    "from": "desde",
+    "optionsCuisine": "Opções de cozinha",
+    "electromenager": "Eletrodomésticos",
+    "optionsPiscine": "Opções de piscina",
+    "kitchenIncludedHint": "Incluída em todos os módulos — sem suplemento",
+    "transportHint": "Incluído num raio de 30 km — ver detalhe",
+    "standard": "Standard",
+    "solar": "Solar",
+    "linearMeters": "Metros lineares",
+    "terrace": "Terraço",
+    "airConditioning": "Climatização",
+    "contact": {
+      "title": "Pedir Orçamento",
+      "estimatedAt": "Configuração estimada em",
+      "name": "Nome completo",
+      "email": "Email",
+      "phone": "Telefone",
+      "message": "Mensagem",
+      "messagePlaceholder": "Fale-nos do seu projeto...",
+      "submit": "Enviar o meu pedido"
+    }
+  },
+  "personnalisation": {
+    "eyebrow": "Modulia",
+    "title": "Personalização",
+    "intro": "Escolha os acabamentos e cores — incluídos no preço do seu modelo, sem suplemento. Para equipamentos e serviços extra, consulte as nossas opções.",
+    "ctaPersonnaliser": "Personalizar →",
+    "ctaModels": "Os nossos modelos →",
+    "ctaOptions": "Opções →",
+    "readyTitle": "Pronto a personalizar?",
+    "readyText": "Configure o seu modelo e escolha os acabamentos incluídos.",
+    "personnaliser": "Personalizar",
+    "devis": "Pedir orçamento"
+  },
+  "options": {
+    "eyebrow": "Modulia",
+    "title": "Opções",
+    "intro": "Equipamentos, terraços, ligações e serviços complementares para o seu projeto. Os acabamentos incluídos no preço estão na personalização.",
+    "ctaPersonnaliser": "Personalizar →",
+    "ctaPersonnalisation": "Personalização →",
+    "ctaCuisines": "Cozinhas →",
+    "ctaPiscine": "Piscina →",
+    "readyTitle": "Um projeto à medida?",
+    "readyText": "Contacte a nossa equipa para compor o seu módulo com as opções adequadas.",
+    "personnaliser": "Personalizar",
+    "devis": "Pedir orçamento"
+  },
+  "cuisines": {
+    "eyebrow": "Cozinha Modulia",
+    "title": "Cozinhas",
+    "intro": "Configuração de base incluída em todos os módulos, com opções complementares para adaptar o espaço de cozinha às suas necessidades.",
+    "optionsConfig": "Opções e configurações",
+    "optionsConfigSub": "Módulos complementares para equipar a sua cozinha.",
+    "surMesure": "Opções à medida",
+    "surMesureSub": "Cozinha contemporânea ao metro linear — design à medida.",
+    "ctaTitle": "Configurar a sua cozinha",
+    "ctaText": "Escolha o seu modelo e compose a cozinha adequada ao seu projeto.",
+    "seeModels": "Ver os modelos",
+    "devis": "Pedir orçamento"
+  },
+  "piscine": {
+    "eyebrow": "Modulia",
+    "title": "Piscina",
+    "from": "desde",
+    "badge": "Piscina modular",
+    "metaDescription": "Piscina modular Sofa Pool — {price} € (IVA incl.) chave na mão. Compacta, elegante, sem terraplanagem.",
+    "priceLabel": "Preço chave na mão",
+    "devis": "Pedir orçamento",
+    "highlightsTitle": "Pontos fortes",
+    "includedTitle": "Equipamentos incluídos",
+    "optionsTitle": "Opções",
+    "architectureLabel": "Arquitetura",
+    "dimensionsTitle": "Dimensões",
+    "backToOptions": "Todas as opções"
+  },
+  "install": {
+    "title": "MODULIA",
+    "text": "Instale a aplicação para aceder rapidamente aos modelos, personalizar e pedir um orçamento.",
+    "iosHint": "No iPhone / iPad: toque em Partilhar e depois Em Adicionar ao ecrã principal.",
+    "install": "Instalar a aplicação",
+    "later": "Mais tarde",
+    "ok": "Compreendi"
+  },
+  "common": {
+    "inclus": "Incluído",
+    "surDevis": "Sob orçamento",
+    "close": "Fechar",
+    "loading": "A carregar…",
+    "colorsAvailable": "Cores disponíveis",
+    "seeOptions": "ver as nossas opções",
+    "ttc": "IVA incl.",
+    "ht": "+IVA",
+    "seeOnMap": "Ver no mapa",
+    "seeDetail": "Ver detalhe →",
+    "seeColors": "Ver as cores →",
+    "learnMore": "Saber mais"
+  },
+  "philosophy": {
+    "ctaModels": "Descobrir os modelos",
+    "ctaConstructif": "Princípio construtivo"
+  },
+  "features": {
+    "title": "Porque escolher a Modulia?",
+    "subtitle": "Combinamos engenharia de precisão e design contemporâneo para entregar casas modulares que superam as expectativas.",
+    "items": [
+      {
+        "title": "Construção rápida",
+        "description": "Módulos pré-fabricados em fábrica controlada — até 60% menos tempo do que uma construção tradicional.",
+        "icon": "⚡"
+      },
+      {
+        "title": "Sustentabilidade",
+        "description": "Materiais selecionados, resíduos minimizados e isolamento de alto desempenho para um consumo energético reduzido.",
+        "icon": "🌿"
+      },
+      {
+        "title": "Personalização total",
+        "description": "Layouts, acabamentos e dimensões adaptados às suas necessidades — amplie os módulos ao longo da vida.",
+        "icon": "✦"
+      },
+      {
+        "title": "Qualidade garantida",
+        "description": "Controlo de qualidade rigoroso em ambiente industrial, com garantia estrutural e acompanhamento pós-entrega.",
+        "icon": "✓"
+      }
+    ]
+  },
+  "construction": {
+    "eyebrow": "Saber-fazer Modulia",
+    "title": "Princípio construtivo dos módulos",
+    "intro": "Concebidos com materiais de qualidade e técnicas de construção avançadas para garantir durabilidade, conforto e desempenho.",
+    "imageAlt": "Vista explodida da construção modular Modulia",
+    "footer": "Modulia — Soluções modulares de alta gama",
+    "layers": [
+      { "title": "Cobertura", "items": ["Painéis de cobertura", "Impermeabilização", "Acabamento exterior"] },
+      { "title": "Telhado", "items": ["Painel isolante XPS", "Estrutura do telhado", "Tecto falso"] },
+      { "title": "Paredes", "items": ["Painel exterior", "Painel isolante XPS", "Parede interior"] },
+      { "title": "Parede exterior", "items": ["Painel exterior", "Isolamento XPS", "Acabamento de fachada"] },
+      {
+        "title": "Caixilharias",
+        "items": [
+          "Aro de porta",
+          "Caixilho de alumínio com corte térmico",
+          "Vidro duplo temperado"
+        ]
+      },
+      {
+        "title": "Bloco técnico de parede",
+        "items": ["Painel exterior", "Isolamento XPS", "Placa de cimento", "Acabamento interior"]
+      },
+      {
+        "title": "Pavimento",
+        "items": [
+          "Revestimento de piso (madeira / parquet)",
+          "Painel isolante XPS",
+          "Placa de cimento",
+          "Base estrutural"
+        ]
+      },
+      { "title": "Estrutura portante", "items": ["Estrutura em aço galvanizado"] }
+    ],
+    "benefits": [
+      {
+        "title": "Isolamento de alto desempenho",
+        "description": "Painéis isolantes de alto desempenho (XPS)"
+      },
+      {
+        "title": "Materiais duradouros",
+        "description": "Materiais selecionados pela sua resistência e longevidade"
+      },
+      {
+        "title": "Conforto térmico",
+        "description": "Excelente regulação térmica no verão e no inverno"
+      },
+      {
+        "title": "Construção de precisão",
+        "description": "Montagem controlada e controlo de qualidade rigoroso"
+      },
+      {
+        "title": "Ecológico",
+        "description": "Materiais recicláveis e respeitadores do ambiente"
+      }
+    ]
+  },
+  "technicalSpecs": {
+    "eyebrow": "Ficha técnica",
+    "title": "Especificações do módulo Modulia",
+    "intro": "Características estruturais, térmicas e de equipamento dos nossos módulos pré-fabricados — concebidos para durar e adaptar-se a cada projeto.",
+    "sections": [
+      {
+        "id": "structure",
+        "title": "Estrutura geral",
+        "items": [
+          "Tipo: módulo pré-fabricado habitável, transportável",
+          "Estrutura portante: chassis em aço galvanizado ou aço termolacado",
+          "Estrutura autoportante concebida para transporte e montagem por grua",
+          "Vida útil estimada: 30 a 50 anos, dependendo da manutenção"
+        ]
+      },
+      {
+        "id": "dimensions",
+        "title": "Dimensões e modularidade",
+        "items": [
+          "Comprimento do módulo: 5,90 a 11,80 m",
+          "Largura: 2,25 a 9 m",
+          "Altura interior: 2,10 a 2,15 m",
+          "Montagem: módulos justapostos ou sobrepostos",
+          "Área: de 13 m² a mais de 100 m², dependendo da configuração"
+        ]
+      },
+      {
+        "id": "enveloppe",
+        "title": "Envolvente e isolamento",
+        "items": [
+          "Paredes exteriores: painéis sandwich em aço / alumínio, isolamento integrado (lã de rocha, lã de vidro ou espuma PU)",
+          "Isolamento térmico conforme RE2020 / equivalente — R paredes ≈ 3 a 4 m²·K/W, R cobertura ≈ 5 a 6 m²·K/W",
+          "Isolamento acústico: ≈ 35–45 dB, dependendo da composição",
+          "Estanquidade: barreira de vapor + juntas EPDM"
+        ]
+      },
+      {
+        "id": "menuiseries",
+        "title": "Caixilharias",
+        "items": [
+          "Fachadas envidraçadas: grandes vãos envidraçados em alumínio",
+          "Vidro: vidro duplo isolante (opção de vidro triplo), tratamento térmico e solar possível",
+          "Portas: entrada em alumínio segura, fechadura multipontos"
+        ]
+      },
+      {
+        "id": "toiture",
+        "title": "Cobertura",
+        "items": [
+          "Tipo: cobertura plana técnica",
+          "Estanquidade: membrana EPDM ou PVC",
+          "Opções: cobertura verde, painéis fotovoltaicos"
+        ]
+      },
+      {
+        "id": "equipements",
+        "title": "Equipamentos técnicos",
+        "items": [
+          "Eletricidade: instalação segundo a norma NFC 15-100, quadro elétrico integrado",
+          "Canalizações: redes de água quente / fria pré-instaladas, escoamento em PVC",
+          "Aquecimento / climatização: climatização reversível (split ou por condutas), opção de piso radiante",
+          "Ventilação: VMC simples ou de duplo fluxo"
+        ]
+      },
+      {
+        "id": "interieur",
+        "title": "Acabamento interior",
+        "items": [
+          "Revestimentos de piso: PVC, parquet laminado, cerâmico",
+          "Paredes interiores: painéis decorativos ou placas de gesso",
+          "Cozinha: bloco kitchenette pré-equipado (opcional)",
+          "Casa de banho: duche, WC, móvel de lavatório pré-instalados"
+        ]
+      },
+      {
+        "id": "transport",
+        "title": "Transporte e instalação",
+        "items": [
+          "Entrega: transporte rodoviário em camião de plataforma",
+          "Instalação: sobre laje de betão, apoios de betão ou estacas metálicas",
+          "Tempo de instalação: 1 a 3 dias (excluindo ligações)"
+        ]
+      },
+      {
+        "id": "usages",
+        "title": "Usos comuns",
+        "items": [
+          "Casa individual",
+          "Escritório / open space",
+          "Alojamento estudantil",
+          "Hotel modular",
+          "Base de estaleiro",
+          "Residência secundária"
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "title": "Peça o seu orçamento",
+    "subtitle": "Fale-nos do seu projeto. A nossa equipa responde em 48 horas com uma proposta personalizada.",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefone",
+    "formName": "Nome",
+    "formEmail": "E-mail",
+    "formPhone": "Telefone",
+    "formModel": "Modelo",
+    "selectPlaceholder": "Selecionar…",
+    "surMesure": "Sob medida",
+    "poolGroupLabel": "Piscina",
+    "formMessage": "Mensagem",
+    "messagePlaceholder": "Descreva o seu projeto…",
+    "submitting": "A enviar…",
+    "submit": "Enviar o pedido",
+    "successFallback": "Pedido recebido! Entraremos em contacto muito em breve.",
+    "successFull": "Obrigado! Recebemos o seu pedido e entraremos em contacto muito em breve.",
+    "errorMsg": "Não foi possível enviar. Tente novamente ou contacte-nos por e-mail."
+  },
+  "professionnels": {
+    "eyebrow": "Coleção Profissionais",
+    "title": "Escritórios modulares autónomos",
+    "intro": "Espaços prontos a usar com sanitários integrados, redes prontas a ligar e acabamentos premium — para obras, eventos e atividades profissionais.",
+    "fromHt": "desde {price} € +IVA",
+    "ctaFinalEyebrow": "Modulia Profissionais",
+    "ctaFinalTitle": "Um espaço pronto a usar para impulsionar a sua atividade",
+    "ctaFinalText": "Atraia, receba, convença. A Modulia trata do resto.",
+    "ctaDevis": "Pedir orçamento",
+    "ctaModels": "Ver os modelos particulares",
+    "needDetailEyebrow": "Precisa do detalhe completo?",
+    "needDetailText": "Todas as informações técnicas são apresentadas nesta página em francês. Contacte-nos para uma ficha detalhada no seu idioma.",
+    "contactUs": "Contactar-nos",
+    "sectionEyebrow": "Profissionais",
+    "fromLabel": "A partir de",
+    "interiorEyebrow": "Espaços interiores",
+    "interiorTitle": "Vista interior & sanitários",
+    "interiorViewLabel": "Vista interior",
+    "wcLabel": "WC integrado",
+    "sinkLabel": "Lavatório",
+    "planEyebrow": "Planta",
+    "layoutTitle": "Distribuição",
+    "infrastructureEyebrow": "Infraestrutura",
+    "infrastructureTitle": "Redes & sanitários",
+    "idealForLabel": "Ideal para",
+    "specsEyebrow": "Características",
+    "specsTitle": "Ficha técnica",
+    "optionsLabel": "Opções"
+  }
+}

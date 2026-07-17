@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { ModelThumbnail } from "@/components/models/ModelThumbnail";
 import type { ModelNavItem } from "@/data/models";
 
@@ -7,13 +8,14 @@ type ModelNavigationProps = {
   next: ModelNavItem;
 };
 
-function NavCard({
+async function NavCard({
   model,
   direction,
 }: {
   model: ModelNavItem;
   direction: "previous" | "next";
 }) {
+  const t = await getTranslations("modelDetail");
   const isPrevious = direction === "previous";
 
   return (
@@ -38,7 +40,7 @@ function NavCard({
         }`}
       >
         <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-          {isPrevious ? "Modèle précédent" : "Modèle suivant"}
+          {isPrevious ? t("previousModel") : t("nextModel")}
         </p>
         <p className="mt-2 font-serif text-xl tracking-wide text-luxury-graphite transition group-hover:text-luxury-forest sm:text-2xl">
           {model.name}
@@ -51,19 +53,21 @@ function NavCard({
             isPrevious ? "" : "flex flex-row-reverse items-center gap-1"
           }`}
         >
-          {isPrevious ? "← Voir le modèle" : "Voir le modèle →"}
+          {isPrevious ? t("viewModelPrev") : t("viewModelNext")}
         </span>
       </div>
     </Link>
   );
 }
 
-export function ModelNavigation({ previous, next }: ModelNavigationProps) {
+export async function ModelNavigation({ previous, next }: ModelNavigationProps) {
+  const t = await getTranslations("modelDetail");
+
   return (
     <section className="border-t border-luxury-stone/60 bg-luxury-papyrus py-16">
       <div className="mx-auto max-w-7xl px-6">
         <p className="text-center font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-muted">
-          Explorer la collection
+          {t("exploreCollection")}
         </p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-6">
           <NavCard model={previous} direction="previous" />

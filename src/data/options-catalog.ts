@@ -3,6 +3,18 @@
  */
 
 import { getOptionRich, type OptionRichContent } from "@/data/options-rich";
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { localizedOptionImage, localizedKitchenImage } from "@/lib/localized-assets";
+import {
+  CATEGORY_COPY,
+  KITCHEN_BASE_COPY,
+  NUMBER_LOCALE,
+  POOL_COPY,
+  PRICE_LABELS,
+  resolveCategorySubtitle,
+  resolveCategoryTitle,
+  resolveOptionCopy,
+} from "@/data/catalog-i18n";
 
 export type OptionItem = {
   id: string;
@@ -359,57 +371,121 @@ export const CONFIGURATOR_PRICES = {
   kitExterieur: 149,
 } as const;
 
-export function formatOptionPrice(item: OptionItem): string {
+export function formatOptionPrice(item: OptionItem, locale: Locale = defaultLocale): string {
   if (item.priceLabel) return item.priceLabel;
-  if (item.priceType === "inclus") return "Inclus";
-  if (item.price == null) return "Sur devis";
-  const suffix = item.priceType === "ht" ? " € HT" : " € TTC";
-  return new Intl.NumberFormat("fr-FR").format(item.price) + suffix;
+  const labels = PRICE_LABELS[locale];
+  if (item.priceType === "inclus") return labels.inclusLabel;
+  if (item.price == null) return labels.surDevis;
+  const suffix = item.priceType === "ht" ? labels.htSuffix : labels.ttcSuffix;
+  return `${new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(item.price)} ${suffix}`;
+}
+
+/** Localise le chemin d'image d'une option ("/opcoes/…", "/cozinhas/…") — la piscine reste inchangée */
+function localizeImagePath(image: string, locale: Locale): string {
+  if (image.startsWith("/opcoes/")) {
+    return localizedOptionImage(image.slice("/opcoes/".length), locale);
+  }
+  if (image.startsWith("/cozinhas/")) {
+    return localizedKitchenImage(image.slice("/cozinhas/".length), locale);
+  }
+  return image;
+}
+
+function localizePriceLabel(item: OptionItem, locale: Locale): string | undefined {
+  if (!item.priceLabel || item.priceType !== "inclus") return item.priceLabel;
+  const labels = PRICE_LABELS[locale];
+  if (item.priceLabel === "Inclus dans le prix") return labels.inclusInPrice;
+  if (item.priceLabel === "Inclus") return labels.inclusLabel;
+  return item.priceLabel;
+}
+
+/** Applique les traductions PT/EN (titre, description, image, prix, catégorie, contenu riche) à une fiche */
+export function localizeOptionItem(item: OptionItem, locale: Locale): OptionItem {
+  if (locale === defaultLocale) {
+    return { ...item, image: localizeImagePath(item.image, locale) };
+  }
+  const copy = resolveOptionCopy(item.id, locale, {
+    title: item.title,
+    description: item.description,
+    priceLabel: item.priceLabel,
+  });
+  const categoryTitle = item.categoryId
+    ? (CATEGORY_COPY[item.categoryId]?.[locale] ?? item.categoryTitle)
+    : item.categoryTitle;
+  return {
+    ...item,
+    title: copy.title,
+    description: copy.description ?? item.description,
+    image: localizeImagePath(item.image, locale),
+    categoryTitle,
+    priceLabel: copy.priceLabel ?? localizePriceLabel(item, locale),
+    rich: getOptionRich(item.id, locale) ?? item.rich,
+  };
 }
 
 function enrichOption(
   item: OptionItem,
   categoryId: string,
   categoryTitle: string,
+  locale: Locale = defaultLocale,
 ): OptionItem {
-  return {
+  const base: OptionItem = {
     ...item,
-    rich: getOptionRich(item.id),
+    rich: getOptionRich(item.id, defaultLocale),
     categoryId,
     categoryTitle,
   };
+  return locale === defaultLocale
+    ? { ...base, image: localizeImagePath(base.image, locale) }
+    : localizeOptionItem(base, locale);
 }
 
-export function getAllFinitions(): OptionItem[] {
-  return FINITION_CATEGORIES.flatMap((category) =>
-    category.items.map((item) =>
-      enrichOption(item, category.id, category.title),
-    ),
+function localizeItems(items: OptionItem[], locale: Locale): OptionItem[] {
+  return items.map((item) =>
+    localizeOptionItem({ ...item, rich: getOptionRich(item.id, defaultLocale) }, locale),
   );
 }
 
-export function getAllPaidOptions(): OptionItem[] {
-  return OPTION_CATEGORIES.flatMap((category) =>
-    category.items.map((item) =>
-      enrichOption(item, category.id, category.title),
-    ),
-  );
+export function getLocalizedFinitionCategories(locale: Locale = defaultLocale): OptionCategory[] {
+  return FINITION_CATEGORIES.map((category) => ({
+    ...category,
+    title: resolveCategoryTitle(category.id, locale, category.title),
+    subtitle: resolveCategorySubtitle(category.id, locale, category.subtitle),
+    items: category.items.map((item) => enrichOption(item, category.id, category.title, locale)),
+  }));
 }
 
-export function getAllCatalogOptions(): OptionItem[] {
-  return [...getAllFinitions(), ...getAllPaidOptions()];
+export function getLocalizedOptionCategories(locale: Locale = defaultLocale): OptionCategory[] {
+  return OPTION_CATEGORIES.map((category) => ({
+    ...category,
+    title: resolveCategoryTitle(category.id, locale, category.title),
+    subtitle: resolveCategorySubtitle(category.id, locale, category.subtitle),
+    items: category.items.map((item) => enrichOption(item, category.id, category.title, locale)),
+  }));
 }
 
-export function getFinitionById(id: string): OptionItem | undefined {
-  return getAllFinitions().find((item) => item.id === id);
+export function getAllFinitions(locale: Locale = defaultLocale): OptionItem[] {
+  return getLocalizedFinitionCategories(locale).flatMap((category) => category.items);
 }
 
-export function getPaidOptionById(id: string): OptionItem | undefined {
-  return getAllPaidOptions().find((item) => item.id === id);
+export function getAllPaidOptions(locale: Locale = defaultLocale): OptionItem[] {
+  return getLocalizedOptionCategories(locale).flatMap((category) => category.items);
 }
 
-export function getOptionById(id: string): OptionItem | undefined {
-  return getFinitionById(id) ?? getPaidOptionById(id);
+export function getAllCatalogOptions(locale: Locale = defaultLocale): OptionItem[] {
+  return [...getAllFinitions(locale), ...getAllPaidOptions(locale)];
+}
+
+export function getFinitionById(id: string, locale: Locale = defaultLocale): OptionItem | undefined {
+  return getAllFinitions(locale).find((item) => item.id === id);
+}
+
+export function getPaidOptionById(id: string, locale: Locale = defaultLocale): OptionItem | undefined {
+  return getAllPaidOptions(locale).find((item) => item.id === id);
+}
+
+export function getOptionById(id: string, locale: Locale = defaultLocale): OptionItem | undefined {
+  return getFinitionById(id, locale) ?? getPaidOptionById(id, locale);
 }
 
 export function getFinitionSlugs(): string[] {
@@ -422,4 +498,45 @@ export function getPaidOptionSlugs(): string[] {
 
 export function getOptionSlugs(): string[] {
   return getAllCatalogOptions().map((item) => item.id);
+}
+
+/** Fiche cuisine de base localisée (titre/tagline/description/highlights + image) */
+export function getLocalizedKitchenBase(locale: Locale = defaultLocale): typeof KITCHEN_BASE {
+  const image = localizeImagePath(KITCHEN_BASE.image, locale);
+  if (locale === defaultLocale) return { ...KITCHEN_BASE, image };
+  const copy = KITCHEN_BASE_COPY[locale];
+  return {
+    ...KITCHEN_BASE,
+    title: copy?.title ?? KITCHEN_BASE.title,
+    tagline: copy?.tagline ?? KITCHEN_BASE.tagline,
+    description: copy?.description ?? KITCHEN_BASE.description,
+    highlights: copy?.highlights ?? KITCHEN_BASE.highlights,
+    image,
+  };
+}
+
+export function getLocalizedKitchenOptions(locale: Locale = defaultLocale): OptionItem[] {
+  return localizeItems(KITCHEN_OPTIONS, locale);
+}
+
+export function getLocalizedKitchenAppliances(locale: Locale = defaultLocale): OptionItem[] {
+  return localizeItems(KITCHEN_APPLIANCES, locale);
+}
+
+/** Fiche piscine SOFA POOL localisée (tagline/description/capacity/included/highlights) — images inchangées */
+export function getLocalizedPoolModel(locale: Locale = defaultLocale): typeof POOL_MODEL {
+  if (locale === defaultLocale) return POOL_MODEL;
+  const copy = POOL_COPY[locale];
+  return {
+    ...POOL_MODEL,
+    tagline: copy?.tagline ?? POOL_MODEL.tagline,
+    description: copy?.description ?? POOL_MODEL.description,
+    capacity: copy?.capacity ?? POOL_MODEL.capacity,
+    included: copy?.included ?? POOL_MODEL.included,
+    highlights: copy?.highlights ?? POOL_MODEL.highlights,
+  };
+}
+
+export function getLocalizedPoolOptions(locale: Locale = defaultLocale): OptionItem[] {
+  return localizeItems(POOL_OPTIONS, locale);
 }

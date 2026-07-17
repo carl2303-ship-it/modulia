@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/config";
 import {
   CONFIGURATOR_PRICES,
-  KITCHEN_APPLIANCES,
-  KITCHEN_BASE,
-  KITCHEN_OPTIONS,
   formatOptionPrice,
+  getLocalizedKitchenAppliances,
+  getLocalizedKitchenBase,
+  getLocalizedKitchenOptions,
   type OptionItem,
 } from "@/data/options-catalog";
 import type { KitchenSelection } from "./types";
@@ -17,7 +19,24 @@ type KitchenPanelProps = {
   onOpenDetail: (option: OptionItem) => void;
 };
 
+const NUMBER_LOCALE: Record<Locale, string> = { fr: "fr-FR", pt: "pt-PT", en: "en-GB" };
+
 export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelProps) {
+  const t = useTranslations("personnaliser");
+  const tCommon = useTranslations("common");
+  const locale = useLocale() as Locale;
+
+  const kitchenBase = getLocalizedKitchenBase(locale);
+  const categoryTitle = t("phaseCuisine");
+  const kitchenOptions = getLocalizedKitchenOptions(locale).map((item) => ({
+    ...item,
+    categoryTitle,
+  }));
+  const kitchenAppliances = getLocalizedKitchenAppliances(locale).map((item) => ({
+    ...item,
+    categoryTitle,
+  }));
+
   const togglePack = (id: string) => {
     const packs = kitchen.packs.includes(id)
       ? kitchen.packs.filter((p) => p !== id)
@@ -25,20 +44,20 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
     onChange({ ...kitchen, packs });
   };
 
-  const packOptions = KITCHEN_OPTIONS.filter((o) => o.id !== "cuisine-contemporaine");
-  const contemporaine = KITCHEN_OPTIONS.find((o) => o.id === "cuisine-contemporaine");
-  const electroBase = KITCHEN_APPLIANCES.find((a) => a.id === "electro-base");
-  const electroPremium = KITCHEN_APPLIANCES.find((a) => a.id === "electro-option");
+  const packOptions = kitchenOptions.filter((o) => o.id !== "cuisine-contemporaine");
+  const contemporaine = kitchenOptions.find((o) => o.id === "cuisine-contemporaine");
+  const electroBase = kitchenAppliances.find((a) => a.id === "electro-base");
+  const electroPremium = kitchenAppliances.find((a) => a.id === "electro-option");
 
   const kitchenBaseAsOption: OptionItem = {
     id: "cuisine-base",
-    title: KITCHEN_BASE.title,
-    description: KITCHEN_BASE.description,
-    image: KITCHEN_BASE.image,
+    title: kitchenBase.title,
+    description: kitchenBase.description,
+    image: kitchenBase.image,
     priceType: "inclus",
-    priceLabel: "Inclus",
-    highlights: KITCHEN_BASE.highlights,
-    categoryTitle: "Cuisine",
+    priceLabel: tCommon("inclus"),
+    highlights: kitchenBase.highlights,
+    categoryTitle: t("phaseCuisine"),
   };
 
   return (
@@ -49,17 +68,17 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
           onClick={() => onOpenDetail(kitchenBaseAsOption)}
           className="w-full text-left transition hover:opacity-80"
         >
-          <p className="font-ui text-sm text-luxury-graphite">{KITCHEN_BASE.title}</p>
+          <p className="font-ui text-sm text-luxury-graphite">{kitchenBase.title}</p>
           <p className="mt-1 font-ui text-[11px] text-luxury-muted">
-            Incluse dans tous les modules — aucun supplément
+            {t("kitchenIncludedHint")}
           </p>
-          <p className="mt-1 font-ui text-[10px] text-luxury-forest">Voir le détail →</p>
+          <p className="mt-1 font-ui text-[10px] text-luxury-forest">{t("seeDetail")}</p>
         </button>
       </div>
 
       <div>
         <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
-          Options cuisine
+          {t("optionsCuisine")}
         </p>
         <div className="mt-3 space-y-3">
           {packOptions.map((item) => {
@@ -75,22 +94,22 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
               >
                 <button
                   type="button"
-                  onClick={() => onOpenDetail({ ...item, categoryTitle: "Cuisine" })}
+                  onClick={() => onOpenDetail(item)}
                   className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl"
                 >
                   <Image src={item.image} alt="" fill className="object-cover" sizes="56px" />
                 </button>
                 <button
                   type="button"
-                  onClick={() => onOpenDetail({ ...item, categoryTitle: "Cuisine" })}
+                  onClick={() => onOpenDetail(item)}
                   className="min-w-0 flex-1 text-left"
                 >
                   <p className="font-ui text-sm text-luxury-graphite">{item.title}</p>
                   <p className="mt-0.5 font-ui text-[11px] text-luxury-muted">
-                    {formatOptionPrice(item)}
+                    {formatOptionPrice(item, locale)}
                   </p>
                   <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                    Voir le détail →
+                    {t("seeDetail")}
                   </p>
                 </button>
                 <button
@@ -122,9 +141,7 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
           <div className="flex items-start gap-3">
             <button
               type="button"
-              onClick={() =>
-                onOpenDetail({ ...contemporaine, categoryTitle: "Cuisine" })
-              }
+              onClick={() => onOpenDetail(contemporaine)}
               className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl"
             >
               <Image
@@ -139,19 +156,17 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
               <div className="flex items-start justify-between gap-2">
                 <button
                   type="button"
-                  onClick={() =>
-                    onOpenDetail({ ...contemporaine, categoryTitle: "Cuisine" })
-                  }
+                  onClick={() => onOpenDetail(contemporaine)}
                   className="text-left"
                 >
                   <p className="font-ui text-sm text-luxury-graphite">
                     {contemporaine.title}
                   </p>
                   <p className="mt-1 font-ui text-[11px] text-luxury-muted">
-                    {CONFIGURATOR_PRICES.kitchenPerMl} € TTC / ml — sur mesure
+                    {formatOptionPrice(contemporaine, locale)}
                   </p>
                   <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                    Voir le détail →
+                    {t("seeDetail")}
                   </p>
                 </button>
                 <button
@@ -175,7 +190,7 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
               {kitchen.contemporaine && (
                 <div className="mt-3">
                   <label className="flex items-center justify-between font-ui text-xs text-luxury-muted">
-                    <span>Mètres linéaires</span>
+                    <span>{t("linearMeters")}</span>
                     <span className="text-luxury-graphite">
                       {kitchen.contemporaineMl} ml
                     </span>
@@ -195,7 +210,7 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
                   />
                   <p className="mt-1 font-ui text-[11px] text-luxury-forest">
                     +
-                    {new Intl.NumberFormat("fr-FR").format(
+                    {new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(
                       CONFIGURATOR_PRICES.kitchenPerMl * kitchen.contemporaineMl,
                     )}{" "}
                     €
@@ -209,7 +224,7 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
 
       <div>
         <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
-          Électroménager
+          {t("electromenager")}
         </p>
         <div className="mt-3 space-y-2">
           {electroBase && (
@@ -222,9 +237,7 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
             >
               <button
                 type="button"
-                onClick={() =>
-                  onOpenDetail({ ...electroBase, categoryTitle: "Cuisine" })
-                }
+                onClick={() => onOpenDetail(electroBase)}
                 className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg"
               >
                 <Image
@@ -247,10 +260,10 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
                       : "text-luxury-muted"
                   }`}
                 >
-                  {electroBase.title} — Inclus
+                  {electroBase.title} — {tCommon("inclus")}
                 </p>
                 <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                  Voir le détail →
+                  {t("seeDetail")}
                 </p>
               </button>
             </div>
@@ -265,9 +278,7 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
             >
               <button
                 type="button"
-                onClick={() =>
-                  onOpenDetail({ ...electroPremium, categoryTitle: "Cuisine" })
-                }
+                onClick={() => onOpenDetail(electroPremium)}
                 className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg"
               >
                 <Image
@@ -290,10 +301,10 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
                       : "text-luxury-muted"
                   }`}
                 >
-                  {electroPremium.title} — +990 € TTC
+                  {electroPremium.title} — +{formatOptionPrice(electroPremium, locale)}
                 </p>
                 <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                  Voir le détail →
+                  {t("seeDetail")}
                 </p>
               </button>
             </div>

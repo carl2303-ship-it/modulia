@@ -1,15 +1,9 @@
-import Link from "next/link";
-import { Logo } from "@/components/Logo";
+"use client";
 
-const navLinks = [
-  { id: "models", href: "/modelos", label: "Particuliers" },
-  { id: "personnaliser", href: "/personnaliser", label: "Personnaliser" },
-  { id: "personnalisation", href: "/personnalisation", label: "Personnalisation" },
-  { id: "options", href: "/options", label: "Options" },
-  { id: "pro", href: "/professionnels", label: "Professionnels" },
-  { id: "craft", href: "/#constructif", label: "Savoir-faire" },
-  { id: "contact", href: "/#contact", label: "Contact" },
-];
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { Logo } from "@/components/Logo";
 
 type SiteHeaderProps = {
   variant?: "dark" | "light";
@@ -17,7 +11,15 @@ type SiteHeaderProps = {
 
 /** Header partilhado — variante escura (homepage) ou clara (páginas internas) */
 export function SiteHeader({ variant = "dark" }: SiteHeaderProps) {
+  const t = useTranslations("nav");
   const isDark = variant === "dark";
+
+  const navLinks = [
+    { id: "models", href: "/modelos", label: t("particuliers") },
+    { id: "pro", href: "/professionnels", label: t("pro") },
+    { id: "craft", href: "/#constructif", label: t("craft") },
+    { id: "contact", href: "/#contact", label: t("contact") },
+  ];
 
   return (
     <header
@@ -27,13 +29,10 @@ export function SiteHeader({ variant = "dark" }: SiteHeaderProps) {
           : "border-luxury-stone/60 bg-luxury-papyrus/90"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-        <Logo
-          size="header"
-          variant={isDark ? "white" : "default"}
-        />
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-6">
+        <Logo size="header" variant={isDark ? "white" : "default"} />
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.id}
@@ -49,16 +48,19 @@ export function SiteHeader({ variant = "dark" }: SiteHeaderProps) {
           ))}
         </nav>
 
-        <Link
-          href="/#contact"
-          className={`rounded-full px-5 py-2 font-ui text-[11px] font-medium uppercase tracking-wider transition ${
-            isDark
-              ? "border border-white/20 bg-white/10 text-white hover:bg-luxury-forest hover:border-luxury-forest"
-              : "bg-luxury-forest text-white hover:bg-luxury-forest-dark"
-          }`}
-        >
-          Demander un devis
-        </Link>
+        <div className="flex items-center gap-4">
+          <LanguageSwitcher variant={isDark ? "dark" : "light"} />
+          <Link
+            href="/#contact"
+            className={`rounded-full px-5 py-2 font-ui text-[11px] font-medium uppercase tracking-wider transition ${
+              isDark
+                ? "border border-white/20 bg-white/10 text-white hover:bg-luxury-forest hover:border-luxury-forest"
+                : "bg-luxury-forest text-white hover:bg-luxury-forest-dark"
+            }`}
+          >
+            {t("devis")}
+          </Link>
+        </div>
       </div>
     </header>
   );

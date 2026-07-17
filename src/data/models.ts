@@ -3,7 +3,9 @@
  * Gerado a partir das pastas em public/ + fichas técnicas.
  */
 
-import { buildAllModels } from "@/lib/build-model";
+import { buildAllModels, buildModelFromSlug } from "@/lib/build-model";
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { MODEL_SLUGS, type ModelSlug } from "@/lib/model-catalog";
 
 export type ModelSpec = {
   label: string;
@@ -55,10 +57,23 @@ export type ModelData = {
   rich?: ModelRichContent;
 };
 
-export const MODELS_PARTICULIERS: ModelData[] = buildAllModels();
+/** Catálogo FR (compat / listagens estáticas) */
+export const MODELS_PARTICULIERS: ModelData[] = buildAllModels(defaultLocale);
 
-export function getModelBySlug(slug: string): ModelData | undefined {
-  return MODELS_PARTICULIERS.find((m) => m.slug === slug);
+export function getModels(locale: Locale = defaultLocale): ModelData[] {
+  return buildAllModels(locale);
+}
+
+function isModelSlug(slug: string): slug is ModelSlug {
+  return (MODEL_SLUGS as readonly string[]).includes(slug);
+}
+
+export function getModelBySlug(
+  slug: string,
+  locale: Locale = defaultLocale,
+): ModelData | undefined {
+  if (!isModelSlug(slug)) return undefined;
+  return buildModelFromSlug(slug, locale);
 }
 
 export function getAllModelSlugs(): string[] {
@@ -82,16 +97,20 @@ function toNavItem(model: ModelData): ModelNavItem {
 }
 
 /** Modèles adjacents selon l'ordre du catalogue (prix décroissant). */
-export function getAdjacentModels(slug: string): {
+export function getAdjacentModels(
+  slug: string,
+  locale: Locale = defaultLocale,
+): {
   previous: ModelNavItem;
   next: ModelNavItem;
 } | null {
-  const index = MODELS_PARTICULIERS.findIndex((m) => m.slug === slug);
+  const models = getModels(locale);
+  const index = models.findIndex((m) => m.slug === slug);
   if (index === -1) return null;
 
-  const total = MODELS_PARTICULIERS.length;
-  const previous = MODELS_PARTICULIERS[(index - 1 + total) % total];
-  const next = MODELS_PARTICULIERS[(index + 1) % total];
+  const total = models.length;
+  const previous = models[(index - 1 + total) % total];
+  const next = models[(index + 1) % total];
 
   return {
     previous: toNavItem(previous),
@@ -99,8 +118,14 @@ export function getAdjacentModels(slug: string): {
   };
 }
 
-export function formatModelPrice(value: number): string {
-  return new Intl.NumberFormat("fr-FR", {
+const NUMBER_LOCALE: Record<Locale, string> = {
+  fr: "fr-FR",
+  pt: "pt-PT",
+  en: "en-GB",
+};
+
+export function formatModelPrice(value: number, locale: Locale = defaultLocale): string {
+  return new Intl.NumberFormat(NUMBER_LOCALE[locale], {
     style: "decimal",
     minimumFractionDigits: 0,
   }).format(value);

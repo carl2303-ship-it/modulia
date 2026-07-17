@@ -1,21 +1,28 @@
-import { TECHNICAL_SPECS_SECTIONS } from "@/data/technical-specs";
+import { getTranslations } from "next-intl/server";
 
-export function TechnicalSpecs() {
-  const sections = TECHNICAL_SPECS_SECTIONS.filter((s) => s.id !== "usages");
-  const usages = TECHNICAL_SPECS_SECTIONS.find((s) => s.id === "usages");
+type SpecSection = {
+  id: string;
+  title: string;
+  items: string[];
+};
+
+export async function TechnicalSpecs() {
+  const t = await getTranslations("technicalSpecs");
+  const allSections = t.raw("sections") as SpecSection[];
+  const sections = allSections.filter((s) => s.id !== "usages");
+  const usages = allSections.find((s) => s.id === "usages");
 
   return (
     <div className="mt-20 border-t border-luxury-stone/60 pt-20">
       <div className="max-w-3xl">
         <p className="font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-forest">
-          Fiche technique
+          {t("eyebrow")}
         </p>
         <h3 className="mt-3 font-serif text-3xl text-luxury-graphite sm:text-4xl">
-          Spécifications du module Modulia
+          {t("title")}
         </h3>
         <p className="mt-4 font-ui text-sm leading-relaxed text-luxury-muted">
-          Caractéristiques structurelles, thermiques et d&apos;équipement de nos
-          modules préfabriqués — conçus pour durer et s&apos;adapter à chaque projet.
+          {t("intro")}
         </p>
       </div>
 

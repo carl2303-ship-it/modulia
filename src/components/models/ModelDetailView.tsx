@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { ModelCatalogLinks } from "@/components/models/ModelCatalogLinks";
 import { ModelGallery } from "@/components/models/ModelGallery";
 import { ModelNavigation } from "@/components/models/ModelNavigation";
 import { ModelPlanSection } from "@/components/models/ModelPlanSection";
@@ -9,13 +11,19 @@ import {
   getAdjacentModels,
   type ModelData,
 } from "@/data/models";
+import type { Locale } from "@/i18n/config";
 
 type ModelDetailViewProps = {
   model: ModelData;
+  locale?: Locale;
 };
 
-export function ModelDetailView({ model }: ModelDetailViewProps) {
-  const adjacent = getAdjacentModels(model.slug);
+export async function ModelDetailView({
+  model,
+  locale = "fr",
+}: ModelDetailViewProps) {
+  const t = await getTranslations("modelDetail");
+  const adjacent = getAdjacentModels(model.slug, locale);
 
   return (
     <div className="min-h-screen bg-luxury-papyrus">
@@ -25,11 +33,11 @@ export function ModelDetailView({ model }: ModelDetailViewProps) {
         {/* Breadcrumb */}
         <nav className="mx-auto max-w-7xl px-6 py-6 font-ui text-[11px] uppercase tracking-wider text-luxury-muted">
           <Link href="/" className="transition hover:text-luxury-forest">
-            Accueil
+            {t("home")}
           </Link>
           <span className="mx-2">/</span>
           <Link href="/modelos" className="transition hover:text-luxury-forest">
-            Particuliers
+            {t("breadcrumb")}
           </Link>
           <span className="mx-2">/</span>
           <span className="text-luxury-graphite">{model.name}</span>
@@ -41,7 +49,7 @@ export function ModelDetailView({ model }: ModelDetailViewProps) {
 
           <div className="lg:pt-4">
             <p className="font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-forest">
-              Particuliers
+              {t("eyebrow")}
             </p>
             <h1 className="mt-3 font-serif text-4xl tracking-[0.12em] text-luxury-graphite sm:text-5xl">
               {model.name}
@@ -70,10 +78,10 @@ export function ModelDetailView({ model }: ModelDetailViewProps) {
             </dl>
 
             <p className="mt-10 font-ui text-[10px] uppercase tracking-wider text-luxury-muted">
-              À partir de
+              {t("startingFrom")}
             </p>
             <p className="font-serif text-4xl text-luxury-graphite">
-              {formatModelPrice(model.priceFrom)}
+              {formatModelPrice(model.priceFrom, locale)}
               <span className="ml-2 font-ui text-base text-luxury-muted">€ TTC</span>
             </p>
 
@@ -83,34 +91,36 @@ export function ModelDetailView({ model }: ModelDetailViewProps) {
                   href={model.configuratorUrl}
                   className="rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs font-medium uppercase tracking-[0.18em] text-white transition hover:bg-luxury-forest-dark"
                 >
-                  Personnaliser
+                  {t("configure")}
                 </Link>
               ) : (
                 <Link
                   href={`/#contact?model=${model.slug}`}
                   className="rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs font-medium uppercase tracking-[0.18em] text-white transition hover:bg-luxury-forest-dark"
                 >
-                  Demander un devis
+                  {t("devis")}
                 </Link>
               )}
               <Link
                 href="/#contact"
                 className="rounded-full border border-luxury-stone bg-white px-8 py-4 font-ui text-xs font-medium uppercase tracking-[0.18em] text-luxury-graphite transition hover:border-luxury-graphite"
               >
-                Nous contacter
+                {t("contact")}
               </Link>
             </div>
           </div>
         </section>
 
+        <ModelCatalogLinks compact />
+
         {/* Características técnicas */}
         <section className="border-t border-luxury-stone/60 bg-white py-16">
           <div className="mx-auto max-w-7xl px-6">
             <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-              Fiche technique
+              {t("fiche")}
             </p>
             <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">
-              Caractéristiques
+              {t("specs")}
             </h2>
 
             <dl className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -159,25 +169,24 @@ export function ModelDetailView({ model }: ModelDetailViewProps) {
               Modulia
             </p>
             <h2 className="mt-4 font-serif text-3xl text-white lg:text-4xl">
-              Prêt à concrétiser votre projet {model.name}?
+              {t("ready", { name: model.name })}
             </h2>
             <p className="mx-auto mt-4 max-w-lg font-ui text-sm text-white/60">
-              {model.rich?.closingTagline ??
-                "Notre équipe vous accompagne de la conception à l'installation."}
+              {model.rich?.closingTagline ?? t("defaultClosing")}
             </p>            <div className="mt-8 flex flex-wrap justify-center gap-4">
               {model.configuratorUrl && (
                 <Link
                   href={model.configuratorUrl}
                   className="rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs uppercase tracking-[0.18em] text-white transition hover:bg-luxury-forest-dark"
                 >
-                  Personnaliser en ligne
+                  {t("configureOnline")}
                 </Link>
               )}
               <Link
                 href="/#contact"
                 className="rounded-full border border-white/20 px-8 py-4 font-ui text-xs uppercase tracking-[0.18em] text-white transition hover:bg-white/10"
               >
-                Demander un devis
+                {t("devis")}
               </Link>
             </div>
           </div>

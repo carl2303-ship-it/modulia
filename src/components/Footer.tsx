@@ -1,8 +1,12 @@
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Logo } from "@/components/Logo";
 import { CONTACT_PHONES, SHOWROOM } from "@/data/company";
 
-export function Footer() {
+export async function Footer() {
+  const t = await getTranslations("footer");
+
   return (
     <footer className="border-t border-modulia-200 bg-modulia-950 py-12 text-modulia-300">
       <div className="mx-auto max-w-6xl px-6">
@@ -10,7 +14,7 @@ export function Footer() {
           <Logo size="lg" variant="white" linked={false} />
           <div className="text-center sm:text-right">
             <p className="font-ui text-[10px] uppercase tracking-wider text-modulia-400">
-              Contact
+              {t("contact")}
             </p>
             <div className="mt-2 space-y-1 text-sm">
               {CONTACT_PHONES.map((phone) => (
@@ -32,6 +36,9 @@ export function Footer() {
                 </span>
               ))}
             </address>
+            <div className="mt-4 flex justify-center sm:justify-end">
+              <LanguageSwitcher variant="dark" />
+            </div>
           </div>
         </div>
         <div className="mt-8 flex flex-col items-center gap-3 border-t border-modulia-800 pt-8 sm:flex-row sm:justify-between">
@@ -40,17 +47,17 @@ export function Footer() {
               href="/cgv"
               className="font-ui text-xs uppercase tracking-wider text-modulia-300 transition hover:text-white"
             >
-              CGV · FR / PT / EN
+              {t("cgv")}
             </Link>
             <Link
               href="/confidentialite"
               className="font-ui text-xs uppercase tracking-wider text-modulia-300 transition hover:text-white"
             >
-              Confidentialité · FR / PT / EN
+              {t("privacy")}
             </Link>
           </div>
           <p className="text-sm">
-            © {new Date().getFullYear()} Modulia. Maisons modulaires durables.
+            © {new Date().getFullYear()} Modulia. {t("rights")}
           </p>
         </div>
       </div>

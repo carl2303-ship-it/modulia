@@ -1,0 +1,104 @@
+{
+  "opcoes": {
+    "chauffe eau solaire": {
+      "fr": "chauffe eau solaire.jpg",
+      "pt": "chauffe eau solaire.png",
+      "en": "chauffe eau solaire.png"
+    },
+    "climatisation": {
+      "fr": "climatisation.jpg",
+      "pt": "climatisation.png",
+      "en": "climatisation.png"
+    },
+    "decor exterieur": {
+      "fr": "decor exterieur.jpg",
+      "pt": "decor exterieur.png",
+      "en": "decor exterieur.png"
+    },
+    "kit exterieur": {
+      "fr": "kit exterieur.png",
+      "pt": "kit exterieur.png",
+      "en": "kit exterieur.png"
+    },
+    "kit salle de bains": {
+      "fr": "kit salle de bains.jpg",
+      "pt": "kit salle de bains.png",
+      "en": "kit salle de bains.png"
+    },
+    "lames terrasse": {
+      "fr": "lames terrasse.jpg",
+      "pt": "lames terrasse.png",
+      "en": "lames terrasse.png"
+    },
+    "murs salle de bains": {
+      "fr": "murs salle de bains.jpg",
+      "pt": "murs salle de bains.png",
+      "en": "murs salle de bains.png"
+    },
+    "parquet flottant": {
+      "fr": "parquet flottant.jpg",
+      "pt": "parquet flottant.jpg",
+      "en": "parquet flottant.jpg"
+    },
+    "plaquages bois": {
+      "fr": "plaquages bois.jpg",
+      "pt": "plaquages bois.jpg",
+      "en": "plaquages bois.jpg"
+    },
+    "poignee connectee": {
+      "fr": "poignee connectee.png",
+      "pt": "poignee connectee.png"
+    },
+    "raccordement": {
+      "fr": "raccordement.png",
+      "pt": "raccordement.jpg",
+      "en": "raccordement.jpg"
+    },
+    "revetements muraux decoratifs": {
+      "fr": "revetements muraux decoratifs.jpg",
+      "pt": "revetements muraux decoratifs.png",
+      "en": "revetements muraux decoratifs.png"
+    },
+    "rideaux": {
+      "fr": "rideaux.png",
+      "pt": "rideaux.png",
+      "en": "rideaux.png"
+    },
+    "terrassement": {
+      "fr": "terrassement.png",
+      "pt": "terrassement.png"
+    },
+    "terrasses": {
+      "fr": "terrasses.png",
+      "pt": "terrasses.png",
+      "en": "terrasses.png"
+    },
+    "transport": {
+      "fr": "transport.jpg",
+      "pt": "transport.jpg",
+      "en": "transport.jpg"
+    },
+    "ventilation mecanique": {
+      "fr": "ventilation mecanique.png",
+      "pt": "ventilation mecanique.png",
+      "en": "ventilation mecanique.png"
+    }
+  },
+  "cozinhas": {
+    "cuisine contemporaine": {
+      "fr": "cuisine contemporaine.png",
+      "pt": "cuisine contemporaine.png",
+      "en": "cuisine contemporaine.jpg"
+    },
+    "kit electromenager base": {
+      "fr": "kit electromenager base.jpg",
+      "pt": "kit electromenager base.png",
+      "en": "kit electromenager base.png"
+    },
+    "kit electromenager premium": {
+      "fr": "kit electromenager premium.png",
+      "pt": "kit electromenager premium.png",
+      "en": "kit electromenager premium.png"
+    }
+  }
+}

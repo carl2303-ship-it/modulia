@@ -1,0 +1,437 @@
+{
+  "meta": {
+    "title": "Modulia | Modular Homes",
+    "description": "Modulia — sustainable, customisable modular homes ready to live in. We build your future, module by module."
+  },
+  "nav": {
+    "particuliers": "Private clients",
+    "personnaliser": "Customise",
+    "personnalisation": "Personalisation",
+    "options": "Options",
+    "pro": "Professionals",
+    "craft": "Know-how",
+    "contact": "Contact",
+    "devis": "Request a quote"
+  },
+  "footer": {
+    "contact": "Contact",
+    "cgv": "Terms",
+    "privacy": "Privacy",
+    "rights": "All rights reserved."
+  },
+  "home": {
+    "heroEyebrow": "Modular homes · Premium",
+    "heroTitle": "Elegance from",
+    "heroPrice": "920 € excl. VAT / m²",
+    "heroText": "Premium modular solutions — sustainable, customisable and ready to live in.",
+    "heroCta": "Discover the models",
+    "heroPhilosophy": "Our philosophy",
+    "statFrom": "From",
+    "statModels": "Models",
+    "statDelivery": "Delivery",
+    "statDeliveryValue": "8–12 wks"
+  },
+  "models": {
+    "eyebrow": "Collection",
+    "title": "Our models",
+    "subtitle": "Fourteen models for private clients, from compact studios to family villas — sorted by price range.",
+    "seeAll": "See all models →",
+    "from": "from",
+    "configure": "Customise",
+    "discover": "Discover",
+    "pageEyebrow": "Private Clients Collection",
+    "pageIntro": "Every Modulia model is designed to blend harmoniously into its surroundings. Explore the features, plans and 3D views of each home.",
+    "discoverPro": "Discover our professional offices too →",
+    "signature": "Signature",
+    "viewModel": "View the model →"
+  },
+  "modelCatalogLinks": {
+    "eyebrow": "Configure your project",
+    "title": "Personalisation & options",
+    "text": "Choose your included finishes and optional equipment — or build your module in the configurator.",
+    "personnalisation": "Personalisation →",
+    "options": "Options →",
+    "personnaliser": "Customise →"
+  },
+  "modelDetail": {
+    "home": "Home",
+    "eyebrow": "Private clients",
+    "breadcrumb": "Models",
+    "configure": "Customise",
+    "contact": "Contact us",
+    "devis": "Request a quote",
+    "specs": "Specifications",
+    "fiche": "Technical sheet",
+    "ready": "Ready to bring your {name} project to life?",
+    "configureOnline": "Customise online",
+    "startingFrom": "From",
+    "planDimensions": "Plan & Dimensions",
+    "interiorDistribution": "Interior layout",
+    "totalFootprint": "Total footprint:",
+    "ourCommitments": "Our commitments",
+    "exploreCollection": "Explore the collection",
+    "previousModel": "Previous model",
+    "nextModel": "Next model",
+    "viewModelPrev": "← View the model",
+    "viewModelNext": "View the model →",
+    "architecture": "Architecture",
+    "planTitle": "Model plan",
+    "planComingSoon": "Plan coming soon",
+    "planComingSoonText": "The plan image will be available soon.",
+    "defaultClosing": "Our team supports you from design to installation.",
+    "notFound": "Model not found"
+  },
+  "personnaliser": {
+    "eyebrow": "Configurator",
+    "title": "Customise",
+    "intro": "Choose your model, included finishes, then add-on options.",
+    "phaseModel": "Model",
+    "phaseModelSub": "Select your Modulia module",
+    "phaseFinitions": "Included personalisation",
+    "phaseFinitionsSub": "Colours and finishes — no extra charge",
+    "phaseOptions": "Options",
+    "phaseOptionsSub": "Equipment and services as add-ons",
+    "phaseCuisine": "Kitchen",
+    "phaseCuisineSub": "Base included + options and appliances",
+    "phasePiscine": "Pool",
+    "phasePiscineSub": "Sofa Pool and options",
+    "included": "Included — no extra charge",
+    "seeDetail": "See details →",
+    "catalogFinitions": "Finishes catalogue →",
+    "catalogOptions": "Options catalogue →",
+    "modelsLink": "Models",
+    "chooseModel": "Choose your model",
+    "priceTotal": "Total price",
+    "devisCta": "Request a personalised quote",
+    "modelLabel": "Model:",
+    "from": "from",
+    "optionsCuisine": "Kitchen options",
+    "electromenager": "Appliances",
+    "optionsPiscine": "Pool options",
+    "kitchenIncludedHint": "Included in every module — no extra charge",
+    "transportHint": "Included within a 30 km radius — see details",
+    "standard": "Standard",
+    "solar": "Solar",
+    "linearMeters": "Linear metres",
+    "terrace": "Terrace",
+    "airConditioning": "Air conditioning",
+    "contact": {
+      "title": "Request a Quote",
+      "estimatedAt": "Configuration estimated at",
+      "name": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "messagePlaceholder": "Tell us about your project...",
+      "submit": "Send my request"
+    }
+  },
+  "personnalisation": {
+    "eyebrow": "Modulia",
+    "title": "Personalisation",
+    "intro": "Choose your finishes and colours — included in your model price, at no extra cost. For add-on equipment and services, see our options.",
+    "ctaPersonnaliser": "Customise →",
+    "ctaModels": "Our models →",
+    "ctaOptions": "Options →",
+    "readyTitle": "Ready to customise?",
+    "readyText": "Configure your model and choose your included finishes.",
+    "personnaliser": "Customise",
+    "devis": "Request a quote"
+  },
+  "options": {
+    "eyebrow": "Modulia",
+    "title": "Options",
+    "intro": "Equipment, terraces, connections and complementary services for your project. Finishes included in the price are under personalisation.",
+    "ctaPersonnaliser": "Customise →",
+    "ctaPersonnalisation": "Personalisation →",
+    "ctaCuisines": "Kitchens →",
+    "ctaPiscine": "Pool →",
+    "readyTitle": "A tailored project?",
+    "readyText": "Contact our team to compose your module with the right options.",
+    "personnaliser": "Customise",
+    "devis": "Request a quote"
+  },
+  "cuisines": {
+    "eyebrow": "Modulia kitchen",
+    "title": "Kitchens",
+    "intro": "Base configuration included in every module, with complementary options to adapt your kitchen space to your needs.",
+    "optionsConfig": "Options & configurations",
+    "optionsConfigSub": "Add-on modules to equip your kitchen.",
+    "surMesure": "Bespoke options",
+    "surMesureSub": "Contemporary kitchen priced per linear metre — bespoke design.",
+    "ctaTitle": "Configure your kitchen",
+    "ctaText": "Choose your model and compose the kitchen that fits your project.",
+    "seeModels": "See the models",
+    "devis": "Request a quote"
+  },
+  "piscine": {
+    "eyebrow": "Modulia",
+    "title": "Pool",
+    "from": "from",
+    "badge": "Modular pool",
+    "metaDescription": "Sofa Pool modular pool — {price} € incl. VAT, turnkey. Compact, elegant, no groundworks.",
+    "priceLabel": "Turnkey price",
+    "devis": "Request a quote",
+    "highlightsTitle": "Highlights",
+    "includedTitle": "Included equipment",
+    "optionsTitle": "Options",
+    "architectureLabel": "Architecture",
+    "dimensionsTitle": "Dimensions",
+    "backToOptions": "All options"
+  },
+  "install": {
+    "title": "MODULIA",
+    "text": "Install the app for quick access to our models, customisation and quotes.",
+    "iosHint": "On iPhone / iPad: tap Share then Add to Home Screen.",
+    "install": "Install the app",
+    "later": "Later",
+    "ok": "Got it"
+  },
+  "common": {
+    "inclus": "Included",
+    "surDevis": "On quote",
+    "close": "Close",
+    "loading": "Loading…",
+    "colorsAvailable": "Available colours",
+    "seeOptions": "see our options",
+    "ttc": "incl. VAT",
+    "ht": "excl. VAT",
+    "seeOnMap": "View on map",
+    "seeDetail": "See details →",
+    "seeColors": "See the colours →",
+    "learnMore": "Learn more"
+  },
+  "philosophy": {
+    "ctaModels": "Discover the models",
+    "ctaConstructif": "Construction principle"
+  },
+  "features": {
+    "title": "Why choose Modulia?",
+    "subtitle": "We combine precision engineering with contemporary design to deliver modular homes that exceed expectations.",
+    "items": [
+      {
+        "title": "Fast construction",
+        "description": "Modules prefabricated in a controlled factory — up to 60% less time than traditional construction.",
+        "icon": "⚡"
+      },
+      {
+        "title": "Sustainability",
+        "description": "Selected materials, minimised waste and high-performance insulation for reduced energy consumption.",
+        "icon": "🌿"
+      },
+      {
+        "title": "Total customisation",
+        "description": "Layouts, finishes and dimensions tailored to your needs — expand the modules as life evolves.",
+        "icon": "✦"
+      },
+      {
+        "title": "Guaranteed quality",
+        "description": "Rigorous quality control in an industrial environment, with structural warranty and after-delivery follow-up.",
+        "icon": "✓"
+      }
+    ]
+  },
+  "construction": {
+    "eyebrow": "Modulia know-how",
+    "title": "Module construction principle",
+    "intro": "Designed with quality materials and advanced construction techniques to guarantee durability, comfort and performance.",
+    "imageAlt": "Exploded view of Modulia's modular construction",
+    "footer": "Modulia — Premium modular solutions",
+    "layers": [
+      { "title": "Roof", "items": ["Roof covering panels", "Waterproofing", "Exterior finish"] },
+      { "title": "Roofing", "items": ["XPS insulation panel", "Roof structure", "Suspended ceiling"] },
+      { "title": "Walls", "items": ["Exterior panel", "XPS insulation panel", "Interior wall"] },
+      { "title": "Exterior wall", "items": ["Exterior panel", "XPS insulation", "Façade finish"] },
+      {
+        "title": "Joinery",
+        "items": [
+          "Door frame",
+          "Thermal-break aluminium frame",
+          "Tempered double glazing"
+        ]
+      },
+      {
+        "title": "Technical wall block",
+        "items": ["Exterior panel", "XPS insulation", "Cement board", "Interior finish"]
+      },
+      {
+        "title": "Floor",
+        "items": [
+          "Flooring (wood / laminate)",
+          "XPS insulation panel",
+          "Cement board",
+          "Structural base"
+        ]
+      },
+      { "title": "Load-bearing structure", "items": ["Galvanised steel structure"] }
+    ],
+    "benefits": [
+      {
+        "title": "High-performance insulation",
+        "description": "High-performance insulation panels (XPS)"
+      },
+      {
+        "title": "Durable materials",
+        "description": "Materials selected for their strength and longevity"
+      },
+      {
+        "title": "Thermal comfort",
+        "description": "Excellent thermal regulation summer and winter"
+      },
+      {
+        "title": "Precision construction",
+        "description": "Controlled assembly and rigorous quality control"
+      },
+      {
+        "title": "Eco-friendly",
+        "description": "Recyclable, environmentally friendly materials"
+      }
+    ]
+  },
+  "technicalSpecs": {
+    "eyebrow": "Technical sheet",
+    "title": "Modulia module specifications",
+    "intro": "Structural, thermal and equipment characteristics of our prefabricated modules — designed to last and adapt to every project.",
+    "sections": [
+      {
+        "id": "structure",
+        "title": "General structure",
+        "items": [
+          "Type: prefabricated habitable module, transportable",
+          "Load-bearing structure: galvanised steel or powder-coated steel chassis",
+          "Self-supporting frame designed for transport and crane installation",
+          "Estimated lifespan: 30 to 50 years depending on maintenance"
+        ]
+      },
+      {
+        "id": "dimensions",
+        "title": "Dimensions & modularity",
+        "items": [
+          "Module length: 5.90 to 11.80 m",
+          "Width: 2.25 to 9 m",
+          "Interior height: 2.10 to 2.15 m",
+          "Assembly: modules side-by-side or stacked",
+          "Floor area: from 13 m² to over 100 m² depending on configuration"
+        ]
+      },
+      {
+        "id": "enveloppe",
+        "title": "Envelope & insulation",
+        "items": [
+          "Exterior walls: steel / aluminium sandwich panels with integrated insulation (rock wool, glass wool or PU foam)",
+          "Thermal insulation compliant with RE2020 / equivalent — wall R ≈ 3 to 4 m²·K/W, roof R ≈ 5 to 6 m²·K/W",
+          "Acoustic insulation: ≈ 35–45 dB depending on composition",
+          "Weatherproofing: vapour barrier + EPDM seals"
+        ]
+      },
+      {
+        "id": "menuiseries",
+        "title": "Joinery",
+        "items": [
+          "Glazed façades: large aluminium glazed bays",
+          "Glazing: insulated double glazing (triple glazing option), thermal and solar treatment available",
+          "Doors: secure aluminium entrance door, multi-point lock"
+        ]
+      },
+      {
+        "id": "toiture",
+        "title": "Roofing",
+        "items": [
+          "Type: technical flat roof",
+          "Waterproofing: EPDM or PVC membrane",
+          "Options: green roof, photovoltaic panels"
+        ]
+      },
+      {
+        "id": "equipements",
+        "title": "Technical equipment",
+        "items": [
+          "Electricity: installation to NFC 15-100 standard, integrated electrical panel",
+          "Plumbing: pre-installed hot / cold water networks, PVC drainage",
+          "Heating / air conditioning: reversible air conditioning (split or ducted), underfloor heating option",
+          "Ventilation: single or dual-flow MVHR"
+        ]
+      },
+      {
+        "id": "interieur",
+        "title": "Interior fittings",
+        "items": [
+          "Flooring: PVC, laminate flooring, tiling",
+          "Interior walls: decorative panels or plasterboard",
+          "Kitchen: pre-equipped kitchenette block (optional)",
+          "Bathroom: shower, WC, pre-installed vanity unit"
+        ]
+      },
+      {
+        "id": "transport",
+        "title": "Transport & installation",
+        "items": [
+          "Delivery: road transport on a flatbed truck",
+          "Installation: on a concrete slab, concrete footings or metal piles",
+          "Installation time: 1 to 3 days (excluding connections)"
+        ]
+      },
+      {
+        "id": "usages",
+        "title": "Common uses",
+        "items": [
+          "Single-family home",
+          "Office / open space",
+          "Student housing",
+          "Modular hotel",
+          "Site accommodation",
+          "Second home"
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "title": "Request your quote",
+    "subtitle": "Tell us about your project. Our team will get back to you within 48 hours with a personalised proposal.",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "formName": "Name",
+    "formEmail": "Email",
+    "formPhone": "Phone",
+    "formModel": "Model",
+    "selectPlaceholder": "Select…",
+    "surMesure": "Bespoke",
+    "poolGroupLabel": "Pool",
+    "formMessage": "Message",
+    "messagePlaceholder": "Describe your project…",
+    "submitting": "Sending…",
+    "submit": "Send request",
+    "successFallback": "Request received! We'll be in touch shortly.",
+    "successFull": "Thank you! We've received your request and will be in touch shortly.",
+    "errorMsg": "Unable to send. Please try again or contact us by email."
+  },
+  "professionnels": {
+    "eyebrow": "Professionals Collection",
+    "title": "Self-contained modular offices",
+    "intro": "Turnkey spaces with integrated sanitary facilities, connection-ready utilities and premium finishes — for construction sites, events and professional activities.",
+    "fromHt": "from {price} € excl. VAT",
+    "ctaFinalEyebrow": "Modulia Professionals",
+    "ctaFinalTitle": "A turnkey space to boost your business",
+    "ctaFinalText": "Attract, welcome, convince. Modulia takes care of the rest.",
+    "ctaDevis": "Request a quote",
+    "ctaModels": "See the private client models",
+    "needDetailEyebrow": "Need the full detail?",
+    "needDetailText": "All technical information is presented on this page in French. Contact us for a detailed sheet in your language.",
+    "contactUs": "Contact us",
+    "sectionEyebrow": "Professionals",
+    "fromLabel": "From",
+    "interiorEyebrow": "Interior spaces",
+    "interiorTitle": "Interior view & sanitary facilities",
+    "interiorViewLabel": "Interior view",
+    "wcLabel": "Integrated WC",
+    "sinkLabel": "Washbasin",
+    "planEyebrow": "Plan",
+    "layoutTitle": "Layout",
+    "infrastructureEyebrow": "Infrastructure",
+    "infrastructureTitle": "Utilities & sanitary facilities",
+    "idealForLabel": "Ideal for",
+    "specsEyebrow": "Specifications",
+    "specsTitle": "Technical sheet",
+    "optionsLabel": "Options"
+  }
+}

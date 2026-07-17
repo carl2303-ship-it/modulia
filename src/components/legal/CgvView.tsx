@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 import {
   CGV_CONTENT,
-  CGV_LOCALES,
   type CgvLocale,
 } from "@/data/cgv-content";
 
@@ -15,7 +14,7 @@ const BACK_LABELS: Record<CgvLocale, string> = {
 };
 
 export function CgvView() {
-  const [locale, setLocale] = useState<CgvLocale>("fr");
+  const locale = useLocale() as CgvLocale;
   const content = CGV_CONTENT[locale];
 
   return (
@@ -29,23 +28,6 @@ export function CgvView() {
       <p className="mt-3 font-serif text-lg italic text-luxury-muted">
         {content.subtitle}
       </p>
-
-      <div className="mt-8 flex flex-wrap gap-2">
-        {CGV_LOCALES.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => setLocale(item.id)}
-            className={`rounded-full px-5 py-2 font-ui text-xs uppercase tracking-wider transition ${
-              locale === item.id
-                ? "bg-luxury-forest text-white"
-                : "border border-luxury-stone bg-white text-luxury-muted hover:border-luxury-forest"
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
 
       <div className="mt-12 space-y-10">
         {content.articles.map((article, index) => (

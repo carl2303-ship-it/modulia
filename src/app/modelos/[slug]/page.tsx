@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getLocale, getTranslations } from "next-intl/server";
 import { ModelDetailView } from "@/components/models/ModelDetailView";
-import {
-  getAllModelSlugs,
-  getModelBySlug,
-} from "@/data/models";
+import { getAllModelSlugs, getModelBySlug } from "@/data/models";
+import { defaultLocale, isLocale } from "@/i18n/config";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -16,11 +15,16 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const model = getModelBySlug(slug);
-  if (!model) return { title: "Modèle introuvable" };
+  const raw = await getLocale();
+  const locale = isLocale(raw) ? raw : defaultLocale;
+  const model = getModelBySlug(slug, locale);
+  if (!model) {
+    const t = await getTranslations("modelDetail");
+    return { title: t("notFound") };
+  }
 
   return {
-    title: `${model.name} | Modulia — Maisons Modulaires`,
+    title: `${model.name} | Modulia`,
     description: model.description,
     openGraph: {
       title: `${model.name} | Modulia`,
@@ -32,9 +36,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ModelPage({ params }: PageProps) {
   const { slug } = await params;
-  const model = getModelBySlug(slug);
+  const raw = await getLocale();
+  const locale = isLocale(raw) ? raw : defaultLocale;
+  const model = getModelBySlug(slug, locale);
 
   if (!model) notFound();
 
-  return <ModelDetailView model={model} />;
+  return <ModelDetailView model={model} locale={locale} />;
 }

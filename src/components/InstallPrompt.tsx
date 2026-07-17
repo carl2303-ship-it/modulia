@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 const STORAGE_KEY = "modulia-install-dismissed";
 const DISMISS_DAYS = 14;
@@ -48,6 +49,8 @@ function dismiss() {
 
 /** Popup d'installation PWA — style sombre aligné sur l'icône Modulia */
 export function InstallPrompt() {
+  const t = useTranslations("install");
+  const tCommon = useTranslations("common");
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
   const [open, setOpen] = useState(false);
   const [iosHint, setIosHint] = useState(false);
@@ -116,7 +119,7 @@ export function InstallPrompt() {
         type="button"
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={close}
-        aria-label="Fermer"
+        aria-label={tCommon("close")}
       />
 
       <div className="relative w-full max-w-sm overflow-hidden rounded-t-3xl bg-[#1a1a1a] shadow-2xl animate-slide-up sm:rounded-3xl">
@@ -138,23 +141,16 @@ export function InstallPrompt() {
             id="install-title"
             className="mt-6 font-ui text-lg font-medium tracking-[0.2em] text-white"
           >
-            MODULIA
+            {t("title")}
           </h2>
           <p className="mt-3 font-ui text-sm leading-relaxed text-white/60">
-            Installez l&apos;application pour accéder rapidement à nos modèles,
-            personnaliser et demander un devis.
+            {t("text")}
           </p>
 
           {iosHint ? (
             <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-left">
               <p className="font-ui text-xs leading-relaxed text-white/80">
-                Sur iPhone / iPad&nbsp;: appuyez sur{" "}
-                <span className="font-medium text-white">Partager</span>{" "}
-                <span aria-hidden className="inline-block text-[#4ade80]">
-                  ⎋
-                </span>{" "}
-                puis{" "}
-                <span className="font-medium text-white">Sur l&apos;écran d&apos;accueil</span>.
+                {t("iosHint")}
               </p>
             </div>
           ) : null}
@@ -166,7 +162,7 @@ export function InstallPrompt() {
                 onClick={install}
                 className="rounded-full bg-[#2d5a3d] px-6 py-3.5 font-ui text-xs font-medium uppercase tracking-[0.2em] text-white transition hover:bg-[#3a6f4c]"
               >
-                Installer l&apos;application
+                {t("install")}
               </button>
             ) : null}
             <button
@@ -174,7 +170,7 @@ export function InstallPrompt() {
               onClick={close}
               className="rounded-full border border-white/15 px-6 py-3 font-ui text-xs uppercase tracking-[0.18em] text-white/70 transition hover:border-white/30 hover:text-white"
             >
-              {iosHint ? "Compris" : "Plus tard"}
+              {iosHint ? t("ok") : t("later")}
             </button>
           </div>
         </div>

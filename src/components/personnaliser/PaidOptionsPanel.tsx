@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/config";
 import {
   CONFIGURATOR_PRICES,
-  OPTION_CATEGORIES,
   formatOptionPrice,
-  getAllPaidOptions,
+  getLocalizedOptionCategories,
   type OptionItem,
 } from "@/data/options-catalog";
 import type { PaidSelection } from "./types";
@@ -16,9 +17,7 @@ type PaidOptionsPanelProps = {
   onOpenDetail: (option: OptionItem) => void;
 };
 
-function formatEuro(n: number, ht = false) {
-  return `+${new Intl.NumberFormat("fr-FR").format(n)} €${ht ? " HT" : ""}`;
-}
+const NUMBER_LOCALE: Record<Locale, string> = { fr: "fr-FR", pt: "pt-PT", en: "en-GB" };
 
 function DetailTrigger({
   option,
@@ -45,7 +44,19 @@ export function PaidOptionsPanel({
   onChange,
   onOpenDetail,
 }: PaidOptionsPanelProps) {
-  const catalog = getAllPaidOptions();
+  const t = useTranslations("personnaliser");
+  const tCommon = useTranslations("common");
+  const locale = useLocale() as Locale;
+  const categories = getLocalizedOptionCategories(locale);
+
+  const formatEuro = (n: number, ht = false) =>
+    `+${new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(n)} €${ht ? ` ${tCommon("ht")}` : ""}`;
+
+  const formatMeters = (n: number) =>
+    `${new Intl.NumberFormat(NUMBER_LOCALE[locale], {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(n)} m`;
 
   const setToggle = (id: string, value: boolean) => {
     onChange({
@@ -56,15 +67,13 @@ export function PaidOptionsPanel({
 
   return (
     <div className="space-y-6">
-      {OPTION_CATEGORIES.map((category) => (
+      {categories.map((category) => (
         <div key={category.id}>
           <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
             {category.title}
           </p>
           <div className="mt-3 space-y-3">
-            {category.items.map((raw) => {
-              const item = catalog.find((o) => o.id === raw.id) ?? raw;
-
+            {category.items.map((item) => {
               if (item.id === "transport") {
                 return (
                   <button
@@ -75,7 +84,7 @@ export function PaidOptionsPanel({
                   >
                     <p className="font-ui text-sm text-luxury-graphite">{item.title}</p>
                     <p className="mt-1 font-ui text-[11px] text-luxury-muted">
-                      Inclus dans un rayon de 30 km — voir le détail
+                      {t("transportHint")}
                     </p>
                   </button>
                 );
@@ -105,7 +114,7 @@ export function PaidOptionsPanel({
                           <DetailTrigger option={item} onOpenDetail={onOpenDetail}>
                             <p className="font-ui text-sm text-luxury-graphite">{item.title}</p>
                             <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                              Voir le détail →
+                              {t("seeDetail")}
                             </p>
                           </DetailTrigger>
                           <button
@@ -133,8 +142,8 @@ export function PaidOptionsPanel({
                           <div className="mt-3 flex flex-col gap-2">
                             {(
                               [
-                                ["compact", "5,90 m", CONFIGURATOR_PRICES.terrasseCompact],
-                                ["large", "11,80 m", CONFIGURATOR_PRICES.terrasseLarge],
+                                ["compact", formatMeters(5.9), CONFIGURATOR_PRICES.terrasseCompact],
+                                ["large", formatMeters(11.8), CONFIGURATOR_PRICES.terrasseLarge],
                               ] as const
                             ).map(([id, label, price]) => (
                               <button
@@ -182,7 +191,7 @@ export function PaidOptionsPanel({
                           <DetailTrigger option={item} onOpenDetail={onOpenDetail}>
                             <p className="font-ui text-sm text-luxury-graphite">{item.title}</p>
                             <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                              Voir le détail →
+                              {t("seeDetail")}
                             </p>
                           </DetailTrigger>
                           <button
@@ -210,8 +219,8 @@ export function PaidOptionsPanel({
                           <div className="mt-3 flex flex-col gap-2">
                             {(
                               [
-                                ["standard", "Standard", CONFIGURATOR_PRICES.climateStandard],
-                                ["solar", "Solaire", CONFIGURATOR_PRICES.climateSolar],
+                                ["standard", t("standard"), CONFIGURATOR_PRICES.climateStandard],
+                                ["solar", t("solar"), CONFIGURATOR_PRICES.climateSolar],
                               ] as const
                             ).map(([id, label, price]) => (
                               <button
@@ -265,10 +274,10 @@ export function PaidOptionsPanel({
                           <DetailTrigger option={item} onOpenDetail={onOpenDetail}>
                             <p className="font-ui text-sm text-luxury-graphite">{item.title}</p>
                             <p className="mt-1 font-ui text-[11px] text-luxury-muted">
-                              220 € TTC / ml
+                              {formatOptionPrice(item, locale)}
                             </p>
                             <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                              Voir le détail →
+                              {t("seeDetail")}
                             </p>
                           </DetailTrigger>
                           <button
@@ -290,7 +299,7 @@ export function PaidOptionsPanel({
                         {enabled && (
                           <div className="mt-3">
                             <label className="flex items-center justify-between font-ui text-xs text-luxury-muted">
-                              <span>Mètres linéaires</span>
+                              <span>{t("linearMeters")}</span>
                               <span className="text-luxury-graphite">{paid.rideauxMl} ml</span>
                             </label>
                             <input
@@ -321,7 +330,7 @@ export function PaidOptionsPanel({
               const priceLabel =
                 item.price != null
                   ? formatEuro(item.price, item.priceType === "ht")
-                  : formatOptionPrice(item);
+                  : formatOptionPrice(item, locale);
 
               return (
                 <div
@@ -347,7 +356,7 @@ export function PaidOptionsPanel({
                           {priceLabel}
                         </p>
                         <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                          Voir le détail →
+                          {t("seeDetail")}
                         </p>
                       </DetailTrigger>
                       <button
