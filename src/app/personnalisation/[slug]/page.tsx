@@ -2,37 +2,37 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { OptionDetailView } from "@/components/options/OptionDetailView";
 import { SiteHeader } from "@/components/SiteHeader";
-import { getPaidOptionById, getPaidOptionSlugs } from "@/data/options-catalog";
+import { getFinitionById, getFinitionSlugs } from "@/data/options-catalog";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return getPaidOptionSlugs().map((slug) => ({ slug }));
+  return getFinitionSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const option = getPaidOptionById(slug);
-  if (!option) return { title: "Option | Modulia" };
+  const item = getFinitionById(slug);
+  if (!item) return { title: "Personnalisation | Modulia" };
 
   return {
-    title: `${option.title} | Options Modulia`,
-    description: option.rich?.intro ?? option.description,
+    title: `${item.title} | Personnalisation Modulia`,
+    description: item.rich?.intro ?? item.description,
   };
 }
 
-export default async function OptionDetailPage({ params }: PageProps) {
+export default async function PersonnalisationDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const option = getPaidOptionById(slug);
-  if (!option) notFound();
+  const item = getFinitionById(slug);
+  if (!item) notFound();
 
   return (
     <div className="min-h-screen bg-luxury-papyrus">
       <SiteHeader variant="light" />
       <main className="pt-20">
-        <OptionDetailView option={option} listPath="/options" listLabel="Options" />
+        <OptionDetailView option={item} listPath="/personnalisation" listLabel="Personnalisation" />
       </main>
     </div>
   );

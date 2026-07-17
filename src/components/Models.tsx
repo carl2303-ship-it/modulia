@@ -69,7 +69,7 @@ export function Models() {
                       : "border border-luxury-stone text-luxury-graphite hover:border-luxury-graphite"
                   }`}
                 >
-                  {model.configuratorUrl ? "Configurer" : "Découvrir"}
+                  Personnaliser
                 </Link>
               </div>
             </article>

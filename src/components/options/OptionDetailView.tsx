@@ -2,12 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import type { OptionItem } from "@/data/options-catalog";
 import { formatOptionPrice } from "@/data/options-catalog";
+import { getOptionRich } from "@/data/options-rich";
 
 type OptionDetailViewProps = {
   option: OptionItem;
+  listPath?: string;
+  listLabel?: string;
 };
 
-export function OptionDetailView({ option }: OptionDetailViewProps) {
+const PERSONALIZATION_TITLES: Record<string, string> = {
+  "lames-terrasse": "Lames de terrasse",
+};
+
+export function OptionDetailView({
+  option,
+  listPath = "/options",
+  listLabel = "Options",
+}: OptionDetailViewProps) {
   const rich = option.rich;
 
   return (
@@ -68,14 +79,10 @@ export function OptionDetailView({ option }: OptionDetailViewProps) {
           ) : null}
 
           <Link
-            href={
-              option.includedChoice
-                ? "/modelos"
-                : `/#contact?option=${option.id}`
-            }
+            href="/personnaliser"
             className="mt-8 inline-block rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs uppercase tracking-wider text-white transition hover:bg-luxury-forest-dark"
           >
-            {option.includedChoice ? "Configurer votre modèle" : "Demander un devis"}
+            {option.includedChoice ? "Personnaliser votre modèle" : "Personnaliser"}
           </Link>
         </div>
       </section>
@@ -159,6 +166,70 @@ export function OptionDetailView({ option }: OptionDetailViewProps) {
         </section>
       )}
 
+      {rich?.personalizationIds?.map((personalizationId) => {
+        const personalization = getOptionRich(personalizationId);
+        if (!personalization) return null;
+        const title = PERSONALIZATION_TITLES[personalizationId] ?? personalizationId;
+
+        return (
+          <section
+            key={personalizationId}
+            className="border-t border-luxury-stone/60 bg-luxury-papyrus/40 py-16"
+          >
+            <div className="mx-auto max-w-7xl px-6">
+              <p className="font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-forest">
+                Personnalisation incluse
+              </p>
+              <h2 className="mt-3 font-serif text-3xl text-luxury-graphite">{title}</h2>
+              {personalization.tagline && (
+                <p className="mt-2 font-serif text-lg italic text-luxury-muted">
+                  {personalization.tagline}
+                </p>
+              )}
+              {personalization.intro && (
+                <p className="mt-4 max-w-3xl font-ui text-sm leading-relaxed text-luxury-muted">
+                  {personalization.intro}
+                </p>
+              )}
+              <p className="mt-2 font-ui text-sm text-luxury-forest">
+                Inclus dans le prix de votre terrasse — choix de coloris sans supplément.
+              </p>
+
+              {personalization.gallery?.[0] && (
+                <div className="mt-8 overflow-hidden rounded-3xl border border-luxury-stone bg-white p-3 shadow-luxury-sm">
+                  <Image
+                    src={personalization.gallery[0]}
+                    alt={title}
+                    width={1000}
+                    height={750}
+                    className="h-auto w-full rounded-2xl"
+                  />
+                </div>
+              )}
+
+              {personalization.colors && personalization.colors.length > 0 && (
+                <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {personalization.colors.map((color) => (
+                    <div
+                      key={color.name}
+                      className="flex items-center gap-4 rounded-2xl border border-luxury-stone/80 bg-white px-4 py-3"
+                    >
+                      <span
+                        className="h-10 w-10 shrink-0 rounded-full border border-luxury-stone"
+                        style={{ backgroundColor: color.hex ?? "#E8E4DC" }}
+                      />
+                      <p className="font-ui text-sm font-medium text-luxury-graphite">
+                        {color.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </section>
+        );
+      })}
+
       {rich?.colors && rich.colors.length > 0 && (
         <section className="border-t border-luxury-stone/60 py-16">
           <div className="mx-auto max-w-7xl px-6">
@@ -228,10 +299,10 @@ export function OptionDetailView({ option }: OptionDetailViewProps) {
 
       <section className="mx-auto max-w-7xl px-6 py-12">
         <Link
-          href="/options"
+          href={listPath}
           className="font-ui text-xs uppercase tracking-wider text-luxury-forest hover:underline"
         >
-          ← Toutes les options
+          ← {listLabel}
         </Link>
       </section>
     </article>

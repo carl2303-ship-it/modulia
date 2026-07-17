@@ -71,10 +71,17 @@ type ContactModalProps = {
   onClose: () => void;
   totalPrice: number;
   configSummary: ReactNode;
+  modelName?: string;
 };
 
 /** Formulaire de contact intégré pour réservation / devis */
-export function ContactModal({ isOpen, onClose, totalPrice, configSummary }: ContactModalProps) {
+export function ContactModal({
+  isOpen,
+  onClose,
+  totalPrice,
+  configSummary,
+  modelName = "EQUILIBRO",
+}: ContactModalProps) {
   useEffect(() => {
     if (!isOpen) return;
     const handleKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -101,7 +108,9 @@ export function ContactModal({ isOpen, onClose, totalPrice, configSummary }: Con
           ×
         </button>
 
-        <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-forest">EQUILIBRO</p>
+        <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-forest">
+          {modelName}
+        </p>
         <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">Demander un Devis</h2>
         <p className="mt-2 font-ui text-sm text-luxury-muted">
           Configuration estimée à{" "}

@@ -92,7 +92,7 @@ export function buildModelFromSlug(slug: ModelSlug): ModelData {
     rooms: override.rooms,
     area: override.area,
     capacity: override.capacity,
-    configuratorUrl: override.configuratorUrl,
+    configuratorUrl: `/personnaliser?model=${slug}`,
     rich,
   };
 }

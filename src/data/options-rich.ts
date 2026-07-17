@@ -36,6 +36,8 @@ export type OptionRichContent = {
   includes?: OptionInclude[];
   footerHighlights?: string[];
   gallery?: string[];
+  /** Personnalisations incluses liées à cette option (ex. lames pour terrasse) */
+  personalizationIds?: string[];
 };
 
 const op = (file: string) => `/opcoes/${file}`;
@@ -109,7 +111,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
   terrasses: {
     tagline: "La nature comme prolongement",
     intro:
-      "Terrasse en bois composite premium pour profiter pleinement de vos extérieurs — résistante, durable et facile d'entretien.",
+      "Terrasse supplémentaire en bois composite premium — en complément de la terrasse déjà incluse avec votre modèle Modulia.",
     features: [
       { title: "Résistantes aux intempéries", description: "Conçues pour l'extérieur" },
       { title: "Durables et solides", description: "Structure fiable dans le temps" },
@@ -176,24 +178,28 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Sans entretien", description: "Nettoyage à l'eau claire" },
     ],
     colors: [
-      { name: "Bois de pomelo", code: "—", hex: "#D4A574" },
-      { name: "Café", hex: "#6B4423" },
-      { name: "Bois de santal", hex: "#C4A882" },
-      { name: "Vert encre", hex: "#1B4332" },
-      { name: "Gris bleuté", hex: "#6B7B8C" },
-      { name: "Noyer noir", hex: "#2C1810" },
-      { name: "Toile gris bleuté", code: "X386-A155" },
-      { name: "Lin lavande", code: "353-A155" },
-      { name: "Lin gris clair", code: "X526-A201" },
-      { name: "Marbre blanc", code: "D9006-1" },
-      { name: "Fleur de glace blanche", code: "D9013-1" },
-      { name: "Roche grise", code: "D9807-200" },
-      { name: "Gris fin", code: "D9051-1" },
-      { name: "Érable", code: "M8025-300", hex: "#E8C9A0" },
-      { name: "Noyer gris", code: "M8037-9", hex: "#8B7355" },
-      { name: "Lin étoilé", code: "XZ213-001" },
-      { name: "Bois ancien", code: "M8041-7" },
-      { name: "Café au lait", code: "XC1003-2", hex: "#C4A882" },
+      // Finitions bois à claire-voie
+      { name: "Bois de pomelo", description: "Claire-voie", hex: "#C9956A" },
+      { name: "Café", description: "Claire-voie", hex: "#5F4334" },
+      { name: "Bois de santal", description: "Claire-voie", hex: "#8B5A3C" },
+      { name: "Vert encre", description: "Claire-voie", hex: "#4A5238" },
+      { name: "Gris bleuté", description: "Claire-voie", hex: "#6B7078" },
+      { name: "Noyer noir", description: "Claire-voie", hex: "#2A221F" },
+      // Série tissu
+      { name: "Toile gris bleuté", code: "X386-A155", description: "Série tissu", hex: "#A8AEB8" },
+      { name: "Lin lavande", code: "353-A155", description: "Série tissu", hex: "#D4D0D8" },
+      { name: "Lin gris clair", code: "X526-A201", description: "Série tissu", hex: "#D6D4D0" },
+      // Série pierre & marbre
+      { name: "Marbre blanc", code: "D9006-1", description: "Série marbre", hex: "#F0ECEC" },
+      { name: "Fleur de glace blanche", code: "D9013-1", description: "Série marbre", hex: "#EBE2E0" },
+      { name: "Roche grise", code: "D9807-200", description: "Série pierre", hex: "#C5C0C0" },
+      { name: "Gris fin", code: "D9051-1", description: "Série marbre", hex: "#C6C3C9" },
+      // Série bois fin / mate / unie
+      { name: "Érable", code: "M8025-300", description: "Série bois fin", hex: "#E0D4C4" },
+      { name: "Noyer gris", code: "M8037-9", description: "Série bois fin", hex: "#8B7B6B" },
+      { name: "Lin étoilé", code: "XZ213-001", description: "Jaune clair · Série mate", hex: "#EDE6D4" },
+      { name: "Café au lait", code: "XC1003-2", description: "Série unie", hex: "#C4A882" },
+      { name: "Bois ancien", code: "M8041-7", description: "Série bois fin", hex: "#A89078" },
     ],
     footerHighlights: [
       "Résistant à l'humidité",
@@ -250,12 +256,12 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Installation rapide", description: "Pose professionnelle" },
     ],
     colors: [
-      { name: "Gris clair", code: "PN-8007", description: "Texture fine" },
-      { name: "Beige", code: "PH-8036-BS656", description: "Effet bois naturel" },
-      { name: "Gris lin", code: "5-815-A138", description: "Effet tissu" },
-      { name: "Blanc cassé", code: "B-315", description: "Effet lin" },
-      { name: "Béton clair", code: "D-039", description: "Effet minéral" },
-      { name: "Marbre blanc", code: "S-413", description: "Effet marbre" },
+      { name: "Gris clair", code: "PN-8007", description: "Texture fine", hex: "#D0CFD2" },
+      { name: "Beige", code: "PH-8036-BS656", description: "Effet bois naturel", hex: "#DAC9BA" },
+      { name: "Gris lin", code: "5-815-A138", description: "Effet tissu", hex: "#B8B6B4" },
+      { name: "Blanc cassé", code: "B-315", description: "Effet lin", hex: "#EFE6E1" },
+      { name: "Béton clair", code: "D-039", description: "Effet minéral", hex: "#C9C6C4" },
+      { name: "Marbre blanc", code: "S-413", description: "Effet marbre", hex: "#F2F0F0" },
     ],
     footerHighlights: ["Étanche", "Résistant à l'humidité", "Facile à nettoyer", "Écologique"],
     gallery: [op("murs salle de bains.jpg")],

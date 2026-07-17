@@ -15,7 +15,6 @@ export type ModelOverride = {
   distribution: string;
   terrace?: string;
   featured?: boolean;
-  configuratorUrl?: string;
   closingTagline?: string;
   layoutZones?: ModelLayoutZone[];
   planInternalMeasures?: string[];
@@ -53,8 +52,6 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     rooms: "2 chambres",
     distribution: "2 chambres",
     terrace: "Intégrée toute longueur",
-    featured: true,
-    configuratorUrl: "/equilibro",
     closingTagline: "L'équilibre parfait pour une vie harmonieuse.",
     planInternalMeasures: [
       "Largeur intérieure ≈ 4,38 m",

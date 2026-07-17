@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { OptionFichaCard } from "@/components/options/OptionFichaCard";
 import { SiteHeader } from "@/components/SiteHeader";
-import { OPTION_CATEGORIES, getAllPaidOptions } from "@/data/options-catalog";
+import { FINITION_CATEGORIES, getAllFinitions } from "@/data/options-catalog";
 
 export const metadata: Metadata = {
-  title: "Options | Modulia",
+  title: "Personnalisation | Modulia",
   description:
-    "Options Modulia en supplément — terrasses, équipements, raccordements et services.",
+    "Finitions et coloris inclus dans le prix de votre modèle Modulia — façade, murs, sols et salle de bains.",
 };
 
-export default function OptionsPage() {
-  const optionsById = Object.fromEntries(
-    getAllPaidOptions().map((option) => [option.id, option]),
+export default function PersonnalisationPage() {
+  const finitionsById = Object.fromEntries(
+    getAllFinitions().map((item) => [item.id, item]),
   );
 
   return (
@@ -25,13 +25,13 @@ export default function OptionsPage() {
             Modulia
           </p>
           <h1 className="mt-4 max-w-3xl font-serif text-4xl text-luxury-graphite sm:text-5xl">
-            Options
+            Personnalisation
           </h1>
           <p className="mt-6 max-w-2xl font-ui text-luxury-muted">
-            Équipements, terrasses, raccordements et services complémentaires pour
-            votre projet. Les finitions incluses dans le prix sont dans la{" "}
-            <Link href="/personnalisation" className="text-luxury-forest hover:underline">
-              personnalisation
+            Choisissez vos finitions et coloris — inclus dans le prix de votre
+            modèle, sans supplément. Pour les équipements et services en plus,{" "}
+            <Link href="/options" className="text-luxury-forest hover:underline">
+              voir nos options
             </Link>
             .
           </p>
@@ -43,27 +43,21 @@ export default function OptionsPage() {
               Personnaliser →
             </Link>
             <Link
-              href="/personnalisation"
+              href="/modelos"
               className="rounded-full border border-luxury-stone bg-white px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-luxury-graphite transition hover:border-luxury-forest"
             >
-              Personnalisation →
+              Nos modèles →
             </Link>
             <Link
-              href="/cuisines"
+              href="/options"
               className="rounded-full border border-luxury-stone bg-white px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-luxury-graphite transition hover:border-luxury-forest"
             >
-              Cuisines →
-            </Link>
-            <Link
-              href="/piscine"
-              className="rounded-full border border-luxury-stone bg-white px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-luxury-graphite transition hover:border-luxury-forest"
-            >
-              Piscine →
+              Options →
             </Link>
           </div>
         </section>
 
-        {OPTION_CATEGORIES.map((category) => (
+        {FINITION_CATEGORIES.map((category) => (
           <section
             key={category.id}
             id={category.id}
@@ -76,7 +70,11 @@ export default function OptionsPage() {
               )}
               <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {category.items.map((item) => (
-                  <OptionFichaCard key={item.id} item={optionsById[item.id]} detailPath="/options" />
+                  <OptionFichaCard
+                    key={item.id}
+                    item={finitionsById[item.id]}
+                    detailPath="/personnalisation"
+                  />
                 ))}
               </div>
             </div>
@@ -85,9 +83,9 @@ export default function OptionsPage() {
 
         <section className="mx-auto max-w-7xl px-6 py-20">
           <div className="rounded-3xl bg-luxury-graphite p-10 text-center lg:p-16">
-            <h2 className="font-serif text-3xl text-white">Un projet sur mesure ?</h2>
+            <h2 className="font-serif text-3xl text-white">Prêt à personnaliser ?</h2>
             <p className="mx-auto mt-4 max-w-lg font-ui text-sm text-white/60">
-              Contactez notre équipe pour composer votre module avec les options adaptées.
+              Configurez votre modèle et choisissez vos finitions incluses.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link

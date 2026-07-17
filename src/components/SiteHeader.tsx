@@ -3,6 +3,8 @@ import { Logo } from "@/components/Logo";
 
 const navLinks = [
   { id: "models", href: "/modelos", label: "Particuliers" },
+  { id: "personnaliser", href: "/personnaliser", label: "Personnaliser" },
+  { id: "personnalisation", href: "/personnalisation", label: "Personnalisation" },
   { id: "options", href: "/options", label: "Options" },
   { id: "pro", href: "/professionnels", label: "Professionnels" },
   { id: "craft", href: "/#constructif", label: "Savoir-faire" },

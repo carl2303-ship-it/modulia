@@ -234,10 +234,16 @@ export function EquilibroConfigurator() {
 
             <div className="mt-6 flex flex-wrap gap-3 border-t border-luxury-stone/60 pt-6">
               <Link
-                href="/options"
+                href="/personnalisation"
                 className="font-ui text-[11px] uppercase tracking-wider text-luxury-forest hover:underline"
               >
-                Toutes les options →
+                Personnalisation →
+              </Link>
+              <Link
+                href="/options"
+                className="font-ui text-[11px] uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
+              >
+                Options →
               </Link>
               <Link
                 href="/cuisines"

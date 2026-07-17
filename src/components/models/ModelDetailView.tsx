@@ -83,7 +83,7 @@ export function ModelDetailView({ model }: ModelDetailViewProps) {
                   href={model.configuratorUrl}
                   className="rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs font-medium uppercase tracking-[0.18em] text-white transition hover:bg-luxury-forest-dark"
                 >
-                  Configurer ce modèle
+                  Personnaliser
                 </Link>
               ) : (
                 <Link
@@ -170,7 +170,7 @@ export function ModelDetailView({ model }: ModelDetailViewProps) {
                   href={model.configuratorUrl}
                   className="rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs uppercase tracking-[0.18em] text-white transition hover:bg-luxury-forest-dark"
                 >
-                  Configurer en ligne
+                  Personnaliser en ligne
                 </Link>
               )}
               <Link

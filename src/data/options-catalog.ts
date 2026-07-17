@@ -35,7 +35,7 @@ export const FINITION_CATEGORIES: OptionCategory[] = [
   {
     id: "exterior-inclus",
     title: "Extérieur — choix inclus",
-    subtitle: "Façade et lames de terrasse — personnalisation sans supplément",
+    subtitle: "Façade et lames de terrasse d'origine — personnalisation sans supplément",
     items: [
       {
         id: "decor-exterior",
@@ -50,7 +50,8 @@ export const FINITION_CATEGORIES: OptionCategory[] = [
       {
         id: "lames-terrasse",
         title: "Lames de terrasse",
-        description: "Bois composite premium, résistant aux intempéries.",
+        description:
+          "Choix de coloris pour la terrasse incluse avec chaque modèle — bois composite premium.",
         image: op("lames terrasse.jpg"),
         priceType: "inclus",
         priceLabel: "Inclus dans le prix",
@@ -108,15 +109,24 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
   {
     id: "exterior",
     title: "Options extérieur",
-    subtitle: "Terrasses et aménagements en supplément",
+    subtitle: "Terrasses supplémentaires et aménagements de jardin",
     items: [
       {
         id: "terrasses",
         title: "Terrasses",
-        description: "Grande terrasse 11,80 m ou format compact 5,90 m.",
+        description:
+          "Terrasse supplémentaire en plus de celle incluse — grande 11,80 m ou format compact 5,90 m.",
         image: op("terrasses.png"),
         priceLabel: "7 000 – 11 000 € TTC",
         highlights: ["11,80 m · 11 000 € TTC", "5,90 m · 7 000 € TTC"],
+      },
+      {
+        id: "kit-exterieur",
+        title: "Kit extérieur",
+        description: "Appliques, prises IP44, robinet 2 sorties, tuyau et arrosoir.",
+        image: op("kit exterieur.png"),
+        price: 149,
+        priceType: "ttc",
       },
     ],
   },
@@ -208,28 +218,14 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
       },
     ],
   },
-  {
-    id: "outdoor",
-    title: "Extérieur & jardin",
-    items: [
-      {
-        id: "kit-exterieur",
-        title: "Kit extérieur",
-        description: "Appliques, prises IP44, robinet 2 sorties, tuyau et arrosoir.",
-        image: op("kit exterieur.png"),
-        price: 149,
-        priceType: "ttc",
-      },
-    ],
-  },
 ];
 
 export const KITCHEN_BASE = {
   title: "Cuisine Modulia",
-  tagline: "Compacte, évolutive et intelligente.",
+  tagline: "Compacte, élégante et parfaitement équipée.",
   description:
-    "La cuisine Modulia s'intègre parfaitement dans tous nos modules. L'essentiel à portée de main, dans un design épuré et moderne.",
-  image: cz("cozinha base.jpg"),
+    "La Cuisine Modulia concentre l'essentiel dans un format intelligent pour vous offrir un maximum de confort au quotidien.",
+  image: cz("cozinha base foto.jpg"),
   included: true,
   dimensions: "122 × 66 × 200 cm",
   highlights: [
@@ -237,11 +233,6 @@ export const KITCHEN_BASE = {
     "Format compact et fonctionnel",
     "Installation rapide",
     "Matériaux durables",
-  ],
-  gallery: [
-    cz("cozinha base 1.jpg"),
-    cz("cozinha base 2.jpg"),
-    cz("opcao cozinha contemporanea.jpg"),
   ],
 };
 
@@ -271,11 +262,21 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     priceType: "ttc",
   },
   {
+    id: "cuisine-contemporaine",
+    title: "Cuisine contemporaine",
+    description: "Design épuré et lignes modernes — sur mesure au mètre linéaire.",
+    image: cz("cuisine contemporaine.png"),
+    priceLabel: "250 € TTC / mètre linéaire",
+    price: 250,
+    priceType: "ttc",
+  },
+  {
     id: "complement-cuisine",
-    title: "Complément cuisine",
-    description: "Module complémentaire pour agrandir l'espace cuisine.",
-    image: cz("opcao complemento cozinha.jpg"),
-    priceType: "sur-devis",
+    title: "Arrière cuisine",
+    description: "Lave-vaisselle et machine à laver — module complémentaire intégré.",
+    image: cz("opcao complemento cozinha1.jpg"),
+    price: 990,
+    priceType: "ttc",
   },
 ];
 
@@ -283,17 +284,18 @@ export const KITCHEN_APPLIANCES: OptionItem[] = [
   {
     id: "electro-base",
     title: "Kit électroménager base",
-    description: "Pack d'appareils encastrables essentiels.",
+    description: "Pack d'appareils encastrables essentiels — inclus.",
     image: cz("kit electromenager base.jpg"),
-    price: 990,
-    priceType: "ttc",
+    priceType: "inclus",
+    priceLabel: "Inclus",
   },
   {
     id: "electro-option",
-    title: "Kit électroménager option",
+    title: "Kit électroménager premium",
     description: "Pack premium avec appareils haut de gamme.",
-    image: cz("kit electromenager opcao.jpg"),
-    priceType: "sur-devis",
+    image: cz("kit electromenager premium.png"),
+    price: 990,
+    priceType: "ttc",
   },
 ];
 
@@ -378,16 +380,44 @@ function enrichOption(
   };
 }
 
-export function getAllCatalogOptions(): OptionItem[] {
-  return [...FINITION_CATEGORIES, ...OPTION_CATEGORIES].flatMap((category) =>
+export function getAllFinitions(): OptionItem[] {
+  return FINITION_CATEGORIES.flatMap((category) =>
     category.items.map((item) =>
       enrichOption(item, category.id, category.title),
     ),
   );
 }
 
+export function getAllPaidOptions(): OptionItem[] {
+  return OPTION_CATEGORIES.flatMap((category) =>
+    category.items.map((item) =>
+      enrichOption(item, category.id, category.title),
+    ),
+  );
+}
+
+export function getAllCatalogOptions(): OptionItem[] {
+  return [...getAllFinitions(), ...getAllPaidOptions()];
+}
+
+export function getFinitionById(id: string): OptionItem | undefined {
+  return getAllFinitions().find((item) => item.id === id);
+}
+
+export function getPaidOptionById(id: string): OptionItem | undefined {
+  return getAllPaidOptions().find((item) => item.id === id);
+}
+
 export function getOptionById(id: string): OptionItem | undefined {
-  return getAllCatalogOptions().find((item) => item.id === id);
+  return getFinitionById(id) ?? getPaidOptionById(id);
+}
+
+export function getFinitionSlugs(): string[] {
+  return getAllFinitions().map((item) => item.id);
+}
+
+export function getPaidOptionSlugs(): string[] {
+  return getAllPaidOptions().map((item) => item.id);
 }
 
 export function getOptionSlugs(): string[] {

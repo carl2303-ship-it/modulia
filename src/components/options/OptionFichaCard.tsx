@@ -6,9 +6,10 @@ import { formatOptionPrice } from "@/data/options-catalog";
 type OptionFichaCardProps = {
   item: OptionItem;
   onSelect?: () => void;
+  detailPath?: string;
 };
 
-export function OptionFichaCard({ item, onSelect }: OptionFichaCardProps) {
+export function OptionFichaCard({ item, onSelect, detailPath = "/options" }: OptionFichaCardProps) {
   const content = (
     <>
       <div className="relative aspect-[4/3] overflow-hidden bg-luxury-stone">
@@ -36,9 +37,11 @@ export function OptionFichaCard({ item, onSelect }: OptionFichaCardProps) {
             ))}
           </ul>
         )}
-        <p className="mt-4 font-serif text-xl text-luxury-graphite">
-          {formatOptionPrice(item)}
-        </p>
+        {!item.includedChoice && (
+          <p className="mt-4 font-serif text-xl text-luxury-graphite">
+            {formatOptionPrice(item)}
+          </p>
+        )}
         {!onSelect && (
           <span className="mt-4 font-ui text-[11px] uppercase tracking-wider text-luxury-forest">
             {item.includedChoice ? "Voir les coloris →" : "Voir le détail →"}
@@ -67,7 +70,7 @@ export function OptionFichaCard({ item, onSelect }: OptionFichaCardProps) {
 
   return (
     <Link
-      href={`/options/${item.id}`}
+      href={`${detailPath}/${item.id}`}
       className="group flex flex-col overflow-hidden rounded-3xl border border-luxury-stone bg-white shadow-luxury-sm transition hover:-translate-y-0.5 hover:shadow-luxury"
     >
       {content}
