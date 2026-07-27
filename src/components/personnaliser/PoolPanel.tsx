@@ -10,6 +10,8 @@ import {
   type OptionItem,
 } from "@/data/options-catalog";
 import type { PoolSelection } from "./types";
+import { PoolLinerPicker } from "@/components/piscine/PoolLinerPicker";
+import { PoolFabricPicker } from "@/components/piscine/PoolFabricPicker";
 
 type PoolPanelProps = {
   pool: PoolSelection;
@@ -113,10 +115,37 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
       </div>
 
       {pool.enabled && (
-        <div className="space-y-2">
-          <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
-            {t("optionsPiscine")}
-          </p>
+        <div className="space-y-6">
+          <div>
+            <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+              {t("poolLinerTitle")}
+            </p>
+            <p className="mt-1 font-ui text-[11px] text-luxury-muted">{t("poolLinerSub")}</p>
+            <div className="mt-4">
+              <PoolLinerPicker
+                selectedId={pool.linerColor}
+                onSelect={(linerColor) => onChange({ ...pool, linerColor })}
+              />
+            </div>
+          </div>
+
+          <div>
+            <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+              {t("poolFabricTitle")}
+            </p>
+            <p className="mt-1 font-ui text-[11px] text-luxury-muted">{t("poolFabricSub")}</p>
+            <div className="mt-4">
+              <PoolFabricPicker
+                selectedId={pool.fabricColor}
+                onSelect={(fabricColor) => onChange({ ...pool, fabricColor })}
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
+              {t("optionsPiscine")}
+            </p>
           {poolOptions.map((item) => {
             const on = pool.options.includes(item.id);
             const optionWithCategory = { ...item, categoryTitle };
@@ -170,6 +199,7 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
               </div>
             );
           })}
+          </div>
         </div>
       )}
     </div>

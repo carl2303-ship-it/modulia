@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Modulia | Casas Modulares",
-    "description": "Modulia — casas modulares sustentáveis, personalizáveis e prontas a habitar. Construímos o seu futuro, módulo a módulo."
+    "description": "Casas modulares contemporâneas e acessíveis — configurações de 1 a 4 quartos, casa de banho, WC, cozinha, sala e canto de refeições. Instalação em 3 dias."
   },
   "nav": {
     "particuliers": "Particulares",
@@ -20,16 +20,17 @@
     "rights": "Todos os direitos reservados."
   },
   "home": {
-    "heroEyebrow": "Casas modulares · Alta gama",
-    "heroTitle": "A elegância a partir de",
-    "heroPrice": "920 € HT / m²",
-    "heroText": "Soluções modulares de alta gama — sustentáveis, personalizáveis e prontas a habitar.",
+    "heroEyebrow": "Casas modulares contemporâneas",
+    "heroTitle": "Soluções modulares acessíveis",
+    "heroPrice": "desde 920 € HT / m²",
+    "heroText": "Configurações de 1 a 4 quartos — casa de banho, WC, cozinha, sala e canto de refeições.",
     "heroCta": "Descobrir os modelos",
     "heroPhilosophy": "A nossa filosofia",
     "statFrom": "A partir de",
-    "statModels": "Modelos",
-    "statDelivery": "Entrega",
-    "statDeliveryValue": "8–12 sem."
+    "statConfigurations": "Configurações",
+    "statConfigurationsValue": "1 a 4 quartos",
+    "statInstall": "Instalação",
+    "statInstallValue": "3 dias"
   },
   "models": {
     "eyebrow": "Coleção",
@@ -108,6 +109,12 @@
     "optionsCuisine": "Opções de cozinha",
     "electromenager": "Eletrodomésticos",
     "optionsPiscine": "Opções de piscina",
+    "poolLinerTitle": "Cor do liner",
+    "poolLinerSub": "Incluído — escolha o tom do revestimento interior.",
+    "poolLinerSummary": "Liner: {color}",
+    "poolFabricTitle": "Tecido outdoor dos sofás",
+    "poolFabricSub": "Incluído — 22 cores técnicas 150 cm (220 a 280 g/m²).",
+    "poolFabricSummary": "Tecido: {fabric}",
     "kitchenIncludedHint": "Incluída em todos os módulos — sem suplemento",
     "transportHint": "Incluído num raio de 30 km — ver detalhe",
     "standard": "Standard",
@@ -115,6 +122,9 @@
     "linearMeters": "Metros lineares",
     "terrace": "Terraço",
     "airConditioning": "Climatização",
+    "solarWaterHeater": "Esquentador solar",
+    "tank150L": "Depósito 150 L",
+    "tank200L": "Depósito 200 L",
     "contact": {
       "title": "Pedir Orçamento",
       "estimatedAt": "Configuração estimada em",
@@ -175,6 +185,15 @@
     "highlightsTitle": "Pontos fortes",
     "includedTitle": "Equipamentos incluídos",
     "optionsTitle": "Opções",
+    "linerTitle": "A nossa seleção de cores",
+    "linerIntro": "Personalize o revestimento interior da sua Sofa Pool — 8 tons disponíveis, incluídos no preço chave na mão.",
+    "linerCta": "Configurar a sua piscina",
+    "fabricTitle": "A nossa seleção de tecidos outdoor",
+    "fabricIntro": "Colchões, bancos e almofadas 100 % à medida — escolha entre 22 tecidos técnicos resistentes a UV, impermeáveis e anti-bolor.",
+    "fabricFeatureUv": "Resistência UV",
+    "fabricFeatureWater": "Impermeável",
+    "fabricFeatureMold": "Anti-bolor",
+    "fabricFeatureWear": "Alta resistência",
     "architectureLabel": "Arquitetura",
     "dimensionsTitle": "Dimensões",
     "backToOptions": "Todas as opções"
@@ -207,26 +226,26 @@
   },
   "features": {
     "title": "Porque escolher a Modulia?",
-    "subtitle": "Combinamos engenharia de precisão e design contemporâneo para entregar casas modulares que superam as expectativas.",
+    "subtitle": "Casas modulares contemporâneas e acessíveis, concebidas para o conforto quotidiano e uma instalação rápida no local.",
     "items": [
       {
         "title": "Construção rápida",
-        "description": "Módulos pré-fabricados em fábrica controlada — até 60% menos tempo do que uma construção tradicional.",
+        "description": "Módulos pré-fabricados em fábrica controlada — instalação em 3 dias, até 80% menos tempo do que uma construção tradicional.",
         "icon": "⚡"
       },
       {
-        "title": "Sustentabilidade",
-        "description": "Materiais selecionados, resíduos minimizados e isolamento de alto desempenho para um consumo energético reduzido.",
+        "title": "Isolamento de alto desempenho",
+        "description": "Painéis isolantes XPS e lã de rocha 70 mm para um conforto térmico duradouro no verão e no inverno.",
         "icon": "🌿"
       },
       {
-        "title": "Personalização total",
-        "description": "Layouts, acabamentos e dimensões adaptados às suas necessidades — amplie os módulos ao longo da vida.",
+        "title": "Personalização",
+        "description": "Configurações de 1 a 4 quartos, acabamentos e opções adaptadas ao seu projeto.",
         "icon": "✦"
       },
       {
-        "title": "Qualidade garantida",
-        "description": "Controlo de qualidade rigoroso em ambiente industrial, com garantia estrutural e acompanhamento pós-entrega.",
+        "title": "Equipamentos incluídos",
+        "description": "Casa de banho, WC, cozinha em parte equipada, sala e canto de refeições — o essencial, pronto a habitar.",
         "icon": "✓"
       }
     ]
@@ -234,21 +253,17 @@
   "construction": {
     "eyebrow": "Saber-fazer Modulia",
     "title": "Princípio construtivo dos módulos",
-    "intro": "Concebidos com materiais de qualidade e técnicas de construção avançadas para garantir durabilidade, conforto e desempenho.",
+    "intro": "Cozinha em parte equipada, terraço em aço lacado e madeira compósita — materiais e isolamento pensados para durabilidade e conforto.",
     "imageAlt": "Vista explodida da construção modular Modulia",
-    "footer": "Modulia — Soluções modulares de alta gama",
+    "footer": "Modulia — Casas modulares contemporâneas e acessíveis",
     "layers": [
-      { "title": "Cobertura", "items": ["Painéis de cobertura", "Impermeabilização", "Acabamento exterior"] },
-      { "title": "Telhado", "items": ["Painel isolante XPS", "Estrutura do telhado", "Tecto falso"] },
-      { "title": "Paredes", "items": ["Painel exterior", "Painel isolante XPS", "Parede interior"] },
-      { "title": "Parede exterior", "items": ["Painel exterior", "Isolamento XPS", "Acabamento de fachada"] },
+      { "title": "Cobertura", "items": ["Painéis de cobertura", "Isolamento", "Impermeabilização", "Acabamento exterior"] },
+      { "title": "Telhado", "items": ["Painel isolante XPS", "Lã de rocha 70 mm", "Estrutura do telhado", "Tecto falso"] },
+      { "title": "Paredes", "items": ["Painel exterior", "Painéis isolantes lã de rocha 70 mm", "Parede interior"] },
+      { "title": "Parede exterior", "items": ["Painel exterior", "Isolamento XPS + lã de rocha 70 mm", "Acabamento de fachada"] },
       {
         "title": "Caixilharias",
-        "items": [
-          "Aro de porta",
-          "Caixilho de alumínio com corte térmico",
-          "Vidro duplo temperado"
-        ]
+        "items": ["Aro de porta", "Janelas", "Janelas de sacada / grandes vãos"]
       },
       {
         "title": "Bloco técnico de parede",
@@ -257,34 +272,25 @@
       {
         "title": "Pavimento",
         "items": [
-          "Revestimento de piso (madeira / parquet)",
+          "Revestimento madeira, parquet ou piso PVC",
+          "Azulejo (casa de banho apenas)",
           "Painel isolante XPS",
-          "Placa de cimento",
           "Base estrutural"
         ]
       },
       { "title": "Estrutura portante", "items": ["Estrutura em aço galvanizado"] }
     ],
     "benefits": [
+      { "title": "Isolamento de alto desempenho", "description": "XPS + lã de rocha 70 mm" },
+      { "title": "VMC", "description": "Ventilação mecânica ou elétrica" },
+      { "title": "Instalação rápida", "description": "Montagem em 3 dias no local" },
       {
-        "title": "Isolamento de alto desempenho",
-        "description": "Painéis isolantes de alto desempenho (XPS)"
+        "title": "Ganho de tempo",
+        "description": "Até 80% menos tempo do que uma construção tradicional"
       },
       {
-        "title": "Materiais duradouros",
-        "description": "Materiais selecionados pela sua resistência e longevidade"
-      },
-      {
-        "title": "Conforto térmico",
-        "description": "Excelente regulação térmica no verão e no inverno"
-      },
-      {
-        "title": "Construção de precisão",
-        "description": "Montagem controlada e controlo de qualidade rigoroso"
-      },
-      {
-        "title": "Ecológico",
-        "description": "Materiais recicláveis e respeitadores do ambiente"
+        "title": "Cozinha e terraço",
+        "description": "Cozinha em parte equipada, terraço em aço lacado e madeira compósita"
       }
     ]
   },
@@ -318,8 +324,8 @@
         "id": "enveloppe",
         "title": "Envolvente e isolamento",
         "items": [
-          "Paredes exteriores: painéis sandwich em aço / alumínio, isolamento integrado (lã de rocha, lã de vidro ou espuma PU)",
-          "Isolamento térmico conforme RE2020 / equivalente — R paredes ≈ 3 a 4 m²·K/W, R cobertura ≈ 5 a 6 m²·K/W",
+          "Paredes: painéis isolantes lã de rocha 70 mm",
+          "Isolamento de alto desempenho: XPS + lã de rocha 70 mm",
           "Isolamento acústico: ≈ 35–45 dB, dependendo da composição",
           "Estanquidade: barreira de vapor + juntas EPDM"
         ]
@@ -328,9 +334,9 @@
         "id": "menuiseries",
         "title": "Caixilharias",
         "items": [
-          "Fachadas envidraçadas: grandes vãos envidraçados em alumínio",
-          "Vidro: vidro duplo isolante (opção de vidro triplo), tratamento térmico e solar possível",
-          "Portas: entrada em alumínio segura, fechadura multipontos"
+          "Aro de porta",
+          "Janelas",
+          "Janelas de sacada / grandes vãos"
         ]
       },
       {
@@ -338,8 +344,8 @@
         "title": "Cobertura",
         "items": [
           "Tipo: cobertura plana técnica",
-          "Estanquidade: membrana EPDM ou PVC",
-          "Opções: cobertura verde, painéis fotovoltaicos"
+          "Isolamento integrado",
+          "Estanquidade: membrana EPDM ou PVC"
         ]
       },
       {
@@ -349,17 +355,18 @@
           "Eletricidade: instalação segundo a norma NFC 15-100, quadro elétrico integrado",
           "Canalizações: redes de água quente / fria pré-instaladas, escoamento em PVC",
           "Aquecimento / climatização: climatização reversível (split ou por condutas), opção de piso radiante",
-          "Ventilação: VMC simples ou de duplo fluxo"
+          "Ventilação: VMC mecânica ou elétrica"
         ]
       },
       {
         "id": "interieur",
         "title": "Acabamento interior",
         "items": [
-          "Revestimentos de piso: PVC, parquet laminado, cerâmico",
-          "Paredes interiores: painéis decorativos ou placas de gesso",
-          "Cozinha: bloco kitchenette pré-equipado (opcional)",
-          "Casa de banho: duche, WC, móvel de lavatório pré-instalados"
+          "Revestimentos de piso: madeira, parquet ou piso PVC",
+          "Azulejo: casa de banho apenas",
+          "Cozinha: em parte equipada",
+          "Casa de banho: duche, WC, móvel de lavatório pré-instalados",
+          "Terraço: aço lacado e madeira compósita (consoante o modelo)"
         ]
       },
       {
@@ -368,7 +375,7 @@
         "items": [
           "Entrega: transporte rodoviário em camião de plataforma",
           "Instalação: sobre laje de betão, apoios de betão ou estacas metálicas",
-          "Tempo de instalação: 1 a 3 dias (excluindo ligações)"
+          "Tempo de instalação: 3 dias (excluindo ligações)"
         ]
       },
       {
@@ -407,9 +414,12 @@
   },
   "professionnels": {
     "eyebrow": "Coleção Profissionais",
-    "title": "Escritórios modulares autónomos",
-    "intro": "Espaços prontos a usar com sanitários integrados, redes prontas a ligar e acabamentos premium — para obras, eventos e atividades profissionais.",
-    "fromHt": "desde {price} € +IVA",
+    "title": "Soluções modulares profissionais",
+    "intro": "Sanitários modulares, escritórios autónomos com sanitários integrados, redes prontas a ligar e acabamentos premium — para praias, obras, eventos e atividades profissionais.",
+    "fromPriceHt": "desde {price} s/IVA",
+    "fromPriceTtc": "desde {price} c/IVA",
+    "priceSuffixHt": "€ s/IVA",
+    "priceSuffixTtc": "€ c/IVA",
     "ctaFinalEyebrow": "Modulia Profissionais",
     "ctaFinalTitle": "Um espaço pronto a usar para impulsionar a sua atividade",
     "ctaFinalText": "Atraia, receba, convença. A Modulia trata do resto.",
@@ -422,6 +432,9 @@
     "fromLabel": "A partir de",
     "interiorEyebrow": "Espaços interiores",
     "interiorTitle": "Vista interior & sanitários",
+    "galleryEyebrow": "Galeria",
+    "galleryTitle": "Interiores & equipamentos",
+    "benefitsEyebrow": "Vantagens",
     "interiorViewLabel": "Vista interior",
     "wcLabel": "WC integrado",
     "sinkLabel": "Lavatório",

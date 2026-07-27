@@ -1,3 +1,5 @@
+import { CGV_WARRANTY_ARTICLES } from "@/data/cgv-warranty";
+
 export type CgvLocale = "fr" | "pt" | "en";
 
 export type CgvArticle = {
@@ -110,11 +112,7 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
           "Si une anomalie est constatée, le client gardera 5 % du montant total jusqu'à réception définitive.",
         ],
       },
-      {
-        title: "Article 9 – Garanties",
-        paragraphs: ["Les constructions bénéficient des garanties légales :"],
-        listItems: ["garantie de parfait achèvement"],
-      },
+      ...CGV_WARRANTY_ARTICLES.fr,
       {
         title: "Article 10 – Rétractation",
         paragraphs: [
@@ -242,11 +240,7 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
           "Se for constatada uma anomalia, o cliente reterá 5 % do montante total até à receção definitiva.",
         ],
       },
-      {
-        title: "Artigo 9 – Garantias",
-        paragraphs: ["As construções beneficiam das garantias legais:"],
-        listItems: ["garantia de perfeito acabamento"],
-      },
+      ...CGV_WARRANTY_ARTICLES.pt,
       {
         title: "Artigo 10 – Direito de retratação",
         paragraphs: [
@@ -374,11 +368,7 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
           "If a defect is found, the customer will retain 5% of the total amount until final acceptance.",
         ],
       },
-      {
-        title: "Article 9 – Warranties",
-        paragraphs: ["The constructions benefit from legal warranties:"],
-        listItems: ["warranty of perfect completion"],
-      },
+      ...CGV_WARRANTY_ARTICLES.en,
       {
         title: "Article 10 – Right of withdrawal",
         paragraphs: [

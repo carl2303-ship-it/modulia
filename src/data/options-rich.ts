@@ -5,6 +5,7 @@
 
 import type { Locale } from "@/i18n/config";
 import { defaultLocale } from "@/i18n/config";
+import { localizedOptionImage } from "@/lib/localized-assets";
 
 export type OptionFeature = {
   title: string;
@@ -124,12 +125,12 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
     variants: [
       {
         label: "Grande terrasse 11,80 m",
-        price: "11 000 € TTC",
+        price: "9 900 € TTC",
         description: "Pour profiter pleinement de vos extérieurs",
       },
       {
         label: "Format compact 5,90 m",
-        price: "7 000 € TTC",
+        price: "6 300 € TTC",
         description: "Idéal pour petits espaces ou extensions",
       },
     ],
@@ -282,7 +283,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Brosse WC", description: "Hygiénique, finition haut de gamme" },
       { title: "Porte-verre", description: "Verre dépoli, fixation sécurisée" },
     ],
-    specs: [{ label: "Prix", value: "149 € TTC" }],
+    specs: [{ label: "Prix", value: "159 € TTC" }],
     footerHighlights: [
       "Résistant à l'humidité",
       "Durable et fiable",
@@ -347,7 +348,10 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { name: "Taupe", hex: "#8B7D6B" },
       { name: "Noir", hex: "#1A1A1A" },
     ],
-    specs: [{ label: "Tarif", value: "220 € TTC / mètre linéaire" }],
+    specs: [
+      { label: "Moteur", value: "250 € TTC" },
+      { label: "Tissu", value: "30 € TTC / mètre linéaire" },
+    ],
     footerHighlights: [
       "Sur mesure",
       "Finition soignée",
@@ -370,7 +374,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
     specs: [
       { label: "Connectivité", value: "Wi-Fi intégré · Bluetooth" },
       { label: "Autonomie", value: "Piles jusqu'à 12 mois" },
-      { label: "Prix", value: "225 € TTC" },
+      { label: "Prix", value: "240 € TTC" },
     ],
     footerHighlights: [
       "Sécurité renforcée",
@@ -392,7 +396,22 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Durable", description: "Matériel fiable et longue durée de vie" },
       { title: "Écologique", description: "Zéro émission, respectueux de l'environnement" },
     ],
-    specs: [{ label: "Prix", value: "875 € TTC" }],
+    specs: [
+      { label: "Ballon 150 L", value: "870 € TTC" },
+      { label: "Ballon 200 L", value: "1 290 € TTC" },
+    ],
+    variants: [
+      {
+        label: "Ballon 150 L",
+        price: "870 € TTC",
+        description: "Format compact — idéal pour 1 à 2 personnes",
+      },
+      {
+        label: "Ballon 200 L",
+        price: "1 290 € TTC",
+        description: "Grande capacité — idéal pour 3 à 4 personnes",
+      },
+    ],
     footerHighlights: [
       "Installation facile — système complet",
       "Eau chaude garantie toute l'année",
@@ -412,7 +431,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
     variants: [
       {
         label: "Climatisation standard",
-        price: "349 € TTC",
+        price: "460 € TTC",
         description: "Refroidissement rapide, installation simple",
       },
       {
@@ -497,7 +516,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "1× Robinet 2 sorties", description: "Double sortie, raccord rapide universel" },
       { title: "Inclus", description: "Raccords rapides, tuyau & arrosoir — prêt à l'emploi" },
     ],
-    specs: [{ label: "Prix", value: "149 € TTC" }],
+    specs: [{ label: "Prix", value: "380 € TTC" }],
     footerHighlights: [
       "Résistant aux intempéries",
       "Étanche IP44",
@@ -654,12 +673,12 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       variants: [
         {
           label: "Terraço grande 11,80 m",
-          price: "11 000 € c/IVA",
+          price: "9 900 € c/IVA",
           description: "Para aproveitar totalmente o seu exterior",
         },
         {
           label: "Formato compacto 5,90 m",
-          price: "7 000 € c/IVA",
+          price: "6 300 € c/IVA",
           description: "Ideal para espaços pequenos ou extensões",
         },
       ],
@@ -683,12 +702,12 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       variants: [
         {
           label: "Large terrace 11.80 m",
-          price: "€11,000 incl. VAT",
+          price: "€9,900 incl. VAT",
           description: "To fully enjoy your outdoor space",
         },
         {
           label: "Compact format 5.90 m",
-          price: "€7,000 incl. VAT",
+          price: "€6,300 incl. VAT",
           description: "Ideal for small spaces or extensions",
         },
       ],
@@ -958,7 +977,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Escova de WC", description: "Higiénica, acabamento de alta gama" },
         { title: "Porta-copos", description: "Vidro esmerilado, fixação segura" },
       ],
-      specs: [{ label: "Preço", value: "149 € c/IVA" }],
+      specs: [{ label: "Preço", value: "159 € c/IVA" }],
       footerHighlights: [
         "Resistente à humidade",
         "Durável e fiável",
@@ -979,7 +998,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Toilet brush", description: "Hygienic, high-end finish" },
         { title: "Glass holder", description: "Frosted glass, secure fixing" },
       ],
-      specs: [{ label: "Price", value: "€149 incl. VAT" }],
+      specs: [{ label: "Price", value: "€159 incl. VAT" }],
       footerHighlights: [
         "Moisture-resistant",
         "Durable and reliable",
@@ -1052,7 +1071,10 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { name: "Taupe", hex: "#8B7D6B" },
         { name: "Preto", hex: "#1A1A1A" },
       ],
-      specs: [{ label: "Preço", value: "220 € c/IVA / metro linear" }],
+      specs: [
+        { label: "Motor", value: "250 € c/IVA" },
+        { label: "Tecido", value: "30 € c/IVA / metro linear" },
+      ],
       footerHighlights: [
         "Sob medida",
         "Acabamento cuidado",
@@ -1082,7 +1104,10 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { name: "Taupe", hex: "#8B7D6B" },
         { name: "Black", hex: "#1A1A1A" },
       ],
-      specs: [{ label: "Rate", value: "€220 incl. VAT / linear metre" }],
+      specs: [
+        { label: "Motor", value: "€250 incl. VAT" },
+        { label: "Fabric", value: "€30 incl. VAT / linear metre" },
+      ],
       footerHighlights: [
         "Made to measure",
         "Careful finish",
@@ -1106,7 +1131,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       specs: [
         { label: "Conectividade", value: "Wi-Fi integrado · Bluetooth" },
         { label: "Autonomia", value: "Pilhas até 12 meses" },
-        { label: "Preço", value: "225 € c/IVA" },
+        { label: "Preço", value: "240 € c/IVA" },
       ],
       footerHighlights: [
         "Segurança reforçada",
@@ -1129,7 +1154,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       specs: [
         { label: "Connectivity", value: "Built-in Wi-Fi · Bluetooth" },
         { label: "Battery life", value: "Batteries last up to 12 months" },
-        { label: "Price", value: "€225 incl. VAT" },
+        { label: "Price", value: "€240 incl. VAT" },
       ],
       footerHighlights: [
         "Enhanced security",
@@ -1152,7 +1177,22 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Durável", description: "Equipamento fiável e de longa duração" },
         { title: "Ecológico", description: "Zero emissões, respeita o ambiente" },
       ],
-      specs: [{ label: "Preço", value: "875 € c/IVA" }],
+      specs: [
+        { label: "Depósito 150 L", value: "870 € c/IVA" },
+        { label: "Depósito 200 L", value: "1 290 € c/IVA" },
+      ],
+      variants: [
+        {
+          label: "Depósito 150 L",
+          price: "870 € c/IVA",
+          description: "Formato compacto — ideal para 1 a 2 pessoas",
+        },
+        {
+          label: "Depósito 200 L",
+          price: "1 290 € c/IVA",
+          description: "Grande capacidade — ideal para 3 a 4 pessoas",
+        },
+      ],
       footerHighlights: [
         "Instalação fácil — sistema completo",
         "Água quente garantida todo o ano",
@@ -1169,7 +1209,22 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Durable", description: "Reliable equipment with a long lifespan" },
         { title: "Eco-friendly", description: "Zero emissions, environmentally friendly" },
       ],
-      specs: [{ label: "Price", value: "€875 incl. VAT" }],
+      specs: [
+        { label: "150 L tank", value: "€870 incl. VAT" },
+        { label: "200 L tank", value: "€1,290 incl. VAT" },
+      ],
+      variants: [
+        {
+          label: "150 L tank",
+          price: "€870 incl. VAT",
+          description: "Compact format — ideal for 1 to 2 people",
+        },
+        {
+          label: "200 L tank",
+          price: "€1,290 incl. VAT",
+          description: "Large capacity — ideal for 3 to 4 people",
+        },
+      ],
       footerHighlights: [
         "Easy installation — complete system",
         "Hot water guaranteed all year round",
@@ -1190,7 +1245,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       variants: [
         {
           label: "Climatização standard",
-          price: "349 € c/IVA",
+          price: "460 € c/IVA",
           description: "Arrefecimento rápido, instalação simples",
         },
         {
@@ -1212,7 +1267,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       variants: [
         {
           label: "Standard air conditioning",
-          price: "€349 incl. VAT",
+          price: "€460 incl. VAT",
           description: "Fast cooling, simple installation",
         },
         {
@@ -1347,7 +1402,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "1× Torneira 2 saídas", description: "Dupla saída, ligação rápida universal" },
         { title: "Incluído", description: "Ligações rápidas, mangueira e regador — pronto a usar" },
       ],
-      specs: [{ label: "Preço", value: "149 € c/IVA" }],
+      specs: [{ label: "Preço", value: "380 € c/IVA" }],
       footerHighlights: [
         "Resistente às intempéries",
         "Estanque IP44",
@@ -1365,7 +1420,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "1× Dual-outlet tap", description: "Two outlets, universal quick connector" },
         { title: "Included", description: "Quick connectors, hose & watering can — ready to use" },
       ],
-      specs: [{ label: "Price", value: "€149 incl. VAT" }],
+      specs: [{ label: "Price", value: "€380 incl. VAT" }],
       footerHighlights: [
         "Weather-resistant",
         "IP44 waterproof",
@@ -1376,14 +1431,31 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
   },
 };
 
+function localizeOptionGallery(
+  gallery: string[] | undefined,
+  locale: Locale,
+): string[] | undefined {
+  if (!gallery?.length) return gallery;
+  return gallery.map((src) => {
+    if (!src.startsWith("/opcoes/")) return src;
+    let file = src.slice("/opcoes/".length);
+    if (file.startsWith("fr/") || file.startsWith("pt/") || file.startsWith("en/")) {
+      file = file.slice(3);
+    }
+    return localizedOptionImage(file, locale);
+  });
+}
+
 export function getOptionRich(
   id: string,
   locale: Locale = defaultLocale,
 ): OptionRichContent | undefined {
   const base = OPTIONS_RICH[id];
   if (!base) return undefined;
-  if (locale === defaultLocale) return base;
-  const overlay = OPTIONS_RICH_I18N[id]?.[locale];
-  if (!overlay) return base;
-  return { ...base, ...overlay };
+  const overlay = locale === defaultLocale ? undefined : OPTIONS_RICH_I18N[id]?.[locale];
+  const merged = overlay ? { ...base, ...overlay } : base;
+  return {
+    ...merged,
+    gallery: localizeOptionGallery(merged.gallery, locale),
+  };
 }

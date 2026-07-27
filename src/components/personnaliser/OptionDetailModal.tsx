@@ -70,7 +70,9 @@ export function OptionDetailModal({
     kitchen?.priceLabel ??
     (kitchen?.included || option.priceType === "inclus"
       ? t("inclus")
-      : formatOptionPrice(option, locale));
+      : variants.length > 0 && option.priceLabel
+        ? option.priceLabel
+        : formatOptionPrice(option, locale));
 
   return (
     <div

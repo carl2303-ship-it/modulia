@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import type { ClimateOption, TerraceOption } from "./data";
+import type { ClimateOption, SolarWaterOption, TerraceOption } from "./data";
 import { PRICES } from "./data";
 import type { EquipmentId } from "./data";
 
@@ -84,6 +84,61 @@ export function EquipmentCard({
         </div>
       )}
     </article>
+  );
+}
+
+/** Card chauffe-eau solaire — 150 L / 200 L */
+export function SolarWaterCard({
+  value,
+  onChange,
+  enabled,
+  onToggle,
+  onInfo,
+}: {
+  value: SolarWaterOption;
+  onChange: (value: SolarWaterOption) => void;
+  enabled: boolean;
+  onToggle: (value: boolean) => void;
+  onInfo: () => void;
+}) {
+  const priceLabel =
+    !enabled
+      ? "—"
+      : value === "200L"
+        ? `+${PRICES.solarWater200L} €`
+        : `+${PRICES.solarWater} €`;
+
+  return (
+    <EquipmentCard
+      title="Chauffe-eau Solaire"
+      priceLabel={priceLabel}
+      enabled={enabled}
+      onToggle={onToggle}
+      onInfo={onInfo}
+    >
+      <div className="flex gap-2">
+        {(
+          [
+            { id: "150L" as const, label: "Ballon 150 L", price: PRICES.solarWater },
+            { id: "200L" as const, label: "Ballon 200 L", price: PRICES.solarWater200L },
+          ] as const
+        ).map((opt) => (
+          <button
+            key={opt.id}
+            type="button"
+            onClick={() => onChange(opt.id)}
+            className={`flex-1 rounded-xl border px-3 py-3 font-ui text-xs transition-all duration-300 ${
+              value === opt.id
+                ? "border-luxury-forest bg-luxury-forest/5 text-luxury-forest"
+                : "border-luxury-stone text-luxury-muted hover:border-luxury-muted"
+            }`}
+          >
+            <span className="block font-medium">{opt.label}</span>
+            <span className="mt-0.5 block tabular-nums">+{opt.price} €</span>
+          </button>
+        ))}
+      </div>
+    </EquipmentCard>
   );
 }
 

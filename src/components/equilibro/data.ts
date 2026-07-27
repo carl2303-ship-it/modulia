@@ -66,10 +66,11 @@ export type EquipmentId =
   | "terrasse";
 
 export type ClimateOption = "none" | "standard" | "solar";
+export type SolarWaterOption = "none" | "150L" | "200L";
 export type TerraceOption = "none" | "compact" | "large";
 
 export type EquipmentState = {
-  solarWater: boolean;
+  solarWater: SolarWaterOption;
   climate: ClimateOption;
   kitchen: boolean;
   kitchenMl: number;
@@ -115,9 +116,10 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
     description:
       "Système thermodynamique haute performance pour eau chaude sanitaire, réduisant votre empreinte énergétique jusqu'à 70%.",
     specs: [
-      "Capacité 200L · Certification Solar Keymark",
-      "Panneaux intégrés au design de toiture",
-      "Garantie constructeur 10 ans",
+      "Ballon 150 L — 870 € TTC",
+      "Ballon 200 L — 1 290 € TTC",
+      "Remplace le chauffe-eau électrique prévu",
+      "Système Haier — énergie solaire",
     ],
   },
   climate: {
@@ -187,13 +189,14 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
     title: "Terrasse bois composite",
     image: "/opcoes/terrasses.png",
     description: "Terrasse premium résistante aux intempéries.",
-    specs: ["5,90 m · 7 000 € TTC", "11,80 m · 11 000 € TTC", "100 % recyclable"],
+    specs: ["5,90 m · 6 300 € TTC", "11,80 m · 9 900 € TTC", "100 % recyclable"],
   },
 };
 
 /** Preços unitários dos equipamentos (€) — sync options-catalog */
 export const PRICES = {
   solarWater: CONFIGURATOR_PRICES.solarWater,
+  solarWater200L: CONFIGURATOR_PRICES.solarWater200L,
   climateStandard: CONFIGURATOR_PRICES.climateStandard,
   climateSolar: CONFIGURATOR_PRICES.climateSolar,
   kitchenPerMl: CONFIGURATOR_PRICES.kitchenPerMl,
@@ -209,7 +212,8 @@ export const PRICES = {
 export function calculateTotalPrice(equipment: EquipmentState): number {
   let total = BASE_PRICE;
 
-  if (equipment.solarWater) total += PRICES.solarWater;
+  if (equipment.solarWater === "150L") total += PRICES.solarWater;
+  if (equipment.solarWater === "200L") total += PRICES.solarWater200L;
   if (equipment.climate === "standard") total += PRICES.climateStandard;
   if (equipment.climate === "solar") total += PRICES.climateSolar;
   if (equipment.kitchen) total += PRICES.kitchenPerMl * equipment.kitchenMl;

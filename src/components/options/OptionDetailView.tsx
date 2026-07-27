@@ -69,7 +69,9 @@ export function OptionDetailView({
           </p>
 
           <p className="mt-8 font-serif text-3xl text-luxury-graphite">
-            {formatOptionPrice(option)}
+            {rich?.variants && rich.variants.length > 0 && option.priceLabel
+              ? option.priceLabel
+              : formatOptionPrice(option)}
           </p>
 
           {option.includedChoice ? (

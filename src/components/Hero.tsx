@@ -59,8 +59,8 @@ export function Hero() {
         <dl className="mt-10 flex flex-wrap gap-6 border-t border-white/10 pt-6 sm:gap-8 sm:pt-8 lg:mt-16 lg:pt-10">
           {[
             { label: t("statFrom"), value: t("heroPrice") },
-            { label: t("statModels"), value: "14" },
-            { label: t("statDelivery"), value: t("statDeliveryValue") },
+            { label: t("statConfigurations"), value: t("statConfigurationsValue") },
+            { label: t("statInstall"), value: t("statInstallValue") },
           ].map((item) => (
             <div key={item.label}>
               <dt className="font-ui text-[10px] uppercase tracking-wider text-white/50">

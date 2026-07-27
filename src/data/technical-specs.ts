@@ -34,8 +34,8 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
     id: "enveloppe",
     title: "Enveloppe & isolation",
     items: [
-      "Murs extérieurs : panneaux sandwich acier / aluminium, isolation intégrée (laine de roche, laine de verre ou mousse PU)",
-      "Isolation thermique conforme RE2020 / équivalent — R murs ≈ 3 à 4 m²·K/W, R toiture ≈ 5 à 6 m²·K/W",
+      "Murs : panneaux isolants laine de roche 70 mm",
+      "Isolation performante : XPS + laine de roche 70 mm",
       "Isolation acoustique : ≈ 35–45 dB selon composition",
       "Étanchéité : pare-vapeur + joints EPDM",
     ],
@@ -43,19 +43,15 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
   {
     id: "menuiseries",
     title: "Menuiseries",
-    items: [
-      "Façades vitrées : grandes baies vitrées aluminium",
-      "Vitrage : double vitrage isolant (option triple vitrage), traitement thermique et solaire possible",
-      "Portes : entrée aluminium sécurisée, serrure multipoints",
-    ],
+    items: ["Châssis de porte", "Fenêtres", "Baies vitrées"],
   },
   {
     id: "toiture",
     title: "Toiture",
     items: [
       "Type : toit plat technique",
+      "Isolation intégrée",
       "Étanchéité : membrane EPDM ou PVC",
-      "Options : toiture végétalisée, panneaux photovoltaïques",
     ],
   },
   {
@@ -65,17 +61,18 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
       "Électricité : installation aux normes NFC 15-100, tableau électrique intégré",
       "Plomberie : réseaux eau chaude / froide préinstallés, évacuation PVC",
       "Chauffage / climatisation : climatisation réversible (split ou gainable), option plancher chauffant",
-      "Ventilation : VMC simple ou double flux",
+      "Ventilation : VMC mécanique ou électrique",
     ],
   },
   {
     id: "interieur",
     title: "Aménagement intérieur",
     items: [
-      "Revêtements de sol : PVC, parquet stratifié, carrelage",
-      "Murs intérieurs : panneaux décoratifs ou plaques de plâtre",
-      "Cuisine : bloc kitchenette prééquipé (option)",
+      "Revêtements de sol : bois, parquet ou sol PVC",
+      "Carrelage : salle d'eau uniquement",
+      "Cuisine : en partie aménagée",
       "Salle d'eau : douche, WC, meuble vasque préinstallés",
+      "Terrasse : acier laqué et bois composite (selon modèle)",
     ],
   },
   {
@@ -84,7 +81,7 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
     items: [
       "Livraison : transport routier sur camion plateau",
       "Pose : sur dalle béton, plots béton ou pieux métalliques",
-      "Temps d'installation : 1 à 3 jours (hors raccordements)",
+      "Temps d'installation : 3 jours (hors raccordements)",
     ],
   },
   {

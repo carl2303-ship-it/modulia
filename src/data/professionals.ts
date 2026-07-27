@@ -1,5 +1,10 @@
 import type { ModelSpec } from "@/data/models";
 
+export type ProfessionalGalleryImage = {
+  src: string;
+  label: string;
+};
+
 export type ProfessionalModel = {
   slug: string;
   name: string;
@@ -8,10 +13,13 @@ export type ProfessionalModel = {
   description: string;
   priceFrom: number;
   priceNote: string;
+  priceTax?: "ht" | "ttc";
   heroImage: string;
   planImage: string;
   interiorImage?: string;
   bathroomImages?: string[];
+  gallery?: ProfessionalGalleryImage[];
+  productType?: "bureau" | "sanitaire";
   dimensions: string;
   height: string;
   workstations: string;
@@ -19,6 +27,7 @@ export type ProfessionalModel = {
   infrastructure: string[];
   useCases: string[];
   options: string[];
+  benefits?: string[];
 };
 
 const SHARED_SPECS: ModelSpec[] = [
@@ -62,12 +71,19 @@ export const PROFESSIONAL_MODELS: ProfessionalModel[] = [
     name: "BUREAU 12M",
     subtitle: "Avec sanitaires intégrés",
     tagline: "Un espace complet, autonome et fonctionnel.",
+    productType: "bureau",
     description:
       "Version longue du bureau Modulia avec sanitaires intégrés. Six postes de travail, réseaux prêts à raccorder et finitions premium pour accueillir vos équipes sur chantier ou en événementiel.",
-    priceFrom: 24_000,
+    priceFrom: 28_000,
     priceNote: "Version autonome chantier / événement",
+    priceTax: "ttc",
     heroImage: "/escritorios/bureau-12m.png",
     planImage: "/escritorios/bureau plan 12m.jpg",
+    interiorImage: "/escritorios/bureau-interior.png",
+    bathroomImages: [
+      "/escritorios/bureau-sdb-wc.png",
+      "/escritorios/bureau-sdb-lavabo.png",
+    ],
     dimensions: "12,00 × 2,25 m",
     height: "2,25 m",
     workstations: "6 postes de travail",
@@ -85,16 +101,18 @@ export const PROFESSIONAL_MODELS: ProfessionalModel[] = [
     name: "BUREAU 6M",
     subtitle: "Avec sanitaires intégrés",
     tagline: "Un espace complet, autonome et fonctionnel.",
+    productType: "bureau",
     description:
       "Bureau modulaire autonome avec sanitaires intégrés (WC + lavabo). Solution idéale pour chantiers, événements et points de vente — confort, autonomie et efficacité en un seul module.",
-    priceFrom: 14_500,
+    priceFrom: 15_000,
     priceNote: "Version autonome chantier / événement",
+    priceTax: "ttc",
     heroImage: "/escritorios/bureau-6m.png",
     planImage: "/escritorios/bureau plan 6m.jpg",
-    interiorImage: "/escritorios/bureau-6m-interior.png",
+    interiorImage: "/escritorios/bureau-interior.png",
     bathroomImages: [
-      "/escritorios/bureau-6m-sdb-wide.png",
-      "/escritorios/bureau-6m-sdb-vanity.png",
+      "/escritorios/bureau-sdb-wc.png",
+      "/escritorios/bureau-sdb-lavabo.png",
     ],
     dimensions: "6,00 × 2,25 m",
     height: "2,25 m",
@@ -107,6 +125,67 @@ export const PROFESSIONAL_MODELS: ProfessionalModel[] = [
     infrastructure: SHARED_INFRASTRUCTURE,
     useCases: SHARED_USE_CASES,
     options: SHARED_OPTIONS,
+  },
+  {
+    slug: "sanitaires-modulaires",
+    name: "SANITAIRES MODULAIRES",
+    subtitle: "Hygiène, confort, durabilité",
+    tagline: "Un espace propre, confortable et durable.",
+    description:
+      "Les sanitaires modulaires Modulia offrent une solution clé en main pour tous vos projets : plages, chantiers, événements, bases de vie ou espaces publics. Design moderne, matériaux résistants et installation rapide.",
+    priceFrom: 20_000,
+    priceNote: "100 % personnalisable — selon équipements, cabines et agencements",
+    priceTax: "ht",
+    productType: "sanitaire",
+    heroImage: "/sanitaires/sanitaires-hero.png",
+    planImage: "/sanitaires/sanitaires-plan.png",
+    gallery: [
+      { src: "/sanitaires/sanitaires-wc-douches.png", label: "WC — Douches" },
+      { src: "/sanitaires/sanitaires-lavabos.png", label: "Lavabos" },
+      { src: "/sanitaires/sanitaires-toilettes-femmes.png", label: "Toilettes femmes" },
+    ],
+    dimensions: "5,60 × 2,25 m",
+    height: "2,55 m",
+    workstations: "4 cabines + lavabos",
+    specs: [
+      { label: "Dimensions hors tout", value: "5,60 × 2,25 m" },
+      { label: "Hauteur extérieure", value: "2,55 m" },
+      { label: "Plan module", value: "5,90 × 2,25 m" },
+      { label: "Structure", value: "Acier galvanisé robuste" },
+      { label: "Revêtement", value: "Extérieur haute résistance" },
+      { label: "Toiture", value: "Monobloc" },
+      { label: "Ventilation", value: "Intégrée" },
+      { label: "Réseaux", value: "Eau, électricité, plomberie, évacuation" },
+      { label: "Normes", value: "Conforme ERP / chantier" },
+    ],
+    infrastructure: [
+      "4 cabines individuelles + zone lavabos centrale",
+      "Réseaux eau, électricité, plomberie et évacuation",
+      "Ventilation intégrée et sol antidérapant",
+      "Module prêt à poser — raccordements sur site",
+    ],
+    useCases: [
+      "Plages",
+      "Chantiers",
+      "Événements",
+      "Bases de vie",
+      "Espaces publics",
+    ],
+    options: [
+      "100 % personnalisable",
+      "Nombre de cabines",
+      "Agencements sur mesure",
+      "Signalétique & branding",
+      "Finitions extérieures",
+      "Climatisation / chauffage",
+    ],
+    benefits: [
+      "Design moderne",
+      "Hygiène optimale",
+      "Installation rapide",
+      "Résistant & durable",
+      "Entretien facile",
+    ],
   },
 ];
 

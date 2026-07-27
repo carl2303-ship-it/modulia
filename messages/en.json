@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Modulia | Modular Homes",
-    "description": "Modulia — sustainable, customisable modular homes ready to live in. We build your future, module by module."
+    "description": "Contemporary, accessible modular homes — 1 to 4-bedroom layouts with bathroom, WC, kitchen, living room and dining area. Installed in 3 days."
   },
   "nav": {
     "particuliers": "Private clients",
@@ -20,16 +20,17 @@
     "rights": "All rights reserved."
   },
   "home": {
-    "heroEyebrow": "Modular homes · Premium",
-    "heroTitle": "Elegance from",
-    "heroPrice": "920 € excl. VAT / m²",
-    "heroText": "Premium modular solutions — sustainable, customisable and ready to live in.",
+    "heroEyebrow": "Contemporary modular homes",
+    "heroTitle": "Accessible modular solutions",
+    "heroPrice": "from €920 excl. VAT / m²",
+    "heroText": "1 to 4-bedroom layouts — bathroom, WC, kitchen, living room and dining area.",
     "heroCta": "Discover the models",
     "heroPhilosophy": "Our philosophy",
     "statFrom": "From",
-    "statModels": "Models",
-    "statDelivery": "Delivery",
-    "statDeliveryValue": "8–12 wks"
+    "statConfigurations": "Layouts",
+    "statConfigurationsValue": "1 to 4 bedrooms",
+    "statInstall": "Installation",
+    "statInstallValue": "3 days"
   },
   "models": {
     "eyebrow": "Collection",
@@ -108,6 +109,12 @@
     "optionsCuisine": "Kitchen options",
     "electromenager": "Appliances",
     "optionsPiscine": "Pool options",
+    "poolLinerTitle": "Liner colour",
+    "poolLinerSub": "Included — choose your interior lining shade.",
+    "poolLinerSummary": "Liner: {color}",
+    "poolFabricTitle": "Outdoor sofa fabric",
+    "poolFabricSub": "Included — 22 technical colours 150 cm (220 to 280 g/m²).",
+    "poolFabricSummary": "Fabric: {fabric}",
     "kitchenIncludedHint": "Included in every module — no extra charge",
     "transportHint": "Included within a 30 km radius — see details",
     "standard": "Standard",
@@ -115,6 +122,9 @@
     "linearMeters": "Linear metres",
     "terrace": "Terrace",
     "airConditioning": "Air conditioning",
+    "solarWaterHeater": "Solar water heater",
+    "tank150L": "150 L tank",
+    "tank200L": "200 L tank",
     "contact": {
       "title": "Request a Quote",
       "estimatedAt": "Configuration estimated at",
@@ -175,6 +185,15 @@
     "highlightsTitle": "Highlights",
     "includedTitle": "Included equipment",
     "optionsTitle": "Options",
+    "linerTitle": "Our colour selection",
+    "linerIntro": "Customise your Sofa Pool interior lining — 8 shades available, included in the turnkey price.",
+    "linerCta": "Configure your pool",
+    "fabricTitle": "Our outdoor fabric selection",
+    "fabricIntro": "Bespoke mattresses, benches and cushions — choose from 22 technical fabrics resistant to UV, waterproof and anti-mould.",
+    "fabricFeatureUv": "UV resistant",
+    "fabricFeatureWater": "Waterproof",
+    "fabricFeatureMold": "Anti-mould",
+    "fabricFeatureWear": "High durability",
     "architectureLabel": "Architecture",
     "dimensionsTitle": "Dimensions",
     "backToOptions": "All options"
@@ -207,26 +226,26 @@
   },
   "features": {
     "title": "Why choose Modulia?",
-    "subtitle": "We combine precision engineering with contemporary design to deliver modular homes that exceed expectations.",
+    "subtitle": "Contemporary, accessible modular homes designed for everyday comfort and fast on-site installation.",
     "items": [
       {
         "title": "Fast construction",
-        "description": "Modules prefabricated in a controlled factory — up to 60% less time than traditional construction.",
+        "description": "Modules prefabricated in a controlled factory — installed in 3 days, up to 80% less time than traditional construction.",
         "icon": "⚡"
       },
       {
-        "title": "Sustainability",
-        "description": "Selected materials, minimised waste and high-performance insulation for reduced energy consumption.",
+        "title": "High-performance insulation",
+        "description": "XPS insulation panels and 70 mm rock wool for lasting thermal comfort summer and winter.",
         "icon": "🌿"
       },
       {
-        "title": "Total customisation",
-        "description": "Layouts, finishes and dimensions tailored to your needs — expand the modules as life evolves.",
+        "title": "Customisation",
+        "description": "1 to 4-bedroom layouts, finishes and options tailored to your project.",
         "icon": "✦"
       },
       {
-        "title": "Guaranteed quality",
-        "description": "Rigorous quality control in an industrial environment, with structural warranty and after-delivery follow-up.",
+        "title": "Included equipment",
+        "description": "Bathroom, WC, partly fitted kitchen, living room and dining area — essential comfort, ready to live in.",
         "icon": "✓"
       }
     ]
@@ -234,21 +253,17 @@
   "construction": {
     "eyebrow": "Modulia know-how",
     "title": "Module construction principle",
-    "intro": "Designed with quality materials and advanced construction techniques to guarantee durability, comfort and performance.",
+    "intro": "Partly fitted kitchen, lacquered steel and composite wood terrace — materials and insulation designed for durability and comfort.",
     "imageAlt": "Exploded view of Modulia's modular construction",
-    "footer": "Modulia — Premium modular solutions",
+    "footer": "Modulia — Contemporary, accessible modular homes",
     "layers": [
-      { "title": "Roof", "items": ["Roof covering panels", "Waterproofing", "Exterior finish"] },
-      { "title": "Roofing", "items": ["XPS insulation panel", "Roof structure", "Suspended ceiling"] },
-      { "title": "Walls", "items": ["Exterior panel", "XPS insulation panel", "Interior wall"] },
-      { "title": "Exterior wall", "items": ["Exterior panel", "XPS insulation", "Façade finish"] },
+      { "title": "Roof", "items": ["Roof covering panels", "Insulation", "Waterproofing", "Exterior finish"] },
+      { "title": "Roofing", "items": ["XPS insulation panel", "70 mm rock wool", "Roof structure", "Suspended ceiling"] },
+      { "title": "Walls", "items": ["Exterior panel", "70 mm rock wool insulation panels", "Interior wall"] },
+      { "title": "Exterior wall", "items": ["Exterior panel", "XPS + 70 mm rock wool insulation", "Façade finish"] },
       {
         "title": "Joinery",
-        "items": [
-          "Door frame",
-          "Thermal-break aluminium frame",
-          "Tempered double glazing"
-        ]
+        "items": ["Door frames", "Windows", "French windows / glazed openings"]
       },
       {
         "title": "Technical wall block",
@@ -257,34 +272,25 @@
       {
         "title": "Floor",
         "items": [
-          "Flooring (wood / laminate)",
+          "Wood, laminate or PVC flooring",
+          "Tiling (bathroom only)",
           "XPS insulation panel",
-          "Cement board",
           "Structural base"
         ]
       },
       { "title": "Load-bearing structure", "items": ["Galvanised steel structure"] }
     ],
     "benefits": [
+      { "title": "High-performance insulation", "description": "XPS + 70 mm rock wool" },
+      { "title": "MVHR", "description": "Mechanical or electric ventilation" },
+      { "title": "Fast installation", "description": "On-site assembly in 3 days" },
       {
-        "title": "High-performance insulation",
-        "description": "High-performance insulation panels (XPS)"
+        "title": "Time savings",
+        "description": "Up to 80% less time than traditional construction"
       },
       {
-        "title": "Durable materials",
-        "description": "Materials selected for their strength and longevity"
-      },
-      {
-        "title": "Thermal comfort",
-        "description": "Excellent thermal regulation summer and winter"
-      },
-      {
-        "title": "Precision construction",
-        "description": "Controlled assembly and rigorous quality control"
-      },
-      {
-        "title": "Eco-friendly",
-        "description": "Recyclable, environmentally friendly materials"
+        "title": "Kitchen & terrace",
+        "description": "Partly fitted kitchen, lacquered steel and composite wood terrace"
       }
     ]
   },
@@ -318,8 +324,8 @@
         "id": "enveloppe",
         "title": "Envelope & insulation",
         "items": [
-          "Exterior walls: steel / aluminium sandwich panels with integrated insulation (rock wool, glass wool or PU foam)",
-          "Thermal insulation compliant with RE2020 / equivalent — wall R ≈ 3 to 4 m²·K/W, roof R ≈ 5 to 6 m²·K/W",
+          "Walls: 70 mm rock wool insulation panels",
+          "High-performance insulation: XPS + 70 mm rock wool",
           "Acoustic insulation: ≈ 35–45 dB depending on composition",
           "Weatherproofing: vapour barrier + EPDM seals"
         ]
@@ -328,9 +334,9 @@
         "id": "menuiseries",
         "title": "Joinery",
         "items": [
-          "Glazed façades: large aluminium glazed bays",
-          "Glazing: insulated double glazing (triple glazing option), thermal and solar treatment available",
-          "Doors: secure aluminium entrance door, multi-point lock"
+          "Door frames",
+          "Windows",
+          "French windows / glazed openings"
         ]
       },
       {
@@ -338,8 +344,8 @@
         "title": "Roofing",
         "items": [
           "Type: technical flat roof",
-          "Waterproofing: EPDM or PVC membrane",
-          "Options: green roof, photovoltaic panels"
+          "Integrated insulation",
+          "Waterproofing: EPDM or PVC membrane"
         ]
       },
       {
@@ -349,17 +355,18 @@
           "Electricity: installation to NFC 15-100 standard, integrated electrical panel",
           "Plumbing: pre-installed hot / cold water networks, PVC drainage",
           "Heating / air conditioning: reversible air conditioning (split or ducted), underfloor heating option",
-          "Ventilation: single or dual-flow MVHR"
+          "Ventilation: mechanical or electric MVHR"
         ]
       },
       {
         "id": "interieur",
         "title": "Interior fittings",
         "items": [
-          "Flooring: PVC, laminate flooring, tiling",
-          "Interior walls: decorative panels or plasterboard",
-          "Kitchen: pre-equipped kitchenette block (optional)",
-          "Bathroom: shower, WC, pre-installed vanity unit"
+          "Floor coverings: wood, laminate or PVC",
+          "Tiling: bathroom only",
+          "Kitchen: partly fitted",
+          "Bathroom: shower, WC, pre-installed vanity unit",
+          "Terrace: lacquered steel and composite wood (depending on model)"
         ]
       },
       {
@@ -368,7 +375,7 @@
         "items": [
           "Delivery: road transport on a flatbed truck",
           "Installation: on a concrete slab, concrete footings or metal piles",
-          "Installation time: 1 to 3 days (excluding connections)"
+          "Installation time: 3 days (excluding connections)"
         ]
       },
       {
@@ -407,9 +414,12 @@
   },
   "professionnels": {
     "eyebrow": "Professionals Collection",
-    "title": "Self-contained modular offices",
-    "intro": "Turnkey spaces with integrated sanitary facilities, connection-ready utilities and premium finishes — for construction sites, events and professional activities.",
-    "fromHt": "from {price} € excl. VAT",
+    "title": "Professional modular solutions",
+    "intro": "Modular sanitary units, self-contained offices with integrated facilities, connection-ready utilities and premium finishes — for beaches, construction sites, events and professional activities.",
+    "fromPriceHt": "from {price} excl. VAT",
+    "fromPriceTtc": "from {price} incl. VAT",
+    "priceSuffixHt": "€ excl. VAT",
+    "priceSuffixTtc": "€ incl. VAT",
     "ctaFinalEyebrow": "Modulia Professionals",
     "ctaFinalTitle": "A turnkey space to boost your business",
     "ctaFinalText": "Attract, welcome, convince. Modulia takes care of the rest.",
@@ -422,6 +432,9 @@
     "fromLabel": "From",
     "interiorEyebrow": "Interior spaces",
     "interiorTitle": "Interior view & sanitary facilities",
+    "galleryEyebrow": "Gallery",
+    "galleryTitle": "Interiors & equipment",
+    "benefitsEyebrow": "Benefits",
     "interiorViewLabel": "Interior view",
     "wcLabel": "Integrated WC",
     "sinkLabel": "Washbasin",

@@ -49,7 +49,9 @@ export default async function ProfessionnelsPage() {
                 className="rounded-full border border-luxury-stone bg-white px-6 py-3 font-ui text-xs uppercase tracking-wider text-luxury-graphite transition hover:border-luxury-forest hover:text-luxury-forest"
               >
                 {model.name} —{" "}
-                {t("fromHt", { price: formatModelPrice(model.priceFrom, locale) })}
+                {(model.priceTax ?? "ttc") === "ht"
+                  ? t("fromPriceHt", { price: formatModelPrice(model.priceFrom, locale) })
+                  : t("fromPriceTtc", { price: formatModelPrice(model.priceFrom, locale) })}
               </Link>
             ))}
           </div>

@@ -5,6 +5,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { OptionFichaCard } from "@/components/options/OptionFichaCard";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getLocalizedPoolModel, getLocalizedPoolOptions } from "@/data/options-catalog";
+import { PoolFabricCatalog, PoolLinerCatalog } from "@/components/piscine/PoolCatalogSwatches";
 import { formatModelPrice } from "@/data/models";
 import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
 
@@ -21,8 +22,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function PiscinePage() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("piscine");
-  const pool = getLocalizedPoolModel(locale);
-  const poolOptions = getLocalizedPoolOptions(locale);
+  const resolvedLocale = isLocale(locale) ? locale : defaultLocale;
+  const pool = getLocalizedPoolModel(resolvedLocale);
+  const poolOptions = getLocalizedPoolOptions(resolvedLocale);
 
   return (
     <div className="min-h-screen bg-luxury-papyrus">
@@ -106,6 +108,44 @@ export default async function PiscinePage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section className="border-t border-luxury-stone/60 py-16">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="font-serif text-3xl text-luxury-graphite">{t("linerTitle")}</h2>
+            <p className="mt-4 max-w-2xl font-ui text-sm text-luxury-muted">{t("linerIntro")}</p>
+            <div className="mt-8">
+              <PoolLinerCatalog />
+            </div>
+            <Link
+              href="/personnaliser?model=equilibro"
+              className="mt-8 inline-block font-ui text-xs uppercase tracking-wider text-luxury-forest hover:underline"
+            >
+              {t("linerCta")} →
+            </Link>
+          </div>
+        </section>
+
+        <section className="border-t border-luxury-stone/60 bg-white py-16">
+          <div className="mx-auto max-w-7xl px-6">
+            <h2 className="font-serif text-3xl text-luxury-graphite">{t("fabricTitle")}</h2>
+            <p className="mt-4 max-w-2xl font-ui text-sm text-luxury-muted">{t("fabricIntro")}</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {(["fabricFeatureUv", "fabricFeatureWater", "fabricFeatureMold", "fabricFeatureWear"] as const).map(
+                (key) => (
+                  <span
+                    key={key}
+                    className="rounded-full border border-luxury-forest/20 bg-luxury-forest/5 px-3 py-1.5 font-ui text-[10px] uppercase tracking-wider text-luxury-forest"
+                  >
+                    {t(key)}
+                  </span>
+                ),
+              )}
+            </div>
+            <div className="mt-8">
+              <PoolFabricCatalog />
+            </div>
           </div>
         </section>
 

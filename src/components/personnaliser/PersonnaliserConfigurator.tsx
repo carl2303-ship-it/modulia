@@ -20,6 +20,8 @@ import {
   getLocalizedPoolOptions,
   type OptionItem,
 } from "@/data/options-catalog";
+import { getPoolLinerById } from "@/data/pool-liner";
+import { getPoolFabricById } from "@/data/pool-fabric";
 import { FinitionPickers, buildDefaultFinitions } from "./FinitionPickers";
 import { KitchenPanel } from "./KitchenPanel";
 import { ModelPicker } from "./ModelPicker";
@@ -131,6 +133,12 @@ export function PersonnaliserConfigurator({
           {t("airConditioning")} {paid.climate === "solar" ? t("solar") : t("standard")}
         </li>
       )}
+      {paid.solarWater !== "none" && (
+        <li>
+          {t("solarWaterHeater")}{" "}
+          {paid.solarWater === "200L" ? t("tank200L") : t("tank150L")}
+        </li>
+      )}
       {Object.entries(paid.toggles)
         .filter(([, on]) => on)
         .map(([id]) => {
@@ -169,6 +177,20 @@ export function PersonnaliserConfigurator({
       {pool.enabled && (
         <>
           <li>{poolModel.name}</li>
+          {getPoolLinerById(pool.linerColor, locale) && (
+            <li>
+              {t("poolLinerSummary", {
+                color: getPoolLinerById(pool.linerColor, locale)!.name,
+              })}
+            </li>
+          )}
+          {getPoolFabricById(pool.fabricColor, locale) && (
+            <li>
+              {t("poolFabricSummary", {
+                fabric: `${getPoolFabricById(pool.fabricColor, locale)!.code} — ${getPoolFabricById(pool.fabricColor, locale)!.name}`,
+              })}
+            </li>
+          )}
           {pool.options.map((id) => {
             const opt = poolOptions.find((o) => o.id === id);
             return opt ? <li key={id}>{opt.title}</li> : null;

@@ -129,15 +129,15 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         description:
           "Terrasse supplémentaire en plus de celle incluse — grande 11,80 m ou format compact 5,90 m.",
         image: op("terrasses.png"),
-        priceLabel: "7 000 – 11 000 € TTC",
-        highlights: ["11,80 m · 11 000 € TTC", "5,90 m · 7 000 € TTC"],
+        priceLabel: "6 300 – 9 900 € TTC",
+        highlights: ["11,80 m · 9 900 € TTC", "5,90 m · 6 300 € TTC"],
       },
       {
         id: "kit-exterieur",
         title: "Kit extérieur",
         description: "Appliques, prises IP44, robinet 2 sorties, tuyau et arrosoir.",
         image: op("kit exterieur.png"),
-        price: 149,
+        price: 380,
         priceType: "ttc",
       },
     ],
@@ -152,7 +152,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Kit salle de bains",
         description: "Accessoires design noir mat — porte-serviettes, porte-savon, etc.",
         image: op("kit salle de bains.jpg"),
-        price: 149,
+        price: 159,
         priceType: "ttc",
       },
       {
@@ -168,16 +168,16 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Rideaux occultants",
         description: "Rideaux sur mesure pour vos baies vitrées — vendus au mètre linéaire.",
         image: op("rideaux.png"),
-        price: 220,
+        price: 30,
         priceType: "ttc",
-        priceLabel: "220 € TTC / mètre linéaire",
+        priceLabel: "250 € + 30 € TTC / mètre linéaire",
       },
       {
         id: "poignee",
         title: "Poignée connectée",
         description: "Serrure intelligente pour sécurité et confort.",
         image: op("poignee connectee.png"),
-        price: 225,
+        price: 240,
         priceType: "ttc",
       },
     ],
@@ -192,17 +192,16 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Chauffe-eau solaire",
         description: "À la place du chauffe-eau électrique — énergie renouvelable.",
         image: op("chauffe eau solaire.jpg"),
-        price: 875,
-        priceType: "ttc",
-        highlights: ["Économique", "Écologique", "Eau chaude garantie"],
+        priceLabel: "870 – 1 290 € TTC",
+        highlights: ["Ballon 150 L · 870 €", "Ballon 200 L · 1 290 €", "Énergie solaire"],
       },
       {
         id: "climatisation",
         title: "Climatisation",
         description: "Standard ou solaire — modules pré-équipés.",
         image: op("climatisation.jpg"),
-        priceLabel: "349 – 1 850 €",
-        highlights: ["Standard · 349 €", "Solaire · 1 850 €"],
+        priceLabel: "460 – 1 850 €",
+        highlights: ["Standard · 460 €", "Solaire · 1 850 €"],
       },
       {
         id: "genie-civil",
@@ -250,11 +249,19 @@ export const KITCHEN_BASE = {
 
 export const KITCHEN_OPTIONS: OptionItem[] = [
   {
+    id: "cuisine-lave-vaisselle",
+    title: "Lave-vaisselle",
+    description: "Remplacement simple à la place du réfrigérateur.",
+    image: cz("cozinha-lave-vaisselle.png"),
+    price: 490,
+    priceType: "ttc",
+  },
+  {
     id: "cuisine-premium",
     title: "Option Premium",
     description: "Four, micro-ondes, cave à vin + tiroirs de rangement.",
     image: cz("cozinha opcao premium.jpg"),
-    price: 1299,
+    price: 1790,
     priceType: "ttc",
   },
   {
@@ -262,7 +269,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Option Rangement",
     description: "Réfrigérateur, congélateur + tiroirs de rangement.",
     image: cz("cozinha opcao frigo-congelador.jpg"),
-    price: 699,
+    price: 1190,
     priceType: "ttc",
   },
   {
@@ -270,7 +277,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Option Buanderie",
     description: "Four, micro-ondes, lave-linge + tiroirs de rangement.",
     image: cz("cozinha opcao forno micro-ondas lava ropa.jpg"),
-    price: 1199,
+    price: 1690,
     priceType: "ttc",
   },
   {
@@ -287,7 +294,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Arrière cuisine",
     description: "Lave-vaisselle et machine à laver — module complémentaire intégré.",
     image: cz("opcao complemento cozinha1.jpg"),
-    price: 990,
+    price: 1490,
     priceType: "ttc",
   },
 ];
@@ -317,11 +324,11 @@ export const POOL_MODEL = {
   description:
     "La Sofa Pool transforme chaque espace en un véritable coin de détente. Format modulaire sans terrassement, prête à installer.",
   priceFrom: 9450,
-  dimensions: "2,90 × 2,20 × 0,70 m",
+  dimensions: "2,90 × 3,10 × 0,70 m",
   capacity: "2 à 4 personnes",
   heroImage: ps("piscina.jpg"),
-  planImage: ps("piscina dimensoes.jpg"),
-  gallery: [ps("piscina1.JPG"), ps("piscina2.jpg"), ps("piscina cores fundo.jpg"), ps("piscina cores sofas.jpg")],
+  planImage: ps("piscina-dimensoes.png"),
+  gallery: [ps("piscina1.JPG"), ps("piscina2.jpg")],
   included: [
     "Système de filtration intégré",
     "Pompe haut rendement",
@@ -343,7 +350,7 @@ export const POOL_OPTIONS: OptionItem[] = [
     id: "pool-sel",
     title: "Traitement au sel",
     description: "Électrolyse au sel pour une eau cristalline.",
-    image: ps("piscina ficha tecnica.jpg"),
+    image: ps("piscina-traitement-sel.png"),
     price: 570,
     priceType: "ttc",
   },
@@ -351,7 +358,7 @@ export const POOL_OPTIONS: OptionItem[] = [
     id: "pool-chauffage",
     title: "Chauffage",
     description: "Pompe à chaleur pour profiter de la piscine toute l'année.",
-    image: ps("piscina ficha tecnica.jpg"),
+    image: ps("piscina-chauffage.png"),
     price: 1480,
     priceType: "ttc",
   },
@@ -359,16 +366,19 @@ export const POOL_OPTIONS: OptionItem[] = [
 
 /** Prix configurateur EQUILIBRO — synchronisé avec le catalogue */
 export const CONFIGURATOR_PRICES = {
-  solarWater: 875,
-  climateStandard: 349,
+  solarWater: 870,
+  solarWater200L: 1290,
+  climateStandard: 460,
   climateSolar: 1850,
   kitchenPerMl: 250,
   appliances: 990,
   civil: 3000,
   raccordement: 2000,
-  terrasseCompact: 7000,
-  terrasseLarge: 11000,
-  kitExterieur: 149,
+  terrasseCompact: 6300,
+  terrasseLarge: 9900,
+  kitExterieur: 380,
+  rideauxMotor: 250,
+  rideauxPerMl: 30,
 } as const;
 
 export function formatOptionPrice(item: OptionItem, locale: Locale = defaultLocale): string {
@@ -431,7 +441,7 @@ function enrichOption(
 ): OptionItem {
   const base: OptionItem = {
     ...item,
-    rich: getOptionRich(item.id, defaultLocale),
+    rich: getOptionRich(item.id, locale),
     categoryId,
     categoryTitle,
   };
@@ -442,7 +452,7 @@ function enrichOption(
 
 function localizeItems(items: OptionItem[], locale: Locale): OptionItem[] {
   return items.map((item) =>
-    localizeOptionItem({ ...item, rich: getOptionRich(item.id, defaultLocale) }, locale),
+    localizeOptionItem({ ...item, rich: getOptionRich(item.id, locale) }, locale),
   );
 }
 

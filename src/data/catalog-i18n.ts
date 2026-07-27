@@ -85,12 +85,12 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
     pt: {
       title: "Terraços",
       description: "Terraço adicional além do incluído — grande 11,80 m ou compacto 5,90 m.",
-      priceLabel: "7 000 – 11 000 € IVA incl.",
+      priceLabel: "6 300 – 9 900 € IVA incl.",
     },
     en: {
       title: "Terraces",
       description: "Extra terrace beyond the included one — large 11.80 m or compact 5.90 m.",
-      priceLabel: "€7,000 – €11,000 incl. VAT",
+      priceLabel: "€6,300 – €9,900 incl. VAT",
     },
   },
   "kit-exterieur": {
@@ -127,12 +127,12 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
     pt: {
       title: "Cortinas blackout",
       description: "Cortinas à medida para as suas janelas — vendidas ao metro linear.",
-      priceLabel: "220 € IVA incl. / metro linear",
+      priceLabel: "250 € + 30 € IVA incl. / metro linear",
     },
     en: {
       title: "Blackout curtains",
       description: "Bespoke curtains for your glazed openings — sold per linear metre.",
-      priceLabel: "€220 incl. VAT / linear metre",
+      priceLabel: "€250 + €30 incl. VAT / linear metre",
     },
   },
   poignee: {
@@ -149,22 +149,24 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
     pt: {
       title: "Esquentador solar",
       description: "Em substituição do elétrico — energia renovável.",
+      priceLabel: "870 – 1 290 € c/IVA",
     },
     en: {
       title: "Solar water heater",
       description: "Replaces the electric heater — renewable energy.",
+      priceLabel: "€870 – €1,290 incl. VAT",
     },
   },
   climatisation: {
     pt: {
       title: "Climatização",
       description: "Standard ou solar — módulos pré-equipados.",
-      priceLabel: "349 € – 1 850 €",
+      priceLabel: "460 € – 1 850 €",
     },
     en: {
       title: "Air conditioning",
       description: "Standard or solar — pre-equipped modules.",
-      priceLabel: "€349 – €1,850",
+      priceLabel: "€460 – €1,850",
     },
   },
   "genie-civil": {
@@ -195,6 +197,16 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
     en: {
       title: "Transport & crane",
       description: "Included within a 30 km radius.",
+    },
+  },
+  "cuisine-lave-vaisselle": {
+    pt: {
+      title: "Máquina de lavar loiça",
+      description: "Substituição simples em lugar do frigorífico.",
+    },
+    en: {
+      title: "Dishwasher",
+      description: "Simple swap in place of the fridge.",
     },
   },
   "cuisine-premium": {

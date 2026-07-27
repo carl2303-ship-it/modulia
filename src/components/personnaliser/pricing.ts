@@ -20,7 +20,9 @@ export function calculatePaidPrice(paid: PaidSelection): number {
   for (const [id, on] of Object.entries(paid.toggles)) {
     if (!on) continue;
     if (id === "rideaux") {
-      total += 220 * paid.rideauxMl;
+      total +=
+        CONFIGURATOR_PRICES.rideauxMotor +
+        CONFIGURATOR_PRICES.rideauxPerMl * paid.rideauxMl;
       continue;
     }
     if (id === "transport") continue;
@@ -32,6 +34,8 @@ export function calculatePaidPrice(paid: PaidSelection): number {
   if (paid.terrasse === "large") total += CONFIGURATOR_PRICES.terrasseLarge;
   if (paid.climate === "standard") total += CONFIGURATOR_PRICES.climateStandard;
   if (paid.climate === "solar") total += CONFIGURATOR_PRICES.climateSolar;
+  if (paid.solarWater === "150L") total += CONFIGURATOR_PRICES.solarWater;
+  if (paid.solarWater === "200L") total += CONFIGURATOR_PRICES.solarWater200L;
 
   return total;
 }

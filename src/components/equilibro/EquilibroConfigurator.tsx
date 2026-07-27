@@ -11,6 +11,7 @@ import {
   ClimateCard,
   EquipmentCard,
   KitchenCard,
+  SolarWaterCard,
   TerraceCard,
   type EquipmentId,
 } from "./EquipmentCards";
@@ -26,7 +27,7 @@ import {
 } from "./data";
 
 const INITIAL_EQUIPMENT: EquipmentState = {
-  solarWater: false,
+  solarWater: "none",
   climate: "none",
   kitchen: false,
   kitchenMl: 4,
@@ -65,7 +66,12 @@ export function EquilibroConfigurator() {
     <ul className="space-y-1">
       <li>Extérieur: {exteriorFinish.name}</li>
       <li>Intérieur: {interiorFinish.name}</li>
-      {equipment.solarWater && <li>Chauffe-eau Solaire</li>}
+      {equipment.solarWater !== "none" && (
+        <li>
+          Chauffe-eau Solaire{" "}
+          {equipment.solarWater === "200L" ? "Ballon 200 L" : "Ballon 150 L"}
+        </li>
+      )}
       {equipment.climate !== "none" && (
         <li>Climatisation {equipment.climate === "solar" ? "Solaire" : "Standard"}</li>
       )}
@@ -162,11 +168,13 @@ export function EquilibroConfigurator() {
               onToggle={() => toggleSection("equipment")}
             >
               <div className="space-y-4">
-                <EquipmentCard
-                  title="Chauffe-eau Solaire"
-                  priceLabel={`+${PRICES.solarWater} €`}
-                  enabled={equipment.solarWater}
-                  onToggle={(v) => updateEquipment("solarWater", v)}
+                <SolarWaterCard
+                  value={equipment.solarWater}
+                  onChange={(v) => updateEquipment("solarWater", v)}
+                  enabled={equipment.solarWater !== "none"}
+                  onToggle={(v) =>
+                    updateEquipment("solarWater", v ? "150L" : "none")
+                  }
                   onInfo={() => setInfoModalId("solar-water")}
                 />
 

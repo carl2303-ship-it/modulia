@@ -2,6 +2,108 @@ import type { ProfessionalModel } from "@/data/professionals";
 import { PROFESSIONAL_MODELS, PROFESSIONAL_VALUE_PROPS } from "@/data/professionals";
 import { defaultLocale, type Locale } from "@/i18n/config";
 
+const SANITAIRES_PT: Partial<ProfessionalModel> = {
+  name: "SANITÁRIOS MODULARES",
+  subtitle: "Higiene, conforto, durabilidade",
+  tagline: "Um espaço limpo, confortável e durável.",
+  description:
+    "Os sanitários modulares Modulia oferecem uma solução pronta a usar para todos os seus projetos: praias, estaleiros, eventos, bases de vida ou espaços públicos. Design moderno, materiais resistentes e instalação rápida.",
+  priceNote: "100 % personalizável — conforme equipamentos, cabines e disposições",
+  workstations: "4 cabines + lavatórios",
+  gallery: [
+    { src: "/sanitaires/sanitaires-wc-douches.png", label: "WC — Duches" },
+    { src: "/sanitaires/sanitaires-lavabos.png", label: "Lavatórios" },
+    { src: "/sanitaires/sanitaires-toilettes-femmes.png", label: "Sanitários femininos" },
+  ],
+  specs: [
+    { label: "Dimensões exteriores", value: "5,60 × 2,25 m" },
+    { label: "Altura exterior", value: "2,55 m" },
+    { label: "Planta do módulo", value: "5,90 × 2,25 m" },
+    { label: "Estrutura", value: "Aço galvanizado robusto" },
+    { label: "Revestimento", value: "Exterior de alta resistência" },
+    { label: "Cobertura", value: "Monobloco" },
+    { label: "Ventilação", value: "Integrada" },
+    { label: "Redes", value: "Água, eletricidade, canalização, esgoto" },
+    { label: "Normas", value: "Conforme ERP / estaleiro" },
+  ],
+  infrastructure: [
+    "4 cabines individuais + zona central de lavatórios",
+    "Redes de água, eletricidade, canalização e esgoto",
+    "Ventilação integrada e piso antiderrapante",
+    "Módulo pronto a colocar — ligações no local",
+  ],
+  useCases: ["Praias", "Estaleiros", "Eventos", "Bases de vida", "Espaços públicos"],
+  options: [
+    "100 % personalizável",
+    "Número de cabines",
+    "Disposições à medida",
+    "Sinalética e branding",
+    "Acabamentos exteriores",
+    "Climatização / aquecimento",
+  ],
+  benefits: [
+    "Design moderno",
+    "Higiene otimizada",
+    "Instalação rápida",
+    "Resistente e durável",
+    "Manutenção fácil",
+  ],
+};
+
+const SANITAIRES_EN: Partial<ProfessionalModel> = {
+  name: "MODULAR SANITARY UNITS",
+  subtitle: "Hygiene, comfort, durability",
+  tagline: "A clean, comfortable and durable space.",
+  description:
+    "Modulia modular sanitary units offer a turnkey solution for all your projects: beaches, construction sites, events, living bases or public spaces. Modern design, resistant materials and fast installation.",
+  priceNote: "100% customisable — equipment, cubicles and layouts to suit",
+  workstations: "4 cubicles + washbasins",
+  gallery: [
+    { src: "/sanitaires/sanitaires-wc-douches.png", label: "WC — Showers" },
+    { src: "/sanitaires/sanitaires-lavabos.png", label: "Washbasins" },
+    { src: "/sanitaires/sanitaires-toilettes-femmes.png", label: "Women's toilets" },
+  ],
+  specs: [
+    { label: "Overall dimensions", value: "5.60 × 2.25 m" },
+    { label: "Exterior height", value: "2.55 m" },
+    { label: "Module plan", value: "5.90 × 2.25 m" },
+    { label: "Structure", value: "Robust galvanised steel" },
+    { label: "Cladding", value: "High-resistance exterior" },
+    { label: "Roof", value: "Monobloc" },
+    { label: "Ventilation", value: "Integrated" },
+    { label: "Utilities", value: "Water, electricity, plumbing, drainage" },
+    { label: "Standards", value: "ERP / site compliant" },
+  ],
+  infrastructure: [
+    "4 individual cubicles + central washbasin area",
+    "Water, electricity, plumbing and drainage networks",
+    "Integrated ventilation and non-slip flooring",
+    "Ready-to-place module — on-site connections",
+  ],
+  useCases: [
+    "Beaches",
+    "Construction sites",
+    "Events",
+    "Living bases",
+    "Public spaces",
+  ],
+  options: [
+    "100% customisable",
+    "Number of cubicles",
+    "Bespoke layouts",
+    "Signage & branding",
+    "Exterior finishes",
+    "Air conditioning / heating",
+  ],
+  benefits: [
+    "Modern design",
+    "Optimal hygiene",
+    "Fast installation",
+    "Resistant & durable",
+    "Easy maintenance",
+  ],
+};
+
 const SHARED_PT = {
   specs: {
     Structure: "Aço galvanizado robusto",
@@ -111,6 +213,12 @@ const VALUE_PROPS: Record<"pt" | "en", typeof PROFESSIONAL_VALUE_PROPS> = {
 
 function localizeModel(model: ProfessionalModel, locale: Locale): ProfessionalModel {
   if (locale === defaultLocale) return model;
+
+  if (model.slug === "sanitaires-modulaires") {
+    const pack = locale === "pt" ? SANITAIRES_PT : SANITAIRES_EN;
+    return { ...model, ...pack };
+  }
+
   const pack = locale === "pt" ? SHARED_PT : SHARED_EN;
   const is12 = model.slug === "bureau-12m";
 

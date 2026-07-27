@@ -167,6 +167,83 @@ export function PaidOptionsPanel({
                 );
               }
 
+              if (item.id === "chauffe-eau-solaire") {
+                const enabled = paid.solarWater !== "none";
+                return (
+                  <div
+                    key={item.id}
+                    className={`rounded-2xl border px-4 py-4 transition ${
+                      enabled
+                        ? "border-luxury-forest bg-white"
+                        : "border-luxury-stone bg-white/60"
+                    }`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <button
+                        type="button"
+                        onClick={() => onOpenDetail(item)}
+                        className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl"
+                      >
+                        <Image src={item.image} alt="" fill className="object-cover" sizes="56px" />
+                      </button>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-2">
+                          <DetailTrigger option={item} onOpenDetail={onOpenDetail}>
+                            <p className="font-ui text-sm text-luxury-graphite">{item.title}</p>
+                            <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
+                              {t("seeDetail")}
+                            </p>
+                          </DetailTrigger>
+                          <button
+                            type="button"
+                            role="switch"
+                            aria-checked={enabled}
+                            onClick={() =>
+                              onChange({
+                                ...paid,
+                                solarWater: enabled ? "none" : "150L",
+                              })
+                            }
+                            className={`relative h-6 w-11 shrink-0 rounded-full transition ${
+                              enabled ? "bg-luxury-forest" : "bg-luxury-stone"
+                            }`}
+                          >
+                            <span
+                              className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition ${
+                                enabled ? "left-5" : "left-0.5"
+                              }`}
+                            />
+                          </button>
+                        </div>
+                        {enabled && (
+                          <div className="mt-3 flex flex-col gap-2">
+                            {(
+                              [
+                                ["150L", t("tank150L"), CONFIGURATOR_PRICES.solarWater],
+                                ["200L", t("tank200L"), CONFIGURATOR_PRICES.solarWater200L],
+                              ] as const
+                            ).map(([id, label, price]) => (
+                              <button
+                                key={id}
+                                type="button"
+                                onClick={() => onChange({ ...paid, solarWater: id })}
+                                className={`rounded-xl border px-3 py-2 text-left font-ui text-xs transition ${
+                                  paid.solarWater === id
+                                    ? "border-luxury-forest bg-luxury-forest/5 text-luxury-forest"
+                                    : "border-luxury-stone text-luxury-muted"
+                                }`}
+                              >
+                                {label} — {formatEuro(price)}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               if (item.id === "climatisation") {
                 const enabled = paid.climate !== "none";
                 return (
@@ -316,7 +393,10 @@ export function PaidOptionsPanel({
                               className="mt-2 w-full accent-luxury-forest"
                             />
                             <p className="mt-1 font-ui text-[11px] text-luxury-forest">
-                              {formatEuro(220 * paid.rideauxMl)}
+                              {formatEuro(
+                                CONFIGURATOR_PRICES.rideauxMotor +
+                                  CONFIGURATOR_PRICES.rideauxPerMl * paid.rideauxMl,
+                              )}
                             </p>
                           </div>
                         )}

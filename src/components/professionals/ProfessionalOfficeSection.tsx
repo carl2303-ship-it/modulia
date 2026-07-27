@@ -46,7 +46,7 @@ export async function ProfessionalOfficeSection({
           <div className="overflow-hidden rounded-3xl border border-luxury-stone bg-white p-3 shadow-luxury-sm">
             <Image
               src={model.heroImage}
-              alt={`${model.name} — bureau modulaire Modulia`}
+              alt={`${model.name} — module Modulia`}
               width={1200}
               height={900}
               className="h-auto w-full rounded-2xl"
@@ -86,7 +86,9 @@ export async function ProfessionalOfficeSection({
             </p>
             <p className="font-serif text-4xl text-luxury-graphite">
               {formatModelPrice(model.priceFrom)}
-              <span className="ml-2 font-ui text-base text-luxury-muted">€ HT</span>
+              <span className="ml-2 font-ui text-base text-luxury-muted">
+                {model.priceTax === "ht" ? t("priceSuffixHt") : t("priceSuffixTtc")}
+              </span>
             </p>
             <p className="mt-2 font-ui text-xs text-luxury-forest">{model.priceNote}</p>
 
@@ -99,13 +101,17 @@ export async function ProfessionalOfficeSection({
           </div>
         </div>
 
-        {(model.interiorImage || model.bathroomImages?.length) && (
+        {(model.interiorImage || model.bathroomImages?.length || model.gallery?.length) && (
           <div className="mt-16">
             <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
-              {t("interiorEyebrow")}
+              {model.productType === "sanitaire"
+                ? t("galleryEyebrow")
+                : t("interiorEyebrow")}
             </p>
             <h3 className="mt-2 font-serif text-2xl text-luxury-graphite">
-              {t("interiorTitle")}
+              {model.productType === "sanitaire"
+                ? t("galleryTitle")
+                : t("interiorTitle")}
             </h3>
             <div className="mt-8 grid gap-4">
               {model.interiorImage && (
@@ -120,6 +126,27 @@ export async function ProfessionalOfficeSection({
                   <p className="mt-3 text-center font-ui text-[10px] uppercase tracking-wider text-luxury-muted">
                     {t("interiorViewLabel")}
                   </p>
+                </div>
+              )}
+              {model.gallery && model.gallery.length > 0 && (
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {model.gallery.map((item) => (
+                    <div
+                      key={item.src}
+                      className="overflow-hidden rounded-3xl border border-luxury-stone bg-white p-3 shadow-luxury-sm"
+                    >
+                      <Image
+                        src={item.src}
+                        alt={`${model.name} — ${item.label}`}
+                        width={500}
+                        height={500}
+                        className="mx-auto h-auto max-h-80 w-full rounded-2xl object-cover"
+                      />
+                      <p className="mt-3 text-center font-ui text-[10px] uppercase tracking-wider text-luxury-muted">
+                        {item.label}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               )}
               {model.bathroomImages && model.bathroomImages.length > 0 && (
@@ -200,6 +227,24 @@ export async function ProfessionalOfficeSection({
             </div>
           </div>
         </div>
+
+        {model.benefits && model.benefits.length > 0 && (
+          <div className="mt-12">
+            <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
+              {t("benefitsEyebrow")}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {model.benefits.map((benefit) => (
+                <span
+                  key={benefit}
+                  className="rounded-full border border-luxury-forest/20 bg-luxury-forest/5 px-4 py-2 font-ui text-[10px] uppercase tracking-wider text-luxury-forest"
+                >
+                  {benefit}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="mt-16">
           <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
