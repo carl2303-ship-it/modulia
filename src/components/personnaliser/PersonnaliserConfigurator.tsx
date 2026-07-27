@@ -49,7 +49,6 @@ export function PersonnaliserConfigurator({
   initialModelSlug = null,
 }: PersonnaliserConfiguratorProps) {
   const t = useTranslations("personnaliser");
-  const tCommon = useTranslations("common");
   const locale = useLocale() as Locale;
   const searchParams = useSearchParams();
   const queryModel = searchParams.get("model");
@@ -102,7 +101,6 @@ export function PersonnaliserConfigurator({
   const kitchenAppliances = getLocalizedKitchenAppliances(locale);
   const poolModel = getLocalizedPoolModel(locale);
   const poolOptions = getLocalizedPoolOptions(locale);
-  const electroBase = kitchenAppliances.find((a) => a.id === "electro-base");
   const electroPremium = kitchenAppliances.find((a) => a.id === "electro-option");
 
   const formatMeters = (n: number) =>
@@ -163,16 +161,10 @@ export function PersonnaliserConfigurator({
           {kitchen.contemporaineMl} ml
         </li>
       )}
-      {kitchen.appliances === "base" ? (
+      {kitchen.appliances === "option" && electroPremium && (
         <li>
-          {electroBase?.title} ({tCommon("inclus")})
+          {electroPremium.title} (+{formatOptionPrice(electroPremium, locale)})
         </li>
-      ) : (
-        electroPremium && (
-          <li>
-            {electroPremium.title} (+{formatOptionPrice(electroPremium, locale)})
-          </li>
-        )
       )}
       {pool.enabled && (
         <>

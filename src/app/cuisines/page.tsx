@@ -33,7 +33,6 @@ export default async function CuisinesPage() {
     ),
   );
   const surMesureOptions = kitchenOptions.filter((s) => s.id === "cuisine-contemporaine");
-  const applianceBase = kitchenAppliances.find((s) => s.id === "electro-base");
   const applianceOption = kitchenAppliances.find((s) => s.id === "electro-option");
 
   return (
@@ -51,25 +50,9 @@ export default async function CuisinesPage() {
           <p className="mt-6 max-w-2xl font-ui text-luxury-muted">
             {t("intro")}
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/options"
-              className="rounded-full border border-luxury-stone bg-white px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-luxury-graphite transition hover:border-luxury-forest"
-            >
-              {t("ctaOptions")}
-            </Link>
-            <Link
-              href="/personnalisation"
-              className="rounded-full border border-luxury-stone bg-white px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-luxury-graphite transition hover:border-luxury-forest"
-            >
-              {t("ctaPersonnalisation")}
-            </Link>
-          </div>
         </section>
 
         <KitchenSectionView section={kitchenBase} />
-
-        {applianceBase && <KitchenSectionView section={applianceBase} />}
 
         <section className="border-t border-luxury-stone/60 bg-white/40 py-12">
           <div className="mx-auto max-w-7xl px-6">
@@ -131,7 +114,7 @@ export default async function CuisinesPage() {
             href="/options"
             className="font-ui text-xs uppercase tracking-wider text-luxury-forest hover:underline"
           >
-            ← {t("ctaOptions")}
+            ← {t("backToOptions")}
           </Link>
         </section>
       </main>

@@ -46,7 +46,6 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
 
   const packOptions = kitchenOptions.filter((o) => o.id !== "cuisine-contemporaine");
   const contemporaine = kitchenOptions.find((o) => o.id === "cuisine-contemporaine");
-  const electroBase = kitchenAppliances.find((a) => a.id === "electro-base");
   const electroPremium = kitchenAppliances.find((a) => a.id === "electro-option");
 
   const kitchenBaseAsOption: OptionItem = {
@@ -227,47 +226,6 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
           {t("electromenager")}
         </p>
         <div className="mt-3 space-y-2">
-          {electroBase && (
-            <div
-              className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 transition ${
-                kitchen.appliances === "base"
-                  ? "border-luxury-forest bg-luxury-forest/5"
-                  : "border-luxury-stone bg-white/60"
-              }`}
-            >
-              <button
-                type="button"
-                onClick={() => onOpenDetail(electroBase)}
-                className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg"
-              >
-                <Image
-                  src={electroBase.image}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="48px"
-                />
-              </button>
-              <button
-                type="button"
-                onClick={() => onChange({ ...kitchen, appliances: "base" })}
-                className="min-w-0 flex-1 text-left"
-              >
-                <p
-                  className={`font-ui text-xs ${
-                    kitchen.appliances === "base"
-                      ? "text-luxury-forest"
-                      : "text-luxury-muted"
-                  }`}
-                >
-                  {electroBase.title} — {tCommon("inclus")}
-                </p>
-                <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                  {t("seeDetail")}
-                </p>
-              </button>
-            </div>
-          )}
           {electroPremium && (
             <div
               className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 transition ${
@@ -291,7 +249,12 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
               </button>
               <button
                 type="button"
-                onClick={() => onChange({ ...kitchen, appliances: "option" })}
+                onClick={() =>
+                  onChange({
+                    ...kitchen,
+                    appliances: kitchen.appliances === "option" ? "base" : "option",
+                  })
+                }
                 className="min-w-0 flex-1 text-left"
               >
                 <p
