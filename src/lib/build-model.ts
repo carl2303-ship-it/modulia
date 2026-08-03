@@ -109,6 +109,12 @@ const IMAGE_ALT: Record<Locale, (name: string, n: 1 | 2) => string> = {
   en: (name, n) => `${name} — 3D view ${n}`,
 };
 
+const PLAN_ALT: Record<Locale, (name: string) => string> = {
+  fr: (name) => `${name} — plan`,
+  pt: (name) => `${name} — planta`,
+  en: (name) => `${name} — floor plan`,
+};
+
 const PLAN_LABEL: Record<Locale, (dimensions: string) => string> = {
   fr: (d) => `Plan & Dimensions · ${d}`,
   pt: (d) => `Planta e dimensões · ${d}`,
@@ -147,6 +153,7 @@ export function buildModelFromSlug(
     images: [
       { src: assets.hero1, alt: IMAGE_ALT[locale](override.name, 1) },
       { src: assets.hero2, alt: IMAGE_ALT[locale](override.name, 2) },
+      { src: assets.planGallery, alt: PLAN_ALT[locale](override.name) },
     ],
     planImage: assets.planImage,
     planLabel: PLAN_LABEL[locale](dimensions),

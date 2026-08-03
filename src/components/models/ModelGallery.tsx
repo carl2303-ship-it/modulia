@@ -10,7 +10,7 @@ type ModelGalleryProps = {
 };
 
 /**
- * Galeria com 3 vistas 3D — miniaturas + transição suave.
+ * Galeria: 2 vistas 3D + planta — miniaturas + transição suave.
  * Mostra placeholder premium se a imagem ainda não foi carregada.
  */
 export function ModelGallery({ images, modelName }: ModelGalleryProps) {
@@ -20,7 +20,9 @@ export function ModelGallery({ images, modelName }: ModelGalleryProps) {
   return (
     <div className="space-y-4">
       <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-luxury-stone shadow-luxury">
-        {images.map((img, index) => (
+        {images.map((img, index) => {
+          const isPlan = /plan|planta|floor plan/i.test(img.alt);
+          return (
           <div
             key={img.src}
             className={`absolute inset-0 transition-all duration-700 ease-luxury ${
@@ -40,18 +42,21 @@ export function ModelGallery({ images, modelName }: ModelGalleryProps) {
                 src={img.src}
                 alt={img.alt}
                 fill
-                className="object-cover"
+                className={isPlan ? "object-contain bg-white p-4" : "object-cover"}
                 sizes="(max-width: 1024px) 100vw, 60vw"
                 priority={index === 0}
                 onError={() => setFailed((prev) => ({ ...prev, [index]: true }))}
               />
             )}
           </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="flex gap-3">
-        {images.map((img, index) => (
+        {images.map((img, index) => {
+          const isPlan = /plan|planta|floor plan/i.test(img.alt);
+          return (
           <button
             key={img.src}
             type="button"
@@ -69,7 +74,7 @@ export function ModelGallery({ images, modelName }: ModelGalleryProps) {
                 src={img.src}
                 alt=""
                 fill
-                className="object-cover"
+                className={isPlan ? "object-contain bg-white p-1" : "object-cover"}
                 sizes="112px"
                 onError={() => setFailed((prev) => ({ ...prev, [index]: true }))}
               />
@@ -79,7 +84,8 @@ export function ModelGallery({ images, modelName }: ModelGalleryProps) {
               </div>
             )}
           </button>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

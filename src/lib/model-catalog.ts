@@ -10,6 +10,8 @@ export type ModelFolderAssets = {
   hero1: string;
   hero2: string;
   planImage: string;
+  /** Planta sem cotas — 3.ª imagem da galeria */
+  planGallery: string;
   planCotado: string;
   planSemCotacoes: string;
 };
@@ -54,7 +56,7 @@ const FOLDER_ALIASES: Record<ModelSlug, string> = {
 
 const ASSET_MAP: Record<
   ModelSlug,
-  Omit<ModelFolderAssets, "slug" | "folder" | "planImage">
+  Omit<ModelFolderAssets, "slug" | "folder" | "planImage" | "planGallery">
 > = {
   equilibro: {
     ficha: "/equilibro/equilibro.jpg",
@@ -158,11 +160,12 @@ const ASSET_MAP: Record<
 
 export function getModelAssets(slug: ModelSlug): ModelFolderAssets {
   const folder = FOLDER_ALIASES[slug];
-  const planFile = slug === folder ? `${slug}-plan.png` : `${folder}-plan.png`;
+  const planBase = slug === folder ? slug : folder;
   return {
     slug,
     folder,
-    planImage: `/${folder}/${planFile}`,
+    planImage: `/${folder}/${planBase}-plan.png`,
+    planGallery: `/${folder}/${planBase}-plan-galerie.png`,
     ...ASSET_MAP[slug],
   };
 }
