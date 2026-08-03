@@ -59,13 +59,12 @@ Cada push para `main` faz deploy automático.
 
 ## Formulário de contacto
 
-Os pedidos são enviados para **contact@moduliahome.com** via **Netlify Forms**.
+Os pedidos são enviados por e-mail para **contact@moduliahome.com** (FormSubmit) e podem ser guardados no Supabase.
 
-1. Após o deploy, em [Netlify](https://app.netlify.com/) → **Project configuration → Notifications → Form submission notifications**
-2. Adicionar notificação por e-mail para `contact@moduliahome.com` (formulário `contact`)
-3. Ativar **Form detection** em **Forms** se ainda não estiver ativo
+1. No **primeiro** envio, abra a caixa `contact@moduliahome.com` e confirme o link de ativação do FormSubmit.
+2. Depois disso, cada pedido chega por e-mail automaticamente.
 
-Opcional: `RESEND_API_KEY` + `RESEND_FROM_EMAIL` para envio adicional via Resend. Os pedidos também podem ser guardados no Supabase.
+Opcional na Netlify: `RESEND_API_KEY` + `RESEND_FROM_EMAIL` para envio paralelo via Resend.
 
 ## Supabase
 
