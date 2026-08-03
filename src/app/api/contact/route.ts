@@ -16,76 +16,54 @@ function getRecipient(): string {
   return process.env.CONTACT_TO_EMAIL?.trim() || CONTACT_EMAIL;
 }
 
-async function sendContactEmail(payload: Required<Pick<ContactPayload, "name" | "email">> & ContactPayload) {
+/** Envio opcional via Resend (se RESEND_API_KEY estiver definida). */
+async function sendWithResend(
+  payload: Required<Pick<ContactPayload, "name" | "email">> & ContactPayload,
+): Promise<boolean> {
+  const resendKey = process.env.RESEND_API_KEY?.trim();
+  if (!resendKey) return false;
+
   const to = getRecipient();
+  const from = process.env.RESEND_FROM_EMAIL?.trim() || "Modulia <onboarding@resend.dev>";
   const subject = payload.model
     ? `Modulia — Nouveau contact · ${payload.model}`
     : "Modulia — Nouveau contact";
 
-  const resendKey = process.env.RESEND_API_KEY?.trim();
-  if (resendKey) {
-    const from = process.env.RESEND_FROM_EMAIL?.trim() || "Modulia <onboarding@resend.dev>";
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${resendKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from,
-        to: [to],
-        reply_to: payload.email,
-        subject,
-        text: [
-          `Nom: ${payload.name}`,
-          `Email: ${payload.email}`,
-          payload.phone ? `Téléphone: ${payload.phone}` : null,
-          payload.model ? `Modèle: ${payload.model}` : null,
-          "",
-          payload.message || "(sans message)",
-        ]
-          .filter((line) => line !== null)
-          .join("\n"),
-      }),
-    });
-
-    if (!res.ok) {
-      const detail = await res.text();
-      throw new Error(`Resend error: ${detail}`);
-    }
-    return;
-  }
-
-  // Fallback sans clé API — FormSubmit (activer une fois via le mail de confirmation)
-  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
+      Authorization: `Bearer ${resendKey}`,
       "Content-Type": "application/json",
-      Accept: "application/json",
     },
     body: JSON.stringify({
-      name: payload.name,
-      email: payload.email,
-      phone: payload.phone || "",
-      model: payload.model || "",
-      message: payload.message || "",
-      _subject: subject,
-      _template: "table",
-      _replyto: payload.email,
-      _captcha: "false",
+      from,
+      to: [to],
+      reply_to: payload.email,
+      subject,
+      text: [
+        `Nom: ${payload.name}`,
+        `Email: ${payload.email}`,
+        payload.phone ? `Téléphone: ${payload.phone}` : null,
+        payload.model ? `Modèle: ${payload.model}` : null,
+        "",
+        payload.message || "(sans message)",
+      ]
+        .filter((line) => line !== null)
+        .join("\n"),
     }),
   });
 
   if (!res.ok) {
     const detail = await res.text();
-    throw new Error(`FormSubmit error: ${detail}`);
+    throw new Error(`Resend error: ${detail}`);
   }
+  return true;
 }
 
-async function saveToSupabase(payload: ContactPayload) {
+async function saveToSupabase(payload: ContactPayload): Promise<boolean> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return;
+  if (!url || !key) return false;
 
   const supabase = createClient(url, key);
   const { error } = await supabase.from("contact_requests").insert({
@@ -96,10 +74,14 @@ async function saveToSupabase(payload: ContactPayload) {
     message: payload.message || null,
   });
 
-  // Table absente → ignorer; autres erreurs → log
-  if (error && error.code !== "42P01" && !error.message.includes("does not exist")) {
+  if (error) {
+    if (error.code === "42P01" || error.message.includes("does not exist")) {
+      return false;
+    }
     console.error("contact_requests insert:", error.message);
+    return false;
   }
+  return true;
 }
 
 export async function POST(request: Request) {
@@ -126,14 +108,21 @@ export async function POST(request: Request) {
 
   const payload = { name, email, phone, model, message };
 
+  let emailed = false;
   try {
-    await sendContactEmail(payload);
+    emailed = await sendWithResend(payload);
   } catch (err) {
-    console.error("contact email failed:", err);
-    return NextResponse.json({ error: "Failed to send email" }, { status: 502 });
+    console.error("contact resend failed:", err);
   }
 
-  await saveToSupabase(payload);
+  const saved = await saveToSupabase(payload);
 
-  return NextResponse.json({ ok: true, to: getRecipient() });
+  // Sem Resend, o e-mail vai pelas Netlify Forms no cliente.
+  // Aqui basta não devolver 502 — o canal principal é Netlify Forms.
+  return NextResponse.json({
+    ok: true,
+    to: getRecipient(),
+    emailed,
+    saved,
+  });
 }

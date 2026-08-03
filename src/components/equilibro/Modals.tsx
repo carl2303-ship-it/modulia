@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/config";
+import { submitContactRequest } from "@/lib/submit-contact";
 
 type InfoModalProps = {
   isOpen: boolean;
@@ -129,18 +130,13 @@ export function ContactModal({
         : `Configuration ${modelName} — ${new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(totalPrice)} € TTC`;
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: String(formData.get("name") ?? ""),
-          email: String(formData.get("email") ?? ""),
-          phone: String(formData.get("phone") ?? ""),
-          model: modelName,
-          message: [summaryText, userMessage].filter(Boolean).join("\n\n"),
-        }),
+      await submitContactRequest({
+        name: String(formData.get("name") ?? ""),
+        email: String(formData.get("email") ?? ""),
+        phone: String(formData.get("phone") ?? ""),
+        model: modelName,
+        message: [summaryText, userMessage].filter(Boolean).join("\n\n"),
       });
-      if (!res.ok) throw new Error("send failed");
       setStatus("success");
       setFeedback(tContact("successFull"));
       form.reset();

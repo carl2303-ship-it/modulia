@@ -4,6 +4,7 @@ import { useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { CONTACT_EMAIL, CONTACT_PHONES, SHOWROOM } from "@/data/company";
 import { MODELS_PARTICULIERS } from "@/data/models";
+import { submitContactRequest } from "@/lib/submit-contact";
 
 export function Contact() {
   const t = useTranslations("contact");
@@ -28,13 +29,7 @@ export function Contact() {
     };
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) throw new Error("send failed");
+      await submitContactRequest(payload);
 
       setStatus("success");
       setMessage(t("successFull"));
