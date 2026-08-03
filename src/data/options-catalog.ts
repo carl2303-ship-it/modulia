@@ -156,6 +156,14 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         priceType: "ttc",
       },
       {
+        id: "ventilation-hvac-sdb",
+        title: "Ventilation HVAC salle de bains",
+        description: "Air sain, confort au quotidien — ventilation performante et ultra silencieuse.",
+        image: op("ventilation hvac.png"),
+        price: 190,
+        priceType: "ttc",
+      },
+      {
         id: "vmc-sdb",
         title: "Ventilation mécanique salle de bains",
         description: "Option ventilation pour confort et hygiène.",
@@ -192,8 +200,8 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Chauffe-eau solaire",
         description: "À la place du chauffe-eau électrique — énergie renouvelable.",
         image: op("chauffe eau solaire.jpg"),
-        priceLabel: "870 – 1 290 € TTC",
-        highlights: ["Ballon 150 L · 870 €", "Ballon 200 L · 1 290 €", "Énergie solaire"],
+        priceLabel: "870 – 1 375 € TTC",
+        highlights: ["Ballon 100 L · 870 €", "Ballon 200 L · 1 375 €", "Énergie solaire"],
       },
       {
         id: "climatisation",
@@ -253,7 +261,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Lave-vaisselle",
     description: "Remplacement simple à la place du réfrigérateur.",
     image: cz("cozinha-lave-vaisselle.png"),
-    price: 490,
+    price: 349,
     priceType: "ttc",
   },
   {
@@ -261,7 +269,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Option Premium",
     description: "Four, micro-ondes, cave à vin + tiroirs de rangement.",
     image: cz("cozinha opcao premium.jpg"),
-    price: 1790,
+    price: 1719,
     priceType: "ttc",
   },
   {
@@ -269,7 +277,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Option Rangement",
     description: "Réfrigérateur, congélateur + tiroirs de rangement.",
     image: cz("cozinha opcao frigo-congelador.jpg"),
-    price: 1190,
+    price: 1119,
     priceType: "ttc",
   },
   {
@@ -277,7 +285,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Option Buanderie",
     description: "Four, micro-ondes, lave-linge + tiroirs de rangement.",
     image: cz("cozinha opcao forno micro-ondas lava ropa.jpg"),
-    price: 1690,
+    price: 1599,
     priceType: "ttc",
   },
   {
@@ -320,28 +328,32 @@ export const KITCHEN_APPLIANCES: OptionItem[] = [
 
 export const POOL_MODEL = {
   name: "SOFA POOL",
-  tagline: "Compacte, élégante et confortable.",
+  tagline: "Transformez votre terrasse en espace de détente haut de gamme",
   description:
-    "La Sofa Pool transforme chaque espace en un véritable coin de détente. Format modulaire sans terrassement, prête à installer.",
+    "Découvrez la SOFA POOL, une mini-piscine au design contemporain qui allie élégance, confort et technologie.\n\nAvec son format compact de 2,90 m × 2,90 m et sa profondeur de 70 cm, elle s’intègre parfaitement sur une terrasse, un rooftop, dans un jardin ou au sein d’un projet immobilier premium.\n\nSon esthétique minimaliste avec banquettes intégrées crée un véritable espace lounge et bien-être.",
+  closing:
+    "Une solution élégante pour profiter des plaisirs de l’eau sans les contraintes d’une piscine traditionnelle.",
   priceFrom: 9450,
-  dimensions: "2,90 × 3,10 × 0,70 m",
-  capacity: "2 à 4 personnes",
-  heroImage: ps("piscina.jpg"),
+  dimensions: "2,90 × 2,90 m",
+  capacity: "Profondeur 70 cm",
+  heroImage: ps("piscina-rooftop.png"),
   planImage: ps("piscina-dimensoes.png"),
-  gallery: [ps("piscina1.JPG"), ps("piscina2.jpg")],
+  gallery: [ps("piscina.jpg"), ps("piscina1.JPG"), ps("piscina2.jpg")],
   included: [
-    "Système de filtration intégré",
-    "Pompe haut rendement",
-    "Skimmer de surface",
-    "Buses de refoulement",
-    "Éclairage LED",
-    "Revêtement intérieur haute qualité",
+    "Dimensions : 2,90 × 2,90 m",
+    "Profondeur : 70 cm",
+    "Système de filtration à sable",
+    "Traitement au sel pour un confort optimal",
+    "Compatible avec chauffage pour une utilisation prolongée",
+    "Design moderne et compact",
+    "Idéale pour terrasse, rooftop, villa, hôtel ou résidence haut de gamme",
   ],
   highlights: [
-    "Débordement 3 côtés",
-    "Espace lounge intégré",
-    "Sans terrassement",
-    "Transport facile",
+    "Installation simplifiée",
+    "Faible encombrement",
+    "Entretien réduit",
+    "Consommation maîtrisée",
+    "Confort premium et look exclusif",
   ],
 };
 
@@ -367,7 +379,7 @@ export const POOL_OPTIONS: OptionItem[] = [
 /** Prix configurateur EQUILIBRO — synchronisé avec le catalogue */
 export const CONFIGURATOR_PRICES = {
   solarWater: 870,
-  solarWater200L: 1290,
+  solarWater200L: 1375,
   climateStandard: 460,
   climateSolar: 1850,
   kitchenPerMl: 250,
@@ -533,7 +545,7 @@ export function getLocalizedKitchenAppliances(locale: Locale = defaultLocale): O
   return localizeItems(KITCHEN_APPLIANCES, locale);
 }
 
-/** Fiche piscine SOFA POOL localisée (tagline/description/capacity/included/highlights) — images inchangées */
+/** Fiche piscine SOFA POOL localisée (tagline/description/closing/capacity/included/highlights) — images inchangées */
 export function getLocalizedPoolModel(locale: Locale = defaultLocale): typeof POOL_MODEL {
   if (locale === defaultLocale) return POOL_MODEL;
   const copy = POOL_COPY[locale];
@@ -541,6 +553,7 @@ export function getLocalizedPoolModel(locale: Locale = defaultLocale): typeof PO
     ...POOL_MODEL,
     tagline: copy?.tagline ?? POOL_MODEL.tagline,
     description: copy?.description ?? POOL_MODEL.description,
+    closing: copy?.closing ?? POOL_MODEL.closing,
     capacity: copy?.capacity ?? POOL_MODEL.capacity,
     included: copy?.included ?? POOL_MODEL.included,
     highlights: copy?.highlights ?? POOL_MODEL.highlights,

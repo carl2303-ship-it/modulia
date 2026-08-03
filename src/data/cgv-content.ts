@@ -1,11 +1,12 @@
-import { CGV_WARRANTY_ARTICLES } from "@/data/cgv-warranty";
-
 export type CgvLocale = "fr" | "pt" | "en";
 
 export type CgvArticle = {
   title: string;
   paragraphs: string[];
   listItems?: string[];
+  /** Paragraphes après la liste (ex. conclusion d'article) */
+  closingParagraphs?: string[];
+  closingListItems?: string[];
 };
 
 export type CgvContent = {
@@ -55,26 +56,24 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
       },
       {
         title: "Article 4 – Commande",
-        paragraphs: [
-          "La commande est validée après :",
-          "Toute commande validée est ferme et définitive.",
-        ],
+        paragraphs: ["La commande est validée après :"],
         listItems: [
           "signature du devis ou bon de commande",
           "versement d'un acompte de 30 %",
         ],
+        closingParagraphs: ["Toute commande validée est ferme et définitive."],
       },
       {
         title: "Article 5 – Paiement",
-        paragraphs: [
-          "Le paiement s'effectue selon l'échéancier suivant :",
-          "Tout retard de paiement entraîne :",
-        ],
+        paragraphs: ["Le paiement s'effectue selon l'échéancier suivant :"],
         listItems: [
           "acompte à la commande : 30 %",
           "paiements intermédiaires après environ 30/35 jours : 30 % après présentation photo et au chargement dans le bateau",
           "deuxième acompte de 30 % à réception du module à Faro",
           "le solde à la livraison",
+        ],
+        closingParagraphs: ["Tout retard de paiement entraîne :"],
+        closingListItems: [
           "pénalités de retard",
           "indemnité forfaitaire pour frais de recouvrement",
         ],
@@ -93,16 +92,16 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
       },
       {
         title: "Article 7 – Livraison et installation",
-        paragraphs: [
-          "La livraison comprend (à préciser) :",
-          "Tout surcoût lié à des contraintes d'accès sera facturé.",
-        ],
+        paragraphs: ["La livraison comprend (à préciser) :"],
         listItems: [
           "transport des modules de Faro à votre domicile",
           "installation sur site dans la journée",
           "raccordement eau, électricité, écoulement : environ 1 à 2 jours",
           "le client doit garantir l'accessibilité du terrain par voie routière que nous aurons préalablement reconnue",
           "le terrain devra avoir été préalablement préparé pour accueillir le ou les modules ; si le client a choisi de le faire lui-même et que la livraison doit être reportée parce que le terrain n'est pas prêt, le module sera déposé à proximité de son implantation définitive ou un droit de garde de 150 € HT par jour sera exigé pour conserver le module sur notre parc",
+        ],
+        closingParagraphs: [
+          "Tout surcoût lié à des contraintes d'accès sera facturé.",
         ],
       },
       {
@@ -112,7 +111,11 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
           "Si une anomalie est constatée, le client gardera 5 % du montant total jusqu'à réception définitive.",
         ],
       },
-      ...CGV_WARRANTY_ARTICLES.fr,
+      {
+        title: "Article 9 – Garanties",
+        paragraphs: ["Les constructions bénéficient des garanties légales :"],
+        listItems: ["garantie de parfait achèvement"],
+      },
       {
         title: "Article 10 – Rétractation",
         paragraphs: [
@@ -183,28 +186,26 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
       },
       {
         title: "Artigo 4 – Encomenda",
-        paragraphs: [
-          "A encomenda é validada após:",
-          "Qualquer encomenda validada é firme e definitiva.",
-        ],
+        paragraphs: ["A encomenda é validada após:"],
         listItems: [
           "assinatura do orçamento ou nota de encomenda",
           "pagamento de um sinal de 30 %",
         ],
+        closingParagraphs: ["Qualquer encomenda validada é firme e definitiva."],
       },
       {
         title: "Artigo 5 – Pagamento",
-        paragraphs: [
-          "O pagamento efetua-se segundo o seguinte calendário:",
-          "Qualquer atraso de pagamento implica:",
-        ],
+        paragraphs: ["O pagamento efetua-se segundo o seguinte calendário:"],
         listItems: [
           "sinal à encomenda: 30 %",
           "pagamentos intermédios após cerca de 30/35 dias: 30 % após apresentação fotográfica e no carregamento no navio",
           "segundo sinal de 30 % à receção do módulo em Faro",
           "saldo na entrega",
+        ],
+        closingParagraphs: ["Qualquer atraso de pagamento implica:"],
+        closingListItems: [
           "penalidades por atraso",
-          "indenização forfetária por despesas de cobrança",
+          "indemnização forfetária por despesas de cobrança",
         ],
       },
       {
@@ -221,16 +222,16 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
       },
       {
         title: "Artigo 7 – Entrega e instalação",
-        paragraphs: [
-          "A entrega inclui (a precisar):",
-          "Qualquer custo adicional relacionado com constrangimentos de acesso será faturado.",
-        ],
+        paragraphs: ["A entrega inclui (a precisar):"],
         listItems: [
           "transporte dos módulos de Faro até à sua morada",
           "instalação no local no próprio dia",
           "ligação de água, eletricidade e evacuação: cerca de 1 a 2 dias",
           "o cliente deve garantir a acessibilidade do terreno por via rodoviária previamente reconhecida por nós",
           "o terreno deverá ter sido previamente preparado para receber o(s) módulo(s); se o cliente optar por fazê-lo ele próprio e a entrega tiver de ser adiada porque o terreno não está pronto, o módulo será depositado junto à sua implantação definitiva ou será exigido um direito de guarda de 150 € HT por dia para manter o módulo no nosso parque",
+        ],
+        closingParagraphs: [
+          "Qualquer custo adicional relacionado com constrangimentos de acesso será faturado.",
         ],
       },
       {
@@ -240,7 +241,11 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
           "Se for constatada uma anomalia, o cliente reterá 5 % do montante total até à receção definitiva.",
         ],
       },
-      ...CGV_WARRANTY_ARTICLES.pt,
+      {
+        title: "Artigo 9 – Garantias",
+        paragraphs: ["As construções beneficiam das garantias legais:"],
+        listItems: ["garantia de perfeita conclusão"],
+      },
       {
         title: "Artigo 10 – Direito de retratação",
         paragraphs: [
@@ -266,7 +271,7 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
       {
         title: "Artigo 13 – Litígios",
         paragraphs: [
-          "Em caso de litígio, será procurada uma solução amigável. Na sua falta, os tribunais competentes serão os do sede social da Modulia em Portugal.",
+          "Em caso de litígio, será procurada uma solução amigável. Na sua falta, os tribunais competentes serão os da sede social da Modulia em Portugal.",
         ],
       },
       {
@@ -311,26 +316,24 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
       },
       {
         title: "Article 4 – Order",
-        paragraphs: [
-          "The order is confirmed after:",
-          "Any confirmed order is firm and final.",
-        ],
+        paragraphs: ["The order is confirmed after:"],
         listItems: [
           "signature of the quote or order form",
           "payment of a 30% deposit",
         ],
+        closingParagraphs: ["Any confirmed order is firm and final."],
       },
       {
         title: "Article 5 – Payment",
-        paragraphs: [
-          "Payment is made according to the following schedule:",
-          "Any late payment will result in:",
-        ],
+        paragraphs: ["Payment is made according to the following schedule:"],
         listItems: [
           "deposit upon order: 30%",
           "interim payments after approximately 30/35 days: 30% after photo presentation and upon loading onto the vessel",
           "second deposit of 30% upon receipt of the module in Faro",
           "balance upon delivery",
+        ],
+        closingParagraphs: ["Any late payment will result in:"],
+        closingListItems: [
           "late payment penalties",
           "flat-rate compensation for collection costs",
         ],
@@ -349,16 +352,16 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
       },
       {
         title: "Article 7 – Delivery and installation",
-        paragraphs: [
-          "Delivery includes (to be specified):",
-          "Any additional cost related to access constraints will be invoiced.",
-        ],
+        paragraphs: ["Delivery includes (to be specified):"],
         listItems: [
           "transport of modules from Faro to your home",
           "on-site installation on the same day",
           "water, electricity and drainage connection: approximately 1 to 2 days",
           "the customer must ensure road access to the site, which we will have previously approved",
           "the site must have been prepared in advance to receive the module(s); if the customer chooses to do this themselves and delivery must be postponed because the site is not ready, the module will be placed near its final location or a storage fee of €150 HT per day will be charged to keep the module on our premises",
+        ],
+        closingParagraphs: [
+          "Any additional cost related to access constraints will be invoiced.",
         ],
       },
       {
@@ -368,7 +371,11 @@ export const CGV_CONTENT: Record<CgvLocale, CgvContent> = {
           "If a defect is found, the customer will retain 5% of the total amount until final acceptance.",
         ],
       },
-      ...CGV_WARRANTY_ARTICLES.en,
+      {
+        title: "Article 9 – Warranties",
+        paragraphs: ["The constructions benefit from the legal warranties:"],
+        listItems: ["perfect completion warranty (garantie de parfait achèvement)"],
+      },
       {
         title: "Article 10 – Right of withdrawal",
         paragraphs: [

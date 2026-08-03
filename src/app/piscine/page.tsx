@@ -51,9 +51,11 @@ export default async function PiscinePage() {
               {pool.name}
             </h1>
             <p className="mt-4 font-serif text-lg italic text-luxury-muted">{pool.tagline}</p>
-            <p className="mt-6 font-ui text-sm leading-relaxed text-luxury-muted">
-              {pool.description}
-            </p>
+            <div className="mt-6 space-y-4 font-ui text-sm leading-relaxed text-luxury-muted">
+              {pool.description.split("\n\n").map((paragraph) => (
+                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+              ))}
+            </div>
 
             <dl className="mt-8 flex flex-wrap gap-3">
               {[pool.dimensions, pool.capacity].map((item) => (
@@ -74,19 +76,34 @@ export default async function PiscinePage() {
               <span className="ml-2 font-ui text-base text-luxury-muted">€ TTC</span>
             </p>
 
+            <p className="mt-6 max-w-md font-ui text-sm leading-relaxed text-luxury-muted">
+              {pool.closing}
+            </p>
+
             <Link
               href="/#contact?model=piscine-sofa-pool"
               className="mt-8 inline-block rounded-full bg-luxury-forest px-8 py-4 font-ui text-xs uppercase tracking-wider text-white"
             >
               {t("devis")}
             </Link>
+            <p className="mt-4 font-ui text-xs text-luxury-muted">{t("contactHint")}</p>
           </div>
         </section>
 
         <section className="border-t border-luxury-stone/60 bg-white py-16">
           <div className="mx-auto max-w-7xl px-6">
-            <h2 className="font-serif text-3xl text-luxury-graphite">{t("highlightsTitle")}</h2>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <h2 className="font-serif text-3xl text-luxury-graphite">{t("includedTitle")}</h2>
+            <ul className="mt-8 grid gap-2 sm:grid-cols-2">
+              {pool.included.map((item) => (
+                <li key={item} className="flex items-start gap-2 font-ui text-sm text-luxury-muted">
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-luxury-forest" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="mt-12 font-serif text-2xl text-luxury-graphite">{t("highlightsTitle")}</h3>
+            <div className="mt-6 flex flex-wrap gap-3">
               {pool.highlights.map((h) => (
                 <span
                   key={h}
@@ -96,18 +113,6 @@ export default async function PiscinePage() {
                 </span>
               ))}
             </div>
-
-            <h3 className="mt-12 font-ui text-sm font-medium uppercase tracking-wider text-luxury-muted">
-              {t("includedTitle")}
-            </h3>
-            <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-              {pool.included.map((item) => (
-                <li key={item} className="flex items-start gap-2 font-ui text-sm text-luxury-muted">
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-luxury-forest" />
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 

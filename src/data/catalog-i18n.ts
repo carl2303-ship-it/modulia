@@ -113,6 +113,16 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
       description: "Matte black design accessories — towel rail, soap dish, etc.",
     },
   },
+  "ventilation-hvac-sdb": {
+    pt: {
+      title: "Ventilação AVAC casa de banho",
+      description: "Ar saudável, conforto diário — ventilação de alto desempenho e ultra-silenciosa.",
+    },
+    en: {
+      title: "Bathroom HVAC ventilation",
+      description: "Healthy air, daily comfort — high-performance, ultra-quiet ventilation.",
+    },
+  },
   "vmc-sdb": {
     pt: {
       title: "Ventilação mecânica casa de banho",
@@ -149,12 +159,12 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
     pt: {
       title: "Esquentador solar",
       description: "Em substituição do elétrico — energia renovável.",
-      priceLabel: "870 – 1 290 € c/IVA",
+      priceLabel: "870 – 1 375 € c/IVA",
     },
     en: {
       title: "Solar water heater",
       description: "Replaces the electric heater — renewable energy.",
-      priceLabel: "€870 – €1,290 incl. VAT",
+      priceLabel: "€870 – €1,375 incl. VAT",
     },
   },
   climatisation: {
@@ -336,6 +346,7 @@ export const POOL_COPY: Partial<
     {
       tagline: string;
       description: string;
+      closing: string;
       capacity: string;
       included: string[];
       highlights: string[];
@@ -343,43 +354,51 @@ export const POOL_COPY: Partial<
   >
 > = {
   pt: {
-    tagline: "Compacta, elegante e confortável.",
+    tagline: "Transforme o seu terraço num espaço de relaxamento de topo",
     description:
-      "A Sofa Pool transforma qualquer espaço num verdadeiro canto de relaxamento. Formato modular sem terraplanagem, pronta a instalar.",
-    capacity: "2 a 4 pessoas",
+      "Descubra a SOFA POOL, uma mini-piscina de design contemporâneo que alia elegância, conforto e tecnologia.\n\nCom o seu formato compacto de 2,90 m × 2,90 m e profundidade de 70 cm, integra-se perfeitamente num terraço, rooftop, jardim ou num projeto imobiliário premium.\n\nA estética minimalista com bancos integrados cria um verdadeiro espaço lounge e bem-estar.",
+    closing:
+      "Uma solução elegante para desfrutar dos prazeres da água sem as restrições de uma piscina tradicional.",
+    capacity: "Profundidade 70 cm",
     included: [
-      "Sistema de filtração integrado",
-      "Bomba de alto rendimento",
-      "Skimmer de superfície",
-      "Bicos de retorno",
-      "Iluminação LED",
-      "Revestimento interior de alta qualidade",
+      "Dimensões: 2,90 × 2,90 m",
+      "Profundidade: 70 cm",
+      "Sistema de filtração a areia",
+      "Tratamento a sal para conforto ótimo",
+      "Compatível com aquecimento para utilização prolongada",
+      "Design moderno e compacto",
+      "Ideal para terraço, rooftop, villa, hotel ou residência de topo",
     ],
     highlights: [
-      "Transbordo em 3 lados",
-      "Espaço lounge integrado",
-      "Sem terraplanagem",
-      "Transporte fácil",
+      "Instalação simplificada",
+      "Pouco espaço ocupado",
+      "Manutenção reduzida",
+      "Consumo controlado",
+      "Conforto premium e look exclusivo",
     ],
   },
   en: {
-    tagline: "Compact, elegant and comfortable.",
+    tagline: "Turn your terrace into a high-end relaxation space",
     description:
-      "The Sofa Pool turns any space into a genuine relaxation corner. Modular format with no groundworks required, ready to install.",
-    capacity: "2 to 4 people",
+      "Discover the SOFA POOL — a contemporary mini-pool that combines elegance, comfort and technology.\n\nWith its compact 2.90 m × 2.90 m footprint and 70 cm depth, it fits perfectly on a terrace, rooftop, garden or within a premium property project.\n\nIts minimalist aesthetic with integrated benches creates a true lounge and wellness space.",
+    closing:
+      "An elegant way to enjoy the pleasures of water without the constraints of a traditional pool.",
+    capacity: "Depth 70 cm",
     included: [
-      "Integrated filtration system",
-      "High-performance pump",
-      "Surface skimmer",
-      "Return jets",
-      "LED lighting",
-      "High-quality interior lining",
+      "Dimensions: 2.90 × 2.90 m",
+      "Depth: 70 cm",
+      "Sand filtration system",
+      "Salt treatment for optimal comfort",
+      "Compatible with heating for extended use",
+      "Modern, compact design",
+      "Ideal for terrace, rooftop, villa, hotel or high-end residence",
     ],
     highlights: [
-      "3-sided overflow",
-      "Integrated lounge area",
-      "No groundworks required",
-      "Easy to transport",
+      "Simplified installation",
+      "Small footprint",
+      "Low maintenance",
+      "Controlled consumption",
+      "Premium comfort and exclusive look",
     ],
   },
 };

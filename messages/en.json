@@ -4,6 +4,9 @@
     "description": "Contemporary, accessible modular homes — 1 to 4-bedroom layouts with bathroom, WC, kitchen, living room and dining area. Installed in 3 days."
   },
   "nav": {
+    "maisons": "Modular homes",
+    "bureaux": "Professional offices",
+    "piscines": "Pools",
     "particuliers": "Private clients",
     "personnaliser": "Customise",
     "personnalisation": "Personalisation",
@@ -11,7 +14,9 @@
     "pro": "Professionals",
     "craft": "Know-how",
     "contact": "Contact",
-    "devis": "Request a quote"
+    "devis": "Request a quote",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "footer": {
     "contact": "Contact",
@@ -23,28 +28,84 @@
     "heroEyebrow": "Contemporary modular homes",
     "heroTitle": "Accessible modular solutions",
     "heroPrice": "from €920 excl. VAT / m²",
-    "heroText": "1 to 4-bedroom layouts — bathroom, WC, kitchen, living room and dining area.",
+    "heroText": "Homes, offices and pools — ready-to-live modules, installed in a few days.",
+    "heroImageAlt": "Modulia modular home with Sofa Pool",
     "heroCta": "Discover the models",
     "heroPhilosophy": "Our philosophy",
     "statFrom": "From",
     "statConfigurations": "Layouts",
     "statConfigurationsValue": "1 to 4 bedrooms",
     "statInstall": "Installation",
-    "statInstallValue": "3 days"
+    "statInstallValue": "3 days",
+    "pathEyebrow": "Your project",
+    "pathTitle": "Choose your world",
+    "pathMaisons": "Modular homes",
+    "pathMaisonsText": "T0 to T4 — 13 to 100 m², from €920 excl. VAT / m².",
+    "pathBureaux": "Professional offices",
+    "pathBureauxText": "Modular workspaces and sanitary units for businesses.",
+    "pathPiscines": "Pools",
+    "pathPiscinesText": "Sofa Pool 2.90 × 2.90 m — high-end relaxation on terrace or rooftop.",
+    "pathCta": "Discover"
   },
   "models": {
     "eyebrow": "Collection",
     "title": "Our models",
-    "subtitle": "Fourteen models for private clients, from compact studios to family villas — sorted by price range.",
+    "headline": "Create your living or working space in record time",
+    "metaDescription": "Modulia modular homes — T0 to T4, 13 to 100 m², from €920 excl. VAT / m². Fast installation, premium build.",
+    "introParagraphs": [
+      "Discover MODULIA, the next-generation modular solution designed for every project: office, sales booth, Airbnb studio, extra bedroom, tiny house, primary home or contemporary extension.",
+      "From T0 to T4, our modules adapt to your needs with floor areas from 13 to 100 m²."
+    ],
+    "benefitsTitle": "A modern, fast and cost-effective solution",
+    "benefits": [
+      "Same-day rapid installation",
+      "Home delivered and assembled in just 90 days",
+      "Premium manufacturing and contemporary design",
+      "Ideal for private clients and professionals",
+      "Perfect for Airbnb investment, independent office or second home"
+    ],
+    "specsTitle": "Technical features",
+    "specs": [
+      "Available area: 13 to 100 m²",
+      "Layouts: T0 to T4",
+      "High-performance 70 mm rock-wool insulation",
+      "Fitted bathroom",
+      "Integrated WC",
+      "Pre-equipped kitchen",
+      "Air conditioning included",
+      "Large glazed openings and panoramic design",
+      "Optional terrace from 13 to 25 m²"
+    ],
+    "idealsTitle": "Ideal for",
+    "ideals": [
+      "Airbnb & short-term rental",
+      "Independent office",
+      "Professional practice",
+      "Garden studio",
+      "Home extension",
+      "Tiny house",
+      "Primary residence",
+      "Sales space or showroom"
+    ],
+    "pricingTitle": "Pricing",
+    "pricingValue": "From €920 excl. VAT / m²",
+    "closing": "An elegant, turnkey and innovative solution to live, work or invest differently.",
+    "contactCta": "Contact us",
+    "contactHint": "Personalised study, catalogue and tailored quote.",
+    "catalogEyebrow": "Collection",
+    "subtitle": "Browse our models — sorted by ascending price, filterable from T0 to T4.",
     "seeAll": "See all models →",
     "from": "from",
     "configure": "Customise",
     "discover": "Discover",
-    "pageEyebrow": "Private Clients Collection",
-    "pageIntro": "Every Modulia model is designed to blend harmoniously into its surroundings. Explore the features, plans and 3D views of each home.",
+    "pageEyebrow": "Modular homes",
+    "pageIntro": "Every Modulia model is designed to blend harmoniously into its surroundings.",
     "discoverPro": "Discover our professional offices too →",
     "signature": "Signature",
-    "viewModel": "View the model →"
+    "viewModel": "View the model →",
+    "filterAll": "All",
+    "sortPrice": "Price ascending",
+    "sortTypology": "Typology T0–T4"
   },
   "modelCatalogLinks": {
     "eyebrow": "Configure your project",
@@ -123,7 +184,7 @@
     "terrace": "Terrace",
     "airConditioning": "Air conditioning",
     "solarWaterHeater": "Solar water heater",
-    "tank150L": "150 L tank",
+    "tank150L": "100 L tank",
     "tank200L": "200 L tank",
     "contact": {
       "title": "Request a Quote",
@@ -180,11 +241,12 @@
     "title": "Pool",
     "from": "from",
     "badge": "Modular pool",
-    "metaDescription": "Sofa Pool modular pool — {price} € incl. VAT, turnkey. Compact, elegant, no groundworks.",
-    "priceLabel": "Turnkey price",
-    "devis": "Request a quote",
-    "highlightsTitle": "Highlights",
-    "includedTitle": "Included equipment",
+    "metaDescription": "SOFA POOL — 2.90 × 2.90 m mini-pool from {price} € incl. VAT. Contemporary design for terrace, rooftop and garden.",
+    "priceLabel": "Price",
+    "devis": "Contact us",
+    "contactHint": "Available options, information and delivery — get in touch.",
+    "highlightsTitle": "Product benefits",
+    "includedTitle": "Features",
     "optionsTitle": "Options",
     "linerTitle": "Our colour selection",
     "linerIntro": "Customise your Sofa Pool interior lining — 8 shades available, included in the turnkey price.",
@@ -254,44 +316,29 @@
   "construction": {
     "eyebrow": "Modulia know-how",
     "title": "Module construction principle",
-    "intro": "Partly fitted kitchen, lacquered steel and composite wood terrace — materials and insulation designed for durability and comfort.",
+    "intro": "Every module is built on a square-section galvanised steel frame, with a multi-layer envelope: rock-wool insulation, flame-retardant boards, aluminium and bamboo-fibre finishes, aluminium joinery with LOW-E glazing, and SPC flooring on fibre-cement board.",
     "imageAlt": "Exploded view of Modulia's modular construction",
     "footer": "Modulia — Contemporary, accessible modular homes",
-    "layers": [
-      { "title": "Roof", "items": ["Roof covering panels", "Insulation", "Waterproofing", "Exterior finish"] },
-      { "title": "Roofing", "items": ["XPS insulation panel", "70 mm rock wool", "Roof structure", "Suspended ceiling"] },
-      { "title": "Walls", "items": ["Exterior panel", "70 mm rock wool insulation panels", "Interior wall"] },
-      { "title": "Exterior wall", "items": ["Exterior panel", "XPS + 70 mm rock wool insulation", "Façade finish"] },
-      {
-        "title": "Joinery",
-        "items": ["Door frames", "Windows", "French windows / glazed openings"]
-      },
-      {
-        "title": "Technical wall block",
-        "items": ["Exterior panel", "XPS insulation", "Cement board", "Interior finish"]
-      },
-      {
-        "title": "Floor",
-        "items": [
-          "Wood, laminate or PVC flooring",
-          "Tiling (bathroom only)",
-          "XPS insulation panel",
-          "Structural base"
-        ]
-      },
-      { "title": "Load-bearing structure", "items": ["Galvanised steel structure"] }
-    ],
     "benefits": [
-      { "title": "High-performance insulation", "description": "XPS + 70 mm rock wool" },
-      { "title": "MVHR", "description": "Mechanical or electric ventilation" },
-      { "title": "Fast installation", "description": "On-site assembly in 3 days" },
+      {
+        "title": "Robust structure",
+        "description": "Galvanised steel frame designed for transport and installation"
+      },
+      {
+        "title": "High-performance insulation",
+        "description": "Rock wool and sandwich panels for thermal comfort"
+      },
+      {
+        "title": "LOW-E glazing",
+        "description": "Aluminium doors and windows with high energy performance"
+      },
+      {
+        "title": "Fast installation",
+        "description": "On-site assembly in a single day"
+      },
       {
         "title": "Time savings",
         "description": "Up to 80% less time than traditional construction"
-      },
-      {
-        "title": "Kitchen & terrace",
-        "description": "Partly fitted kitchen, lacquered steel and composite wood terrace"
       }
     ]
   },

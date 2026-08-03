@@ -4,48 +4,78 @@ import { MODULIA_PHILOSOPHY } from "@/data/philosophy";
 type PhilosophyContent = typeof MODULIA_PHILOSOPHY;
 
 const PT: PhilosophyContent = {
-  eyebrow: "A nossa visão",
-  title: "Filosofia de vida Modulia",
-  intro: [
-    "A Modulia é uma nova forma de habitar: simples, contemporânea e acessível.",
-    "As nossas casas modulares contemporâneas adaptam-se ao seu modo de vida, hoje e amanhã.",
+  eyebrow: "Saber-fazer",
+  title: "A génese da Modulia",
+  intro: ["Construir de outra forma. Viver de outra forma."],
+  lead: [
+    "Cada grande projeto nasce de uma convicção.",
+    "A nossa é simples: o habitat deve evoluir com a sua época.",
   ],
   body: [
-    "Compostas por módulos inteligentemente montados, as casas Modulia oferecem configurações de 1, 2, 3 ou 4 quartos. Cada modelo inclui casa de banho com WC, cozinha em parte equipada, sala convivente e canto de refeições — o coração da casa.",
-    "Consoante o modelo, é possível acrescentar um ou dois terraços em aço lacado e madeira compósita, para prolongar o espaço de vida para o exterior.",
-    "Os módulos existem em 5,90 m ou 11,80 m de comprimento, com largura fixa de 2,25 m, garantindo conceção controlada, fabrico otimizado e elevada qualidade de acabamento.",
-    "Fiel à sua filosofia, a Modulia torna a casa contemporânea acessível, com soluções económicas e performantes, a partir de 920 € HT / m².",
+    "Há mais de 30 anos, a nossa equipa imagina, concebe e realiza construções modulares para os eventos mais prestigiados da Europa. Das 24 Horas de Le Mans aos maiores concertos, passando por competições internacionais de desporto de alto nível, desenvolvemos um saber-fazer em que a exigência, a precisão e a qualidade nunca são opcionais.",
+    "Estes anos de experiência ensinaram-nos uma coisa essencial: uma construção modular pode ser muito mais do que uma solução rápida. Pode tornar-se uma nova forma de habitar — mais inteligente, mais sustentável e mais elegante.",
+    "Foi esta visão que deu origem à Modulia.",
+    "Escolhemos Portugal porque acreditamos profundamente no seu futuro. Terra de inovação, qualidade de vida e oportunidades, o país enfrenta hoje um desafio maior: permitir a cada um viver em condições acessíveis, preservando o ambiente e a identidade.",
+    "O custo do solo aumenta, os prazos de construção alongam-se e as empresas do setor têm dificuldade em responder à procura. Ao mesmo tempo, as necessidades não param de crescer: habitação para famílias, alojamento para colaboradores, residências sénior, projetos turísticos ou habitação de proximidade.",
+    "Perante esta realidade, escolhemos dar uma resposta concreta.",
+    "As casas Modulia associam arquitetura contemporânea, design intemporal e desempenho técnico de alto nível. Foram concebidas para oferecer conforto duradouro, qualidade de fabrico irrepreensível e uma rapidez de execução que responde às exigências do mundo de hoje.",
+    "Mas a Modulia é muito mais do que um construtor.",
+    "Somos um parceiro de projetos. Acompanhamos investidores privados, autarquias, municípios e profissionais do turismo na criação de lugares de vida com sentido. De aldeias turísticas a residências sénior, de programas de habitação social a bairros residenciais de nova geração, imaginamos soluções adaptadas às necessidades de cada território.",
+    "A nossa ambição é participar na transformação do habitat em Portugal, propondo construções mais responsáveis, mais acessíveis e mais sustentáveis, sem nunca abdicar da estética, da qualidade nem do conforto.",
+    "Porque construir uma casa não é apenas juntar materiais.",
+    "É criar um lugar de vida.",
+    "É oferecer perspetivas.",
+    "É imaginar o mundo que deixaremos às gerações futuras.",
   ],
-  closing:
-    "A Modulia é a escolha de um habitat moderno, evolutivo e controlado, onde design rima com liberdade.",
+  closing: [
+    "A Modulia encarna esta visão.",
+    "Uma nova maneira de construir.",
+    "Uma nova maneira de habitar.",
+    "O habitat de amanhã, disponível desde hoje.",
+  ],
   highlights: [
-    { label: "Configurações", value: "1, 2, 3 ou 4 quartos" },
-    { label: "Incluído", value: "WC · Cozinha · Sala · Refeições" },
-    { label: "Terraço", value: "Aço lacado e madeira compósita" },
-    { label: "A partir de", value: "920 € HT / m²" },
+    { label: "Experiência", value: "Mais de 30 anos" },
+    { label: "Raízes", value: "Portugal" },
+    { label: "Visão", value: "Habitat acessível e sustentável" },
+    { label: "Papel", value: "Parceiro de projetos" },
   ],
 };
 
 const EN: PhilosophyContent = {
-  eyebrow: "Our vision",
-  title: "Modulia living philosophy",
-  intro: [
-    "Modulia is a new way of living: simple, contemporary and accessible.",
-    "Our contemporary modular homes adapt to your lifestyle, today and tomorrow.",
+  eyebrow: "Know-how",
+  title: "The genesis of Modulia",
+  intro: ["Build differently. Live differently."],
+  lead: [
+    "Every great project begins with a conviction.",
+    "Ours is simple: housing must evolve with its time.",
   ],
   body: [
-    "Built from intelligently assembled modules, Modulia homes offer 1, 2, 3 or 4-bedroom layouts. Every model includes a shower room with WC, a partly fitted kitchen, a welcoming living room and dining area — the heart of the home.",
-    "Depending on the model, one or two terraces in lacquered steel and composite wood can be added to extend living outdoors.",
-    "Modules come in 5.90 m or 11.80 m lengths, with a fixed width of 2.25 m, ensuring controlled design, optimised manufacturing and high finishing quality.",
-    "True to its philosophy, Modulia makes contemporary living accessible, with economical and high-performing solutions from €920 excl. VAT / m².",
+    "For more than 30 years, our team has imagined, designed and delivered modular constructions for Europe’s most prestigious events. From the 24 Hours of Le Mans to the biggest concerts and top-level international sports competitions, we have built expertise where excellence, precision and quality are never optional.",
+    "Those years taught us something essential: modular construction can be far more than a fast solution. It can become a new way of living — smarter, more sustainable and more elegant.",
+    "That vision gave birth to Modulia.",
+    "We chose Portugal because we deeply believe in its future. A land of innovation, quality of life and opportunity, the country now faces a major challenge: enabling everyone to live in accessible conditions while preserving its environment and identity.",
+    "Land costs are rising, construction timelines are lengthening and building firms struggle to meet demand. At the same time, needs keep growing: homes for families, accommodation for employees, senior residences, tourism projects and local housing.",
+    "Faced with this reality, we chose to deliver a concrete response.",
+    "Modulia homes combine contemporary architecture, timeless design and high-level technical performance. They are designed for lasting comfort, irreproachable build quality and a speed of delivery that meets today’s world.",
+    "But Modulia is far more than a builder.",
+    "We are a project partner. We support private investors, local authorities, municipalities and tourism professionals in creating places to live that matter. From tourist villages to senior residences, social housing programmes to next-generation neighbourhoods, we design solutions tailored to each territory.",
+    "Our ambition is to help transform housing in Portugal by offering constructions that are more responsible, more accessible and more sustainable — without ever giving up aesthetics, quality or comfort.",
+    "Because building a home is not only about assembling materials.",
+    "It is creating a place to live.",
+    "It is opening up possibilities.",
+    "It is imagining the world we will leave to future generations.",
   ],
-  closing:
-    "Modulia is the choice of a modern, evolutive and controlled home, where design meets freedom.",
+  closing: [
+    "Modulia embodies that vision.",
+    "A new way to build.",
+    "A new way to live.",
+    "Tomorrow’s housing, available today.",
+  ],
   highlights: [
-    { label: "Layouts", value: "1, 2, 3 or 4 bedrooms" },
-    { label: "Included", value: "Bathroom · WC · Kitchen · Living · Dining" },
-    { label: "Terrace", value: "Lacquered steel & composite wood" },
-    { label: "From", value: "€920 excl. VAT / m²" },
+    { label: "Experience", value: "Over 30 years" },
+    { label: "Home base", value: "Portugal" },
+    { label: "Vision", value: "Accessible & sustainable housing" },
+    { label: "Role", value: "Project partner" },
   ],
 };
 

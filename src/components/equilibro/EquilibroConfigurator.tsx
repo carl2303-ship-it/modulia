@@ -69,7 +69,7 @@ export function EquilibroConfigurator() {
       {equipment.solarWater !== "none" && (
         <li>
           Chauffe-eau Solaire{" "}
-          {equipment.solarWater === "200L" ? "Ballon 200 L" : "Ballon 150 L"}
+          {equipment.solarWater === "200L" ? "Ballon 200 L" : "Ballon 100 L"}
         </li>
       )}
       {equipment.climate !== "none" && (

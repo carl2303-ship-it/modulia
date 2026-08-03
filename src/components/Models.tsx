@@ -13,7 +13,7 @@ export function Models() {
   const models = getModels(locale);
 
   return (
-    <section id="modelos" className="bg-luxury-papyrus py-24">
+    <section id="modelos" className="bg-white py-24">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center">
           <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-luxury-forest">
@@ -49,6 +49,9 @@ export function Models() {
                   className="object-cover transition duration-500 hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 33vw"
                 />
+                <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-2.5 py-1 font-ui text-[10px] uppercase tracking-wider text-luxury-graphite">
+                  {model.typology}
+                </span>
               </Link>
 
               <div className="flex flex-1 flex-col p-8">

@@ -83,7 +83,7 @@ export const KITCHEN_OPTION_SECTIONS: KitchenSection[] = [
     intro:
       "Option lave-vaisselle encastré — remplace le réfrigérateur de la cuisine de base pour plus de confort au quotidien.",
     image: cz("cozinha-lave-vaisselle.png"),
-    priceLabel: "490 € TTC",
+    priceLabel: "349 € TTC",
     includes: ["Lave-vaisselle encastré (60 cm)", "Remplacement du frigo de base"],
   },
   {
@@ -93,7 +93,7 @@ export const KITCHEN_OPTION_SECTIONS: KitchenSection[] = [
     intro:
       "Module complémentaire haut de gamme pour compléter votre cuisine de base avec un four, un micro-ondes, une cave à vin et des tiroirs de rangement.",
     image: cz("cozinha opcao premium.jpg"),
-    priceLabel: "1 790 € TTC",
+    priceLabel: "1 719 € TTC",
     includes: [
       "Four encastrable",
       "Micro-ondes intégré",
@@ -114,7 +114,7 @@ export const KITCHEN_OPTION_SECTIONS: KitchenSection[] = [
     intro:
       "Module complémentaire avec réfrigérateur, congélateur et tiroirs de rangement pour maximiser la capacité de stockage.",
     image: cz("cozinha opcao frigo-congelador.jpg"),
-    priceLabel: "1 190 € TTC",
+    priceLabel: "1 119 € TTC",
     includes: [
       "Réfrigérateur intégré",
       "Congélateur",
@@ -128,7 +128,7 @@ export const KITCHEN_OPTION_SECTIONS: KitchenSection[] = [
     intro:
       "Module complémentaire combinant four, micro-ondes et lave-linge — idéal pour les espaces où la buanderie doit rester discrète.",
     image: cz("cozinha opcao forno micro-ondas lava ropa.jpg"),
-    priceLabel: "1 690 € TTC",
+    priceLabel: "1 599 € TTC",
     includes: [
       "Four encastrable",
       "Micro-ondes intégré",
@@ -325,7 +325,7 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
       tagline: "Substituição simples em lugar do frigorífico",
       intro:
         "Opção de máquina de lavar loiça encastrada — substitui o frigorífico da cozinha base para mais conforto no dia a dia.",
-      priceLabel: "490 € c/IVA",
+      priceLabel: "349 € c/IVA",
       includes: ["Máquina de lavar loiça encastrada (60 cm)", "Substituição do frigo de base"],
     },
     en: {
@@ -333,7 +333,7 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
       tagline: "Simple swap in place of the fridge",
       intro:
         "Built-in dishwasher option — replaces the base kitchen fridge for greater everyday comfort.",
-      priceLabel: "€490 incl. VAT",
+      priceLabel: "€349 incl. VAT",
       includes: ["Built-in dishwasher (60 cm)", "Replaces the base fridge"],
     },
   },
@@ -343,7 +343,7 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
       tagline: "Forno, micro-ondas, garrafeira e arrumação",
       intro:
         "Módulo complementar topo de gama para completar a sua cozinha base com forno, micro-ondas, garrafeira e gavetas de arrumação.",
-      priceLabel: "1 790 € c/IVA",
+      priceLabel: "1 719 € c/IVA",
       includes: ["Forno encastrável", "Micro-ondas integrado", "Garrafeira", "Gavetas de arrumação"],
       highlights: [
         "Modular",
@@ -357,7 +357,7 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
       tagline: "Oven, microwave, wine cooler & storage",
       intro:
         "High-end complementary module to enhance your base kitchen with an oven, microwave, wine cooler and storage drawers.",
-      priceLabel: "€1,790 incl. VAT",
+      priceLabel: "€1,719 incl. VAT",
       includes: ["Built-in oven", "Integrated microwave", "Wine cooler", "Storage drawers"],
       highlights: [
         "Modular",
@@ -373,7 +373,7 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
       tagline: "Frigorífico, congelador e arrumação",
       intro:
         "Módulo complementar com frigorífico, congelador e gavetas de arrumação para maximizar a capacidade de armazenamento.",
-      priceLabel: "1 190 € c/IVA",
+      priceLabel: "1 119 € c/IVA",
       includes: ["Frigorífico integrado", "Congelador", "Gavetas de arrumação"],
     },
     en: {
@@ -381,7 +381,7 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
       tagline: "Fridge, freezer & storage",
       intro:
         "Complementary module with fridge, freezer and storage drawers to maximise storage capacity.",
-      priceLabel: "€1,190 incl. VAT",
+      priceLabel: "€1,119 incl. VAT",
       includes: ["Integrated fridge", "Freezer", "Storage drawers"],
     },
   },
@@ -391,7 +391,7 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
       tagline: "Forno, micro-ondas e máquina de lavar",
       intro:
         "Módulo complementar que combina forno, micro-ondas e máquina de lavar — ideal para espaços onde a lavandaria deve permanecer discreta.",
-      priceLabel: "1 690 € c/IVA",
+      priceLabel: "1 599 € c/IVA",
       includes: [
         "Forno encastrável",
         "Micro-ondas integrado",
@@ -404,7 +404,7 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
       tagline: "Oven, microwave & washing machine",
       intro:
         "Complementary module combining an oven, microwave and washing machine — ideal for spaces where the laundry area needs to stay discreet.",
-      priceLabel: "€1,690 incl. VAT",
+      priceLabel: "€1,599 incl. VAT",
       includes: ["Built-in oven", "Integrated microwave", "Washing machine", "Storage drawers"],
     },
   },

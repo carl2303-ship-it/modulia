@@ -15,6 +15,7 @@ import {
   MODEL_SLUGS,
   type ModelSlug,
 } from "@/lib/model-catalog";
+import { getModelTypology } from "@/lib/model-typology";
 
 function formatDimensions(length: string, width: string): string {
   return `${length.replace(" m", "")} × ${width}`;
@@ -152,6 +153,7 @@ export function buildModelFromSlug(
     specs: buildSpecs(override, locale),
     highlights: getStandardHighlights(locale),
     rooms: override.rooms,
+    typology: getModelTypology(override.rooms),
     area: override.area,
     capacity: override.capacity,
     configuratorUrl: `/personnaliser?model=${slug}`,
@@ -161,6 +163,6 @@ export function buildModelFromSlug(
 
 export function buildAllModels(locale: Locale = defaultLocale): ModelData[] {
   return MODEL_SLUGS.map((slug) => buildModelFromSlug(slug, locale)).sort(
-    (a, b) => b.priceFrom - a.priceFrom,
+    (a, b) => a.priceFrom - b.priceFrom,
   );
 }

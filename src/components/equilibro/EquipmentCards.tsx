@@ -87,7 +87,7 @@ export function EquipmentCard({
   );
 }
 
-/** Card chauffe-eau solaire — 150 L / 200 L */
+/** Card chauffe-eau solaire — 100 L / 200 L */
 export function SolarWaterCard({
   value,
   onChange,
@@ -119,7 +119,7 @@ export function SolarWaterCard({
       <div className="flex gap-2">
         {(
           [
-            { id: "150L" as const, label: "Ballon 150 L", price: PRICES.solarWater },
+            { id: "150L" as const, label: "Ballon 100 L", price: PRICES.solarWater },
             { id: "200L" as const, label: "Ballon 200 L", price: PRICES.solarWater200L },
           ] as const
         ).map((opt) => (

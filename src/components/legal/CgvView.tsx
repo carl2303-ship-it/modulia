@@ -13,9 +13,37 @@ const BACK_LABELS: Record<CgvLocale, string> = {
   en: "← Home",
 };
 
+function ParagraphList({ items }: { items: string[] }) {
+  return (
+    <div className="space-y-4">
+      {items.map((paragraph) => (
+        <p key={paragraph} className="font-ui text-sm leading-relaxed text-luxury-muted">
+          {paragraph}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="space-y-2 pl-1">
+      {items.map((item) => (
+        <li
+          key={item}
+          className="flex items-start gap-3 font-ui text-sm leading-relaxed text-luxury-muted"
+        >
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-luxury-forest" />
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function CgvView() {
   const locale = useLocale() as CgvLocale;
-  const content = CGV_CONTENT[locale];
+  const content = CGV_CONTENT[locale] ?? CGV_CONTENT.fr;
 
   return (
     <article className="mx-auto max-w-3xl px-6 py-16">
@@ -36,26 +64,13 @@ export function CgvView() {
               {article.title}
             </h2>
             <div className="mt-4 space-y-4">
-              {article.paragraphs.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="font-ui text-sm leading-relaxed text-luxury-muted"
-                >
-                  {paragraph}
-                </p>
-              ))}
-              {article.listItems && (
-                <ul className="space-y-2 pl-1">
-                  {article.listItems.map((item) => (
-                    <li
-                      key={item}
-                      className="flex items-start gap-3 font-ui text-sm leading-relaxed text-luxury-muted"
-                    >
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-luxury-forest" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+              <ParagraphList items={article.paragraphs} />
+              {article.listItems && <BulletList items={article.listItems} />}
+              {article.closingParagraphs && (
+                <ParagraphList items={article.closingParagraphs} />
+              )}
+              {article.closingListItems && (
+                <BulletList items={article.closingListItems} />
               )}
             </div>
           </section>
@@ -73,7 +88,7 @@ export function CgvView() {
           href="/"
           className="font-ui text-xs uppercase tracking-wider text-luxury-forest hover:underline"
         >
-          {BACK_LABELS[locale]}
+          {BACK_LABELS[locale] ?? BACK_LABELS.fr}
         </Link>
       </div>
     </article>

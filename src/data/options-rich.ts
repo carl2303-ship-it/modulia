@@ -294,6 +294,38 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
     gallery: [op("kit salle de bains.jpg")],
   },
 
+  "ventilation-hvac-sdb": {
+    tagline: "Air sain, confort au quotidien",
+    intro:
+      "Ventilation HVAC pour salle de bains — élimine efficacement l'humidité, les odeurs et les polluants, avec un fonctionnement ultra silencieux.",
+    features: [
+      {
+        title: "Ventilation performante",
+        description: "Élimine efficacement l'humidité, les odeurs et les polluants",
+      },
+      {
+        title: "Fonctionnement ultra silencieux",
+        description: "Technologie avancée pour un confort optimal",
+      },
+      {
+        title: "Protège votre salle de bains",
+        description: "Prévient l'humidité, la moisissure et les mauvaises odeurs",
+      },
+      {
+        title: "Économique & durable",
+        description: "Économie d'énergie et longue durée de vie",
+      },
+    ],
+    specs: [{ label: "Prix", value: "190 € TTC" }],
+    footerHighlights: [
+      "Air sain et confortable",
+      "Installation facile",
+      "Silencieuse et efficace",
+      "Économique et durable",
+    ],
+    gallery: [op("ventilation hvac.png")],
+  },
+
   "vmc-sdb": {
     tagline: "Air sain, confort au quotidien",
     intro:
@@ -397,18 +429,18 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Écologique", description: "Zéro émission, respectueux de l'environnement" },
     ],
     specs: [
-      { label: "Ballon 150 L", value: "870 € TTC" },
-      { label: "Ballon 200 L", value: "1 290 € TTC" },
+      { label: "Ballon 100 L", value: "870 € TTC" },
+      { label: "Ballon 200 L", value: "1 375 € TTC" },
     ],
     variants: [
       {
-        label: "Ballon 150 L",
+        label: "Ballon 100 L",
         price: "870 € TTC",
         description: "Format compact — idéal pour 1 à 2 personnes",
       },
       {
         label: "Ballon 200 L",
-        price: "1 290 € TTC",
+        price: "1 375 € TTC",
         description: "Grande capacité — idéal pour 3 à 4 personnes",
       },
     ],
@@ -1048,6 +1080,69 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
     },
   },
 
+  "ventilation-hvac-sdb": {
+    pt: {
+      tagline: "Ar saudável, conforto diário",
+      intro:
+        "Ventilação AVAC para casa de banho — elimina eficazmente a humidade, os odores e os poluentes, com funcionamento ultra-silencioso.",
+      features: [
+        {
+          title: "Ventilação de alto desempenho",
+          description: "Elimina eficazmente humidade, odores e poluentes",
+        },
+        {
+          title: "Operação ultra-silenciosa",
+          description: "Tecnologia avançada para conforto ideal",
+        },
+        {
+          title: "Protege a sua casa de banho",
+          description: "Previne humidade, bolor e maus odores",
+        },
+        {
+          title: "Económico e durável",
+          description: "Poupança de energia e longa duração",
+        },
+      ],
+      specs: [{ label: "Preço", value: "190 € c/IVA" }],
+      footerHighlights: [
+        "Ar saudável e confortável",
+        "Fácil instalação",
+        "Silencioso e eficiente",
+        "Económico e durável",
+      ],
+    },
+    en: {
+      tagline: "Healthy air, daily comfort",
+      intro:
+        "HVAC bathroom ventilation — effectively eliminates humidity, odours and pollutants, with ultra-quiet operation.",
+      features: [
+        {
+          title: "High-performance ventilation",
+          description: "Effectively eliminates humidity, odours and pollutants",
+        },
+        {
+          title: "Ultra-quiet operation",
+          description: "Advanced technology for optimal comfort",
+        },
+        {
+          title: "Protects your bathroom",
+          description: "Prevents humidity, mould and bad odours",
+        },
+        {
+          title: "Economical & durable",
+          description: "Energy saving and long lifespan",
+        },
+      ],
+      specs: [{ label: "Price", value: "€190 incl. VAT" }],
+      footerHighlights: [
+        "Healthy and comfortable air",
+        "Easy installation",
+        "Quiet and efficient",
+        "Economical & durable",
+      ],
+    },
+  },
+
   rideaux: {
     pt: {
       tagline: "Vendidas ao metro linear",
@@ -1178,18 +1273,18 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Ecológico", description: "Zero emissões, respeita o ambiente" },
       ],
       specs: [
-        { label: "Depósito 150 L", value: "870 € c/IVA" },
-        { label: "Depósito 200 L", value: "1 290 € c/IVA" },
+        { label: "Depósito 100 L", value: "870 € c/IVA" },
+        { label: "Depósito 200 L", value: "1 375 € c/IVA" },
       ],
       variants: [
         {
-          label: "Depósito 150 L",
+          label: "Depósito 100 L",
           price: "870 € c/IVA",
           description: "Formato compacto — ideal para 1 a 2 pessoas",
         },
         {
           label: "Depósito 200 L",
-          price: "1 290 € c/IVA",
+          price: "1 375 € c/IVA",
           description: "Grande capacidade — ideal para 3 a 4 pessoas",
         },
       ],
@@ -1210,18 +1305,18 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Eco-friendly", description: "Zero emissions, environmentally friendly" },
       ],
       specs: [
-        { label: "150 L tank", value: "€870 incl. VAT" },
-        { label: "200 L tank", value: "€1,290 incl. VAT" },
+        { label: "100 L tank", value: "€870 incl. VAT" },
+        { label: "200 L tank", value: "€1,375 incl. VAT" },
       ],
       variants: [
         {
-          label: "150 L tank",
+          label: "100 L tank",
           price: "€870 incl. VAT",
           description: "Compact format — ideal for 1 to 2 people",
         },
         {
           label: "200 L tank",
-          price: "€1,290 incl. VAT",
+          price: "€1,375 incl. VAT",
           description: "Large capacity — ideal for 3 to 4 people",
         },
       ],

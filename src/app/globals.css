@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #faf8f5;
+  --background: #ffffff;
   --foreground: #2a3527;
   --luxury-forest: #2e7d46;
   --luxury-graphite: #111111;
-  --luxury-papyrus: #f9f9f8;
+  --luxury-papyrus: #ffffff;
 }
 
 body {

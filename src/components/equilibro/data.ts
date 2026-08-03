@@ -5,7 +5,7 @@ import { CONFIGURATOR_PRICES } from "@/data/options-catalog";
 
 const assets = getModelAssets("equilibro");
 
-export const BASE_PRICE = 71_000;
+export const BASE_PRICE = 73_000;
 
 /** Renders 3D officiels — dossier public/equilibro/ */
 export const HERO_IMAGES = [
@@ -116,8 +116,8 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
     description:
       "Système thermodynamique haute performance pour eau chaude sanitaire, réduisant votre empreinte énergétique jusqu'à 70%.",
     specs: [
-      "Ballon 150 L — 870 € TTC",
-      "Ballon 200 L — 1 290 € TTC",
+      "Ballon 100 L — 870 € TTC",
+      "Ballon 200 L — 1 375 € TTC",
       "Remplace le chauffe-eau électrique prévu",
       "Système Haier — énergie solaire",
     ],

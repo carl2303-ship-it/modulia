@@ -4,6 +4,9 @@
     "description": "Maisons modulaires contemporaines et accessibles — configurations de 1 à 4 chambres, salle d'eau, WC, cuisine, salon et coin repas. Installation en 3 jours."
   },
   "nav": {
+    "maisons": "Maisons modulaires",
+    "bureaux": "Bureaux professionnels",
+    "piscines": "Piscines",
     "particuliers": "Particuliers",
     "personnaliser": "Personnaliser",
     "personnalisation": "Personnalisation",
@@ -11,7 +14,9 @@
     "pro": "Professionnels",
     "craft": "Savoir-faire",
     "contact": "Contact",
-    "devis": "Demander un devis"
+    "devis": "Demander un devis",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
   },
   "footer": {
     "contact": "Contact",
@@ -23,28 +28,84 @@
     "heroEyebrow": "Maisons modulaires contemporaines",
     "heroTitle": "Solutions modulaires accessibles",
     "heroPrice": "dès 920 € HT / m²",
-    "heroText": "Configurations de 1 à 4 chambres — salle d'eau, WC, cuisine, salon et coin repas.",
+    "heroText": "Maisons, bureaux et piscines — modules prêts à vivre, installer en quelques jours.",
+    "heroImageAlt": "Maison modulaire Modulia avec piscine Sofa Pool",
     "heroCta": "Découvrir les modèles",
     "heroPhilosophy": "Notre philosophie",
     "statFrom": "À partir de",
     "statConfigurations": "Configurations",
     "statConfigurationsValue": "1 à 4 chambres",
     "statInstall": "Installation",
-    "statInstallValue": "3 jours"
+    "statInstallValue": "3 jours",
+    "pathEyebrow": "Votre projet",
+    "pathTitle": "Choisissez votre univers",
+    "pathMaisons": "Maisons modulaires",
+    "pathMaisonsText": "Du T0 au T4 — 13 à 100 m², dès 920 € HT / m².",
+    "pathBureaux": "Bureaux professionnels",
+    "pathBureauxText": "Espaces de travail et sanitaires modulaires pour entreprises.",
+    "pathPiscines": "Piscines",
+    "pathPiscinesText": "Sofa Pool 2,90 × 2,90 m — détente haut de gamme sur terrasse ou rooftop.",
+    "pathCta": "Découvrir"
   },
   "models": {
     "eyebrow": "Collection",
     "title": "Nos modèles",
-    "subtitle": "Quatorze modèles pour particuliers, du studio compact à la villa familiale — classés par gamme de prix.",
+    "headline": "Créez votre espace de vie ou de travail en un temps record",
+    "metaDescription": "Maisons modulaires Modulia — T0 à T4, 13 à 100 m², dès 920 € HT / m². Installation rapide, fabrication premium.",
+    "introParagraphs": [
+      "Découvrez MODULIA, la solution modulaire nouvelle génération pensée pour répondre à tous vos projets : bureau, bulle de vente, studio Airbnb, chambre supplémentaire, tiny house, habitation principale ou extension contemporaine.",
+      "Du T0 au T4, nos modules s’adaptent à vos besoins avec des surfaces de 13 à 100 m²."
+    ],
+    "benefitsTitle": "Une solution moderne, rapide et rentable",
+    "benefits": [
+      "Installation rapide dans la journée",
+      "Maison livrée et montée en seulement 90 jours",
+      "Fabrication premium et design contemporain",
+      "Solution idéale pour particuliers et professionnels",
+      "Parfait pour investissement locatif Airbnb, bureau indépendant ou résidence secondaire"
+    ],
+    "specsTitle": "Caractéristiques techniques",
+    "specs": [
+      "Surface disponible : 13 à 100 m²",
+      "Configurations : T0 à T4",
+      "Isolation performante en laine de roche 70 mm",
+      "Salle d’eau équipée",
+      "WC intégrés",
+      "Cuisine prééquipée",
+      "Climatisation incluse",
+      "Grandes ouvertures vitrées et design panoramique",
+      "Possibilité d’ajouter une terrasse de 13 à 25 m²"
+    ],
+    "idealsTitle": "Idéal pour",
+    "ideals": [
+      "Airbnb & location courte durée",
+      "Bureau indépendant",
+      "Cabinet professionnel",
+      "Studio de jardin",
+      "Extension de maison",
+      "Tiny house",
+      "Habitation principale",
+      "Espace de vente ou showroom"
+    ],
+    "pricingTitle": "Tarifs",
+    "pricingValue": "À partir de 920 € HT / m²",
+    "closing": "Une solution clé en main, élégante et innovante pour vivre, travailler ou investir autrement.",
+    "contactCta": "Nous contacter",
+    "contactHint": "Étude personnalisée, catalogue et devis sur mesure.",
+    "catalogEyebrow": "Collection",
+    "subtitle": "Explorez nos modèles — classés par prix croissant, filtrables du T0 au T4.",
     "seeAll": "Voir tous les modèles →",
     "from": "dès",
     "configure": "Personnaliser",
     "discover": "Découvrir",
-    "pageEyebrow": "Collection Particuliers",
-    "pageIntro": "Chaque modèle Modulia est conçu pour s'intégrer harmonieusement dans son environnement. Explorez les caractéristiques, les plans et les vues 3D de chaque maison.",
+    "pageEyebrow": "Maisons modulaires",
+    "pageIntro": "Chaque modèle Modulia est conçu pour s'intégrer harmonieusement dans son environnement.",
     "discoverPro": "Découvrir aussi nos bureaux professionnels →",
     "signature": "Signature",
-    "viewModel": "Voir le modèle →"
+    "viewModel": "Voir le modèle →",
+    "filterAll": "Tous",
+    "sortPrice": "Prix croissant",
+    "sortTypology": "Typologie T0–T4"
   },
   "modelCatalogLinks": {
     "eyebrow": "Configurer votre projet",
@@ -123,7 +184,7 @@
     "terrace": "Terrasse",
     "airConditioning": "Climatisation",
     "solarWaterHeater": "Chauffe-eau solaire",
-    "tank150L": "Ballon 150 L",
+    "tank150L": "Ballon 100 L",
     "tank200L": "Ballon 200 L",
     "contact": {
       "title": "Demander un Devis",
@@ -180,11 +241,12 @@
     "title": "Piscine",
     "from": "dès",
     "badge": "Piscine modulaire",
-    "metaDescription": "Piscine modulaire Sofa Pool — {price} € TTC clé en main. Compacte, élégante, sans terrassement.",
-    "priceLabel": "Prix clé en main",
-    "devis": "Demander un devis",
-    "highlightsTitle": "Points forts",
-    "includedTitle": "Équipements inclus",
+    "metaDescription": "SOFA POOL — mini-piscine 2,90 × 2,90 m dès {price} € TTC. Design contemporain pour terrasse, rooftop et jardin.",
+    "priceLabel": "Prix",
+    "devis": "Nous contacter",
+    "contactHint": "Options disponibles, informations et livraison — contactez-nous.",
+    "highlightsTitle": "Les + produit",
+    "includedTitle": "Caractéristiques",
     "optionsTitle": "Options",
     "linerTitle": "Notre sélection de couleurs",
     "linerIntro": "Personnalisez le revêtement intérieur de votre Sofa Pool — 8 teintes disponibles, incluses dans le prix clé en main.",
@@ -254,44 +316,29 @@
   "construction": {
     "eyebrow": "Savoir-faire Modulia",
     "title": "Principe constructif des modules",
-    "intro": "Cuisine en partie aménagée, terrasse en acier laqué et bois composite — des matériaux et une isolation pensés pour la durabilité et le confort.",
+    "intro": "Chaque module repose sur une structure en acier galvanisé à section carrée, avec une enveloppe multicouche : isolation en laine de roche, panneaux ignifuges, finitions décoratives aluminium et fibre de bambou, menuiseries aluminium et vitrage LOW-E, plancher SPC sur plaque de fibrociment.",
     "imageAlt": "Vue éclatée de la construction modulaire Modulia",
     "footer": "Modulia — Maisons modulaires contemporaines et accessibles",
-    "layers": [
-      { "title": "Toit", "items": ["Panneaux de couverture", "Isolation", "Étanchéité", "Finition extérieure"] },
-      { "title": "Toiture", "items": ["Panneau isolant XPS", "Laine de roche 70 mm", "Structure de toit", "Plafond suspendu"] },
-      { "title": "Murs", "items": ["Panneau extérieur", "Panneaux isolants laine de roche 70 mm", "Mur intérieur"] },
-      { "title": "Mur extérieur", "items": ["Panneau extérieur", "Isolation XPS + laine de roche 70 mm", "Finition façade"] },
-      {
-        "title": "Menuiseries",
-        "items": ["Châssis de porte", "Fenêtres", "Baies vitrées"]
-      },
-      {
-        "title": "Bloc mur technique",
-        "items": ["Panneau extérieur", "Isolation XPS", "Plaque ciment", "Finition intérieure"]
-      },
-      {
-        "title": "Plancher",
-        "items": [
-          "Revêtement bois, parquet ou sol PVC",
-          "Carrelage (salle d'eau uniquement)",
-          "Panneau isolant XPS",
-          "Base structurelle"
-        ]
-      },
-      { "title": "Structure porteuse", "items": ["Structure acier galvanisé"] }
-    ],
     "benefits": [
-      { "title": "Isolation performante", "description": "XPS + laine de roche 70 mm" },
-      { "title": "VMC", "description": "Ventilation mécanique ou électrique" },
-      { "title": "Installation rapide", "description": "Pose en 3 jours sur site" },
+      {
+        "title": "Structure robuste",
+        "description": "Cadre en acier galvanisé conçu pour le transport et la pose"
+      },
+      {
+        "title": "Isolation performante",
+        "description": "Laine de roche et panneaux sandwich pour confort thermique"
+      },
+      {
+        "title": "Vitrage LOW-E",
+        "description": "Portes et fenêtres aluminium à haute performance énergétique"
+      },
+      {
+        "title": "Installation rapide",
+        "description": "Pose sur site dans la journée"
+      },
       {
         "title": "Gain de temps",
         "description": "Jusqu'à 80 % en moins qu'une construction traditionnelle"
-      },
-      {
-        "title": "Cuisine & terrasse",
-        "description": "Cuisine en partie aménagée, terrasse acier laqué et bois composite"
       }
     ]
   },

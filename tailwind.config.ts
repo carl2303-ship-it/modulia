@@ -31,7 +31,7 @@ const config: Config = {
           forest: "#2E7D46",
           "forest-dark": "#1F5A31",
           graphite: "#111111",
-          papyrus: "#F9F9F8",
+          papyrus: "#FFFFFF",
           stone: "#E8E6E1",
           muted: "#6B6B6B",
         },

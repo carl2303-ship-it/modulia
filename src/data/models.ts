@@ -6,6 +6,9 @@
 import { buildAllModels, buildModelFromSlug } from "@/lib/build-model";
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { MODEL_SLUGS, type ModelSlug } from "@/lib/model-catalog";
+import type { ModelTypology } from "@/lib/model-typology";
+export type { ModelTypology } from "@/lib/model-typology";
+export { getModelTypology, MODEL_TYPOLOGIES } from "@/lib/model-typology";
 
 export type ModelSpec = {
   label: string;
@@ -51,6 +54,8 @@ export type ModelData = {
   specs: ModelSpec[];
   highlights: string[];
   rooms: string;
+  /** Typologie T0–T4 (studio → 4 chambres) */
+  typology: ModelTypology;
   area: string;
   capacity: string;
   configuratorUrl?: string;
@@ -96,7 +101,7 @@ function toNavItem(model: ModelData): ModelNavItem {
   };
 }
 
-/** Modèles adjacents selon l'ordre du catalogue (prix décroissant). */
+/** Modèles adjacents selon l'ordre du catalogue (prix croissant). */
 export function getAdjacentModels(
   slug: string,
   locale: Locale = defaultLocale,

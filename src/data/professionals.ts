@@ -74,7 +74,7 @@ export const PROFESSIONAL_MODELS: ProfessionalModel[] = [
     productType: "bureau",
     description:
       "Version longue du bureau Modulia avec sanitaires intégrés. Six postes de travail, réseaux prêts à raccorder et finitions premium pour accueillir vos équipes sur chantier ou en événementiel.",
-    priceFrom: 28_000,
+    priceFrom: 24_000,
     priceNote: "Version autonome chantier / événement",
     priceTax: "ttc",
     heroImage: "/escritorios/bureau-12m.png",
@@ -104,7 +104,7 @@ export const PROFESSIONAL_MODELS: ProfessionalModel[] = [
     productType: "bureau",
     description:
       "Bureau modulaire autonome avec sanitaires intégrés (WC + lavabo). Solution idéale pour chantiers, événements et points de vente — confort, autonomie et efficacité en un seul module.",
-    priceFrom: 15_000,
+    priceFrom: 14_500,
     priceNote: "Version autonome chantier / événement",
     priceTax: "ttc",
     heroImage: "/escritorios/bureau-6m.png",

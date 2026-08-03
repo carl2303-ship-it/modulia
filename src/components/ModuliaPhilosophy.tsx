@@ -7,10 +7,11 @@ export async function ModuliaPhilosophy() {
   const raw = await getLocale();
   const locale = isLocale(raw) ? raw : defaultLocale;
   const t = await getTranslations("philosophy");
-  const { eyebrow, title, intro, body, closing, highlights } = getPhilosophy(locale);
+  const { eyebrow, title, intro, lead, body, closing, highlights } =
+    getPhilosophy(locale);
 
   return (
-    <section id="philosophie" className="scroll-mt-28 border-t border-luxury-stone/60 py-24">
+    <section id="savoir-faire" className="scroll-mt-28 border-t border-luxury-stone/50 bg-white py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-3xl text-center">
           <p className="font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-forest">
@@ -19,11 +20,21 @@ export async function ModuliaPhilosophy() {
           <h2 className="mt-4 font-serif text-4xl text-luxury-graphite sm:text-5xl">
             {title}
           </h2>
-          <div className="mt-8 space-y-4">
-            {intro.map((paragraph) => (
+          <div className="mt-8 space-y-2">
+            {intro.map((line) => (
+              <p
+                key={line}
+                className="font-serif text-2xl leading-snug text-luxury-graphite sm:text-3xl"
+              >
+                {line}
+              </p>
+            ))}
+          </div>
+          <div className="mt-8 space-y-3">
+            {lead.map((paragraph) => (
               <p
                 key={paragraph}
-                className="font-serif text-xl leading-relaxed text-luxury-graphite sm:text-2xl"
+                className="font-serif text-lg leading-relaxed text-luxury-muted sm:text-xl"
               >
                 {paragraph}
               </p>
@@ -35,7 +46,7 @@ export async function ModuliaPhilosophy() {
           {highlights.map((item) => (
             <div
               key={item.label}
-              className="rounded-2xl border border-luxury-stone bg-white px-5 py-4 text-center shadow-luxury-sm"
+              className="border-t border-luxury-graphite/15 px-2 py-4 text-center"
             >
               <p className="font-ui text-[10px] uppercase tracking-wider text-luxury-muted">
                 {item.label}
@@ -50,7 +61,7 @@ export async function ModuliaPhilosophy() {
         <div className="mx-auto mt-14 max-w-3xl space-y-6">
           {body.map((paragraph) => (
             <p
-              key={paragraph}
+              key={paragraph.slice(0, 56)}
               className="font-ui text-base leading-relaxed text-luxury-muted"
             >
               {paragraph}
@@ -58,9 +69,22 @@ export async function ModuliaPhilosophy() {
           ))}
         </div>
 
-        <p className="mx-auto mt-12 max-w-2xl text-center font-serif text-2xl italic text-luxury-graphite">
-          {closing}
-        </p>
+        <div className="mx-auto mt-14 max-w-2xl space-y-3 text-center">
+          {closing.map((line, index) => (
+            <p
+              key={line}
+              className={
+                index === 0
+                  ? "font-serif text-2xl text-luxury-graphite sm:text-3xl"
+                  : index === closing.length - 1
+                    ? "pt-2 font-serif text-xl italic text-luxury-forest sm:text-2xl"
+                    : "font-serif text-xl text-luxury-graphite sm:text-2xl"
+              }
+            >
+              {line}
+            </p>
+          ))}
+        </div>
 
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <Link
