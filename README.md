@@ -52,9 +52,17 @@ git push -u origin main
 5. Em **Site settings → Environment variables**, adicionar:
    - `NEXT_PUBLIC_SUPABASE_URL` = `https://yjnkhwgfxycbdmhfdtlp.supabase.co`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY` = *(chave anon/publishable do Supabase)*
+   - `CONTACT_TO_EMAIL` = `contact@moduliahome.com` *(opcional — já é o padrão no código)*
 6. Clicar **Deploy site**
 
 Cada push para `main` faz deploy automático.
+
+## Formulário de contacto
+
+Os pedidos são enviados por e-mail para **contact@moduliahome.com** via `/api/contact` (e guardados no Supabase se a tabela existir).
+
+- Sem `RESEND_API_KEY`: usa FormSubmit — no **primeiro** envio, confirme o e-mail de ativação na caixa `contact@moduliahome.com`.
+- Com Resend (recomendado): defina `RESEND_API_KEY` e `RESEND_FROM_EMAIL` (domínio verificado).
 
 ## Supabase
 

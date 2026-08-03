@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
-import { createClient } from "@/lib/supabase/client";
 import { CONTACT_EMAIL, CONTACT_PHONES, SHOWROOM } from "@/data/company";
 import { MODELS_PARTICULIERS } from "@/data/models";
 
@@ -29,18 +28,13 @@ export function Contact() {
     };
 
     try {
-      const supabase = createClient();
-      const { error } = await supabase.from("contact_requests").insert(payload);
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-      if (error) {
-        if (error.code === "42P01" || error.message.includes("does not exist")) {
-          setStatus("success");
-          setMessage(t("successFallback"));
-          form.reset();
-          return;
-        }
-        throw error;
-      }
+      if (!res.ok) throw new Error("send failed");
 
       setStatus("success");
       setMessage(t("successFull"));

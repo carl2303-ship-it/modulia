@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/config";
 
@@ -89,8 +89,11 @@ export function ContactModal({
   modelName = "EQUILIBRO",
 }: ContactModalProps) {
   const t = useTranslations("personnaliser");
+  const tContact = useTranslations("contact");
   const tCommon = useTranslations("common");
   const locale = useLocale() as Locale;
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
     if (!isOpen) return;
@@ -103,7 +106,49 @@ export function ContactModal({
     };
   }, [isOpen, onClose]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      setStatus("idle");
+      setFeedback("");
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("loading");
+    setFeedback("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const userMessage = String(formData.get("message") ?? "").trim();
+    const summaryText =
+      typeof configSummary === "string"
+        ? configSummary
+        : `Configuration ${modelName} — ${new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(totalPrice)} € TTC`;
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: String(formData.get("name") ?? ""),
+          email: String(formData.get("email") ?? ""),
+          phone: String(formData.get("phone") ?? ""),
+          model: modelName,
+          message: [summaryText, userMessage].filter(Boolean).join("\n\n"),
+        }),
+      });
+      if (!res.ok) throw new Error("send failed");
+      setStatus("success");
+      setFeedback(tContact("successFull"));
+      form.reset();
+    } catch {
+      setStatus("error");
+      setFeedback(tContact("errorMsg"));
+    }
+  }
 
   return (
     <div className="fixed inset-0 z-[100] flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true">
@@ -133,35 +178,58 @@ export function ContactModal({
           {configSummary}
         </div>
 
-        <form
-          className="mt-8 space-y-5"
-          onSubmit={(e) => {
-            e.preventDefault();
-            onClose();
-          }}
-        >
+        <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
           <label className="block">
             <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">{t("contact.name")}</span>
-            <input required className="mt-2 w-full border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest" />
+            <input
+              name="name"
+              required
+              className="mt-2 w-full border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest"
+            />
           </label>
           <label className="block">
             <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">{t("contact.email")}</span>
-            <input type="email" required className="mt-2 w-full border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest" />
+            <input
+              name="email"
+              type="email"
+              required
+              className="mt-2 w-full border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest"
+            />
           </label>
           <label className="block">
             <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">{t("contact.phone")}</span>
-            <input type="tel" className="mt-2 w-full border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest" />
+            <input
+              name="phone"
+              type="tel"
+              className="mt-2 w-full border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest"
+            />
           </label>
           <label className="block">
             <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">{t("contact.message")}</span>
-            <textarea rows={3} className="mt-2 w-full resize-none border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest" placeholder={t("contact.messagePlaceholder")} />
+            <textarea
+              name="message"
+              rows={3}
+              className="mt-2 w-full resize-none border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest"
+              placeholder={t("contact.messagePlaceholder")}
+            />
           </label>
           <button
             type="submit"
-            className="w-full rounded-full bg-luxury-forest py-4 font-ui text-sm font-medium uppercase tracking-[0.15em] text-white transition hover:bg-luxury-forest-dark"
+            disabled={status === "loading"}
+            className="w-full rounded-full bg-luxury-forest py-4 font-ui text-sm font-medium uppercase tracking-[0.15em] text-white transition hover:bg-luxury-forest-dark disabled:opacity-60"
           >
-            {t("contact.submit")}
+            {status === "loading" ? tContact("submitting") : t("contact.submit")}
           </button>
+          {feedback && (
+            <p
+              className={`text-center font-ui text-sm ${
+                status === "success" ? "text-luxury-forest" : "text-red-600"
+              }`}
+              role="status"
+            >
+              {feedback}
+            </p>
+          )}
         </form>
       </div>
     </div>
