@@ -2,19 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 type LogoProps = {
-  size?: "sm" | "md" | "header" | "lg" | "xl" | "hero";
+  size?: "sm" | "md" | "header" | "footer" | "lg" | "xl" | "hero";
   variant?: "default" | "white";
   linked?: boolean;
   className?: string;
 };
 
+/** Logo wide ~2.4:1 após trim — alturas em rem, largura auto */
 const sizes = {
-  sm: { width: 200, height: 200, className: "h-[4.375rem] w-auto sm:h-20" },
-  md: { width: 275, height: 275, className: "h-[6.25rem] w-auto sm:h-[7.5rem]" },
-  header: { width: 225, height: 225, className: "h-20 w-auto sm:h-[6.25rem]" },
-  lg: { width: 350, height: 350, className: "h-[7.5rem] w-auto sm:h-[8.75rem]" },
-  xl: { width: 450, height: 450, className: "h-40 w-auto sm:h-[11.25rem]" },
-  hero: { width: 600, height: 600, className: "h-[12.5rem] w-auto sm:h-[15rem] md:h-[17.5rem]" },
+  sm: { width: 240, height: 100, className: "h-14 w-auto sm:h-16" },
+  md: { width: 330, height: 138, className: "h-20 w-auto sm:h-24" },
+  header: { width: 300, height: 125, className: "h-[5.5rem] w-auto sm:h-[6.75rem]" },
+  footer: { width: 420, height: 175, className: "h-[9.375rem] w-auto sm:h-[10.9375rem]" },
+  lg: { width: 420, height: 175, className: "h-[9.375rem] w-auto sm:h-[10.9375rem]" },
+  xl: { width: 540, height: 225, className: "h-40 w-auto sm:h-[11.25rem]" },
+  hero: { width: 720, height: 300, className: "h-[12.5rem] w-auto sm:h-[15rem] md:h-[17.5rem]" },
 };
 
 export function Logo({
@@ -33,15 +35,16 @@ export function Logo({
       alt="Modulia — Maisons modulaires"
       width={width}
       height={height}
-      className={`${sizeClass} ${className}`}
+      className={`block shrink-0 ${sizeClass} ${className}`}
       priority
+      unoptimized
     />
   );
 
   if (!linked) return image;
 
   return (
-    <Link href="/" className="inline-flex shrink-0 items-center">
+    <Link href="/" className="inline-flex shrink-0 items-center" aria-label="Modulia">
       {image}
     </Link>
   );
