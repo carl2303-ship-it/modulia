@@ -30,7 +30,7 @@ export default async function PiscinePage() {
     <div className="min-h-screen bg-luxury-papyrus">
       <SiteHeader variant="light" />
 
-      <main className="pt-20">
+      <main className="pt-40">
         <section className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-2 lg:items-start">
           <div className="overflow-hidden rounded-3xl border border-luxury-stone bg-white p-4 shadow-luxury-sm">
             <Image

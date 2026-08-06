@@ -196,7 +196,7 @@ export function PersonnaliserConfigurator({
     <div className="min-h-screen bg-luxury-papyrus font-ui text-luxury-graphite">
       <SiteHeader variant="light" />
 
-      <div className="pt-20">
+      <div className="pt-40">
         <div className="lg:flex">
           <ModelVisual model={model} />
 

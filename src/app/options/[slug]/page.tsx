@@ -39,7 +39,7 @@ export default async function OptionDetailPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-luxury-papyrus">
       <SiteHeader variant="light" />
-      <main className="pt-20">
+      <main className="pt-40">
         <OptionDetailView option={option} listPath="/options" listLabel={t("title")} />
       </main>
     </div>

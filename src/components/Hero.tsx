@@ -7,7 +7,7 @@ export function Hero() {
   const t = useTranslations("home");
 
   return (
-    <section className="relative overflow-hidden bg-white md:min-h-[100svh] md:pt-20">
+    <section className="relative overflow-hidden bg-white md:min-h-[100svh] md:pt-40">
       <div className="relative h-[58svh] min-h-[320px] max-h-[560px] w-full md:absolute md:inset-0 md:h-full md:max-h-none">
         <Image
           src="/homepage-maison-piscine.png"
@@ -21,7 +21,7 @@ export function Hero() {
         <div className="absolute inset-y-0 left-0 hidden w-[42%] bg-gradient-to-r from-white/70 via-white/25 to-transparent lg:block" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-10 pt-8 md:flex md:min-h-[calc(100svh-5rem)] md:flex-col md:justify-end md:pb-20 md:pt-20 lg:justify-center lg:pb-28">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-10 pt-8 md:flex md:min-h-[calc(100svh-10rem)] md:flex-col md:justify-end md:pb-20 md:pt-40 lg:justify-center lg:pb-28">
         <div className="max-w-xl">
           <p className="font-serif text-4xl tracking-wide text-luxury-graphite sm:text-5xl lg:text-6xl">
             Modulia

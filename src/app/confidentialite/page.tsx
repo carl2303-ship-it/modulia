@@ -12,7 +12,7 @@ export default function ConfidentialitePage() {
   return (
     <div className="min-h-screen bg-luxury-papyrus">
       <SiteHeader variant="light" />
-      <main className="pt-20">
+      <main className="pt-40">
         <PrivacyView />
       </main>
     </div>

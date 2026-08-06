@@ -30,7 +30,7 @@ export default async function ModelosPage() {
     <div className="min-h-screen bg-white">
       <SiteHeader variant="light" />
 
-      <main className="pt-20">
+      <main className="pt-40">
         <section className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
           <p className="font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-forest">
             {t("pageEyebrow")}

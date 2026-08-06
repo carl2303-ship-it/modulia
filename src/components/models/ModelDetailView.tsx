@@ -29,7 +29,7 @@ export async function ModelDetailView({
     <div className="min-h-screen bg-luxury-papyrus">
       <SiteHeader variant="light" />
 
-      <main className="pt-20">
+      <main className="pt-40">
         {/* Breadcrumb */}
         <nav className="mx-auto max-w-7xl px-6 py-6 font-ui text-[11px] uppercase tracking-wider text-luxury-muted">
           <Link href="/" className="transition hover:text-luxury-forest">

@@ -9,12 +9,12 @@ type LogoProps = {
 };
 
 const sizes = {
-  sm: { width: 160, height: 64, className: "h-14 w-auto sm:h-16" },
-  md: { width: 220, height: 88, className: "h-20 w-auto sm:h-24" },
-  header: { width: 154, height: 62, className: "h-14 w-auto sm:h-[4.2rem]" },
-  lg: { width: 300, height: 120, className: "h-28 w-auto sm:h-32" },
-  xl: { width: 400, height: 160, className: "h-36 w-auto sm:h-44" },
-  hero: { width: 520, height: 208, className: "h-48 w-auto sm:h-56 md:h-64 lg:h-72" },
+  sm: { width: 320, height: 128, className: "h-28 w-auto sm:h-32" },
+  md: { width: 440, height: 176, className: "h-40 w-auto sm:h-48" },
+  header: { width: 308, height: 124, className: "h-28 w-auto sm:h-[8.4rem]" },
+  lg: { width: 600, height: 240, className: "h-56 w-auto sm:h-64" },
+  xl: { width: 800, height: 320, className: "h-72 w-auto sm:h-[22rem]" },
+  hero: { width: 1040, height: 416, className: "h-96 w-auto sm:h-[28rem] md:h-[32rem] lg:h-[36rem]" },
 };
 
 export function Logo({
@@ -24,7 +24,8 @@ export function Logo({
   className = "",
 }: LogoProps) {
   const { width, height, className: sizeClass } = sizes[size];
-  const src = variant === "white" ? "/logo-modulia-blanc.png" : "/logo-modulia.png";
+  const src =
+    variant === "white" ? "/logo-modulia-blanc.png" : "/logo-modulia.png";
 
   const image = (
     <Image
