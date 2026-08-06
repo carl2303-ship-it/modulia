@@ -1,5 +1,5 @@
 /* Service worker Modulia — réseau d'abord, cache de secours pour l'offline */
-const CACHE = "modulia-v1";
+const CACHE = "modulia-v2";
 const PRECACHE = ["/manifest.webmanifest", "/icon-192x192.png", "/icon-512x512.png"];
 
 self.addEventListener("install", (event) => {
