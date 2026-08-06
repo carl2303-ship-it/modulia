@@ -12,7 +12,7 @@ type LogoProps = {
 const sizes = {
   sm: { width: 240, height: 100, className: "h-14 w-auto sm:h-16" },
   md: { width: 330, height: 138, className: "h-20 w-auto sm:h-24" },
-  header: { width: 270, height: 113, className: "h-[4.95rem] w-auto sm:h-[6.075rem]" },
+  header: { width: 243, height: 102, className: "h-[4.455rem] w-auto sm:h-[5.468rem]" },
   footer: { width: 420, height: 175, className: "h-[9.375rem] w-auto sm:h-[10.9375rem]" },
   lg: { width: 420, height: 175, className: "h-[9.375rem] w-auto sm:h-[10.9375rem]" },
   xl: { width: 540, height: 225, className: "h-40 w-auto sm:h-[11.25rem]" },
