@@ -33,18 +33,6 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
       priceLabel: "Included in the price",
     },
   },
-  "murs-interieurs": {
-    pt: {
-      title: "Revestimentos de madeira — paredes interiores",
-      description: "Paleta de acabamentos em madeira para as suas paredes interiores.",
-      priceLabel: "Incluído no preço",
-    },
-    en: {
-      title: "Wood panelling — interior walls",
-      description: "Wood finish palette for your interior walls.",
-      priceLabel: "Included in the price",
-    },
-  },
   "murs-decoratifs": {
     pt: {
       title: "Revestimentos murais decorativos",
@@ -59,13 +47,13 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
   },
   parquet: {
     pt: {
-      title: "Parquet flutuante",
-      description: "12 cores disponíveis — instalação rápida sem cola.",
+      title: "Piso PVC",
+      description: "12 cores disponíveis — instalação rápida e manutenção fácil.",
       priceLabel: "Incluído no preço",
     },
     en: {
-      title: "Floating parquet",
-      description: "12 colours available — quick glue-free installation.",
+      title: "PVC flooring",
+      description: "12 colours available — quick installation and easy upkeep.",
       priceLabel: "Included in the price",
     },
   },
@@ -230,18 +218,6 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
   "cuisine-buanderie": {
     pt: { title: "Opção Lavandaria", description: "Forno, micro-ondas, máquina de lavar + gavetas." },
     en: { title: "Laundry option", description: "Oven, microwave, washing machine + drawers." },
-  },
-  "cuisine-contemporaine": {
-    pt: {
-      title: "Cozinha contemporânea",
-      description: "Design depurado e linhas modernas — à medida ao metro linear.",
-      priceLabel: "250 € IVA incl. / metro linear",
-    },
-    en: {
-      title: "Contemporary kitchen",
-      description: "Clean design and modern lines — bespoke per linear metre.",
-      priceLabel: "€250 incl. VAT / linear metre",
-    },
   },
   "complement-cuisine": {
     pt: {

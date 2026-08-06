@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
     const finitionSlugs = [
       "decor-exterior",
       "lames-terrasse",
-      "murs-interieurs",
       "murs-decoratifs",
       "parquet",
       "sdb-couleurs",

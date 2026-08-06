@@ -6,6 +6,9 @@ export type ContactPayload = {
   phone?: string;
   model?: string;
   message?: string;
+  /** Détail complet de la configuration (finitions, options, etc.) */
+  configuration?: string;
+  totalPrice?: string;
 };
 
 type FormSubmitResponse = {
@@ -23,6 +26,14 @@ export async function submitContactRequest(payload: ContactPayload): Promise<voi
     ? `Modulia — Nouveau contact · ${payload.model}`
     : "Modulia — Nouveau contact";
 
+  const fullMessage = [
+    payload.configuration ? `CONFIGURATION\n${payload.configuration}` : null,
+    payload.totalPrice ? `TOTAL ESTIMÉ : ${payload.totalPrice}` : null,
+    payload.message ? `MESSAGE\n${payload.message}` : null,
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
   const emailPromise = fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
     method: "POST",
     headers: {
@@ -34,7 +45,9 @@ export async function submitContactRequest(payload: ContactPayload): Promise<voi
       email: payload.email,
       phone: payload.phone ?? "",
       model: payload.model ?? "",
-      message: payload.message ?? "",
+      configuration: payload.configuration ?? "",
+      total: payload.totalPrice ?? "",
+      message: fullMessage || payload.message || "",
       _subject: subject,
       _template: "table",
       _replyto: payload.email,
@@ -62,7 +75,6 @@ export async function submitContactRequest(payload: ContactPayload): Promise<voi
   const activationPending =
     msg.includes("activat") || msg.includes("confirm") || msg.includes("verif");
 
-  // E-mail ok, ou ativação pendente + API ok, ou só API (Resend no servidor)
   if (emailAccepted || activationPending || apiRes.ok) {
     return;
   }

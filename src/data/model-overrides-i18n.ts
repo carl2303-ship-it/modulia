@@ -30,7 +30,7 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
     pt: {
       tagline: "O equilíbrio perfeito entre espaço, luz e funcionalidade.",
       description:
-        "Arquitetura cápsula de linhas depuradas e cantos arredondados. Fachada totalmente envidraçada em toda a extensão, terraço de madeira integrado e interior aberto sobre a natureza — cozinha contemporânea, sala de jantar, sala de estar e dois quartos num módulo pronto a habitar.",
+        "Arquitetura cápsula de linhas depuradas e cantos arredondados. Fachada totalmente envidraçada em toda a extensão, terraço de madeira integrado e interior aberto sobre a natureza — cozinha, sala de jantar, sala de estar e dois quartos num módulo pronto a habitar.",
       introSubline: "Concebido para uma vida harmoniosa no dia a dia.",
       capacity: "4 pessoas",
       rooms: "2 quartos",
@@ -55,7 +55,7 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
         {
           zone: "Cozinha e sala de jantar",
           detail:
-            "Bancada linear com placa de 4 fogões e lava-loiça, aberta sobre uma grande mesa de jantar.",
+            "Bancada linear com placa vitrocerâmica de 2 fogões e lava-loiça, aberta sobre uma grande mesa de jantar.",
         },
         {
           zone: "Sala e terraço",
@@ -67,7 +67,7 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
     en: {
       tagline: "The perfect balance of space, light and functionality.",
       description:
-        "Capsule architecture with clean lines and rounded corners. Fully glazed façade along the entire length, integrated timber deck and an interior open to nature — contemporary kitchen, dining area, living room and two bedrooms in a ready-to-live module.",
+        "Capsule architecture with clean lines and rounded corners. Fully glazed façade along the entire length, integrated timber deck and an interior open to nature — kitchen, dining area, living room and two bedrooms in a ready-to-live module.",
       introSubline: "Designed for harmonious everyday living.",
       capacity: "4 people",
       rooms: "2 bedrooms",
@@ -92,7 +92,7 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
         {
           zone: "Kitchen & dining",
           detail:
-            "Linear worktop with 4-burner hob and sink, opening onto a large dining table.",
+            "Linear worktop with 2-burner ceramic hob and sink, opening onto a large dining table.",
         },
         {
           zone: "Living & terrace",
@@ -152,20 +152,20 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
     pt: {
       tagline: "O essencial do conforto, num design depurado e moderno.",
       description:
-        "Cápsula modular com moldura branca arredondada e lâminas horizontais para privacidade. Duas camas, casa de banho central e espaço de estar convivente com terraço.",
+        "Cápsula modular com moldura branca arredondada e lâminas horizontais para privacidade. Dois quartos, casa de banho central e espaço de estar convivente com terraço.",
       capacity: "2 a 4 pessoas",
-      rooms: "2 camas",
-      distribution: "Espaço modulável",
+      rooms: "2 quartos",
+      distribution: "2 quartos",
       terrace: "Terraço de madeira",
       closingTagline: "A forma ao serviço do conforto.",
     },
     en: {
       tagline: "Essential comfort in a clean, modern design.",
       description:
-        "Modular capsule with rounded white frame and horizontal slats for privacy. Two sleeping spaces, central bathroom and a welcoming living area with terrace.",
+        "Modular capsule with rounded white frame and horizontal slats for privacy. Two bedrooms, central bathroom and a welcoming living area with terrace.",
       capacity: "2 to 4 people",
-      rooms: "2 berths",
-      distribution: "Flexible space",
+      rooms: "2 bedrooms",
+      distribution: "2 bedrooms",
       terrace: "Timber terrace",
       closingTagline: "Form in service of comfort.",
     },
@@ -336,20 +336,20 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
     pt: {
       tagline: "O essencial do conforto, num design depurado e moderno.",
       description:
-        "Cápsula compacta com ecrã de lâminas verticais e terraço de madeira. Quarto, casa de banho, canto de cozinha e sala num formato otimizado para 2 a 4 pessoas.",
+        "Cápsula compacta com ecrã de lâminas verticais e terraço de madeira. Dois quartos, casa de banho, canto de cozinha e sala num formato otimizado para 2 a 4 pessoas.",
       capacity: "2 a 4 pessoas",
-      rooms: "1 quarto",
-      distribution: "Espaço aberto",
+      rooms: "2 quartos",
+      distribution: "2 quartos",
       terrace: "Terraço de madeira",
       closingTagline: "O ritmo do conforto no dia a dia.",
     },
     en: {
       tagline: "Essential comfort in a clean, modern design.",
       description:
-        "Compact capsule with a vertical-slat screen and timber terrace. Bedroom, bathroom, kitchenette and living room in a format optimised for 2 to 4 people.",
+        "Compact capsule with a vertical-slat screen and timber terrace. Two bedrooms, bathroom, kitchenette and living room in a format optimised for 2 to 4 people.",
       capacity: "2 to 4 people",
-      rooms: "1 bedroom",
-      distribution: "Open space",
+      rooms: "2 bedrooms",
+      distribution: "2 bedrooms",
       terrace: "Timber terrace",
       closingTagline: "The rhythm of everyday comfort.",
     },
@@ -358,30 +358,30 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
     pt: {
       tagline: "A superfície ao serviço do conforto.",
       description:
-        "O nosso modelo mais espaçoso — 90 m² interiores, três quartos, casa de banho dupla e sala-cozinha de 42,50 m². Terraços à frente e atrás para uma arte de viver sem compromisso.",
+        "O nosso modelo mais espaçoso — 106 m² interiores, quatro quartos, casa de banho dupla e sala-cozinha generosa. Terraços à frente e atrás para uma arte de viver sem compromisso.",
       introSubline: "Preço chave na mão — qualidade, durabilidade e vida sem compromisso.",
       capacity: "4 a 8 pessoas",
-      rooms: "3 quartos",
-      distribution: "3 quartos",
+      rooms: "4 quartos",
+      distribution: "4 quartos",
       closingTagline: "A superfície ao serviço do conforto.",
       planInternalMeasures: [
-        "Q1: 12,00 m² · Q2: 10,20 m² · Q3: 10,20 m²",
-        "Sala / Cozinha: 42,50 m²",
+        "4 quartos",
+        "Sala / Cozinha espaçosa",
         "Terraço frente: 11,80 × 4,50 m",
       ],
     },
     en: {
       tagline: "Surface area in service of comfort.",
       description:
-        "Our most spacious model — 90 m² interior, three bedrooms, dual bathroom and a 42.50 m² living-kitchen. Front and rear terraces for uncompromising living.",
+        "Our most spacious model — 106 m² interior, four bedrooms, dual bathroom and a generous living-kitchen. Front and rear terraces for uncompromising living.",
       introSubline: "Turnkey price — quality, durability and uncompromising living.",
       capacity: "4 to 8 people",
-      rooms: "3 bedrooms",
-      distribution: "3 bedrooms",
+      rooms: "4 bedrooms",
+      distribution: "4 bedrooms",
       closingTagline: "Surface area in service of comfort.",
       planInternalMeasures: [
-        "BR 1: 12.00 m² · BR 2: 10.20 m² · BR 3: 10.20 m²",
-        "Living / Kitchen: 42.50 m²",
+        "4 bedrooms",
+        "Spacious living / kitchen",
         "Front terrace: 11.80 × 4.50 m",
       ],
     },

@@ -49,16 +49,9 @@ export type ExteriorFinish = {
   overlayOpacity: number;
 };
 
-export type InteriorFinish = {
-  id: string;
-  name: string;
-  texture: string;
-};
-
 export type EquipmentId =
   | "solar-water"
   | "climate"
-  | "kitchen"
   | "appliances"
   | "civil"
   | "raccordement"
@@ -72,8 +65,6 @@ export type TerraceOption = "none" | "compact" | "large";
 export type EquipmentState = {
   solarWater: SolarWaterOption;
   climate: ClimateOption;
-  kitchen: boolean;
-  kitchenMl: number;
   appliances: boolean;
   civil: boolean;
   raccordement: boolean;
@@ -99,20 +90,12 @@ export const EXTERIOR_FINISHES: ExteriorFinish[] = [
   { id: "noyer-noir", name: "Noyer noir", color: "#2C1810", overlayOpacity: 0.55 },
 ];
 
-/** Plaquages bois intérieurs */
-export const INTERIOR_FINISHES: InteriorFinish[] = [
-  { id: "pin-blanc", name: "Pin blanc", texture: "linear-gradient(135deg, #F5F0E8 0%, #E8DFD0 100%)" },
-  { id: "erable", name: "Érable", texture: "linear-gradient(135deg, #E8C9A0 0%, #D4A574 100%)" },
-  { id: "frene-gris", name: "Frêne gris", texture: "linear-gradient(135deg, #B8B5AE 0%, #9A9690 100%)" },
-  { id: "noyer-gris", name: "Noyer gris", texture: "linear-gradient(135deg, #5C4A3D 0%, #3D3229 100%)" },
-];
-
 /** Fichas técnicas para modais informativos */
 export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
   "solar-water": {
     id: "solar-water",
     title: "Chauffe-eau Solaire",
-    image: "/opcoes/chauffe eau solaire.jpg",
+    image: "/opcoes/chauffe eau solaire.png",
     description:
       "Système thermodynamique haute performance pour eau chaude sanitaire, réduisant votre empreinte énergétique jusqu'à 70%.",
     specs: [
@@ -132,18 +115,6 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
       "Standard: Pompe à chaleur réversible 3,5 kW",
       "Solaire: PAC couplée panneaux photovoltaïques",
       "Contrôle intelligent via application",
-    ],
-  },
-  kitchen: {
-    id: "kitchen",
-    title: "Cuisine Contemporaine",
-    image: "/cozinhas/cozinha base.jpg",
-    description:
-      "Aménagement sur mesure avec finitions premium, plan de travail en pierre reconstituée et éclairage LED intégré.",
-    specs: [
-      "Tarif au mètre linéaire (ML)",
-      "Façades laquées ou bois massif",
-      "Évier sous-plan et robinetterie design",
     ],
   },
   appliances: {
@@ -199,7 +170,6 @@ export const PRICES = {
   solarWater200L: CONFIGURATOR_PRICES.solarWater200L,
   climateStandard: CONFIGURATOR_PRICES.climateStandard,
   climateSolar: CONFIGURATOR_PRICES.climateSolar,
-  kitchenPerMl: CONFIGURATOR_PRICES.kitchenPerMl,
   appliances: CONFIGURATOR_PRICES.appliances,
   civil: CONFIGURATOR_PRICES.civil,
   raccordement: CONFIGURATOR_PRICES.raccordement,
@@ -216,7 +186,6 @@ export function calculateTotalPrice(equipment: EquipmentState): number {
   if (equipment.solarWater === "200L") total += PRICES.solarWater200L;
   if (equipment.climate === "standard") total += PRICES.climateStandard;
   if (equipment.climate === "solar") total += PRICES.climateSolar;
-  if (equipment.kitchen) total += PRICES.kitchenPerMl * equipment.kitchenMl;
   if (equipment.appliances) total += PRICES.appliances;
   if (equipment.civil) total += PRICES.civil;
   if (equipment.raccordement) total += PRICES.raccordement;

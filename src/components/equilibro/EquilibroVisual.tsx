@@ -13,13 +13,12 @@ const NAV_LINKS = [
 
 type EquilibroVisualProps = {
   exteriorFinish: ExteriorFinish;
-  interiorTexture: string;
 };
 
 /**
  * Painel visual esquerdo (65%) — renders 3D oficiais com galeria e overlay de cor.
  */
-export function EquilibroVisual({ exteriorFinish, interiorTexture }: EquilibroVisualProps) {
+export function EquilibroVisual({ exteriorFinish }: EquilibroVisualProps) {
   const [activeImage, setActiveImage] = useState(0);
 
   return (
@@ -57,13 +56,6 @@ export function EquilibroVisual({ exteriorFinish, interiorTexture }: EquilibroVi
 
         {/* Gradiente cinematográfico */}
         <div className="absolute inset-0 bg-gradient-to-b from-luxury-graphite/40 via-transparent to-luxury-graphite/50" />
-
-        {/* Barra de plaquage intérieur */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-1 transition-all duration-700 ease-luxury"
-          style={{ background: interiorTexture }}
-          aria-hidden
-        />
       </div>
 
       {/* Navegação + logótipo */}

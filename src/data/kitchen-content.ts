@@ -50,10 +50,9 @@ export const KITCHEN_BASE_CONTENT: KitchenSection = {
     "Meuble haut avec rangements",
     "Meuble bas avec rangement",
     "Évier inox avec mitigeur",
-    "Plaque de cuisson vitrocéramique",
+    "Plaque de cuisson vitrocéramique 2 feux",
     "Hotte intégrée",
     "Réfrigérateur encastré",
-    "Éclairage LED intégré",
   ],
   idealFor: [
     "Studios & locations",
@@ -134,20 +133,6 @@ export const KITCHEN_OPTION_SECTIONS: KitchenSection[] = [
       "Micro-ondes intégré",
       "Lave-linge",
       "Tiroirs de rangement",
-    ],
-  },
-  {
-    id: "cuisine-contemporaine",
-    title: "Cuisine contemporaine",
-    tagline: "Design épuré et lignes modernes",
-    intro:
-      "Cuisine contemporaine sur mesure — finitions élégantes, matériaux premium et intégration harmonieuse dans votre module Modulia.",
-    image: cz("cuisine contemporaine.png"),
-    priceLabel: "250 € TTC / mètre linéaire",
-    features: [
-      { title: "Design moderne", description: "Finitions élégantes et harmonieuses" },
-      { title: "Sur mesure", description: "Adaptée à la longueur de votre espace" },
-      { title: "Intégration parfaite", description: "Compatible avec tous les modules Modulia" },
     ],
   },
   {
@@ -264,10 +249,9 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
         "Armário superior com arrumação",
         "Armário inferior com arrumação",
         "Lava-loiça inox com misturadora",
-        "Placa vitrocerâmica",
+        "Placa vitrocerâmica 2 fogões",
         "Exaustor integrado",
         "Frigorífico encastrado",
-        "Iluminação LED integrada",
       ],
       idealFor: ["Estúdios e arrendamento", "Tiny houses", "Módulos habitáveis", "Escritórios e extensões"],
       availableOptions: [
@@ -299,10 +283,9 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
         "Upper cabinet with storage",
         "Lower cabinet with storage",
         "Stainless steel sink with mixer tap",
-        "Ceramic hob",
+        "2-burner ceramic hob",
         "Integrated extractor hood",
         "Built-in fridge",
-        "Integrated LED lighting",
       ],
       idealFor: ["Studios & rentals", "Tiny houses", "Habitable modules", "Offices & extensions"],
       availableOptions: [
@@ -406,32 +389,6 @@ export const KITCHEN_I18N: Record<string, Partial<Record<Locale, KitchenOverlay>
         "Complementary module combining an oven, microwave and washing machine — ideal for spaces where the laundry area needs to stay discreet.",
       priceLabel: "€1,599 incl. VAT",
       includes: ["Built-in oven", "Integrated microwave", "Washing machine", "Storage drawers"],
-    },
-  },
-  "cuisine-contemporaine": {
-    pt: {
-      title: "Cozinha contemporânea",
-      tagline: "Design depurado e linhas modernas",
-      intro:
-        "Cozinha contemporânea à medida — acabamentos elegantes, materiais premium e integração harmoniosa no seu módulo Modulia.",
-      priceLabel: "250 € c/IVA / metro linear",
-      features: [
-        { title: "Design moderno", description: "Acabamentos elegantes e harmoniosos" },
-        { title: "À medida", description: "Adaptada ao comprimento do seu espaço" },
-        { title: "Integração perfeita", description: "Compatível com todos os módulos Modulia" },
-      ],
-    },
-    en: {
-      title: "Contemporary kitchen",
-      tagline: "Clean design and modern lines",
-      intro:
-        "Bespoke contemporary kitchen — elegant finishes, premium materials and seamless integration into your Modulia module.",
-      priceLabel: "€250 incl. VAT / linear metre",
-      features: [
-        { title: "Modern design", description: "Elegant, harmonious finishes" },
-        { title: "Made to measure", description: "Adapted to your space's length" },
-        { title: "Perfect integration", description: "Compatible with all Modulia modules" },
-      ],
     },
   },
   "complement-cuisine": {

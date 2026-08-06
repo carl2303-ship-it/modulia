@@ -77,15 +77,6 @@ export const FINITION_CATEGORIES: OptionCategory[] = [
     subtitle: "Murs, sols et salle de bains — inclus dans le prix du modèle",
     items: [
       {
-        id: "murs-interieurs",
-        title: "Plaquages bois — murs intérieurs",
-        description: "Palette de finitions bois pour vos murs intérieurs.",
-        image: op("plaquages bois.jpg"),
-        priceType: "inclus",
-        priceLabel: "Inclus dans le prix",
-        includedChoice: true,
-      },
-      {
         id: "murs-decoratifs",
         title: "Revêtements muraux décoratifs",
         description: "Couleurs et finitions décoratives haut de gamme.",
@@ -96,13 +87,13 @@ export const FINITION_CATEGORIES: OptionCategory[] = [
       },
       {
         id: "parquet",
-        title: "Parquet flottant",
-        description: "12 coloris disponibles — pose rapide sans colle.",
+        title: "Sol PVC",
+        description: "12 coloris disponibles — pose rapide et entretien facile.",
         image: op("parquet flottant.jpg"),
         priceType: "inclus",
         priceLabel: "Inclus dans le prix",
         includedChoice: true,
-        highlights: ["Chêne, noyer, gris…", "Anti-humidité", "Écologique"],
+        highlights: ["Chêne, noyer, gris…", "Anti-humidité", "Entretien facile"],
       },
       {
         id: "sdb-couleurs",
@@ -157,7 +148,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
       },
       {
         id: "ventilation-hvac-sdb",
-        title: "Ventilation HVAC salle de bains",
+        title: "Ventilation VMC salle de bains",
         description: "Air sain, confort au quotidien — ventilation performante et ultra silencieuse.",
         image: op("ventilation hvac.png"),
         price: 190,
@@ -199,7 +190,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         id: "chauffe-eau-solaire",
         title: "Chauffe-eau solaire",
         description: "À la place du chauffe-eau électrique — énergie renouvelable.",
-        image: op("chauffe eau solaire.jpg"),
+        image: op("chauffe eau solaire.png"),
         priceLabel: "870 – 1 375 € TTC",
         highlights: ["Ballon 100 L · 870 €", "Ballon 200 L · 1 375 €", "Énergie solaire"],
       },
@@ -286,15 +277,6 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     description: "Four, micro-ondes, lave-linge + tiroirs de rangement.",
     image: cz("cozinha opcao forno micro-ondas lava ropa.jpg"),
     price: 1599,
-    priceType: "ttc",
-  },
-  {
-    id: "cuisine-contemporaine",
-    title: "Cuisine contemporaine",
-    description: "Design épuré et lignes modernes — sur mesure au mètre linéaire.",
-    image: cz("cuisine contemporaine.png"),
-    priceLabel: "250 € TTC / mètre linéaire",
-    price: 250,
     priceType: "ttc",
   },
   {

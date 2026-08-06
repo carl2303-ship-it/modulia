@@ -10,6 +10,8 @@ type ContactPayload = {
   phone?: string;
   model?: string;
   message?: string;
+  configuration?: string;
+  totalPrice?: string;
 };
 
 function getRecipient(): string {
@@ -29,6 +31,20 @@ async function sendWithResend(
     ? `Modulia — Nouveau contact · ${payload.model}`
     : "Modulia — Nouveau contact";
 
+  const bodyText = [
+    `Nom: ${payload.name}`,
+    `Email: ${payload.email}`,
+    payload.phone ? `Téléphone: ${payload.phone}` : null,
+    payload.model ? `Modèle: ${payload.model}` : null,
+    payload.totalPrice ? `Total estimé: ${payload.totalPrice}` : null,
+    "",
+    payload.configuration ? `CONFIGURATION\n${payload.configuration}` : null,
+    payload.configuration ? "" : null,
+    payload.message ? `MESSAGE\n${payload.message}` : null,
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
+
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -40,16 +56,7 @@ async function sendWithResend(
       to: [to],
       reply_to: payload.email,
       subject,
-      text: [
-        `Nom: ${payload.name}`,
-        `Email: ${payload.email}`,
-        payload.phone ? `Téléphone: ${payload.phone}` : null,
-        payload.model ? `Modèle: ${payload.model}` : null,
-        "",
-        payload.message || "(sans message)",
-      ]
-        .filter((line) => line !== null)
-        .join("\n"),
+      text: bodyText || "(sans message)",
     }),
   });
 
@@ -66,12 +73,20 @@ async function saveToSupabase(payload: ContactPayload): Promise<boolean> {
   if (!url || !key) return false;
 
   const supabase = createClient(url, key);
+  const messageForDb = [
+    payload.configuration ? `CONFIGURATION\n${payload.configuration}` : null,
+    payload.totalPrice ? `TOTAL ESTIMÉ : ${payload.totalPrice}` : null,
+    payload.message ? `MESSAGE\n${payload.message}` : null,
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
   const { error } = await supabase.from("contact_requests").insert({
     name: payload.name,
     email: payload.email,
     phone: payload.phone || null,
     model: payload.model || null,
-    message: payload.message || null,
+    message: messageForDb || payload.message || null,
   });
 
   if (error) {
@@ -97,6 +112,8 @@ export async function POST(request: Request) {
   const phone = String(body.phone ?? "").trim();
   const model = String(body.model ?? "").trim();
   const message = String(body.message ?? "").trim();
+  const configuration = String(body.configuration ?? "").trim();
+  const totalPrice = String(body.totalPrice ?? "").trim();
 
   if (!name || !email) {
     return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
@@ -106,7 +123,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
 
-  const payload = { name, email, phone, model, message };
+  const payload = { name, email, phone, model, message, configuration, totalPrice };
 
   let emailed = false;
   try {

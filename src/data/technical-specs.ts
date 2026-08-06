@@ -43,7 +43,11 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
   {
     id: "menuiseries",
     title: "Menuiseries",
-    items: ["Châssis de porte", "Fenêtres", "Baies vitrées"],
+    items: [
+      "Porte aluminium",
+      "Fenêtres aluminium double vitrage",
+      "Baies vitrées aluminium double vitrage",
+    ],
   },
   {
     id: "toiture",
@@ -60,7 +64,7 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
     items: [
       "Électricité : installation aux normes NFC 15-100, tableau électrique intégré",
       "Plomberie : réseaux eau chaude / froide préinstallés, évacuation PVC",
-      "Chauffage / climatisation : climatisation réversible (split ou gainable), option plancher chauffant",
+      "Climatisation : standard ou solaire",
       "Ventilation : VMC mécanique ou électrique",
     ],
   },
@@ -68,7 +72,7 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
     id: "interieur",
     title: "Aménagement intérieur",
     items: [
-      "Revêtements de sol : bois, parquet ou sol PVC",
+      "Revêtements de sol : sol PVC",
       "Carrelage : salle d'eau uniquement",
       "Cuisine : en partie aménagée",
       "Salle d'eau : douche, WC, meuble vasque préinstallés",
@@ -80,8 +84,8 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
     title: "Transport & installation",
     items: [
       "Livraison : transport routier sur camion plateau",
-      "Pose : sur dalle béton, plots béton ou pieux métalliques",
-      "Temps d'installation : 3 jours (hors raccordements)",
+      "Pose : sur dalle béton, plots béton ou pieux métalliques — préparer min. 3 semaines avant",
+      "Temps d'installation : 2 jours par module (raccordement eau, eaux usées, électricité inclus)",
     ],
   },
   {

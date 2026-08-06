@@ -143,34 +143,6 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
     gallery: [op("terrasses.png")],
   },
 
-  "murs-interieurs": {
-    tagline: "Aspect naturel, élégance intemporelle",
-    intro:
-      "Plaquage bois pour murs intérieurs — finitions chaleureuses et contemporaines, faciles à poser.",
-    features: [
-      { title: "Pin blanc", description: "Clair & lumineux" },
-      { title: "Érable", description: "Doux & chaleureux" },
-      { title: "Frêne gris", description: "Moderne & raffiné" },
-      { title: "Noyer gris", description: "Élégant, intense ou profond selon la teinte" },
-    ],
-    colors: [
-      { name: "Pin blanc", hex: "#F5F0E8", description: "Clair & lumineux" },
-      { name: "Érable", hex: "#E8C9A0", description: "Doux & chaleureux" },
-      { name: "Frêne gris", hex: "#B8B5AE", description: "Moderne & raffiné" },
-      { name: "Noyer gris clair", hex: "#8B7355", description: "Élégant & intemporel" },
-      { name: "Noyer gris foncé", hex: "#5C4A3D", description: "Intense & contemporain" },
-      { name: "Noyer gris profond", hex: "#3D3229", description: "Profond & sophistiqué" },
-    ],
-    footerHighlights: [
-      "Aspect naturel",
-      "Résistant et durable",
-      "Facile à poser",
-      "Entretien facile",
-      "Solution écologique",
-    ],
-    gallery: [op("plaquages bois.jpg")],
-  },
-
   "murs-decoratifs": {
     tagline: "Série tissu, bois et pierre",
     intro:
@@ -216,12 +188,12 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
   },
 
   parquet: {
-    tagline: "Revêtement de sol flottant",
+    tagline: "Revêtement de sol PVC",
     intro:
-      "Parquet flottant à clipser sans colle — aspect bois authentique, résistant et facile d'entretien.",
+      "Sol PVC résistant et facile d'entretien — aspect bois authentique, pose rapide et confort au quotidien.",
     features: [
-      { title: "Résistant & durable", description: "Résiste aux intempéries, UV et humidité" },
-      { title: "Installation facile", description: "Système à clips sans colle" },
+      { title: "Résistant & durable", description: "Résiste aux chocs, UV et humidité" },
+      { title: "Installation rapide", description: "Pose simple et efficace" },
       { title: "Facile à entretenir", description: "Nettoyage simple à l'eau claire" },
       { title: "Design naturel", description: "Aspect bois authentique et élégant" },
     ],
@@ -243,8 +215,8 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Résistant aux chocs",
       "Anti-humidité / anti-moisissure",
       "Protection UV",
-      "Pose rapide sans colle",
-      "Écologique et recyclable",
+      "Pose rapide",
+      "Entretien facile",
     ],
     gallery: [op("parquet flottant.jpg")],
   },
@@ -297,7 +269,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
   "ventilation-hvac-sdb": {
     tagline: "Air sain, confort au quotidien",
     intro:
-      "Ventilation HVAC pour salle de bains — élimine efficacement l'humidité, les odeurs et les polluants, avec un fonctionnement ultra silencieux.",
+      "Ventilation VMC pour salle de bains — élimine efficacement l'humidité, les odeurs et les polluants, avec un fonctionnement ultra silencieux.",
     features: [
       {
         title: "Ventilation performante",
@@ -449,7 +421,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "Eau chaude garantie toute l'année",
       "Solution durable",
     ],
-    gallery: [op("chauffe eau solaire.jpg")],
+    gallery: [op("chauffe eau solaire.png")],
   },
 
   climatisation: {
@@ -752,61 +724,6 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
     },
   },
 
-  "murs-interieurs": {
-    pt: {
-      tagline: "Aspeto natural, elegância intemporal",
-      intro:
-        "Revestimento de madeira para paredes interiores — acabamentos acolhedores e contemporâneos, fáceis de instalar.",
-      features: [
-        { title: "Pinho branco", description: "Claro e luminoso" },
-        { title: "Ácer", description: "Suave e acolhedor" },
-        { title: "Freixo cinza", description: "Moderno e refinado" },
-        { title: "Nogueira cinza", description: "Elegante, intenso ou profundo segundo o tom" },
-      ],
-      colors: [
-        { name: "Pinho branco", hex: "#F5F0E8", description: "Claro e luminoso" },
-        { name: "Ácer", hex: "#E8C9A0", description: "Suave e acolhedor" },
-        { name: "Freixo cinza", hex: "#B8B5AE", description: "Moderno e refinado" },
-        { name: "Nogueira cinza claro", hex: "#8B7355", description: "Elegante e intemporal" },
-        { name: "Nogueira cinza escuro", hex: "#5C4A3D", description: "Intenso e contemporâneo" },
-        { name: "Nogueira cinza profundo", hex: "#3D3229", description: "Profundo e sofisticado" },
-      ],
-      footerHighlights: [
-        "Aspeto natural",
-        "Resistente e durável",
-        "Fácil de instalar",
-        "Manutenção fácil",
-        "Solução ecológica",
-      ],
-    },
-    en: {
-      tagline: "Natural look, timeless elegance",
-      intro:
-        "Wood panelling for interior walls — warm, contemporary finishes, easy to install.",
-      features: [
-        { title: "White pine", description: "Light & bright" },
-        { title: "Maple", description: "Soft & warm" },
-        { title: "Grey ash", description: "Modern & refined" },
-        { title: "Grey walnut", description: "Elegant, intense or deep depending on shade" },
-      ],
-      colors: [
-        { name: "White pine", hex: "#F5F0E8", description: "Light & bright" },
-        { name: "Maple", hex: "#E8C9A0", description: "Soft & warm" },
-        { name: "Grey ash", hex: "#B8B5AE", description: "Modern & refined" },
-        { name: "Light grey walnut", hex: "#8B7355", description: "Elegant & timeless" },
-        { name: "Dark grey walnut", hex: "#5C4A3D", description: "Intense & contemporary" },
-        { name: "Deep grey walnut", hex: "#3D3229", description: "Deep & sophisticated" },
-      ],
-      footerHighlights: [
-        "Natural look",
-        "Resistant and durable",
-        "Easy to install",
-        "Easy upkeep",
-        "Eco-friendly solution",
-      ],
-    },
-  },
-
   "murs-decoratifs": {
     pt: {
       tagline: "Série tecido, madeira e pedra",
@@ -888,12 +805,12 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
 
   parquet: {
     pt: {
-      tagline: "Revestimento de piso flutuante",
+      tagline: "Revestimento de piso PVC",
       intro:
-        "Parquet flutuante com encaixe sem cola — aspeto de madeira autêntico, resistente e fácil de manter.",
+        "Piso PVC resistente e fácil de manter — aspeto de madeira autêntico, instalação rápida e conforto no dia a dia.",
       features: [
-        { title: "Resistente e durável", description: "Resiste às intempéries, UV e humidade" },
-        { title: "Instalação fácil", description: "Sistema de encaixe sem cola" },
+        { title: "Resistente e durável", description: "Resiste a impactos, UV e humidade" },
+        { title: "Instalação rápida", description: "Colocação simples e eficaz" },
         { title: "Fácil de manter", description: "Limpeza simples com água" },
         { title: "Design natural", description: "Aspeto de madeira autêntico e elegante" },
       ],
@@ -915,17 +832,17 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         "Resistente a impactos",
         "Anti-humidade / anti-mofo",
         "Proteção UV",
-        "Instalação rápida sem cola",
-        "Ecológico e reciclável",
+        "Instalação rápida",
+        "Manutenção fácil",
       ],
     },
     en: {
-      tagline: "Floating floor covering",
+      tagline: "PVC floor covering",
       intro:
-        "Glue-free clip-together floating parquet — authentic wood look, resistant and easy to maintain.",
+        "Resistant, easy-care PVC flooring — authentic wood look, quick installation and everyday comfort.",
       features: [
-        { title: "Resistant & durable", description: "Weather, UV and moisture resistant" },
-        { title: "Easy installation", description: "Glue-free clip system" },
+        { title: "Resistant & durable", description: "Impact, UV and moisture resistant" },
+        { title: "Quick installation", description: "Simple, efficient fitting" },
         { title: "Easy upkeep", description: "Simple cleaning with water" },
         { title: "Natural design", description: "Authentic, elegant wood look" },
       ],
@@ -947,8 +864,8 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         "Impact-resistant",
         "Moisture / mould resistant",
         "UV protection",
-        "Quick glue-free installation",
-        "Eco-friendly and recyclable",
+        "Quick installation",
+        "Easy upkeep",
       ],
     },
   },

@@ -170,6 +170,9 @@
     "optionsCuisine": "Opções de cozinha",
     "electromenager": "Eletrodomésticos",
     "optionsPiscine": "Opções de piscina",
+    "poolShellTitle": "Cor da piscina",
+    "poolShellSub": "Incluído — Branco, Cinzento ou Castanho.",
+    "poolShellSummary": "Cor da piscina: {color}",
     "poolLinerTitle": "Cor do liner",
     "poolLinerSub": "Incluído — escolha o tom do revestimento interior.",
     "poolLinerSummary": "Liner: {color}",
@@ -248,7 +251,9 @@
     "highlightsTitle": "As vantagens",
     "includedTitle": "Características",
     "optionsTitle": "Opções",
-    "linerTitle": "A nossa seleção de cores",
+    "shellTitle": "Cor da piscina",
+    "shellIntro": "Escolha a cor da sua piscina — Branco, Cinzento ou Castanho, incluída no preço chave na mão.",
+    "linerTitle": "Cor do liner",
     "linerIntro": "Personalize o revestimento interior da sua Sofa Pool — 8 tons disponíveis, incluídos no preço chave na mão.",
     "linerCta": "Configurar a sua piscina",
     "fabricTitle": "A nossa seleção de tecidos outdoor",
@@ -293,23 +298,18 @@
     "items": [
       {
         "title": "Construção rápida",
-        "description": "Módulos pré-fabricados em fábrica controlada — instalação em 3 dias, até 80% menos tempo do que uma construção tradicional.",
+        "description": "Módulos pré-fabricados em fábrica controlada — instalação rápida, até 80% menos tempo do que uma construção tradicional.",
         "icon": "⚡"
       },
       {
-        "title": "Isolamento de alto desempenho",
-        "description": "Painéis isolantes XPS e lã de rocha 70 mm para um conforto térmico duradouro no verão e no inverno.",
-        "icon": "🌿"
-      },
-      {
-        "title": "Personalização",
-        "description": "Configurações de 1 a 4 quartos, acabamentos e opções adaptadas ao seu projeto.",
-        "icon": "✦"
-      },
-      {
-        "title": "Equipamentos incluídos",
-        "description": "Casa de banho, WC, cozinha em parte equipada, sala e canto de refeições — o essencial, pronto a habitar.",
+        "title": "Garantia",
+        "description": "Garantia de perfeita conclusão e acompanhamento ao longo da vida útil do seu módulo.",
         "icon": "✓"
+      },
+      {
+        "title": "Serviço pós-venda",
+        "description": "Uma equipa dedicada para o acompanhar após a entrega e responder às suas necessidades.",
+        "icon": "✦"
       }
     ]
   },
@@ -382,9 +382,9 @@
         "id": "menuiseries",
         "title": "Caixilharias",
         "items": [
-          "Aro de porta",
-          "Janelas",
-          "Janelas de sacada / grandes vãos"
+          "Porta de alumínio",
+          "Janelas de alumínio com vidro duplo",
+          "Envidraçados de alumínio com vidro duplo"
         ]
       },
       {
@@ -402,7 +402,7 @@
         "items": [
           "Eletricidade: instalação segundo a norma NFC 15-100, quadro elétrico integrado",
           "Canalizações: redes de água quente / fria pré-instaladas, escoamento em PVC",
-          "Aquecimento / climatização: climatização reversível (split ou por condutas), opção de piso radiante",
+          "Climatização: standard ou solar",
           "Ventilação: VMC mecânica ou elétrica"
         ]
       },
@@ -410,7 +410,7 @@
         "id": "interieur",
         "title": "Acabamento interior",
         "items": [
-          "Revestimentos de piso: madeira, parquet ou piso PVC",
+          "Revestimentos de piso: piso PVC",
           "Azulejo: casa de banho apenas",
           "Cozinha: em parte equipada",
           "Casa de banho: duche, WC, móvel de lavatório pré-instalados",
@@ -422,8 +422,8 @@
         "title": "Transporte e instalação",
         "items": [
           "Entrega: transporte rodoviário em camião de plataforma",
-          "Instalação: sobre laje de betão, apoios de betão ou estacas metálicas",
-          "Tempo de instalação: 3 dias (excluindo ligações)"
+          "Instalação: sobre laje de betão, apoios de betão ou estacas metálicas — preparar no mínimo 3 semanas antes",
+          "Tempo de instalação: 2 dias por módulo (ligação de água, águas residuais e eletricidade incluídas)"
         ]
       },
       {

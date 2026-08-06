@@ -189,53 +189,6 @@ export function ClimateCard({ value, onChange, enabled, onToggle, onInfo }: Clim
   );
 }
 
-type KitchenCardProps = {
-  enabled: boolean;
-  ml: number;
-  onToggle: (v: boolean) => void;
-  onMlChange: (ml: number) => void;
-  onInfo: () => void;
-};
-
-export function KitchenCard({ enabled, ml, onToggle, onMlChange, onInfo }: KitchenCardProps) {
-  return (
-    <EquipmentCard
-      title="Cuisine Contemporaine"
-      priceLabel={enabled ? `+${PRICES.kitchenPerMl * ml} €` : "—"}
-      enabled={enabled}
-      onToggle={onToggle}
-      onInfo={onInfo}
-    >
-      <div className="flex items-center justify-between">
-        <span className="font-ui text-xs text-luxury-muted">Mètres linéaires</span>
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => onMlChange(Math.max(1, ml - 1))}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-luxury-stone font-ui text-luxury-graphite transition hover:border-luxury-forest"
-          >
-            −
-          </button>
-          <span className="w-8 text-center font-ui text-sm font-medium tabular-nums text-luxury-graphite">{ml}</span>
-          <button
-            type="button"
-            onClick={() => onMlChange(Math.min(12, ml + 1))}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-luxury-stone font-ui text-luxury-graphite transition hover:border-luxury-forest"
-          >
-            +
-          </button>
-        </div>
-      </div>
-      <p className="mt-2 font-ui text-[10px] text-luxury-muted">
-        {PRICES.kitchenPerMl} € / ML ·{" "}
-        <a href="/cuisines" className="text-luxury-forest hover:underline">
-          Voir les cuisines
-        </a>
-      </p>
-    </EquipmentCard>
-  );
-}
-
 type TerraceCardProps = {
   value: TerraceOption;
   onChange: (value: TerraceOption) => void;

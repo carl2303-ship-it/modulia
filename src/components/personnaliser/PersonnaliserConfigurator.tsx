@@ -22,6 +22,7 @@ import {
 } from "@/data/options-catalog";
 import { getPoolLinerById } from "@/data/pool-liner";
 import { getPoolFabricById } from "@/data/pool-fabric";
+import { getPoolShellById } from "@/data/pool-shell";
 import { FinitionPickers, buildDefaultFinitions } from "./FinitionPickers";
 import { KitchenPanel } from "./KitchenPanel";
 import { ModelPicker } from "./ModelPicker";
@@ -109,88 +110,66 @@ export function PersonnaliserConfigurator({
       maximumFractionDigits: 2,
     }).format(n)} m`;
 
-  const configSummary = (
-    <ul className="space-y-1">
-      <li>
-        <strong>{t("modelLabel")}</strong> {model?.name ?? "—"}
-      </li>
-      {allFinitions.map((f) =>
-        finitions[f.id] ? (
-          <li key={f.id}>
-            {f.title} : {finitions[f.id]}
-          </li>
-        ) : null,
-      )}
-      {paid.terrasse !== "none" && (
-        <li>
-          {t("terrace")} {paid.terrasse === "large" ? formatMeters(11.8) : formatMeters(5.9)}
-        </li>
-      )}
-      {paid.climate !== "none" && (
-        <li>
-          {t("airConditioning")} {paid.climate === "solar" ? t("solar") : t("standard")}
-        </li>
-      )}
-      {paid.solarWater !== "none" && (
-        <li>
-          {t("solarWaterHeater")}{" "}
-          {paid.solarWater === "200L" ? t("tank200L") : t("tank150L")}
-        </li>
-      )}
-      {Object.entries(paid.toggles)
-        .filter(([, on]) => on)
-        .map(([id]) => {
-          const item = allPaidOptions.find((o) => o.id === id);
-          if (!item) return null;
-          if (id === "rideaux") {
-            return (
-              <li key={id}>
-                {item.title} ({paid.rideauxMl} ml)
-              </li>
-            );
-          }
-          return <li key={id}>{item.title}</li>;
-        })}
-      {kitchen.packs.map((id) => {
-        const pack = kitchenOptions.find((o) => o.id === id);
-        return pack ? <li key={id}>{pack.title}</li> : null;
-      })}
-      {kitchen.contemporaine && (
-        <li>
-          {kitchenOptions.find((o) => o.id === "cuisine-contemporaine")?.title} —{" "}
-          {kitchen.contemporaineMl} ml
-        </li>
-      )}
-      {kitchen.appliances === "option" && electroPremium && (
-        <li>
-          {electroPremium.title} (+{formatOptionPrice(electroPremium, locale)})
-        </li>
-      )}
-      {pool.enabled && (
-        <>
-          <li>{poolModel.name}</li>
-          {getPoolLinerById(pool.linerColor, locale) && (
-            <li>
-              {t("poolLinerSummary", {
-                color: getPoolLinerById(pool.linerColor, locale)!.name,
-              })}
-            </li>
-          )}
-          {getPoolFabricById(pool.fabricColor, locale) && (
-            <li>
-              {t("poolFabricSummary", {
-                fabric: `${getPoolFabricById(pool.fabricColor, locale)!.code} — ${getPoolFabricById(pool.fabricColor, locale)!.name}`,
-              })}
-            </li>
-          )}
-          {pool.options.map((id) => {
-            const opt = poolOptions.find((o) => o.id === id);
-            return opt ? <li key={id}>{opt.title}</li> : null;
-          })}
-        </>
-      )}
-    </ul>
-  );
+  const configSummaryLines: string[] = [
+    `${t("modelLabel")} ${model?.name ?? "—"}`,
+    ...allFinitions
+      .filter((f) => finitions[f.id])
+      .map((f) => `${f.title} : ${finitions[f.id]}`),
+  ];
+
+  if (paid.terrasse !== "none") {
+    configSummaryLines.push(
+      `${t("terrace")} ${paid.terrasse === "large" ? formatMeters(11.8) : formatMeters(5.9)}`,
+    );
+  }
+  if (paid.climate !== "none") {
+    configSummaryLines.push(
+      `${t("airConditioning")} ${paid.climate === "solar" ? t("solar") : t("standard")}`,
+    );
+  }
+  if (paid.solarWater !== "none") {
+    configSummaryLines.push(
+      `${t("solarWaterHeater")} ${paid.solarWater === "200L" ? t("tank200L") : t("tank150L")}`,
+    );
+  }
+
+  for (const [id, on] of Object.entries(paid.toggles)) {
+    if (!on) continue;
+    const item = allPaidOptions.find((o) => o.id === id);
+    if (!item) continue;
+    configSummaryLines.push(
+      id === "rideaux" ? `${item.title} (${paid.rideauxMl} ml)` : item.title,
+    );
+  }
+
+  for (const id of kitchen.packs) {
+    const pack = kitchenOptions.find((o) => o.id === id);
+    if (pack) configSummaryLines.push(pack.title);
+  }
+
+  if (kitchen.appliances === "option" && electroPremium) {
+    configSummaryLines.push(
+      `${electroPremium.title} (+${formatOptionPrice(electroPremium, locale)})`,
+    );
+  }
+
+  if (pool.enabled) {
+    configSummaryLines.push(poolModel.name);
+    const shell = getPoolShellById(pool.shellColor, locale);
+    if (shell) configSummaryLines.push(t("poolShellSummary", { color: shell.name }));
+    const liner = getPoolLinerById(pool.linerColor, locale);
+    if (liner) configSummaryLines.push(t("poolLinerSummary", { color: liner.name }));
+    const fabric = getPoolFabricById(pool.fabricColor, locale);
+    if (fabric) {
+      configSummaryLines.push(
+        t("poolFabricSummary", { fabric: `${fabric.code} — ${fabric.name}` }),
+      );
+    }
+    for (const id of pool.options) {
+      const opt = poolOptions.find((o) => o.id === id);
+      if (opt) configSummaryLines.push(opt.title);
+    }
+  }
 
   return (
     <div className="min-h-screen bg-luxury-papyrus font-ui text-luxury-graphite">
@@ -362,7 +341,7 @@ export function PersonnaliserConfigurator({
         isOpen={contactOpen}
         onClose={() => setContactOpen(false)}
         totalPrice={totalPrice}
-        configSummary={configSummary}
+        configSummaryLines={configSummaryLines}
         modelName={model?.name ?? "Modulia"}
       />
 

@@ -170,6 +170,9 @@
     "optionsCuisine": "Kitchen options",
     "electromenager": "Appliances",
     "optionsPiscine": "Pool options",
+    "poolShellTitle": "Pool colour",
+    "poolShellSub": "Included — White, Grey or Brown.",
+    "poolShellSummary": "Pool colour: {color}",
     "poolLinerTitle": "Liner colour",
     "poolLinerSub": "Included — choose your interior lining shade.",
     "poolLinerSummary": "Liner: {color}",
@@ -248,7 +251,9 @@
     "highlightsTitle": "Product benefits",
     "includedTitle": "Features",
     "optionsTitle": "Options",
-    "linerTitle": "Our colour selection",
+    "shellTitle": "Pool colour",
+    "shellIntro": "Choose your pool colour — White, Grey or Brown, included in the turnkey price.",
+    "linerTitle": "Liner colour",
     "linerIntro": "Customise your Sofa Pool interior lining — 8 shades available, included in the turnkey price.",
     "linerCta": "Configure your pool",
     "fabricTitle": "Our outdoor fabric selection",
@@ -293,23 +298,18 @@
     "items": [
       {
         "title": "Fast construction",
-        "description": "Modules prefabricated in a controlled factory — installed in 3 days, up to 80% less time than traditional construction.",
+        "description": "Modules prefabricated in a controlled factory — fast installation, up to 80% less time than traditional construction.",
         "icon": "⚡"
       },
       {
-        "title": "High-performance insulation",
-        "description": "XPS insulation panels and 70 mm rock wool for lasting thermal comfort summer and winter.",
-        "icon": "🌿"
-      },
-      {
-        "title": "Customisation",
-        "description": "1 to 4-bedroom layouts, finishes and options tailored to your project.",
-        "icon": "✦"
-      },
-      {
-        "title": "Included equipment",
-        "description": "Bathroom, WC, partly fitted kitchen, living room and dining area — essential comfort, ready to live in.",
+        "title": "Warranty",
+        "description": "Perfect completion warranty and support throughout your module's lifespan.",
         "icon": "✓"
+      },
+      {
+        "title": "After-sales service",
+        "description": "A dedicated team to support you after delivery and respond to your needs.",
+        "icon": "✦"
       }
     ]
   },
@@ -382,9 +382,9 @@
         "id": "menuiseries",
         "title": "Joinery",
         "items": [
-          "Door frames",
-          "Windows",
-          "French windows / glazed openings"
+          "Aluminium door",
+          "Aluminium double-glazed windows",
+          "Aluminium double-glazed French windows"
         ]
       },
       {
@@ -402,7 +402,7 @@
         "items": [
           "Electricity: installation to NFC 15-100 standard, integrated electrical panel",
           "Plumbing: pre-installed hot / cold water networks, PVC drainage",
-          "Heating / air conditioning: reversible air conditioning (split or ducted), underfloor heating option",
+          "Air conditioning: standard or solar",
           "Ventilation: mechanical or electric MVHR"
         ]
       },
@@ -410,7 +410,7 @@
         "id": "interieur",
         "title": "Interior fittings",
         "items": [
-          "Floor coverings: wood, laminate or PVC",
+          "Floor coverings: PVC flooring",
           "Tiling: bathroom only",
           "Kitchen: partly fitted",
           "Bathroom: shower, WC, pre-installed vanity unit",
@@ -422,8 +422,8 @@
         "title": "Transport & installation",
         "items": [
           "Delivery: road transport on a flatbed truck",
-          "Installation: on a concrete slab, concrete footings or metal piles",
-          "Installation time: 3 days (excluding connections)"
+          "Installation: on a concrete slab, concrete footings or metal piles — prepare at least 3 weeks in advance",
+          "Installation time: 2 days per module (water, wastewater and electricity connections included)"
         ]
       },
       {

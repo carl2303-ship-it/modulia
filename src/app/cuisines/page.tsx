@@ -32,7 +32,6 @@ export default async function CuisinesPage() {
       s.id,
     ),
   );
-  const surMesureOptions = kitchenOptions.filter((s) => s.id === "cuisine-contemporaine");
   const applianceOption = kitchenAppliances.find((s) => s.id === "electro-option");
 
   return (
@@ -68,21 +67,6 @@ export default async function CuisinesPage() {
         {applianceOption && <KitchenSectionView section={applianceOption} />}
 
         {configOptions.map((section) => (
-          <KitchenSectionView key={section.id} section={section} />
-        ))}
-
-        <section className="border-t border-luxury-stone/60 bg-white/40 py-12">
-          <div className="mx-auto max-w-7xl px-6">
-            <h2 className="font-serif text-3xl text-luxury-graphite">
-              {t("surMesure")}
-            </h2>
-            <p className="mt-2 font-ui text-sm text-luxury-muted">
-              {t("surMesureSub")}
-            </p>
-          </div>
-        </section>
-
-        {surMesureOptions.map((section) => (
           <KitchenSectionView key={section.id} section={section} />
         ))}
 

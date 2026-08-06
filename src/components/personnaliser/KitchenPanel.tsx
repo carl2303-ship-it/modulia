@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/config";
 import {
-  CONFIGURATOR_PRICES,
   formatOptionPrice,
   getLocalizedKitchenAppliances,
   getLocalizedKitchenBase,
@@ -18,8 +17,6 @@ type KitchenPanelProps = {
   onChange: (kitchen: KitchenSelection) => void;
   onOpenDetail: (option: OptionItem) => void;
 };
-
-const NUMBER_LOCALE: Record<Locale, string> = { fr: "fr-FR", pt: "pt-PT", en: "en-GB" };
 
 export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelProps) {
   const t = useTranslations("personnaliser");
@@ -44,8 +41,7 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
     onChange({ ...kitchen, packs });
   };
 
-  const packOptions = kitchenOptions.filter((o) => o.id !== "cuisine-contemporaine");
-  const contemporaine = kitchenOptions.find((o) => o.id === "cuisine-contemporaine");
+  const packOptions = kitchenOptions;
   const electroPremium = kitchenAppliances.find((a) => a.id === "electro-option");
 
   const kitchenBaseAsOption: OptionItem = {
@@ -129,98 +125,6 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
         </div>
       </div>
 
-      {contemporaine && (
-        <div
-          className={`rounded-2xl border px-4 py-4 transition ${
-            kitchen.contemporaine
-              ? "border-luxury-forest bg-white"
-              : "border-luxury-stone bg-white/60"
-          }`}
-        >
-          <div className="flex items-start gap-3">
-            <button
-              type="button"
-              onClick={() => onOpenDetail(contemporaine)}
-              className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl"
-            >
-              <Image
-                src={contemporaine.image}
-                alt=""
-                fill
-                className="object-cover"
-                sizes="56px"
-              />
-            </button>
-            <div className="min-w-0 flex-1">
-              <div className="flex items-start justify-between gap-2">
-                <button
-                  type="button"
-                  onClick={() => onOpenDetail(contemporaine)}
-                  className="text-left"
-                >
-                  <p className="font-ui text-sm text-luxury-graphite">
-                    {contemporaine.title}
-                  </p>
-                  <p className="mt-1 font-ui text-[11px] text-luxury-muted">
-                    {formatOptionPrice(contemporaine, locale)}
-                  </p>
-                  <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                    {t("seeDetail")}
-                  </p>
-                </button>
-                <button
-                  type="button"
-                  role="switch"
-                  aria-checked={kitchen.contemporaine}
-                  onClick={() =>
-                    onChange({ ...kitchen, contemporaine: !kitchen.contemporaine })
-                  }
-                  className={`relative h-6 w-11 shrink-0 rounded-full transition ${
-                    kitchen.contemporaine ? "bg-luxury-forest" : "bg-luxury-stone"
-                  }`}
-                >
-                  <span
-                    className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition ${
-                      kitchen.contemporaine ? "left-5" : "left-0.5"
-                    }`}
-                  />
-                </button>
-              </div>
-              {kitchen.contemporaine && (
-                <div className="mt-3">
-                  <label className="flex items-center justify-between font-ui text-xs text-luxury-muted">
-                    <span>{t("linearMeters")}</span>
-                    <span className="text-luxury-graphite">
-                      {kitchen.contemporaineMl} ml
-                    </span>
-                  </label>
-                  <input
-                    type="range"
-                    min={2}
-                    max={10}
-                    value={kitchen.contemporaineMl}
-                    onChange={(e) =>
-                      onChange({
-                        ...kitchen,
-                        contemporaineMl: Number(e.target.value),
-                      })
-                    }
-                    className="mt-2 w-full accent-luxury-forest"
-                  />
-                  <p className="mt-1 font-ui text-[11px] text-luxury-forest">
-                    +
-                    {new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(
-                      CONFIGURATOR_PRICES.kitchenPerMl * kitchen.contemporaineMl,
-                    )}{" "}
-                    €
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
       <div>
         <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
           {t("electromenager")}
@@ -228,24 +132,39 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
         <div className="mt-3 space-y-2">
           {electroPremium && (
             <div
-              className={`flex items-center gap-3 rounded-xl border px-3 py-2.5 transition ${
+              className={`flex w-full items-start gap-3 rounded-2xl border px-4 py-3 transition ${
                 kitchen.appliances === "option"
-                  ? "border-luxury-forest bg-luxury-forest/5"
+                  ? "border-luxury-forest bg-white"
                   : "border-luxury-stone bg-white/60"
               }`}
             >
               <button
                 type="button"
                 onClick={() => onOpenDetail(electroPremium)}
-                className="relative h-12 w-12 shrink-0 overflow-hidden rounded-lg"
+                className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl"
               >
                 <Image
                   src={electroPremium.image}
                   alt=""
                   fill
                   className="object-cover"
-                  sizes="48px"
+                  sizes="56px"
                 />
+              </button>
+              <button
+                type="button"
+                onClick={() => onOpenDetail(electroPremium)}
+                className="min-w-0 flex-1 text-left"
+              >
+                <p className="font-ui text-sm text-luxury-graphite">
+                  {electroPremium.title}
+                </p>
+                <p className="mt-0.5 font-ui text-[11px] text-luxury-muted">
+                  {formatOptionPrice(electroPremium, locale)}
+                </p>
+                <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
+                  {t("seeDetail")}
+                </p>
               </button>
               <button
                 type="button"
@@ -255,20 +174,14 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
                     appliances: kitchen.appliances === "option" ? "base" : "option",
                   })
                 }
-                className="min-w-0 flex-1 text-left"
+                aria-pressed={kitchen.appliances === "option"}
+                className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded border ${
+                  kitchen.appliances === "option"
+                    ? "border-luxury-forest bg-luxury-forest text-white"
+                    : "border-luxury-stone"
+                }`}
               >
-                <p
-                  className={`font-ui text-xs ${
-                    kitchen.appliances === "option"
-                      ? "text-luxury-forest"
-                      : "text-luxury-muted"
-                  }`}
-                >
-                  {electroPremium.title} — +{formatOptionPrice(electroPremium, locale)}
-                </p>
-                <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                  {t("seeDetail")}
-                </p>
+                {kitchen.appliances === "option" ? "✓" : ""}
               </button>
             </div>
           )}

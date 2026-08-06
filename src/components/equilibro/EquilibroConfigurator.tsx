@@ -5,12 +5,10 @@ import { useMemo, useState } from "react";
 import { ConfigSection } from "./ConfigSection";
 import { EquilibroVisual } from "./EquilibroVisual";
 import { ExteriorPicker } from "./ExteriorPicker";
-import { InteriorPicker } from "./InteriorPicker";
 import { TechnicalSection } from "./TechnicalSection";
 import {
   ClimateCard,
   EquipmentCard,
-  KitchenCard,
   SolarWaterCard,
   TerraceCard,
   type EquipmentId,
@@ -21,7 +19,6 @@ import {
   calculateTotalPrice,
   EQUIPMENT_INFO,
   EXTERIOR_FINISHES,
-  INTERIOR_FINISHES,
   PRICES,
   type EquipmentState,
 } from "./data";
@@ -29,8 +26,6 @@ import {
 const INITIAL_EQUIPMENT: EquipmentState = {
   solarWater: "none",
   climate: "none",
-  kitchen: false,
-  kitchenMl: 4,
   appliances: false,
   civil: false,
   raccordement: false,
@@ -44,14 +39,12 @@ const INITIAL_EQUIPMENT: EquipmentState = {
  */
 export function EquilibroConfigurator() {
   const [exteriorId, setExteriorId] = useState(EXTERIOR_FINISHES[0].id);
-  const [interiorId, setInteriorId] = useState(INTERIOR_FINISHES[0].id);
   const [equipment, setEquipment] = useState<EquipmentState>(INITIAL_EQUIPMENT);
   const [openSection, setOpenSection] = useState<string>("exterior");
   const [infoModalId, setInfoModalId] = useState<EquipmentId | null>(null);
   const [contactOpen, setContactOpen] = useState(false);
 
   const exteriorFinish = EXTERIOR_FINISHES.find((f) => f.id === exteriorId)!;
-  const interiorFinish = INTERIOR_FINISHES.find((f) => f.id === interiorId)!;
   const totalPrice = useMemo(() => calculateTotalPrice(equipment), [equipment]);
 
   const toggleSection = (id: string) =>
@@ -62,38 +55,28 @@ export function EquilibroConfigurator() {
     value: EquipmentState[K]
   ) => setEquipment((prev) => ({ ...prev, [key]: value }));
 
-  const configSummary = (
-    <ul className="space-y-1">
-      <li>Extérieur: {exteriorFinish.name}</li>
-      <li>Intérieur: {interiorFinish.name}</li>
-      {equipment.solarWater !== "none" && (
-        <li>
-          Chauffe-eau Solaire{" "}
-          {equipment.solarWater === "200L" ? "Ballon 200 L" : "Ballon 100 L"}
-        </li>
-      )}
-      {equipment.climate !== "none" && (
-        <li>Climatisation {equipment.climate === "solar" ? "Solaire" : "Standard"}</li>
-      )}
-      {equipment.kitchen && <li>Cuisine {equipment.kitchenMl} ML</li>}
-      {equipment.appliances && <li>Kit Électroménager</li>}
-      {equipment.civil && <li>Génie Civil</li>}
-      {equipment.raccordement && <li>Raccordement</li>}
-      {equipment.kitExterieur && <li>Kit extérieur</li>}
-      {equipment.terrace !== "none" && (
-        <li>Terrasse {equipment.terrace === "large" ? "11,80 m" : "5,90 m"}</li>
-      )}
-    </ul>
-  );
+  const configSummaryLines = [
+    `Extérieur: ${exteriorFinish.name}`,
+    equipment.solarWater !== "none"
+      ? `Chauffe-eau Solaire ${equipment.solarWater === "200L" ? "Ballon 200 L" : "Ballon 100 L"}`
+      : null,
+    equipment.climate !== "none"
+      ? `Climatisation ${equipment.climate === "solar" ? "Solaire" : "Standard"}`
+      : null,
+    equipment.appliances ? "Kit Électroménager" : null,
+    equipment.civil ? "Génie Civil" : null,
+    equipment.raccordement ? "Raccordement" : null,
+    equipment.kitExterieur ? "Kit extérieur" : null,
+    equipment.terrace !== "none"
+      ? `Terrasse ${equipment.terrace === "large" ? "11,80 m" : "5,90 m"}`
+      : null,
+  ].filter((line): line is string => Boolean(line));
 
   return (
     <div className="min-h-screen bg-luxury-papyrus font-ui text-luxury-graphite">
       <div className="lg:flex">
         {/* ─── Lado Esquerdo: Visual fixo (65%) ─── */}
-        <EquilibroVisual
-          exteriorFinish={exteriorFinish}
-          interiorTexture={interiorFinish.texture}
-        />
+        <EquilibroVisual exteriorFinish={exteriorFinish} />
 
         {/* ─── Lado Direito: Painel de configuração (35%) ─── */}
         <main className="config-panel-scroll relative min-h-screen w-full overflow-y-auto pb-32 lg:ml-[65%] lg:w-[35%] lg:pb-28">
@@ -143,25 +126,10 @@ export function EquilibroConfigurator() {
               />
             </ConfigSection>
 
-            {/* Fase 2: Plaquage Intérieur */}
-            <ConfigSection
-              id="interior"
-              phase="Phase 02"
-              title="Plaquage Bois Pour Murs Intérieurs"
-              isOpen={openSection === "interior"}
-              onToggle={() => toggleSection("interior")}
-            >
-              <InteriorPicker
-                finishes={INTERIOR_FINISHES}
-                selectedId={interiorId}
-                onSelect={setInteriorId}
-              />
-            </ConfigSection>
-
-            {/* Fase 3: Équipements */}
+            {/* Fase 2: Équipements */}
             <ConfigSection
               id="equipment"
-              phase="Phase 03"
+              phase="Phase 02"
               title="Équipements & Ingénierie"
               subtitle="Personnalisez votre installation"
               isOpen={openSection === "equipment"}
@@ -186,14 +154,6 @@ export function EquilibroConfigurator() {
                     updateEquipment("climate", v ? "standard" : "none")
                   }
                   onInfo={() => setInfoModalId("climate")}
-                />
-
-                <KitchenCard
-                  enabled={equipment.kitchen}
-                  ml={equipment.kitchenMl}
-                  onToggle={(v) => updateEquipment("kitchen", v)}
-                  onMlChange={(ml) => updateEquipment("kitchenMl", ml)}
-                  onInfo={() => setInfoModalId("kitchen")}
                 />
 
                 <EquipmentCard
@@ -290,7 +250,7 @@ export function EquilibroConfigurator() {
         isOpen={contactOpen}
         onClose={() => setContactOpen(false)}
         totalPrice={totalPrice}
-        configSummary={configSummary}
+        configSummaryLines={configSummaryLines}
       />
     </div>
   );

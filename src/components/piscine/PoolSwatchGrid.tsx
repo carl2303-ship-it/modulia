@@ -4,7 +4,8 @@ import Image from "next/image";
 
 export type PoolSwatchItem = {
   id: string;
-  image: string;
+  image?: string;
+  hex?: string;
   label: string;
   title?: string;
 };
@@ -43,15 +44,18 @@ export function PoolSwatchGrid({
           <>
             <div
               className={`relative ${swatchSize} overflow-hidden rounded-lg border border-black/10 shadow-sm`}
+              style={!item.image && item.hex ? { backgroundColor: item.hex } : undefined}
             >
-              <Image
-                src={item.image}
-                alt={item.label}
-                fill
-                className="object-cover"
-                sizes={variant === "dense" ? "40px" : "44px"}
-                quality={90}
-              />
+              {item.image ? (
+                <Image
+                  src={item.image}
+                  alt={item.label}
+                  fill
+                  className="object-cover"
+                  sizes={variant === "dense" ? "40px" : "44px"}
+                  quality={90}
+                />
+              ) : null}
             </div>
             <span
               className={`mt-1 block max-w-[4.5rem] truncate text-center font-ui leading-tight ${

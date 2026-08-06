@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/config";
 import { submitContactRequest } from "@/lib/submit-contact";
@@ -75,7 +75,8 @@ type ContactModalProps = {
   isOpen: boolean;
   onClose: () => void;
   totalPrice: number;
-  configSummary: ReactNode;
+  /** Lignes affichées dans le modal et envoyées dans l'e-mail */
+  configSummaryLines: string[];
   modelName?: string;
 };
 
@@ -86,7 +87,7 @@ export function ContactModal({
   isOpen,
   onClose,
   totalPrice,
-  configSummary,
+  configSummaryLines,
   modelName = "EQUILIBRO",
 }: ContactModalProps) {
   const t = useTranslations("personnaliser");
@@ -116,6 +117,8 @@ export function ContactModal({
 
   if (!isOpen) return null;
 
+  const priceLabel = `${new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(totalPrice)} € ${tCommon("ttc")}`;
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
@@ -124,10 +127,7 @@ export function ContactModal({
     const form = event.currentTarget;
     const formData = new FormData(form);
     const userMessage = String(formData.get("message") ?? "").trim();
-    const summaryText =
-      typeof configSummary === "string"
-        ? configSummary
-        : `Configuration ${modelName} — ${new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(totalPrice)} € TTC`;
+    const configuration = configSummaryLines.filter(Boolean).join("\n");
 
     try {
       await submitContactRequest({
@@ -135,7 +135,9 @@ export function ContactModal({
         email: String(formData.get("email") ?? ""),
         phone: String(formData.get("phone") ?? ""),
         model: modelName,
-        message: [summaryText, userMessage].filter(Boolean).join("\n\n"),
+        message: userMessage,
+        configuration,
+        totalPrice: priceLabel,
       });
       setStatus("success");
       setFeedback(tContact("successFull"));
@@ -165,13 +167,15 @@ export function ContactModal({
         <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">{t("contact.title")}</h2>
         <p className="mt-2 font-ui text-sm text-luxury-muted">
           {t("contact.estimatedAt")}{" "}
-          <strong className="text-luxury-graphite">
-            {new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(totalPrice)} € {tCommon("ttc")}
-          </strong>
+          <strong className="text-luxury-graphite">{priceLabel}</strong>
         </p>
 
         <div className="mt-4 rounded-2xl border border-luxury-stone bg-white/60 p-4 font-ui text-xs text-luxury-muted">
-          {configSummary}
+          <ul className="space-y-1">
+            {configSummaryLines.map((line, index) => (
+              <li key={`${index}-${line}`}>{line}</li>
+            ))}
+          </ul>
         </div>
 
         <form className="mt-8 space-y-5" onSubmit={handleSubmit}>

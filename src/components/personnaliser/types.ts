@@ -13,13 +13,12 @@ export type PaidSelection = {
 
 export type KitchenSelection = {
   packs: string[];
-  contemporaine: boolean;
-  contemporaineMl: number;
   appliances: "base" | "option";
 };
 
 export type PoolSelection = {
   enabled: boolean;
+  shellColor: string;
   linerColor: string;
   fabricColor: string;
   options: string[];
@@ -43,13 +42,12 @@ export const INITIAL_PAID: PaidSelection = {
 
 export const INITIAL_KITCHEN: KitchenSelection = {
   packs: [],
-  contemporaine: false,
-  contemporaineMl: 4,
   appliances: "base",
 };
 
 export const INITIAL_POOL: PoolSelection = {
   enabled: false,
+  shellColor: "blanc",
   linerColor: "bleu-france",
   fabricColor: "ad-1150074",
   options: [],

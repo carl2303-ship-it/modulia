@@ -48,10 +48,6 @@ export function calculateKitchenPrice(kitchen: KitchenSelection): number {
     if (pack?.price != null) total += pack.price;
   }
 
-  if (kitchen.contemporaine) {
-    total += CONFIGURATOR_PRICES.kitchenPerMl * kitchen.contemporaineMl;
-  }
-
   if (kitchen.appliances === "option") {
     const premium = KITCHEN_APPLIANCES.find((o) => o.id === "electro-option");
     if (premium?.price != null) total += premium.price;

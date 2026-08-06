@@ -16,9 +16,8 @@ const SANITAIRES_PT: Partial<ProfessionalModel> = {
     { src: "/sanitaires/sanitaires-toilettes-femmes.png", label: "Sanitários femininos" },
   ],
   specs: [
-    { label: "Dimensões exteriores", value: "5,60 × 2,25 m" },
+    { label: "Dimensões exteriores", value: "5,90 × 2,25 m" },
     { label: "Altura exterior", value: "2,55 m" },
-    { label: "Planta do módulo", value: "5,90 × 2,25 m" },
     { label: "Estrutura", value: "Aço galvanizado robusto" },
     { label: "Revestimento", value: "Exterior de alta resistência" },
     { label: "Cobertura", value: "Monobloco" },
@@ -64,9 +63,8 @@ const SANITAIRES_EN: Partial<ProfessionalModel> = {
     { src: "/sanitaires/sanitaires-toilettes-femmes.png", label: "Women's toilets" },
   ],
   specs: [
-    { label: "Overall dimensions", value: "5.60 × 2.25 m" },
+    { label: "Overall dimensions", value: "5.90 × 2.25 m" },
     { label: "Exterior height", value: "2.55 m" },
-    { label: "Module plan", value: "5.90 × 2.25 m" },
     { label: "Structure", value: "Robust galvanised steel" },
     { label: "Cladding", value: "High-resistance exterior" },
     { label: "Roof", value: "Monobloc" },
