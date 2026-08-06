@@ -39,8 +39,8 @@ export function SiteHeader(_props: SiteHeaderProps = {}) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-luxury-stone/60 bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex h-[4.455rem] max-w-7xl items-center justify-between gap-3 px-4 sm:h-[5.468rem] sm:px-6">
-        <Logo size="header" className="min-w-[6.48rem]" />
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 sm:py-5">
+        <Logo size="header" className="min-w-[5.83rem]" />
 
         <nav className="hidden items-center gap-3 lg:flex lg:gap-4 xl:gap-6">
           {navLinks.map((link, index) => (
