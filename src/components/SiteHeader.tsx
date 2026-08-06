@@ -39,7 +39,7 @@ export function SiteHeader(_props: SiteHeaderProps = {}) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-luxury-stone/60 bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between gap-3 px-4 sm:h-28 sm:px-6">
         <Logo size="header" />
 
         <nav className="hidden items-center gap-3 lg:flex lg:gap-4 xl:gap-6">

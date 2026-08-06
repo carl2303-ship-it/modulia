@@ -9,12 +9,12 @@ type LogoProps = {
 };
 
 const sizes = {
-  sm: { width: 160, height: 160, className: "h-14 w-auto sm:h-16" },
-  md: { width: 220, height: 220, className: "h-20 w-auto sm:h-24" },
-  header: { width: 180, height: 180, className: "h-16 w-auto sm:h-20" },
-  lg: { width: 280, height: 280, className: "h-24 w-auto sm:h-28" },
-  xl: { width: 360, height: 360, className: "h-32 w-auto sm:h-36" },
-  hero: { width: 480, height: 480, className: "h-40 w-auto sm:h-48 md:h-56" },
+  sm: { width: 200, height: 200, className: "h-[4.375rem] w-auto sm:h-20" },
+  md: { width: 275, height: 275, className: "h-[6.25rem] w-auto sm:h-[7.5rem]" },
+  header: { width: 225, height: 225, className: "h-20 w-auto sm:h-[6.25rem]" },
+  lg: { width: 350, height: 350, className: "h-[7.5rem] w-auto sm:h-[8.75rem]" },
+  xl: { width: 450, height: 450, className: "h-40 w-auto sm:h-[11.25rem]" },
+  hero: { width: 600, height: 600, className: "h-[12.5rem] w-auto sm:h-[15rem] md:h-[17.5rem]" },
 };
 
 export function Logo({
