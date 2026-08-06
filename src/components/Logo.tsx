@@ -3,7 +3,6 @@ import Link from "next/link";
 
 type LogoProps = {
   size?: "sm" | "md" | "header" | "footer" | "lg" | "xl" | "hero";
-  variant?: "default" | "white";
   linked?: boolean;
   className?: string;
 };
@@ -21,17 +20,14 @@ const sizes = {
 
 export function Logo({
   size = "md",
-  variant = "default",
   linked = true,
   className = "",
 }: LogoProps) {
   const { width, height, className: sizeClass } = sizes[size];
-  const src =
-    variant === "white" ? "/logo-modulia-blanc.png" : "/logo-modulia.png";
 
   const image = (
     <Image
-      src={src}
+      src="/logo-modulia.png"
       alt="Modulia — Maisons modulaires"
       width={width}
       height={height}
