@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { CONTACT_EMAIL, CONTACT_PHONES, SHOWROOM } from "@/data/company";
 import { MODELS_PARTICULIERS } from "@/data/models";
 import { submitContactRequest } from "@/lib/submit-contact";
+import { AgentAttributionBanner } from "@/components/auth/AgentAttributionBanner";
 
 export function Contact() {
   const t = useTranslations("contact");
@@ -26,6 +27,7 @@ export function Contact() {
       phone: String(formData.get("phone") ?? ""),
       model: String(formData.get("model") ?? ""),
       message: String(formData.get("message") ?? ""),
+      marketingOptIn: formData.get("marketing_opt_in") === "on",
     };
 
     try {
@@ -102,6 +104,7 @@ export function Contact() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5 rounded-3xl border border-modulia-100 bg-sand-50 p-8">
+          <AgentAttributionBanner />
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="block">
               <span className="text-sm font-medium text-modulia-800">{t("formName")}</span>
@@ -146,6 +149,7 @@ export function Contact() {
                 <option value="Sur mesure">{t("surMesure")}</option>
                 <optgroup label={t("poolGroupLabel")}>
                   <option value="SOFA POOL">SOFA POOL</option>
+                  <option value="Pool House">Pool House</option>
                 </optgroup>
               </select>
             </label>
@@ -159,6 +163,11 @@ export function Contact() {
               className="mt-1 w-full rounded-xl border border-modulia-200 bg-white px-4 py-2.5 text-sm outline-none ring-modulia-500 focus:ring-2"
               placeholder={t("messagePlaceholder")}
             />
+          </label>
+
+          <label className="flex items-start gap-2 text-sm text-modulia-700">
+            <input type="checkbox" name="marketing_opt_in" className="mt-1 h-4 w-4" />
+            <span>{t("marketingOptIn")}</span>
           </label>
 
           <button

@@ -320,7 +320,7 @@ export const POOL_MODEL = {
   capacity: "Profondeur 70 cm",
   heroImage: ps("piscina-rooftop.png"),
   planImage: ps("piscina-dimensoes.png"),
-  gallery: [ps("piscina.jpg"), ps("piscina1.JPG"), ps("piscina2.jpg")],
+  gallery: [ps("piscina.jpg"), ps("piscina1.JPG"), ps("piscina2.jpg"), ps("piscina-grise.png")],
   included: [
     "Dimensions : 2,90 × 2,90 m",
     "Profondeur : 70 cm",
@@ -340,6 +340,21 @@ export const POOL_MODEL = {
 };
 
 export const POOL_OPTIONS: OptionItem[] = [
+  {
+    id: "pool-house",
+    title: "Pool House",
+    description:
+      "Module bar et cuisine d'été — aluminium thermolaqué, bois composite et plan de travail en quartz. 5,90 × 4,50 m, pour 6 à 8 personnes.",
+    image: ps("pool-house-1.png"),
+    price: 25000,
+    priceType: "ttc",
+    highlights: [
+      "5,90 × 4,50 × 2,45 m",
+      "26,55 m² intérieurs",
+      "Bar + cuisine d'été",
+      "Barbecue, frigo & cave à vin",
+    ],
+  },
   {
     id: "pool-sel",
     title: "Traitement au sel",
@@ -485,7 +500,10 @@ export function getFinitionById(id: string, locale: Locale = defaultLocale): Opt
 }
 
 export function getPaidOptionById(id: string, locale: Locale = defaultLocale): OptionItem | undefined {
-  return getAllPaidOptions(locale).find((item) => item.id === id);
+  return (
+    getAllPaidOptions(locale).find((item) => item.id === id) ??
+    getLocalizedPoolOptions(locale).find((item) => item.id === id)
+  );
 }
 
 export function getOptionById(id: string, locale: Locale = defaultLocale): OptionItem | undefined {
@@ -497,7 +515,7 @@ export function getFinitionSlugs(): string[] {
 }
 
 export function getPaidOptionSlugs(): string[] {
-  return getAllPaidOptions().map((item) => item.id);
+  return [...getAllPaidOptions().map((item) => item.id), ...POOL_OPTIONS.map((item) => item.id)];
 }
 
 export function getOptionSlugs(): string[] {

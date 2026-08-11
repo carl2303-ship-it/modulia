@@ -262,6 +262,9 @@
     "fabricFeatureWater": "Imperméable",
     "fabricFeatureMold": "Anti-moisissure",
     "fabricFeatureWear": "Haute résistance",
+    "poolHouseTitle": "Pool House",
+    "poolHouseIntro": "Bar et cuisine d'été modulaires — l'espace détente idéal au bord de votre Sofa Pool.",
+    "poolHouseCta": "Voir le détail",
     "architectureLabel": "Architecture",
     "dimensionsTitle": "Dimensions",
     "backToOptions": "Toutes les options"
@@ -303,12 +306,12 @@
       },
       {
         "title": "Garantie",
-        "description": "Garantie de parfait achèvement et accompagnement sur la durée de vie de votre module.",
+        "description": "Nos constructions modulaires bénéficient de la garantie biennale, conformément à la réglementation en vigueur. Pendant une durée de deux ans à compter de la réception des travaux, cette garantie couvre les éléments d'équipement dissociables de l'ouvrage présentant un défaut de fonctionnement. En cas de dysfonctionnement relevant de cette garantie, notre service après-vente intervient dans les meilleurs délais afin d'assurer la réparation ou le remplacement des équipements concernés.",
         "icon": "✓"
       },
       {
         "title": "Service après-vente",
-        "description": "Une équipe dédiée pour vous accompagner après la livraison et répondre à vos besoins.",
+        "description": "Notre service après-vente est à votre écoute pour vous accompagner après votre achat. Réactifs et disponibles, nous mettons tout en œuvre pour répondre rapidement à vos besoins et vous apporter des solutions efficaces. Votre satisfaction est notre priorité.",
         "icon": "✦"
       }
     ]
@@ -456,6 +459,7 @@
     "messagePlaceholder": "Décrivez votre projet…",
     "submitting": "Envoi en cours…",
     "submit": "Envoyer la demande",
+    "marketingOptIn": "J'accepte de recevoir les actualités Modulia (opt-in mailing).",
     "successFallback": "Demande reçue ! Nous vous contacterons très prochainement.",
     "successFull": "Merci ! Nous avons bien reçu votre demande et vous contacterons très prochainement.",
     "errorMsg": "Envoi impossible. Veuillez réessayer ou nous contacter par e-mail."

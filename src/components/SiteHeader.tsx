@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Logo } from "@/components/Logo";
+import { ProSessionBadge } from "@/components/auth/ProSessionBadge";
 
 type SiteHeaderProps = {
   /** Mantido por compatibilidade — o header é sempre claro */
@@ -61,6 +62,7 @@ export function SiteHeader(_props: SiteHeaderProps = {}) {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <ProSessionBadge />
           <LanguageSwitcher variant="light" />
           <button
             type="button"

@@ -529,6 +529,59 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
     ],
     gallery: [op("kit exterieur.png")],
   },
+
+  "pool-house": {
+    tagline: "Bar & cuisine d'été — l'extension idéale de votre espace piscine",
+    intro:
+      "Le Pool House Modulia réunit un bar et une cuisine d'été dans un module design aux angles arrondis. Structure en aluminium thermolaqué, bois composite et plan de travail en quartz — prêt à accueillir vos moments de détente au bord de l'eau.",
+    features: [
+      {
+        title: "Bar à gauche",
+        description: "Comptoir, tabourets, étagères rétroéclairées et suspensions",
+      },
+      {
+        title: "Cuisine d'été à droite",
+        description: "Barbecue encastré, évier, réfrigérateur et cave à vin",
+      },
+      {
+        title: "Éclairage LED",
+        description: "Bandes LED intégrées sous les étagères et le plan de travail",
+      },
+      {
+        title: "Matériaux premium",
+        description: "Aluminium thermolaqué, bois composite, quartz",
+      },
+    ],
+    specs: [
+      { label: "Dimensions extérieures", value: "5,90 m × 4,50 m × 2,45 m" },
+      { label: "Surface intérieure", value: "26,55 m²" },
+      { label: "Configuration", value: "Bar à gauche – Cuisine d'été à droite" },
+      { label: "Capacité", value: "6 à 8 personnes" },
+      { label: "Matériaux", value: "Aluminium thermolaqué, bois composite, plan de travail en quartz" },
+      { label: "Prix", value: "25 000 € TTC" },
+    ],
+    includes: [
+      { title: "Évier", description: "Intégré à la cuisine d'été" },
+      { title: "Réfrigérateur", description: "Sous plan" },
+      { title: "Cave à vin", description: "Vitrine vitrée" },
+      { title: "Barbecue encastré", description: "Inox" },
+      { title: "Rangements", description: "Meubles et étagères" },
+      { title: "Éclairage LED", description: "Ambiance chaude intégrée" },
+    ],
+    footerHighlights: [
+      "5,90 × 4,50 × 2,45 m",
+      "26,55 m²",
+      "6 à 8 personnes",
+      "25 000 € TTC",
+    ],
+    gallery: [
+      "/piscina/pool-house-1.png",
+      "/piscina/pool-house-2.png",
+      "/piscina/pool-house-3.png",
+      "/piscina/pool-house-4.png",
+      "/piscina/pool-house-fiche.png",
+    ],
+  },
 };
 
 /** Traductions PT/EN du contenu riche — la galerie et les personalizationIds restent partagés (FR = source) */
@@ -1439,6 +1492,88 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         "Easy to install",
         "Durable materials",
       ],
+    },
+  },
+  "pool-house": {
+    pt: {
+      tagline: "Bar e cozinha de verão — a extensão ideal do seu espaço piscina",
+      intro:
+        "O Pool House Modulia reúne um bar e uma cozinha de verão num módulo de design com cantos arredondados. Estrutura em alumínio termolacado, madeira composta e bancada em quartzo — pronto a acolher os seus momentos de lazer à beira da água.",
+      features: [
+        {
+          title: "Bar à esquerda",
+          description: "Balcão, bancos, prateleiras com luz e pendentes",
+        },
+        {
+          title: "Cozinha de verão à direita",
+          description: "Barbecue encastrado, lava-loiças, frigorífico e garrafeira",
+        },
+        {
+          title: "Iluminação LED",
+          description: "Faixas LED integradas sob as prateleiras e a bancada",
+        },
+        {
+          title: "Materiais premium",
+          description: "Alumínio termolacado, madeira composta, quartzo",
+        },
+      ],
+      specs: [
+        { label: "Dimensões exteriores", value: "5,90 m × 4,50 m × 2,45 m" },
+        { label: "Área interior", value: "26,55 m²" },
+        { label: "Configuração", value: "Bar à esquerda – Cozinha de verão à direita" },
+        { label: "Capacidade", value: "6 a 8 pessoas" },
+        { label: "Materiais", value: "Alumínio termolacado, madeira composta, bancada em quartzo" },
+        { label: "Preço", value: "25 000 € TTC" },
+      ],
+      includes: [
+        { title: "Lava-loiças", description: "Integrado na cozinha de verão" },
+        { title: "Frigorífico", description: "Sob bancada" },
+        { title: "Garrafeira", description: "Vitrine com vidro" },
+        { title: "Barbecue encastrado", description: "Inox" },
+        { title: "Arrumações", description: "Móveis e prateleiras" },
+        { title: "Iluminação LED", description: "Ambiente quente integrado" },
+      ],
+      footerHighlights: ["5,90 × 4,50 × 2,45 m", "26,55 m²", "6 a 8 pessoas", "25 000 € TTC"],
+    },
+    en: {
+      tagline: "Bar & summer kitchen — the ideal extension of your pool space",
+      intro:
+        "The Modulia Pool House brings together a bar and summer kitchen in a design module with rounded corners. Powder-coated aluminium structure, composite wood and quartz worktop — ready for your moments by the water.",
+      features: [
+        {
+          title: "Bar on the left",
+          description: "Counter, stools, backlit shelves and pendant lights",
+        },
+        {
+          title: "Summer kitchen on the right",
+          description: "Built-in barbecue, sink, fridge and wine cooler",
+        },
+        {
+          title: "LED lighting",
+          description: "LED strips under shelves and worktop",
+        },
+        {
+          title: "Premium materials",
+          description: "Powder-coated aluminium, composite wood, quartz",
+        },
+      ],
+      specs: [
+        { label: "Exterior dimensions", value: "5.90 m × 4.50 m × 2.45 m" },
+        { label: "Interior area", value: "26.55 m²" },
+        { label: "Layout", value: "Bar on the left – Summer kitchen on the right" },
+        { label: "Capacity", value: "6 to 8 people" },
+        { label: "Materials", value: "Powder-coated aluminium, composite wood, quartz worktop" },
+        { label: "Price", value: "€25,000 incl. VAT" },
+      ],
+      includes: [
+        { title: "Sink", description: "Built into the summer kitchen" },
+        { title: "Refrigerator", description: "Under-counter" },
+        { title: "Wine cooler", description: "Glass-fronted" },
+        { title: "Built-in barbecue", description: "Stainless steel" },
+        { title: "Storage", description: "Cabinets and shelves" },
+        { title: "LED lighting", description: "Integrated warm ambience" },
+      ],
+      footerHighlights: ["5.90 × 4.50 × 2.45 m", "26.55 m²", "6 to 8 people", "€25,000 incl. VAT"],
     },
   },
 };

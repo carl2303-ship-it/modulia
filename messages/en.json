@@ -262,6 +262,9 @@
     "fabricFeatureWater": "Waterproof",
     "fabricFeatureMold": "Anti-mould",
     "fabricFeatureWear": "High durability",
+    "poolHouseTitle": "Pool House",
+    "poolHouseIntro": "Modular bar and summer kitchen — the ideal lounge space by your Sofa Pool.",
+    "poolHouseCta": "See details",
     "architectureLabel": "Architecture",
     "dimensionsTitle": "Dimensions",
     "backToOptions": "All options"
@@ -303,12 +306,12 @@
       },
       {
         "title": "Warranty",
-        "description": "Perfect completion warranty and support throughout your module's lifespan.",
+        "description": "Our modular buildings benefit from the two-year warranty, in accordance with applicable regulations. For two years from handover, this warranty covers detachable equipment forming part of the works that shows a functional defect. Where a fault falls under this warranty, our after-sales team intervenes promptly to repair or replace the equipment concerned.",
         "icon": "✓"
       },
       {
         "title": "After-sales service",
-        "description": "A dedicated team to support you after delivery and respond to your needs.",
+        "description": "Our after-sales service is here to support you after your purchase. Responsive and available, we do everything we can to meet your needs quickly and provide effective solutions. Your satisfaction is our priority.",
         "icon": "✦"
       }
     ]
@@ -456,6 +459,7 @@
     "messagePlaceholder": "Describe your project…",
     "submitting": "Sending…",
     "submit": "Send request",
+    "marketingOptIn": "I agree to receive Modulia news (mailing opt-in).",
     "successFallback": "Request received! We'll be in touch shortly.",
     "successFull": "Thank you! We've received your request and will be in touch shortly.",
     "errorMsg": "Unable to send. Please try again or contact us by email."

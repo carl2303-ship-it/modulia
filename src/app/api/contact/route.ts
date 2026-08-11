@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import { CONTACT_EMAIL } from "@/data/company";
+import { createClient } from "@/lib/supabase/server";
+import { parsePriceTtc, roleToSource, type LeadSource, type UserRole } from "@/lib/crm/types";
 
 export const runtime = "nodejs";
 
@@ -12,13 +13,13 @@ type ContactPayload = {
   message?: string;
   configuration?: string;
   totalPrice?: string;
+  marketingOptIn?: boolean;
 };
 
 function getRecipient(): string {
   return process.env.CONTACT_TO_EMAIL?.trim() || CONTACT_EMAIL;
 }
 
-/** Envio opcional via Resend (se RESEND_API_KEY estiver definida). */
 async function sendWithResend(
   payload: Required<Pick<ContactPayload, "name" | "email">> & ContactPayload,
 ): Promise<boolean> {
@@ -67,36 +68,57 @@ async function sendWithResend(
   return true;
 }
 
-async function saveToSupabase(payload: ContactPayload): Promise<boolean> {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return false;
+async function saveLead(payload: {
+  name: string;
+  email: string;
+  phone: string;
+  model: string;
+  message: string;
+  configuration: string;
+  totalPrice: string;
+  marketingOptIn: boolean;
+}): Promise<{ saved: boolean; leadId?: string }> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  const supabase = createClient(url, key);
-  const messageForDb = [
-    payload.configuration ? `CONFIGURATION\n${payload.configuration}` : null,
-    payload.totalPrice ? `TOTAL ESTIMÉ : ${payload.totalPrice}` : null,
-    payload.message ? `MESSAGE\n${payload.message}` : null,
-  ]
-    .filter(Boolean)
-    .join("\n\n");
+  let assignedTo: string | null = null;
+  let source: LeadSource = "website";
 
-  const { error } = await supabase.from("contact_requests").insert({
-    name: payload.name,
-    email: payload.email,
-    phone: payload.phone || null,
-    model: payload.model || null,
-    message: messageForDb || payload.message || null,
+  if (user) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("id, role, active")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (profile?.active) {
+      assignedTo = profile.id;
+      source = roleToSource(profile.role as UserRole);
+    }
+  }
+
+  const { data: leadId, error } = await supabase.rpc("submit_public_lead", {
+    p_name: payload.name,
+    p_email: payload.email,
+    p_phone: payload.phone || null,
+    p_model: payload.model || null,
+    p_message: payload.message || null,
+    p_configuration: payload.configuration || null,
+    p_total_price_ttc: parsePriceTtc(payload.totalPrice),
+    p_source: source,
+    p_assigned_to: assignedTo,
+    p_marketing_opt_in: payload.marketingOptIn,
+    p_created_by: assignedTo,
   });
 
   if (error) {
-    if (error.code === "42P01" || error.message.includes("does not exist")) {
-      return false;
-    }
-    console.error("contact_requests insert:", error.message);
-    return false;
+    console.error("submit_public_lead:", error.message);
+    return { saved: false };
   }
-  return true;
+
+  return { saved: true, leadId: leadId as string };
 }
 
 export async function POST(request: Request) {
@@ -114,6 +136,7 @@ export async function POST(request: Request) {
   const message = String(body.message ?? "").trim();
   const configuration = String(body.configuration ?? "").trim();
   const totalPrice = String(body.totalPrice ?? "").trim();
+  const marketingOptIn = Boolean(body.marketingOptIn);
 
   if (!name || !email) {
     return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
@@ -132,14 +155,13 @@ export async function POST(request: Request) {
     console.error("contact resend failed:", err);
   }
 
-  const saved = await saveToSupabase(payload);
+  const { saved, leadId } = await saveLead({ ...payload, marketingOptIn });
 
-  // Sem Resend, o e-mail vai pelas Netlify Forms no cliente.
-  // Aqui basta não devolver 502 — o canal principal é Netlify Forms.
   return NextResponse.json({
     ok: true,
     to: getRecipient(),
     emailed,
     saved,
+    leadId: leadId ?? null,
   });
 }

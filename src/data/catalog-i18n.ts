@@ -237,6 +237,18 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
     pt: { title: "Kit eletrodomésticos premium", description: "Pack premium com aparelhos de alta gama." },
     en: { title: "Premium appliance kit", description: "Premium pack with high-end appliances." },
   },
+  "pool-house": {
+    pt: {
+      title: "Pool House",
+      description:
+        "Módulo bar e cozinha de verão — alumínio termolacado, madeira composta e bancada em quartzo. 5,90 × 4,50 m, para 6 a 8 pessoas.",
+    },
+    en: {
+      title: "Pool House",
+      description:
+        "Bar and summer kitchen module — powder-coated aluminium, composite wood and quartz worktop. 5.90 × 4.50 m, for 6 to 8 people.",
+    },
+  },
   "pool-sel": {
     pt: { title: "Tratamento a sal", description: "Eletrólise a sal para água cristalina." },
     en: { title: "Salt treatment", description: "Salt electrolysis for crystal-clear water." },

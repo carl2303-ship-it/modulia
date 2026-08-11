@@ -5,6 +5,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/config";
 import { submitContactRequest } from "@/lib/submit-contact";
+import { AgentAttributionBanner } from "@/components/auth/AgentAttributionBanner";
 
 type InfoModalProps = {
   isOpen: boolean;
@@ -138,6 +139,7 @@ export function ContactModal({
         message: userMessage,
         configuration,
         totalPrice: priceLabel,
+        marketingOptIn: formData.get("marketing_opt_in") === "on",
       });
       setStatus("success");
       setFeedback(tContact("successFull"));
@@ -179,6 +181,7 @@ export function ContactModal({
         </div>
 
         <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+          <AgentAttributionBanner />
           <label className="block">
             <span className="font-ui text-xs font-medium uppercase tracking-wider text-luxury-muted">{t("contact.name")}</span>
             <input
@@ -212,6 +215,10 @@ export function ContactModal({
               className="mt-2 w-full resize-none border-b border-luxury-stone bg-transparent py-2 font-ui text-sm text-luxury-graphite outline-none transition focus:border-luxury-forest"
               placeholder={t("contact.messagePlaceholder")}
             />
+          </label>
+          <label className="flex items-start gap-2 font-ui text-xs text-luxury-muted">
+            <input type="checkbox" name="marketing_opt_in" className="mt-0.5 h-4 w-4" />
+            <span>{tContact("marketingOptIn")}</span>
           </label>
           <button
             type="submit"

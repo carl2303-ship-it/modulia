@@ -262,6 +262,9 @@
     "fabricFeatureWater": "Impermeável",
     "fabricFeatureMold": "Anti-bolor",
     "fabricFeatureWear": "Alta resistência",
+    "poolHouseTitle": "Pool House",
+    "poolHouseIntro": "Bar e cozinha de verão modulares — o espaço de lazer ideal junto à sua Sofa Pool.",
+    "poolHouseCta": "Ver detalhe",
     "architectureLabel": "Arquitetura",
     "dimensionsTitle": "Dimensões",
     "backToOptions": "Todas as opções"
@@ -303,12 +306,12 @@
       },
       {
         "title": "Garantia",
-        "description": "Garantia de perfeita conclusão e acompanhamento ao longo da vida útil do seu módulo.",
+        "description": "As nossas construções modulares beneficiam da garantia bienal, em conformidade com a regulamentação em vigor. Durante dois anos a contar da receção das obras, esta garantia cobre os elementos de equipamento dissociáveis da construção que apresentem um defeito de funcionamento. Em caso de avaria abrangida por esta garantia, o nosso serviço pós-venda intervém nos melhores prazos para assegurar a reparação ou a substituição dos equipamentos em causa.",
         "icon": "✓"
       },
       {
         "title": "Serviço pós-venda",
-        "description": "Uma equipa dedicada para o acompanhar após a entrega e responder às suas necessidades.",
+        "description": "O nosso serviço pós-venda está à sua escuta para o acompanhar após a compra. Reativos e disponíveis, fazemos tudo para responder rapidamente às suas necessidades e oferecer soluções eficazes. A sua satisfação é a nossa prioridade.",
         "icon": "✦"
       }
     ]
@@ -456,6 +459,7 @@
     "messagePlaceholder": "Descreva o seu projeto…",
     "submitting": "A enviar…",
     "submit": "Enviar o pedido",
+    "marketingOptIn": "Aceito receber novidades Modulia (opt-in mailing).",
     "successFallback": "Pedido recebido! Entraremos em contacto muito em breve.",
     "successFull": "Obrigado! Recebemos o seu pedido e entraremos em contacto muito em breve.",
     "errorMsg": "Não foi possível enviar. Tente novamente ou contacte-nos por e-mail."

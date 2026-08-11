@@ -9,6 +9,7 @@ export type ContactPayload = {
   /** Détail complet de la configuration (finitions, options, etc.) */
   configuration?: string;
   totalPrice?: string;
+  marketingOptIn?: boolean;
 };
 
 type FormSubmitResponse = {
