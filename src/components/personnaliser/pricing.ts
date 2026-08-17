@@ -1,11 +1,11 @@
 import {
   CONFIGURATOR_PRICES,
-  KITCHEN_APPLIANCES,
   KITCHEN_OPTIONS,
   POOL_MODEL,
   POOL_OPTIONS,
   getAllPaidOptions,
 } from "@/data/options-catalog";
+import { getInstallationCosts } from "@/data/installation-costs";
 import type {
   KitchenSelection,
   PaidSelection,
@@ -13,9 +13,10 @@ import type {
   PoolSelection,
 } from "./types";
 
-export function calculatePaidPrice(paid: PaidSelection): number {
+export function calculatePaidPrice(paid: PaidSelection, modelSlug?: string | null): number {
   let total = 0;
   const catalog = getAllPaidOptions();
+  const installation = getInstallationCosts(modelSlug);
 
   for (const [id, on] of Object.entries(paid.toggles)) {
     if (!on) continue;
@@ -26,6 +27,14 @@ export function calculatePaidPrice(paid: PaidSelection): number {
       continue;
     }
     if (id === "transport") continue;
+    if (id === "genie-civil") {
+      total += installation.civil;
+      continue;
+    }
+    if (id === "raccordement") {
+      total += installation.raccordement;
+      continue;
+    }
     const item = catalog.find((o) => o.id === id);
     if (item?.price != null) total += item.price;
   }
@@ -48,11 +57,6 @@ export function calculateKitchenPrice(kitchen: KitchenSelection): number {
     if (pack?.price != null) total += pack.price;
   }
 
-  if (kitchen.appliances === "option") {
-    const premium = KITCHEN_APPLIANCES.find((o) => o.id === "electro-option");
-    if (premium?.price != null) total += premium.price;
-  }
-
   return total;
 }
 
@@ -72,7 +76,7 @@ export function calculateTotalPrice(
 ): number {
   return (
     basePrice +
-    calculatePaidPrice(state.paid) +
+    calculatePaidPrice(state.paid, state.modelSlug) +
     calculateKitchenPrice(state.kitchen) +
     calculatePoolPrice(state.pool)
   );

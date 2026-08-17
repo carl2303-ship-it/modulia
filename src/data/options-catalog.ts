@@ -120,15 +120,15 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         description:
           "Terrasse supplémentaire en plus de celle incluse — grande 11,80 m ou format compact 5,90 m.",
         image: op("terrasses.png"),
-        priceLabel: "6 300 – 9 900 € TTC",
-        highlights: ["11,80 m · 9 900 € TTC", "5,90 m · 6 300 € TTC"],
+        priceLabel: "7 500 – 12 500 € TTC",
+        highlights: ["11,80 m · 12 500 € TTC", "5,90 m · 7 500 € TTC"],
       },
       {
         id: "kit-exterieur",
         title: "Kit extérieur",
         description: "Appliques, prises IP44, robinet 2 sorties, tuyau et arrosoir.",
         image: op("kit exterieur.png"),
-        price: 380,
+        price: 419,
         priceType: "ttc",
       },
     ],
@@ -143,7 +143,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Kit salle de bains",
         description: "Accessoires design noir mat — porte-serviettes, porte-savon, etc.",
         image: op("kit salle de bains.jpg"),
-        price: 159,
+        price: 179,
         priceType: "ttc",
       },
       {
@@ -151,7 +151,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Ventilation VMC salle de bains",
         description: "Air sain, confort au quotidien — ventilation performante et ultra silencieuse.",
         image: op("ventilation hvac.png"),
-        price: 190,
+        price: 219,
         priceType: "ttc",
       },
       {
@@ -159,7 +159,7 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Ventilation mécanique salle de bains",
         description: "Option ventilation pour confort et hygiène.",
         image: op("ventilation mecanique.png"),
-        price: 49,
+        price: 59,
         priceType: "ttc",
       },
       {
@@ -167,16 +167,16 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Rideaux occultants",
         description: "Rideaux sur mesure pour vos baies vitrées — vendus au mètre linéaire.",
         image: op("rideaux.png"),
-        price: 30,
+        price: 35,
         priceType: "ttc",
-        priceLabel: "250 € + 30 € TTC / mètre linéaire",
+        priceLabel: "269 € + 35 € TTC / mètre linéaire",
       },
       {
         id: "poignee",
         title: "Poignée connectée",
         description: "Serrure intelligente pour sécurité et confort.",
         image: op("poignee connectee.png"),
-        price: 240,
+        price: 249,
         priceType: "ttc",
       },
     ],
@@ -191,40 +191,42 @@ export const OPTION_CATEGORIES: OptionCategory[] = [
         title: "Chauffe-eau solaire",
         description: "À la place du chauffe-eau électrique — énergie renouvelable.",
         image: op("chauffe eau solaire.png"),
-        priceLabel: "870 – 1 375 € TTC",
-        highlights: ["Ballon 100 L · 870 €", "Ballon 200 L · 1 375 €", "Énergie solaire"],
+        priceLabel: "929 – 1 489 € TTC",
+        highlights: ["Ballon 100 L · 929 €", "Ballon 200 L · 1 489 €", "Énergie solaire"],
       },
       {
         id: "climatisation",
         title: "Climatisation",
         description: "Standard ou solaire — modules pré-équipés.",
         image: op("climatisation.jpg"),
-        priceLabel: "460 – 1 850 €",
-        highlights: ["Standard · 460 €", "Solaire · 1 850 €"],
+        priceLabel: "529 – 1 990 € TTC",
+        highlights: ["Standard · 529 €", "Solaire · 1 990 €"],
       },
       {
         id: "genie-civil",
         title: "Génie civil / Terrassement",
-        description: "Préparation des plots sur votre terrain.",
+        description:
+          "Préparation des plots sur votre terrain — à partir de 3 000 € HT par module, selon le modèle.",
         image: op("terrassement.png"),
-        price: 3000,
         priceType: "ht",
+        priceLabel: "À partir de 3 000 € HT",
       },
       {
         id: "raccordement",
         title: "Raccordement du module",
-        description: "Eau, électricité et écoulement — installation conforme.",
+        description:
+          "Eau, électricité et écoulement — à partir de 2 000 € HT par module, selon le modèle.",
         image: op("raccordement.png"),
-        price: 2000,
         priceType: "ht",
+        priceLabel: "À partir de 2 000 € HT",
       },
       {
         id: "transport",
         title: "Transport & grutage",
-        description: "Inclus dans un rayon de 30 km.",
+        description: "Inclus dans un rayon de 30 km autour de Faro.",
         image: op("transport.jpg"),
         priceType: "inclus",
-        highlights: ["Transport inclus", "Grutage inclus", "Rayon 30 km"],
+        highlights: ["Transport inclus", "Grutage inclus", "Rayon 30 km autour de Faro"],
       },
     ],
   },
@@ -252,7 +254,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Lave-vaisselle",
     description: "Remplacement simple à la place du réfrigérateur.",
     image: cz("cozinha-lave-vaisselle.png"),
-    price: 349,
+    price: 389,
     priceType: "ttc",
   },
   {
@@ -260,7 +262,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Option Premium",
     description: "Four, micro-ondes, cave à vin + tiroirs de rangement.",
     image: cz("cozinha opcao premium.jpg"),
-    price: 1719,
+    price: 1859,
     priceType: "ttc",
   },
   {
@@ -268,7 +270,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Option Rangement",
     description: "Réfrigérateur, congélateur + tiroirs de rangement.",
     image: cz("cozinha opcao frigo-congelador.jpg"),
-    price: 1119,
+    price: 1199,
     priceType: "ttc",
   },
   {
@@ -276,7 +278,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Option Buanderie",
     description: "Four, micro-ondes, lave-linge + tiroirs de rangement.",
     image: cz("cozinha opcao forno micro-ondas lava ropa.jpg"),
-    price: 1599,
+    price: 1729,
     priceType: "ttc",
   },
   {
@@ -284,7 +286,7 @@ export const KITCHEN_OPTIONS: OptionItem[] = [
     title: "Arrière cuisine",
     description: "Lave-vaisselle et machine à laver — module complémentaire intégré.",
     image: cz("opcao complemento cozinha1.jpg"),
-    price: 1490,
+    price: 1599,
     priceType: "ttc",
   },
 ];
@@ -298,14 +300,6 @@ export const KITCHEN_APPLIANCES: OptionItem[] = [
     priceType: "inclus",
     priceLabel: "Inclus",
   },
-  {
-    id: "electro-option",
-    title: "Kit électroménager premium",
-    description: "Pack premium avec appareils haut de gamme.",
-    image: cz("kit electromenager premium.png"),
-    price: 990,
-    priceType: "ttc",
-  },
 ];
 
 export const POOL_MODEL = {
@@ -315,7 +309,7 @@ export const POOL_MODEL = {
     "Découvrez la SOFA POOL, une mini-piscine au design contemporain qui allie élégance, confort et technologie.\n\nAvec son format compact de 2,90 m × 2,90 m et sa profondeur de 70 cm, elle s’intègre parfaitement sur une terrasse, un rooftop, dans un jardin ou au sein d’un projet immobilier premium.\n\nSon esthétique minimaliste avec banquettes intégrées crée un véritable espace lounge et bien-être.",
   closing:
     "Une solution élégante pour profiter des plaisirs de l’eau sans les contraintes d’une piscine traditionnelle.",
-  priceFrom: 9450,
+  priceFrom: 9950,
   dimensions: "2,90 × 2,90 m",
   capacity: "Profondeur 70 cm",
   heroImage: ps("piscina-rooftop.png"),
@@ -346,7 +340,7 @@ export const POOL_OPTIONS: OptionItem[] = [
     description:
       "Module bar et cuisine d'été — aluminium thermolaqué, bois composite et plan de travail en quartz. 5,90 × 4,50 m, pour 6 à 8 personnes.",
     image: ps("pool-house-1.png"),
-    price: 25000,
+    price: 27500,
     priceType: "ttc",
     highlights: [
       "5,90 × 4,50 × 2,45 m",
@@ -375,19 +369,18 @@ export const POOL_OPTIONS: OptionItem[] = [
 
 /** Prix configurateur EQUILIBRO — synchronisé avec le catalogue */
 export const CONFIGURATOR_PRICES = {
-  solarWater: 870,
-  solarWater200L: 1375,
-  climateStandard: 460,
-  climateSolar: 1850,
-  kitchenPerMl: 250,
-  appliances: 990,
+  solarWater: 929,
+  solarWater200L: 1489,
+  climateStandard: 529,
+  climateSolar: 1990,
+  kitchenPerMl: 269,
   civil: 3000,
   raccordement: 2000,
-  terrasseCompact: 6300,
-  terrasseLarge: 9900,
-  kitExterieur: 380,
-  rideauxMotor: 250,
-  rideauxPerMl: 30,
+  terrasseCompact: 7500,
+  terrasseLarge: 12500,
+  kitExterieur: 419,
+  rideauxMotor: 269,
+  rideauxPerMl: 35,
 } as const;
 
 export function formatOptionPrice(item: OptionItem, locale: Locale = defaultLocale): string {

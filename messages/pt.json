@@ -180,7 +180,7 @@
     "poolFabricSub": "Incluído — 22 cores técnicas 150 cm (220 a 280 g/m²).",
     "poolFabricSummary": "Tecido: {fabric}",
     "kitchenIncludedHint": "Incluída em todos os módulos — sem suplemento",
-    "transportHint": "Incluído num raio de 30 km — ver detalhe",
+    "transportHint": "Incluído num raio de 30 km em torno de Faro — ver detalhe",
     "standard": "Standard",
     "solar": "Solar",
     "linearMeters": "Metros lineares",
@@ -425,6 +425,7 @@
         "title": "Transporte e instalação",
         "items": [
           "Entrega: transporte rodoviário em camião de plataforma",
+          "Transporte e grua incluídos num raio de 30 km em torno de Faro",
           "Instalação: sobre laje de betão, apoios de betão ou estacas metálicas — preparar no mínimo 3 semanas antes",
           "Tempo de instalação: 2 dias por módulo (ligação de água, águas residuais e eletricidade incluídas)"
         ]

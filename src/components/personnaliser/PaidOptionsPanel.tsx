@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/config";
+import { getInstallationCosts } from "@/data/installation-costs";
 import {
   CONFIGURATOR_PRICES,
   formatOptionPrice,
@@ -13,6 +14,7 @@ import type { PaidSelection } from "./types";
 
 type PaidOptionsPanelProps = {
   paid: PaidSelection;
+  modelSlug: string | null;
   onChange: (paid: PaidSelection) => void;
   onOpenDetail: (option: OptionItem) => void;
 };
@@ -41,6 +43,7 @@ function DetailTrigger({
 
 export function PaidOptionsPanel({
   paid,
+  modelSlug,
   onChange,
   onOpenDetail,
 }: PaidOptionsPanelProps) {
@@ -48,6 +51,7 @@ export function PaidOptionsPanel({
   const tCommon = useTranslations("common");
   const locale = useLocale() as Locale;
   const categories = getLocalizedOptionCategories(locale);
+  const installation = getInstallationCosts(modelSlug);
 
   const formatEuro = (n: number, ht = false) =>
     `+${new Intl.NumberFormat(NUMBER_LOCALE[locale]).format(n)} €${ht ? ` ${tCommon("ht")}` : ""}`;
@@ -407,10 +411,16 @@ export function PaidOptionsPanel({
               }
 
               const enabled = !!paid.toggles[item.id];
-              const priceLabel =
-                item.price != null
-                  ? formatEuro(item.price, item.priceType === "ht")
-                  : formatOptionPrice(item, locale);
+              let priceLabel: string;
+              if (item.id === "genie-civil" && modelSlug) {
+                priceLabel = formatEuro(installation.civil, true);
+              } else if (item.id === "raccordement" && modelSlug) {
+                priceLabel = formatEuro(installation.raccordement, true);
+              } else if (item.price != null) {
+                priceLabel = formatEuro(item.price, item.priceType === "ht");
+              } else {
+                priceLabel = formatOptionPrice(item, locale);
+              }
 
               return (
                 <div

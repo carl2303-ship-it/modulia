@@ -220,7 +220,7 @@ export default async function PiscinePage() {
                   {t("priceLabel")}
                 </p>
                 <p className="font-serif text-4xl text-luxury-graphite">
-                  {formatModelPrice(poolHouse.price ?? 25000)}
+                  {formatModelPrice(poolHouse.price ?? 27500)}
                   <span className="ml-2 font-ui text-base text-luxury-muted">€ TTC</span>
                 </p>
                 <Link

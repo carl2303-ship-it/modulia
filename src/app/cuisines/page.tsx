@@ -4,7 +4,6 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { KitchenSectionView } from "@/components/kitchens/KitchenSectionView";
 import { SiteHeader } from "@/components/SiteHeader";
 import {
-  getLocalizedKitchenAppliances,
   getLocalizedKitchenBase,
   getLocalizedKitchenOptions,
 } from "@/data/kitchen-content";
@@ -25,14 +24,16 @@ export default async function CuisinesPage() {
 
   const kitchenBase = getLocalizedKitchenBase(locale);
   const kitchenOptions = getLocalizedKitchenOptions(locale);
-  const kitchenAppliances = getLocalizedKitchenAppliances(locale);
 
   const configOptions = kitchenOptions.filter((s) =>
-    ["cuisine-premium", "cuisine-rangement", "cuisine-buanderie", "complement-cuisine"].includes(
-      s.id,
-    ),
+    [
+      "cuisine-lave-vaisselle",
+      "cuisine-premium",
+      "cuisine-rangement",
+      "cuisine-buanderie",
+      "complement-cuisine",
+    ].includes(s.id),
   );
-  const applianceOption = kitchenAppliances.find((s) => s.id === "electro-option");
 
   return (
     <div className="min-h-screen bg-luxury-papyrus">
@@ -63,8 +64,6 @@ export default async function CuisinesPage() {
             </p>
           </div>
         </section>
-
-        {applianceOption && <KitchenSectionView section={applianceOption} />}
 
         {configOptions.map((section) => (
           <KitchenSectionView key={section.id} section={section} />

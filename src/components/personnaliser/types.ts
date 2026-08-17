@@ -13,7 +13,6 @@ export type PaidSelection = {
 
 export type KitchenSelection = {
   packs: string[];
-  appliances: "base" | "option";
 };
 
 export type PoolSelection = {
@@ -42,7 +41,6 @@ export const INITIAL_PAID: PaidSelection = {
 
 export const INITIAL_KITCHEN: KitchenSelection = {
   packs: [],
-  appliances: "base",
 };
 
 export const INITIAL_POOL: PoolSelection = {

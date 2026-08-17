@@ -26,7 +26,6 @@ import {
 const INITIAL_EQUIPMENT: EquipmentState = {
   solarWater: "none",
   climate: "none",
-  appliances: false,
   civil: false,
   raccordement: false,
   kitExterieur: false,
@@ -63,7 +62,6 @@ export function EquilibroConfigurator() {
     equipment.climate !== "none"
       ? `Climatisation ${equipment.climate === "solar" ? "Solaire" : "Standard"}`
       : null,
-    equipment.appliances ? "Kit Électroménager" : null,
     equipment.civil ? "Génie Civil" : null,
     equipment.raccordement ? "Raccordement" : null,
     equipment.kitExterieur ? "Kit extérieur" : null,
@@ -157,16 +155,8 @@ export function EquilibroConfigurator() {
                 />
 
                 <EquipmentCard
-                  title="Kit Électroménager"
-                  priceLabel={`+${PRICES.appliances} €`}
-                  enabled={equipment.appliances}
-                  onToggle={(v) => updateEquipment("appliances", v)}
-                  onInfo={() => setInfoModalId("appliances")}
-                />
-
-                <EquipmentCard
                   title="Génie Civil / Terrassement"
-                  priceLabel={`+${PRICES.civil} €`}
+                  priceLabel={`+${PRICES.civil} € HT`}
                   enabled={equipment.civil}
                   onToggle={(v) => updateEquipment("civil", v)}
                   onInfo={() => setInfoModalId("civil")}

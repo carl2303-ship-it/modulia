@@ -44,7 +44,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     description:
       "Architecture capsule aux lignes épurées et coins arrondis. Façade entièrement vitrée sur toute la longueur, terrasse bois intégrée et intérieur ouvert sur la nature — cuisine, salle à manger, salon et deux chambres dans un module prêt à vivre.",
     introSubline: "Conçu pour une vie harmonieuse au quotidien.",
-    priceFrom: 73_000,
+    priceFrom: 76_650,
     length: "11,80 m",
     width: "4,50 m",
     area: "≈ 46 m²",
@@ -86,7 +86,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     description:
       "Grand module familial avec terrasse intégrée sur toute la longueur. Quatre chambres, pièces de vie spacieuses et ouvertes — l'équilibre parfait entre design, confort et liberté pour accueillir jusqu'à 8 personnes.",
     introSubline: "L'équilibre parfait entre design, confort et liberté.",
-    priceFrom: 96_000,
+    priceFrom: 100_800,
     length: "11,80 m",
     width: "9,00 m",
     area: "≈ 82 m²",
@@ -101,7 +101,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     tagline: "L'essentiel du confort, dans un design épuré et moderne.",
     description:
       "Module compact aux lignes arrondies, idéal pour un studio de jardin ou une résidence secondaire. Cuisine, salle de bains et espace de vie ouvert sur une terrasse bois.",
-    priceFrom: 19_000,
+    priceFrom: 19_950,
     length: "5,90 m",
     width: "4,50 m",
     area: "13,27 m²",
@@ -113,10 +113,10 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
   },
   forma: {
     name: "FORMA",
-    tagline: "L'essentiel du confort, dans un design épuré et moderne.",
+    tagline: "Simple, élégante, harmonieuse et intemporelle.",
     description:
       "Capsule modulaire avec cadre blanc arrondi et lames horizontales pour l'intimité. Deux chambres, salle de bains centrale et espace de vie convivial avec terrasse.",
-    priceFrom: 32_000,
+    priceFrom: 33_600,
     length: "5,90 m",
     width: "4,50 m",
     area: "26,50 m²",
@@ -132,7 +132,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     description:
       "Design ouvert pour des espaces lumineux et fonctionnels. Trois chambres, terrasse intégrée sur toute la longueur et grandes baies vitrées pour une connexion totale avec l'extérieur.",
     introSubline: "Un design ouvert pour des espaces lumineux et fonctionnels.",
-    priceFrom: 76_000,
+    priceFrom: 79_800,
     length: "11,80 m",
     width: "4,50 m",
     area: "≈ 53 m²",
@@ -147,7 +147,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     tagline: "Le choix idéal pour une vie lumineuse, pratique et harmonieuse.",
     description:
       "Module panoramique avec murs en gabion aux extrémités et façade entièrement vitrée. Trois chambres et pièces de vie spacieuses pour une vie au quotidien en pleine lumière.",
-    priceFrom: 75_000,
+    priceFrom: 78_750,
     length: "11,80 m",
     width: "4,50 m",
     area: "≈ 52 m²",
@@ -162,7 +162,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     tagline: "L'élégance panoramique, dans un design épuré et contemporain.",
     description:
       "Format linéaire étroit (2,25 m) avec façade vitrée pleine longueur. Chambre, salle de bains et espace de vie ouvert — l'élégance en format panoramique.",
-    priceFrom: 42_000,
+    priceFrom: 44_100,
     length: "11,80 m",
     width: "2,25 m",
     area: "≈ 26 m²",
@@ -178,7 +178,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     description:
       "Architecture ouverte et élégante avec murs en gabion et baies vitrées sur toute la longueur. Deux chambres aux extrémités et espace central optimisé pour la vie à quatre.",
     introSubline: "Une architecture ouverte et élégante.",
-    priceFrom: 43_000,
+    priceFrom: 45_150,
     length: "11,80 m",
     width: "2,25 m",
     area: "≈ 28 m²",
@@ -194,7 +194,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     description:
       "Module aux lignes pures avec lames verticales et façade vitrée. Trois chambres, terrasse intégrée et pièces de vie généreuses pour un confort durable et harmonieux.",
     introSubline: "Pour un confort durable et harmonieux.",
-    priceFrom: 74_000,
+    priceFrom: 77_700,
     length: "11,80 m",
     width: "4,50 m",
     area: "≈ 47 m²",
@@ -209,7 +209,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     tagline: "L'origine d'un art de vivre contemporain.",
     description:
       "Grand module familial de 80 m² avec quatre chambres et terrasse intégrée. Espace pensé pour l'essentiel, où confort, fonctionnalité et design ne font qu'un.",
-    priceFrom: 98_000,
+    priceFrom: 102_900,
     length: "11,80 m",
     width: "6,75 m",
     area: "≈ 80 m²",
@@ -225,7 +225,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     description:
       "Module linéaire aux coins arrondis et façade entièrement vitrée. Deux chambres aux extrémités, pièces de vie centrales ouvertes et terrasse bois sur toute la longueur.",
     introSubline: "Pour une vie fluide, lumineuse et fonctionnelle.",
-    priceFrom: 72_000,
+    priceFrom: 75_600,
     length: "11,80 m",
     width: "4,50 m",
     area: "≈ 45 m²",
@@ -237,10 +237,10 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
   },
   ritmo: {
     name: "RITMO",
-    tagline: "L'essentiel du confort, dans un design épuré et moderne.",
+    tagline: "Vivante, chaleureuse, solaire et pleine de caractère.",
     description:
       "Capsule compacte avec écran de lames verticales et terrasse bois. Deux chambres, salle de bains, coin cuisine et salon dans un format optimisé pour 2 à 4 personnes.",
-    priceFrom: 33_000,
+    priceFrom: 34_650,
     length: "5,90 m",
     width: "4,50 m",
     area: "26,50 m²",
@@ -256,7 +256,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     description:
       "Notre modèle le plus spacieux — 106 m² intérieurs, quatre chambres, double salle de bains et séjour-cuisine généreux. Terrasses avant et arrière pour un art de vivre sans compromis.",
     introSubline: "Prix clé en main — qualité, durabilité et vie sans compromis.",
-    priceFrom: 140_000,
+    priceFrom: 147_000,
     length: "11,80 m",
     width: "9,00 m",
     area: "≈ 106 m²",
@@ -277,7 +277,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     description:
       "Module linéaire avec murs en gabion et façade vitrée pleine longueur. Une chambre, salle de bains avec baignoire et espace de vie ouvert — l'espace à l'état pur.",
     introSubline: "Un espace de vie ouvert, lumineux et parfaitement équilibré.",
-    priceFrom: 71_000,
+    priceFrom: 74_550,
     length: "11,80 m",
     width: "4,50 m",
     area: "≈ 44 m²",

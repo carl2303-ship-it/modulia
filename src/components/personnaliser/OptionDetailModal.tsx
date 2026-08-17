@@ -42,11 +42,9 @@ export function OptionDetailModal({
   const kitchen = getLocalizedKitchenSection(
     option.id === "cuisine-base"
       ? "base"
-      : option.id === "electro-option"
-        ? "electro-option"
-        : option.id === "electro-base"
-          ? "electro-base"
-          : option.id,
+      : option.id === "electro-base"
+        ? "electro-base"
+        : option.id,
     locale,
   );
   const image =
