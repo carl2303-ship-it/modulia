@@ -84,6 +84,7 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
     title: "Transport & installation",
     items: [
       "Livraison : transport routier sur camion plateau",
+      "Transport et grutage inclus dans un rayon de 30 km autour de Faro",
       "Pose : sur dalle béton, plots béton ou pieux métalliques — préparer min. 3 semaines avant",
       "Temps d'installation : 2 jours par module (raccordement eau, eaux usées, électricité inclus)",
     ],

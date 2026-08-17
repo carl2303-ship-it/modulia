@@ -2,10 +2,12 @@
 
 import { getModelAssets } from "@/lib/model-catalog";
 import { CONFIGURATOR_PRICES } from "@/data/options-catalog";
+import { getInstallationCosts } from "@/data/installation-costs";
 
 const assets = getModelAssets("equilibro");
+const installation = getInstallationCosts("equilibro");
 
-export const BASE_PRICE = 73_000;
+export const BASE_PRICE = 76_650;
 
 /** Renders 3D officiels — dossier public/equilibro/ */
 export const HERO_IMAGES = [
@@ -52,7 +54,6 @@ export type ExteriorFinish = {
 export type EquipmentId =
   | "solar-water"
   | "climate"
-  | "appliances"
   | "civil"
   | "raccordement"
   | "kit-exterieur"
@@ -65,7 +66,6 @@ export type TerraceOption = "none" | "compact" | "large";
 export type EquipmentState = {
   solarWater: SolarWaterOption;
   climate: ClimateOption;
-  appliances: boolean;
   civil: boolean;
   raccordement: boolean;
   kitExterieur: boolean;
@@ -99,8 +99,8 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
     description:
       "Système thermodynamique haute performance pour eau chaude sanitaire, réduisant votre empreinte énergétique jusqu'à 70%.",
     specs: [
-      "Ballon 100 L — 870 € TTC",
-      "Ballon 200 L — 1 375 € TTC",
+      "Ballon 100 L — 929 € TTC",
+      "Ballon 200 L — 1 489 € TTC",
       "Remplace le chauffe-eau électrique prévu",
       "Système Haier — énergie solaire",
     ],
@@ -117,18 +117,6 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
       "Contrôle intelligent via application",
     ],
   },
-  appliances: {
-    id: "appliances",
-    title: "Kit Électroménager",
-    image: "/cozinhas/kit electromenager base.jpg",
-    description:
-      "Pack complet d'appareils encastrables haut de gamme pour une cuisine fonctionnelle dès l'emménagement.",
-    specs: [
-      "Four, plaque induction, hotte, lave-vaisselle",
-      "Réfrigérateur combiné classe A+++",
-      "Installation et mise en service incluses",
-    ],
-  },
   civil: {
     id: "civil",
     title: "Génie Civil / Terrassement",
@@ -139,6 +127,7 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
       "Étude de sol et fondations adaptées",
       "Raccordements eau, électricité, assainissement",
       "Nivellement et préparation d'accès",
+      "4 000 € HT (2 modules)",
     ],
   },
   raccordement: {
@@ -146,7 +135,7 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
     title: "Raccordement du module",
     image: "/opcoes/raccordement.png",
     description: "Raccordement eau, électricité et évacuation — installation conforme.",
-    specs: ["Eau · Électricité · Écoulement", "Installation sécurisée", "2 000 € HT"],
+    specs: ["Eau · Électricité · Écoulement", "Installation sécurisée", "4 000 € HT"],
   },
   "kit-exterieur": {
     id: "kit-exterieur",
@@ -160,7 +149,7 @@ export const EQUIPMENT_INFO: Record<EquipmentId, EquipmentInfo> = {
     title: "Terrasse bois composite",
     image: "/opcoes/terrasses.png",
     description: "Terrasse premium résistante aux intempéries.",
-    specs: ["5,90 m · 6 300 € TTC", "11,80 m · 9 900 € TTC", "100 % recyclable"],
+    specs: ["5,90 m · 7 500 € TTC", "11,80 m · 12 500 € TTC", "100 % recyclable"],
   },
 };
 
@@ -170,9 +159,8 @@ export const PRICES = {
   solarWater200L: CONFIGURATOR_PRICES.solarWater200L,
   climateStandard: CONFIGURATOR_PRICES.climateStandard,
   climateSolar: CONFIGURATOR_PRICES.climateSolar,
-  appliances: CONFIGURATOR_PRICES.appliances,
-  civil: CONFIGURATOR_PRICES.civil,
-  raccordement: CONFIGURATOR_PRICES.raccordement,
+  civil: installation.civil,
+  raccordement: installation.raccordement,
   kitExterieur: CONFIGURATOR_PRICES.kitExterieur,
   terrasseCompact: CONFIGURATOR_PRICES.terrasseCompact,
   terrasseLarge: CONFIGURATOR_PRICES.terrasseLarge,
@@ -186,7 +174,6 @@ export function calculateTotalPrice(equipment: EquipmentState): number {
   if (equipment.solarWater === "200L") total += PRICES.solarWater200L;
   if (equipment.climate === "standard") total += PRICES.climateStandard;
   if (equipment.climate === "solar") total += PRICES.climateSolar;
-  if (equipment.appliances) total += PRICES.appliances;
   if (equipment.civil) total += PRICES.civil;
   if (equipment.raccordement) total += PRICES.raccordement;
   if (equipment.kitExterieur) total += PRICES.kitExterieur;

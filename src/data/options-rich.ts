@@ -125,12 +125,12 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
     variants: [
       {
         label: "Grande terrasse 11,80 m",
-        price: "9 900 € TTC",
+        price: "12 500 € TTC",
         description: "Pour profiter pleinement de vos extérieurs",
       },
       {
         label: "Format compact 5,90 m",
-        price: "6 300 € TTC",
+        price: "7 500 € TTC",
         description: "Idéal pour petits espaces ou extensions",
       },
     ],
@@ -255,7 +255,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Brosse WC", description: "Hygiénique, finition haut de gamme" },
       { title: "Porte-verre", description: "Verre dépoli, fixation sécurisée" },
     ],
-    specs: [{ label: "Prix", value: "159 € TTC" }],
+    specs: [{ label: "Prix", value: "179 € TTC" }],
     footerHighlights: [
       "Résistant à l'humidité",
       "Durable et fiable",
@@ -288,7 +288,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
         description: "Économie d'énergie et longue durée de vie",
       },
     ],
-    specs: [{ label: "Prix", value: "190 € TTC" }],
+    specs: [{ label: "Prix", value: "219 € TTC" }],
     footerHighlights: [
       "Air sain et confortable",
       "Installation facile",
@@ -320,7 +320,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
         description: "Faible consommation et longue durée de vie",
       },
     ],
-    specs: [{ label: "Prix", value: "49 € TTC" }],
+    specs: [{ label: "Prix", value: "59 € TTC" }],
     footerHighlights: [
       "Air sain et confortable",
       "Installation facile",
@@ -353,8 +353,8 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { name: "Noir", hex: "#1A1A1A" },
     ],
     specs: [
-      { label: "Moteur", value: "250 € TTC" },
-      { label: "Tissu", value: "30 € TTC / mètre linéaire" },
+      { label: "Moteur", value: "269 € TTC" },
+      { label: "Tissu", value: "35 € TTC / mètre linéaire" },
     ],
     footerHighlights: [
       "Sur mesure",
@@ -378,7 +378,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
     specs: [
       { label: "Connectivité", value: "Wi-Fi intégré · Bluetooth" },
       { label: "Autonomie", value: "Piles jusqu'à 12 mois" },
-      { label: "Prix", value: "240 € TTC" },
+      { label: "Prix", value: "249 € TTC" },
     ],
     footerHighlights: [
       "Sécurité renforcée",
@@ -401,18 +401,18 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Écologique", description: "Zéro émission, respectueux de l'environnement" },
     ],
     specs: [
-      { label: "Ballon 100 L", value: "870 € TTC" },
-      { label: "Ballon 200 L", value: "1 375 € TTC" },
+      { label: "Ballon 100 L", value: "929 € TTC" },
+      { label: "Ballon 200 L", value: "1 489 € TTC" },
     ],
     variants: [
       {
         label: "Ballon 100 L",
-        price: "870 € TTC",
+        price: "929 € TTC",
         description: "Format compact — idéal pour 1 à 2 personnes",
       },
       {
         label: "Ballon 200 L",
-        price: "1 375 € TTC",
+        price: "1 489 € TTC",
         description: "Grande capacité — idéal pour 3 à 4 personnes",
       },
     ],
@@ -435,12 +435,12 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
     variants: [
       {
         label: "Climatisation standard",
-        price: "460 € TTC",
+        price: "529 € TTC",
         description: "Refroidissement rapide, installation simple",
       },
       {
         label: "Climatisation solaire",
-        price: "1 850 € TTC",
+        price: "1 990 € TTC",
         description: "Panneaux solaires + batterie, moins de dépendance au réseau",
       },
     ],
@@ -462,7 +462,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Travaux sécurisés", description: "Respect des normes et de la stabilité" },
       { title: "Travail propre et rapide", description: "Matériel professionnel et équipe qualifiée" },
     ],
-    specs: [{ label: "Prix", value: "3 000 € HT" }],
+    specs: [{ label: "Prix", value: "À partir de 3 000 € HT" }],
     footerHighlights: [
       "Expertise et expérience",
       "Respect des délais et du budget",
@@ -481,7 +481,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Électricité", description: "Raccordement au réseau, mise en sécurité" },
       { title: "Écoulement", description: "Raccordement aux évacuations, sans fuite" },
     ],
-    specs: [{ label: "Prix", value: "2 000 € HT" }],
+    specs: [{ label: "Prix", value: "À partir de 2 000 € HT" }],
     footerHighlights: [
       "Installation conforme",
       "Sécurité garantie",
@@ -492,19 +492,19 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
   },
 
   transport: {
-    tagline: "Dans un rayon de 30 km",
+    tagline: "Dans un rayon de 30 km autour de Faro",
     intro:
-      "Transport et grutage professionnels inclus dans un rayon de 30 km autour du lieu de livraison.",
+      "Transport et grutage professionnels inclus dans un rayon de 30 km autour de Faro.",
     features: [
       { title: "Transport sécurisé", description: "Livraison dans les meilleures conditions" },
       { title: "Grutage professionnel", description: "Déchargement et pose par des experts" },
-      { title: "Rayon de 30 km", description: "Prestation incluse autour du lieu de livraison" },
+      { title: "Rayon de 30 km", description: "Prestation incluse autour de Faro" },
       { title: "Sécurité & matériel", description: "Intervention conforme aux normes" },
     ],
     footerHighlights: [
       "Transport inclus",
       "Grutage inclus",
-      "Rayon 30 km",
+      "Rayon 30 km autour de Faro",
       "Sécurité garantie",
     ],
     gallery: [op("transport.jpg")],
@@ -520,7 +520,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "1× Robinet 2 sorties", description: "Double sortie, raccord rapide universel" },
       { title: "Inclus", description: "Raccords rapides, tuyau & arrosoir — prêt à l'emploi" },
     ],
-    specs: [{ label: "Prix", value: "380 € TTC" }],
+    specs: [{ label: "Prix", value: "419 € TTC" }],
     footerHighlights: [
       "Résistant aux intempéries",
       "Étanche IP44",
@@ -730,12 +730,12 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       variants: [
         {
           label: "Terraço grande 11,80 m",
-          price: "9 900 € c/IVA",
+          price: "12 500 € c/IVA",
           description: "Para aproveitar totalmente o seu exterior",
         },
         {
           label: "Formato compacto 5,90 m",
-          price: "6 300 € c/IVA",
+          price: "7 500 € c/IVA",
           description: "Ideal para espaços pequenos ou extensões",
         },
       ],
@@ -759,12 +759,12 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       variants: [
         {
           label: "Large terrace 11.80 m",
-          price: "€9,900 incl. VAT",
+          price: "€12,500 incl. VAT",
           description: "To fully enjoy your outdoor space",
         },
         {
           label: "Compact format 5.90 m",
-          price: "€6,300 incl. VAT",
+          price: "€7,500 incl. VAT",
           description: "Ideal for small spaces or extensions",
         },
       ],
@@ -979,7 +979,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Escova de WC", description: "Higiénica, acabamento de alta gama" },
         { title: "Porta-copos", description: "Vidro esmerilado, fixação segura" },
       ],
-      specs: [{ label: "Preço", value: "159 € c/IVA" }],
+      specs: [{ label: "Preço", value: "179 € c/IVA" }],
       footerHighlights: [
         "Resistente à humidade",
         "Durável e fiável",
@@ -1000,7 +1000,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Toilet brush", description: "Hygienic, high-end finish" },
         { title: "Glass holder", description: "Frosted glass, secure fixing" },
       ],
-      specs: [{ label: "Price", value: "€159 incl. VAT" }],
+      specs: [{ label: "Price", value: "€179 incl. VAT" }],
       footerHighlights: [
         "Moisture-resistant",
         "Durable and reliable",
@@ -1022,7 +1022,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Protege a sua casa de banho", description: "Previne humidade, mofo e mau odor" },
         { title: "Económica e durável", description: "Baixo consumo e longa vida útil" },
       ],
-      specs: [{ label: "Preço", value: "49 € c/IVA" }],
+      specs: [{ label: "Preço", value: "59 € c/IVA" }],
       footerHighlights: [
         "Ar saudável e confortável",
         "Instalação fácil",
@@ -1040,7 +1040,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Protects your bathroom", description: "Prevents damp, mould and bad odours" },
         { title: "Economical & durable", description: "Low consumption, long lifespan" },
       ],
-      specs: [{ label: "Price", value: "€49 incl. VAT" }],
+      specs: [{ label: "Price", value: "€59 incl. VAT" }],
       footerHighlights: [
         "Healthy, comfortable air",
         "Easy installation",
@@ -1073,7 +1073,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
           description: "Poupança de energia e longa duração",
         },
       ],
-      specs: [{ label: "Preço", value: "190 € c/IVA" }],
+      specs: [{ label: "Preço", value: "219 € c/IVA" }],
       footerHighlights: [
         "Ar saudável e confortável",
         "Fácil instalação",
@@ -1103,7 +1103,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
           description: "Energy saving and long lifespan",
         },
       ],
-      specs: [{ label: "Price", value: "€190 incl. VAT" }],
+      specs: [{ label: "Price", value: "€219 incl. VAT" }],
       footerHighlights: [
         "Healthy and comfortable air",
         "Easy installation",
@@ -1137,8 +1137,8 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { name: "Preto", hex: "#1A1A1A" },
       ],
       specs: [
-        { label: "Motor", value: "250 € c/IVA" },
-        { label: "Tecido", value: "30 € c/IVA / metro linear" },
+        { label: "Motor", value: "269 € c/IVA" },
+        { label: "Tecido", value: "35 € c/IVA / metro linear" },
       ],
       footerHighlights: [
         "Sob medida",
@@ -1170,8 +1170,8 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { name: "Black", hex: "#1A1A1A" },
       ],
       specs: [
-        { label: "Motor", value: "€250 incl. VAT" },
-        { label: "Fabric", value: "€30 incl. VAT / linear metre" },
+        { label: "Motor", value: "€269 incl. VAT" },
+        { label: "Fabric", value: "€35 incl. VAT / linear metre" },
       ],
       footerHighlights: [
         "Made to measure",
@@ -1196,7 +1196,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       specs: [
         { label: "Conectividade", value: "Wi-Fi integrado · Bluetooth" },
         { label: "Autonomia", value: "Pilhas até 12 meses" },
-        { label: "Preço", value: "240 € c/IVA" },
+        { label: "Preço", value: "249 € c/IVA" },
       ],
       footerHighlights: [
         "Segurança reforçada",
@@ -1219,7 +1219,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       specs: [
         { label: "Connectivity", value: "Built-in Wi-Fi · Bluetooth" },
         { label: "Battery life", value: "Batteries last up to 12 months" },
-        { label: "Price", value: "€240 incl. VAT" },
+        { label: "Price", value: "€249 incl. VAT" },
       ],
       footerHighlights: [
         "Enhanced security",
@@ -1243,18 +1243,18 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Ecológico", description: "Zero emissões, respeita o ambiente" },
       ],
       specs: [
-        { label: "Depósito 100 L", value: "870 € c/IVA" },
-        { label: "Depósito 200 L", value: "1 375 € c/IVA" },
+        { label: "Depósito 100 L", value: "929 € c/IVA" },
+        { label: "Depósito 200 L", value: "1 489 € c/IVA" },
       ],
       variants: [
         {
           label: "Depósito 100 L",
-          price: "870 € c/IVA",
+          price: "929 € c/IVA",
           description: "Formato compacto — ideal para 1 a 2 pessoas",
         },
         {
           label: "Depósito 200 L",
-          price: "1 375 € c/IVA",
+          price: "1 489 € c/IVA",
           description: "Grande capacidade — ideal para 3 a 4 pessoas",
         },
       ],
@@ -1275,18 +1275,18 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Eco-friendly", description: "Zero emissions, environmentally friendly" },
       ],
       specs: [
-        { label: "100 L tank", value: "€870 incl. VAT" },
-        { label: "200 L tank", value: "€1,375 incl. VAT" },
+        { label: "100 L tank", value: "€929 incl. VAT" },
+        { label: "200 L tank", value: "€1,489 incl. VAT" },
       ],
       variants: [
         {
           label: "100 L tank",
-          price: "€870 incl. VAT",
+          price: "€929 incl. VAT",
           description: "Compact format — ideal for 1 to 2 people",
         },
         {
           label: "200 L tank",
-          price: "€1,375 incl. VAT",
+          price: "€1,489 incl. VAT",
           description: "Large capacity — ideal for 3 to 4 people",
         },
       ],
@@ -1310,12 +1310,12 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       variants: [
         {
           label: "Climatização standard",
-          price: "460 € c/IVA",
+          price: "529 € c/IVA",
           description: "Arrefecimento rápido, instalação simples",
         },
         {
           label: "Climatização solar",
-          price: "1 850 € c/IVA",
+          price: "1 990 € c/IVA",
           description: "Painéis solares + bateria, menor dependência da rede",
         },
       ],
@@ -1332,12 +1332,12 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
       variants: [
         {
           label: "Standard air conditioning",
-          price: "€460 incl. VAT",
+          price: "€529 incl. VAT",
           description: "Fast cooling, simple installation",
         },
         {
           label: "Solar air conditioning",
-          price: "€1,850 incl. VAT",
+          price: "€1,990 incl. VAT",
           description: "Solar panels + battery, less reliance on the grid",
         },
       ],
@@ -1356,7 +1356,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Obras seguras", description: "Cumprimento das normas e da estabilidade" },
         { title: "Trabalho limpo e rápido", description: "Equipamento profissional e equipa qualificada" },
       ],
-      specs: [{ label: "Preço", value: "3 000 € s/IVA" }],
+      specs: [{ label: "Preço", value: "A partir de 3 000 € s/IVA" }],
       footerHighlights: [
         "Experiência e conhecimento",
         "Cumprimento de prazos e orçamento",
@@ -1374,7 +1374,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Safe works", description: "Compliance with standards and stability" },
         { title: "Clean, fast work", description: "Professional equipment and qualified team" },
       ],
-      specs: [{ label: "Price", value: "€3,000 excl. VAT" }],
+      specs: [{ label: "Price", value: "From €3,000 excl. VAT" }],
       footerHighlights: [
         "Expertise and experience",
         "On-time, on-budget delivery",
@@ -1393,7 +1393,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Eletricidade", description: "Ligação à rede, colocação em segurança" },
         { title: "Escoamento", description: "Ligação às drenagens, sem fugas" },
       ],
-      specs: [{ label: "Preço", value: "2 000 € s/IVA" }],
+      specs: [{ label: "Preço", value: "A partir de 2 000 € s/IVA" }],
       footerHighlights: [
         "Instalação conforme",
         "Segurança garantida",
@@ -1409,7 +1409,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Electricity", description: "Connection to the grid, safety compliance" },
         { title: "Drainage", description: "Connection to wastewater outlets, leak-free" },
       ],
-      specs: [{ label: "Price", value: "€2,000 excl. VAT" }],
+      specs: [{ label: "Price", value: "From €2,000 excl. VAT" }],
       footerHighlights: [
         "Compliant installation",
         "Guaranteed safety",
@@ -1421,36 +1421,36 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
 
   transport: {
     pt: {
-      tagline: "Num raio de 30 km",
+      tagline: "Num raio de 30 km em torno de Faro",
       intro:
-        "Transporte e grua profissionais incluídos num raio de 30 km em torno do local de entrega.",
+        "Transporte e grua profissionais incluídos num raio de 30 km em torno de Faro.",
       features: [
         { title: "Transporte seguro", description: "Entrega nas melhores condições" },
         { title: "Grua profissional", description: "Descarga e colocação por especialistas" },
-        { title: "Raio de 30 km", description: "Serviço incluído em torno do local de entrega" },
+        { title: "Raio de 30 km", description: "Serviço incluído em torno de Faro" },
         { title: "Segurança e equipamento", description: "Intervenção conforme as normas" },
       ],
       footerHighlights: [
         "Transporte incluído",
         "Grua incluída",
-        "Raio de 30 km",
+        "Raio de 30 km em torno de Faro",
         "Segurança garantida",
       ],
     },
     en: {
-      tagline: "Within a 30 km radius",
+      tagline: "Within a 30 km radius around Faro",
       intro:
-        "Professional transport and crane service included within a 30 km radius of the delivery site.",
+        "Professional transport and crane service included within a 30 km radius around Faro.",
       features: [
         { title: "Secure transport", description: "Delivery in the best conditions" },
         { title: "Professional crane service", description: "Unloading and positioning by experts" },
-        { title: "30 km radius", description: "Service included around the delivery site" },
+        { title: "30 km radius", description: "Service included around Faro" },
         { title: "Safety & equipment", description: "Work compliant with standards" },
       ],
       footerHighlights: [
         "Transport included",
         "Crane service included",
-        "30 km radius",
+        "30 km radius around Faro",
         "Guaranteed safety",
       ],
     },
@@ -1467,7 +1467,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "1× Torneira 2 saídas", description: "Dupla saída, ligação rápida universal" },
         { title: "Incluído", description: "Ligações rápidas, mangueira e regador — pronto a usar" },
       ],
-      specs: [{ label: "Preço", value: "380 € c/IVA" }],
+      specs: [{ label: "Preço", value: "419 € c/IVA" }],
       footerHighlights: [
         "Resistente às intempéries",
         "Estanque IP44",
@@ -1485,7 +1485,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "1× Dual-outlet tap", description: "Two outlets, universal quick connector" },
         { title: "Included", description: "Quick connectors, hose & watering can — ready to use" },
       ],
-      specs: [{ label: "Price", value: "€380 incl. VAT" }],
+      specs: [{ label: "Price", value: "€419 incl. VAT" }],
       footerHighlights: [
         "Weather-resistant",
         "IP44 waterproof",

@@ -150,7 +150,7 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
   },
   forma: {
     pt: {
-      tagline: "O essencial do conforto, num design depurado e moderno.",
+      tagline: "Simples, elegante, harmoniosa e atemporal.",
       description:
         "Cápsula modular com moldura branca arredondada e lâminas horizontais para privacidade. Dois quartos, casa de banho central e espaço de estar convivente com terraço.",
       capacity: "2 a 4 pessoas",
@@ -160,7 +160,7 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
       closingTagline: "A forma ao serviço do conforto.",
     },
     en: {
-      tagline: "Essential comfort in a clean, modern design.",
+      tagline: "Simple, elegant, harmonious and timeless.",
       description:
         "Modular capsule with rounded white frame and horizontal slats for privacy. Two bedrooms, central bathroom and a welcoming living area with terrace.",
       capacity: "2 to 4 people",
@@ -334,7 +334,7 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
   },
   ritmo: {
     pt: {
-      tagline: "O essencial do conforto, num design depurado e moderno.",
+      tagline: "Viva, calorosa, solar e cheia de carácter.",
       description:
         "Cápsula compacta com ecrã de lâminas verticais e terraço de madeira. Dois quartos, casa de banho, canto de cozinha e sala num formato otimizado para 2 a 4 pessoas.",
       capacity: "2 a 4 pessoas",
@@ -344,7 +344,7 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
       closingTagline: "O ritmo do conforto no dia a dia.",
     },
     en: {
-      tagline: "Essential comfort in a clean, modern design.",
+      tagline: "Lively, warm, sunny and full of character.",
       description:
         "Compact capsule with a vertical-slat screen and timber terrace. Two bedrooms, bathroom, kitchenette and living room in a format optimised for 2 to 4 people.",
       capacity: "2 to 4 people",

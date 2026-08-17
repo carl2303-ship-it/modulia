@@ -73,12 +73,12 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
     pt: {
       title: "Terraços",
       description: "Terraço adicional além do incluído — grande 11,80 m ou compacto 5,90 m.",
-      priceLabel: "6 300 – 9 900 € IVA incl.",
+      priceLabel: "7 500 – 12 500 € IVA incl.",
     },
     en: {
       title: "Terraces",
       description: "Extra terrace beyond the included one — large 11.80 m or compact 5.90 m.",
-      priceLabel: "€6,300 – €9,900 incl. VAT",
+      priceLabel: "€7,500 – €12,500 incl. VAT",
     },
   },
   "kit-exterieur": {
@@ -125,12 +125,12 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
     pt: {
       title: "Cortinas blackout",
       description: "Cortinas à medida para as suas janelas — vendidas ao metro linear.",
-      priceLabel: "250 € + 30 € IVA incl. / metro linear",
+      priceLabel: "269 € + 35 € IVA incl. / metro linear",
     },
     en: {
       title: "Blackout curtains",
       description: "Bespoke curtains for your glazed openings — sold per linear metre.",
-      priceLabel: "€250 + €30 incl. VAT / linear metre",
+      priceLabel: "€269 + €35 incl. VAT / linear metre",
     },
   },
   poignee: {
@@ -147,54 +147,62 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
     pt: {
       title: "Esquentador solar",
       description: "Em substituição do elétrico — energia renovável.",
-      priceLabel: "870 – 1 375 € c/IVA",
+      priceLabel: "929 – 1 489 € c/IVA",
     },
     en: {
       title: "Solar water heater",
       description: "Replaces the electric heater — renewable energy.",
-      priceLabel: "€870 – €1,375 incl. VAT",
+      priceLabel: "€929 – €1,489 incl. VAT",
     },
   },
   climatisation: {
     pt: {
       title: "Climatização",
       description: "Standard ou solar — módulos pré-equipados.",
-      priceLabel: "460 € – 1 850 €",
+      priceLabel: "529 € – 1 990 €",
     },
     en: {
       title: "Air conditioning",
       description: "Standard or solar — pre-equipped modules.",
-      priceLabel: "€460 – €1,850",
+      priceLabel: "€529 – €1,990",
     },
   },
   "genie-civil": {
     pt: {
       title: "Engenharia civil / Terraplanagem",
-      description: "Preparação dos pilares no seu terreno.",
+      description:
+        "Preparação dos pilares no seu terreno — a partir de 3 000 € +IVA por módulo, segundo o modelo.",
+      priceLabel: "A partir de 3 000 € +IVA",
     },
     en: {
       title: "Civil works / Groundworks",
-      description: "Preparation of piles on your plot.",
+      description:
+        "Preparation of piles on your plot — from €3,000 excl. VAT per module, depending on the model.",
+      priceLabel: "From €3,000 excl. VAT",
     },
   },
   raccordement: {
     pt: {
       title: "Ligação do módulo",
-      description: "Água, eletricidade e esgoto — instalação conforme.",
+      description:
+        "Água, eletricidade e esgoto — a partir de 2 000 € +IVA por módulo, segundo o modelo.",
+      priceLabel: "A partir de 2 000 € +IVA",
     },
     en: {
       title: "Module connection",
-      description: "Water, electricity and drainage — compliant installation.",
+      description:
+        "Water, electricity and drainage — from €2,000 excl. VAT per module, depending on the model.",
+      priceLabel: "From €2,000 excl. VAT",
     },
   },
   transport: {
     pt: {
       title: "Transporte e grua",
-      description: "Incluído num raio de 30 km.",
+      description: "Incluído num raio de 30 km em torno de Faro.",
     },
     en: {
       title: "Transport & crane",
-      description: "Included within a 30 km radius.",
+      description: "Included within a 30 km radius around Faro.",
     },
   },
   "cuisine-lave-vaisselle": {
@@ -232,10 +240,6 @@ export const OPTION_COPY: Record<string, Partial<Record<Locale, CatalogCopy>>> =
   "electro-base": {
     pt: { title: "Kit eletrodomésticos base", description: "Pack de aparelhos encastráveis essenciais — incluído." },
     en: { title: "Base appliance kit", description: "Essential built-in appliance pack — included." },
-  },
-  "electro-option": {
-    pt: { title: "Kit eletrodomésticos premium", description: "Pack premium com aparelhos de alta gama." },
-    en: { title: "Premium appliance kit", description: "Premium pack with high-end appliances." },
   },
   "pool-house": {
     pt: {

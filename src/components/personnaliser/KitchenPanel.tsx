@@ -5,7 +5,6 @@ import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/config";
 import {
   formatOptionPrice,
-  getLocalizedKitchenAppliances,
   getLocalizedKitchenBase,
   getLocalizedKitchenOptions,
   type OptionItem,
@@ -29,10 +28,6 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
     ...item,
     categoryTitle,
   }));
-  const kitchenAppliances = getLocalizedKitchenAppliances(locale).map((item) => ({
-    ...item,
-    categoryTitle,
-  }));
 
   const togglePack = (id: string) => {
     const packs = kitchen.packs.includes(id)
@@ -42,7 +37,6 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
   };
 
   const packOptions = kitchenOptions;
-  const electroPremium = kitchenAppliances.find((a) => a.id === "electro-option");
 
   const kitchenBaseAsOption: OptionItem = {
     id: "cuisine-base",
@@ -122,69 +116,6 @@ export function KitchenPanel({ kitchen, onChange, onOpenDetail }: KitchenPanelPr
               </div>
             );
           })}
-        </div>
-      </div>
-
-      <div>
-        <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
-          {t("electromenager")}
-        </p>
-        <div className="mt-3 space-y-2">
-          {electroPremium && (
-            <div
-              className={`flex w-full items-start gap-3 rounded-2xl border px-4 py-3 transition ${
-                kitchen.appliances === "option"
-                  ? "border-luxury-forest bg-white"
-                  : "border-luxury-stone bg-white/60"
-              }`}
-            >
-              <button
-                type="button"
-                onClick={() => onOpenDetail(electroPremium)}
-                className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl"
-              >
-                <Image
-                  src={electroPremium.image}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="56px"
-                />
-              </button>
-              <button
-                type="button"
-                onClick={() => onOpenDetail(electroPremium)}
-                className="min-w-0 flex-1 text-left"
-              >
-                <p className="font-ui text-sm text-luxury-graphite">
-                  {electroPremium.title}
-                </p>
-                <p className="mt-0.5 font-ui text-[11px] text-luxury-muted">
-                  {formatOptionPrice(electroPremium, locale)}
-                </p>
-                <p className="mt-0.5 font-ui text-[10px] text-luxury-forest">
-                  {t("seeDetail")}
-                </p>
-              </button>
-              <button
-                type="button"
-                onClick={() =>
-                  onChange({
-                    ...kitchen,
-                    appliances: kitchen.appliances === "option" ? "base" : "option",
-                  })
-                }
-                aria-pressed={kitchen.appliances === "option"}
-                className={`mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded border ${
-                  kitchen.appliances === "option"
-                    ? "border-luxury-forest bg-luxury-forest text-white"
-                    : "border-luxury-stone"
-                }`}
-              >
-                {kitchen.appliances === "option" ? "✓" : ""}
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>
