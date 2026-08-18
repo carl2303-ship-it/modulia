@@ -18,7 +18,6 @@ export type KitchenSelection = {
 export type PoolSelection = {
   enabled: boolean;
   shellColor: string;
-  linerColor: string;
   fabricColor: string;
   options: string[];
 };
@@ -46,7 +45,6 @@ export const INITIAL_KITCHEN: KitchenSelection = {
 export const INITIAL_POOL: PoolSelection = {
   enabled: false,
   shellColor: "blanc",
-  linerColor: "bleu-france",
   fabricColor: "ad-1150074",
   options: [],
 };

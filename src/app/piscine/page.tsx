@@ -5,7 +5,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { OptionFichaCard } from "@/components/options/OptionFichaCard";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getLocalizedPoolModel, getLocalizedPoolOptions } from "@/data/options-catalog";
-import { PoolFabricCatalog, PoolLinerCatalog, PoolShellCatalog } from "@/components/piscine/PoolCatalogSwatches";
+import { PoolFabricCatalog, PoolShellCatalog } from "@/components/piscine/PoolCatalogSwatches";
 import { formatModelPrice } from "@/data/models";
 import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
 
@@ -125,21 +125,11 @@ export default async function PiscinePage() {
             <div className="mt-8">
               <PoolShellCatalog />
             </div>
-          </div>
-        </section>
-
-        <section className="border-t border-luxury-stone/60 bg-white py-16">
-          <div className="mx-auto max-w-7xl px-6">
-            <h2 className="font-serif text-3xl text-luxury-graphite">{t("linerTitle")}</h2>
-            <p className="mt-4 max-w-2xl font-ui text-sm text-luxury-muted">{t("linerIntro")}</p>
-            <div className="mt-8">
-              <PoolLinerCatalog />
-            </div>
             <Link
               href="/personnaliser?model=equilibro"
               className="mt-8 inline-block font-ui text-xs uppercase tracking-wider text-luxury-forest hover:underline"
             >
-              {t("linerCta")} →
+              {t("configureCta")} →
             </Link>
           </div>
         </section>
