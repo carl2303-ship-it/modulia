@@ -50,7 +50,7 @@ export function Models() {
                   sizes="(max-width: 1024px) 100vw, 33vw"
                 />
                 <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-2.5 py-1 font-ui text-[10px] uppercase tracking-wider text-luxury-graphite">
-                  {model.typology}
+                  {model.typologyLabel}
                 </span>
               </Link>
 

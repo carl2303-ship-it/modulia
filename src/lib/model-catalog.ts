@@ -9,6 +9,8 @@ export type ModelFolderAssets = {
   ficha: string;
   hero1: string;
   hero2: string;
+  /** 3.ª vista 3D (em vez da planta na galeria) */
+  hero3?: string;
   planImage: string;
   /** Planta sem cotas — 3.ª imagem da galeria */
   planGallery: string;
@@ -16,7 +18,7 @@ export type ModelFolderAssets = {
   planSemCotacoes: string;
 };
 
-/** 14 modelos particulares — pasta em public/ */
+/** 15 modelos particulares — pasta em public/ */
 export const MODEL_SLUGS = [
   "equilibro",
   "espacao",
@@ -32,9 +34,26 @@ export const MODEL_SLUGS = [
   "ritmo",
   "superficie",
   "volume",
+  "rooftop",
 ] as const;
 
 export type ModelSlug = (typeof MODEL_SLUGS)[number];
+
+/** Affichés à la fin du catalogue, après Superficie, quel que soit le prix. */
+export const PINNED_LAST_SLUGS: readonly ModelSlug[] = ["rooftop"];
+
+export function sortModelsByCatalogOrder<T extends { slug: string; priceFrom: number }>(
+  models: T[],
+): T[] {
+  const pinned = new Set<string>(PINNED_LAST_SLUGS);
+  const rest = models
+    .filter((m) => !pinned.has(m.slug))
+    .sort((a, b) => a.priceFrom - b.priceFrom);
+  const last = PINNED_LAST_SLUGS.map((slug) => models.find((m) => m.slug === slug)).filter(
+    (m): m is T => Boolean(m),
+  );
+  return [...rest, ...last];
+}
 
 /** Mapeamento slug → nome da pasta (quando difere por encoding) */
 const FOLDER_ALIASES: Record<ModelSlug, string> = {
@@ -52,6 +71,7 @@ const FOLDER_ALIASES: Record<ModelSlug, string> = {
   ritmo: "ritmo",
   superficie: "superficie",
   volume: "volume",
+  rooftop: "rooftop",
 };
 
 const ASSET_MAP: Record<
@@ -156,17 +176,27 @@ const ASSET_MAP: Record<
     planCotado: "/volume/Volume.pdf",
     planSemCotacoes: "/volume/Volume sem medidas.pdf",
   },
+  rooftop: {
+    ficha: "/rooftop/ROOFTOP VUE 3D 1.png",
+    hero1: "/rooftop/ROOFTOP VUE 3D 1.png",
+    hero2: "/rooftop/ROOFTOP VUE 3D 2.png",
+    hero3: "/rooftop/ROOFTOP VUE 3D 3.png",
+    planCotado: "",
+    planSemCotacoes: "",
+  },
 };
 
 export function getModelAssets(slug: ModelSlug): ModelFolderAssets {
   const folder = FOLDER_ALIASES[slug];
   const planBase = slug === folder ? slug : folder;
+  const mapped = ASSET_MAP[slug];
+  const hasPlan = Boolean(mapped.planCotado);
   return {
     slug,
     folder,
-    planImage: `/${folder}/${planBase}-plan.png`,
-    planGallery: `/${folder}/${planBase}-plan-galerie.png`,
-    ...ASSET_MAP[slug],
+    planImage: hasPlan ? `/${folder}/${planBase}-plan.png` : "",
+    planGallery: hasPlan ? `/${folder}/${planBase}-plan-galerie.png` : "",
+    ...mapped,
   };
 }
 

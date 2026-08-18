@@ -13,9 +13,10 @@ import { defaultLocale, type Locale } from "@/i18n/config";
 import {
   getModelAssets,
   MODEL_SLUGS,
+  sortModelsByCatalogOrder,
   type ModelSlug,
 } from "@/lib/model-catalog";
-import { getModelTypology } from "@/lib/model-typology";
+import { getModelTypology, getModelTypologyLabel } from "@/lib/model-typology";
 
 function formatDimensions(length: string, width: string): string {
   return `${length.replace(" m", "")} × ${width}`;
@@ -29,7 +30,7 @@ function buildSpecs(override: ModelOverride, locale: Locale): ModelSpec[] {
     },
     {
       label: localizeSpecLabel("Hauteur intérieure", locale),
-      value: "2,25 m",
+      value: localizeSpecValue(override.interiorHeight ?? "2,25 m", locale),
     },
     {
       label: localizeSpecLabel("Surface intérieure", locale),
@@ -48,6 +49,13 @@ function buildSpecs(override: ModelOverride, locale: Locale): ModelSpec[] {
       value: localizeSpecValue("Haute performance", locale),
     },
   ];
+
+  if (override.levels) {
+    specs.push({
+      label: localizeSpecLabel("Niveaux", locale),
+      value: override.levels,
+    });
+  }
 
   if (override.terrace) {
     specs.push({
@@ -103,7 +111,7 @@ function buildKeyFeatures(
   ];
 }
 
-const IMAGE_ALT: Record<Locale, (name: string, n: 1 | 2) => string> = {
+const IMAGE_ALT: Record<Locale, (name: string, n: 1 | 2 | 3) => string> = {
   fr: (name, n) => `${name} — vue 3D ${n}`,
   pt: (name, n) => `${name} — vista 3D ${n}`,
   en: (name, n) => `${name} — 3D view ${n}`,
@@ -153,14 +161,17 @@ export function buildModelFromSlug(
     images: [
       { src: assets.hero1, alt: IMAGE_ALT[locale](override.name, 1) },
       { src: assets.hero2, alt: IMAGE_ALT[locale](override.name, 2) },
-      { src: assets.planGallery, alt: PLAN_ALT[locale](override.name) },
+      assets.hero3
+        ? { src: assets.hero3, alt: IMAGE_ALT[locale](override.name, 3) }
+        : { src: assets.planGallery, alt: PLAN_ALT[locale](override.name) },
     ],
-    planImage: assets.planImage,
+    planImage: assets.planImage || undefined,
     planLabel: PLAN_LABEL[locale](dimensions),
     specs: buildSpecs(override, locale),
     highlights: getStandardHighlights(locale),
     rooms: override.rooms,
     typology: getModelTypology(override.rooms),
+    typologyLabel: getModelTypologyLabel(override.rooms),
     area: override.area,
     capacity: override.capacity,
     configuratorUrl: `/personnaliser?model=${slug}`,
@@ -169,7 +180,7 @@ export function buildModelFromSlug(
 }
 
 export function buildAllModels(locale: Locale = defaultLocale): ModelData[] {
-  return MODEL_SLUGS.map((slug) => buildModelFromSlug(slug, locale)).sort(
-    (a, b) => a.priceFrom - b.priceFrom,
+  return sortModelsByCatalogOrder(
+    MODEL_SLUGS.map((slug) => buildModelFromSlug(slug, locale)),
   );
 }

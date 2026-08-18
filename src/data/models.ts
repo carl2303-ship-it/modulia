@@ -8,7 +8,12 @@ import { defaultLocale, type Locale } from "@/i18n/config";
 import { MODEL_SLUGS, type ModelSlug } from "@/lib/model-catalog";
 import type { ModelTypology } from "@/lib/model-typology";
 export type { ModelTypology } from "@/lib/model-typology";
-export { getModelTypology, MODEL_TYPOLOGIES } from "@/lib/model-typology";
+export {
+  getModelTypology,
+  getModelTypologyLabel,
+  modelMatchesTypology,
+  MODEL_TYPOLOGIES,
+} from "@/lib/model-typology";
 
 export type ModelSpec = {
   label: string;
@@ -56,6 +61,8 @@ export type ModelData = {
   rooms: string;
   /** Typologie T0–T4 (studio → 4 chambres) */
   typology: ModelTypology;
+  /** Badge catalogue : "T2" ou "T1–T4" */
+  typologyLabel: string;
   area: string;
   capacity: string;
   configuratorUrl?: string;
@@ -101,7 +108,7 @@ function toNavItem(model: ModelData): ModelNavItem {
   };
 }
 
-/** Modèles adjacents selon l'ordre du catalogue (prix croissant). */
+/** Modèles adjacents selon l'ordre du catalogue (prix croissant, Rooftop en dernier). */
 export function getAdjacentModels(
   slug: string,
   locale: Locale = defaultLocale,

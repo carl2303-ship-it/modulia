@@ -18,6 +18,7 @@ type ModelCopy = Partial<
     | "rooms"
     | "distribution"
     | "terrace"
+    | "interiorHeight"
     | "closingTagline"
   >
 > & {
@@ -410,6 +411,44 @@ const MODEL_I18N: Record<ModelSlug, Partial<Record<"pt" | "en", ModelCopy>>> = {
       closingTagline: "Space in its purest form.",
     },
   },
+  rooftop: {
+    pt: {
+      tagline: "Dois níveis entre céu e natureza, banhados de luz.",
+      description:
+        "Dois níveis entre céu e natureza, banhados de luz. Arquitetura modular empilhada de 44 a 106 m², de 1 a 4 quartos, com terraço rooftop aberto sobre a paisagem.",
+      introSubline: "Entre céu e natureza.",
+      capacity: "2 a 8 pessoas",
+      rooms: "1 a 4 quartos",
+      distribution: "1 a 4 quartos",
+      terrace: "Terraço rooftop",
+      interiorHeight: "Dois níveis",
+      closingTagline: "Dois níveis entre céu e natureza, banhados de luz.",
+      planInternalMeasures: [
+        "Dois níveis",
+        "Área 44 a 106 m²",
+        "1 a 4 quartos",
+        "Terraço rooftop",
+      ],
+    },
+    en: {
+      tagline: "Two levels between sky and nature, bathed in light.",
+      description:
+        "Two levels between sky and nature, bathed in light. Stacked modular architecture from 44 to 106 m², 1 to 4 bedrooms, with a rooftop terrace open to the landscape.",
+      introSubline: "Between sky and nature.",
+      capacity: "2 to 8 people",
+      rooms: "1 to 4 bedrooms",
+      distribution: "1 to 4 bedrooms",
+      terrace: "Rooftop terrace",
+      interiorHeight: "Two levels",
+      closingTagline: "Two levels between sky and nature, bathed in light.",
+      planInternalMeasures: [
+        "Two levels",
+        "Area 44 to 106 m²",
+        "1 to 4 bedrooms",
+        "Rooftop terrace",
+      ],
+    },
+  },
 };
 
 const HIGHLIGHTS: Record<"pt" | "en", string[]> = {
@@ -456,8 +495,10 @@ const SPEC_LABELS: Record<"pt" | "en", Record<string, string>> = {
     Isolation: "Isolamento",
     Terrasse: "Terraço",
     Distribution: "Distribuição",
+    Niveaux: "Níveis",
     "Acier galvanisé": "Aço galvanizado",
     "Haute performance": "Alta performance",
+    "Deux niveaux": "Dois níveis",
   },
   en: {
     "Dimensions hors tout": "Overall dimensions",
@@ -468,8 +509,10 @@ const SPEC_LABELS: Record<"pt" | "en", Record<string, string>> = {
     Isolation: "Insulation",
     Terrasse: "Terrace",
     Distribution: "Layout",
+    Niveaux: "Levels",
     "Acier galvanisé": "Galvanised steel",
     "Haute performance": "High performance",
+    "Deux niveaux": "Two levels",
   },
 };
 

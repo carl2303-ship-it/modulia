@@ -9,7 +9,8 @@ import {
   type ModelData,
   type ModelTypology,
 } from "@/data/models";
-import { MODEL_TYPOLOGIES } from "@/lib/model-typology";
+import { MODEL_TYPOLOGIES, modelMatchesTypology } from "@/lib/model-typology";
+import { sortModelsByCatalogOrder } from "@/lib/model-catalog";
 import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
 
 type SortMode = "price" | "typology";
@@ -27,7 +28,9 @@ export function ModelCatalogGrid({ models }: ModelCatalogGridProps) {
 
   const filtered = useMemo(() => {
     const list =
-      typology === "all" ? [...models] : models.filter((m) => m.typology === typology);
+      typology === "all"
+        ? [...models]
+        : models.filter((m) => modelMatchesTypology(m.rooms, typology));
 
     if (sortMode === "typology") {
       const order: Record<ModelTypology, number> = { T0: 0, T1: 1, T2: 2, T3: 3, T4: 4 };
@@ -37,7 +40,7 @@ export function ModelCatalogGrid({ models }: ModelCatalogGridProps) {
       });
     }
 
-    return list.sort((a, b) => a.priceFrom - b.priceFrom);
+    return sortModelsByCatalogOrder(list);
   }, [models, typology, sortMode]);
 
   return (
@@ -97,7 +100,7 @@ export function ModelCatalogGrid({ models }: ModelCatalogGridProps) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-luxury-graphite/40 to-transparent" />
               <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-2.5 py-1 font-ui text-[10px] uppercase tracking-wider text-luxury-graphite">
-                {model.typology}
+                {model.typologyLabel}
               </span>
             </div>
 
