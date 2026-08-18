@@ -2,7 +2,6 @@
 
 import { useLocale } from "next-intl";
 import type { Locale } from "@/i18n/config";
-import { getLocalizedPoolLinerColors } from "@/data/pool-liner";
 import { getLocalizedPoolFabricColors } from "@/data/pool-fabric";
 import { getLocalizedPoolShellColors } from "@/data/pool-shell";
 import { PoolSwatchGrid } from "./PoolSwatchGrid";
@@ -20,22 +19,6 @@ export function PoolShellCatalog() {
       }))}
       variant="compact"
       columnsClass="grid grid-cols-3 gap-3 sm:max-w-md"
-    />
-  );
-}
-
-export function PoolLinerCatalog() {
-  const locale = useLocale() as Locale;
-  const colors = getLocalizedPoolLinerColors(locale);
-
-  return (
-    <PoolSwatchGrid
-      items={colors.map((color) => ({
-        id: color.id,
-        image: color.image,
-        label: color.name,
-      }))}
-      variant="compact"
     />
   );
 }

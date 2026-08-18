@@ -11,7 +11,6 @@ import {
 } from "@/data/options-catalog";
 import type { PoolSelection } from "./types";
 import { PoolShellPicker } from "@/components/piscine/PoolShellPicker";
-import { PoolLinerPicker } from "@/components/piscine/PoolLinerPicker";
 import { PoolFabricPicker } from "@/components/piscine/PoolFabricPicker";
 
 type PoolPanelProps = {
@@ -126,19 +125,6 @@ export function PoolPanel({ pool, onChange, onOpenDetail }: PoolPanelProps) {
               <PoolShellPicker
                 selectedId={pool.shellColor}
                 onSelect={(shellColor) => onChange({ ...pool, shellColor })}
-              />
-            </div>
-          </div>
-
-          <div>
-            <p className="font-ui text-[10px] uppercase tracking-[0.2em] text-luxury-muted">
-              {t("poolLinerTitle")}
-            </p>
-            <p className="mt-1 font-ui text-[11px] text-luxury-muted">{t("poolLinerSub")}</p>
-            <div className="mt-4">
-              <PoolLinerPicker
-                selectedId={pool.linerColor}
-                onSelect={(linerColor) => onChange({ ...pool, linerColor })}
               />
             </div>
           </div>

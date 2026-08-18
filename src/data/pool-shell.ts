@@ -6,19 +6,19 @@ export type PoolShellColor = {
   hex: string;
 };
 
-/** Couleur de la structure / coque de la piscine — avant le liner */
+/** Couleur de la structure / coque de la piscine */
 export const POOL_SHELL_COLORS: PoolShellColor[] = [
   { id: "blanc", name: "Blanc", hex: "#f5f5f5" },
-  { id: "gris", name: "Gris", hex: "#9a9a9a" },
-  { id: "marron", name: "Marron", hex: "#6b4423" },
+  { id: "gris-clair", name: "Gris clair", hex: "#c8c8c8" },
+  { id: "gris-fonce", name: "Gris foncé", hex: "#3f3f3f" },
 ];
 
 export const DEFAULT_POOL_SHELL_ID = "blanc";
 
 const SHELL_NAMES: Record<string, Partial<Record<Locale, string>>> = {
   blanc: { pt: "Branco", en: "White" },
-  gris: { pt: "Cinzento", en: "Grey" },
-  marron: { pt: "Castanho", en: "Brown" },
+  "gris-clair": { pt: "Cinzento claro", en: "Light grey" },
+  "gris-fonce": { pt: "Cinzento escuro", en: "Dark grey" },
 };
 
 export function getLocalizedPoolShellColors(
