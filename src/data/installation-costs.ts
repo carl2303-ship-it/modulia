@@ -22,6 +22,7 @@ export const MODEL_INSTALLATION_COSTS: Record<ModelSlug, InstallationCosts> = {
   espacao: { modules: 3, civil: 6_000, raccordement: 6_000 },
   origem: { modules: 3, civil: 6_000, raccordement: 6_000 },
   superficie: { modules: 3, civil: 6_000, raccordement: 6_000 },
+  rooftop: { modules: 2, civil: 4_000, raccordement: 4_000 },
 };
 
 export const DEFAULT_INSTALLATION_COSTS: InstallationCosts = {

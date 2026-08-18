@@ -14,6 +14,8 @@ export type ModelOverride = {
   rooms: string;
   distribution: string;
   terrace?: string;
+  interiorHeight?: string;
+  levels?: string;
   featured?: boolean;
   closingTagline?: string;
   layoutZones?: ModelLayoutZone[];
@@ -286,5 +288,29 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
     distribution: "1 chambre",
     terrace: "Intégrée toute longueur",
     closingTagline: "L'espace à l'état pur.",
+  },
+  rooftop: {
+    name: "ROOFTOP",
+    tagline: "Deux niveaux entre ciel et nature, baignés de lumière.",
+    description:
+      "Deux niveaux entre ciel et nature, baignés de lumière. Architecture modulaire empilée de 44 à 106 m², de 1 à 4 chambres, avec terrasse rooftop ouverte sur le paysage.",
+    introSubline: "Entre ciel et nature.",
+    priceFrom: 60_000,
+    length: "11,80 m",
+    width: "11,80 m",
+    area: "44 à 106 m²",
+    capacity: "2 à 8 personnes",
+    rooms: "1 à 4 chambres",
+    distribution: "1 à 4 chambres",
+    terrace: "Terrasse rooftop",
+    interiorHeight: "Deux niveaux",
+    levels: "2",
+    closingTagline: "Deux niveaux entre ciel et nature, baignés de lumière.",
+    planInternalMeasures: [
+      "Deux niveaux",
+      "Surface 44 à 106 m²",
+      "1 à 4 chambres",
+      "Terrasse rooftop",
+    ],
   },
 };
