@@ -492,7 +492,12 @@ export function VendedorConfigurator({ profile }: Props) {
                 isOpen={openSection === "options"}
                 onToggle={() => toggleSection("options")}
               >
-                <PaidOptionsPanel paid={paid} onChange={setPaid} onOpenDetail={setDetailOption} />
+                <PaidOptionsPanel
+                  paid={paid}
+                  modelSlug={modelSlug}
+                  onChange={setPaid}
+                  onOpenDetail={setDetailOption}
+                />
               </ConfigSection>
 
               <ConfigSection
