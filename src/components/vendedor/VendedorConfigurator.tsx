@@ -16,7 +16,6 @@ import {
   getLocalizedPoolOptions,
   type OptionItem,
 } from "@/data/options-catalog";
-import { getPoolLinerById } from "@/data/pool-liner";
 import { getPoolFabricById } from "@/data/pool-fabric";
 import { getPoolShellById } from "@/data/pool-shell";
 import { FinitionPickers, buildDefaultFinitions } from "@/components/personnaliser/FinitionPickers";
@@ -136,8 +135,6 @@ export function VendedorConfigurator({ profile }: Props) {
     configSummaryLines.push(poolModel.name);
     const shell = getPoolShellById(pool.shellColor, locale);
     if (shell) configSummaryLines.push(t("poolShellSummary", { color: shell.name }));
-    const liner = getPoolLinerById(pool.linerColor, locale);
-    if (liner) configSummaryLines.push(t("poolLinerSummary", { color: liner.name }));
     const fabric = getPoolFabricById(pool.fabricColor, locale);
     if (fabric) {
       configSummaryLines.push(
