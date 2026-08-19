@@ -6,13 +6,14 @@ import { formatPrice, useAnimatedPrice } from "./useAnimatedPrice";
 type PriceBarProps = {
   totalPrice: number;
   onCtaClick: () => void;
+  ctaLabel?: string;
 };
 
 /**
  * Barra fixa inferior com preço animado e CTA de conversão.
  * Acompanha o scroll do utilizador (sticky).
  */
-export function PriceBar({ totalPrice, onCtaClick }: PriceBarProps) {
+export function PriceBar({ totalPrice, onCtaClick, ctaLabel }: PriceBarProps) {
   const animatedPrice = useAnimatedPrice(totalPrice);
   const t = useTranslations("personnaliser");
   const tCommon = useTranslations("common");
@@ -39,7 +40,7 @@ export function PriceBar({ totalPrice, onCtaClick }: PriceBarProps) {
           onClick={onCtaClick}
           className="rounded-full bg-luxury-graphite px-8 py-4 font-ui text-xs font-medium uppercase tracking-[0.2em] text-white transition-all duration-500 hover:bg-luxury-forest hover:shadow-glow sm:text-sm"
         >
-          {t("devisCta")}
+          {ctaLabel ?? t("devisCta")}
         </button>
       </div>
     </div>

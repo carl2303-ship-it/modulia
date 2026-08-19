@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentProfile, isOwner } from "@/lib/crm/auth";
 import { updateOrderAction } from "@/app/backoffice/actions";
+import { ConfigurationView } from "@/components/backoffice/ConfigurationView";
 import {
   formatDate,
   formatEuro,
@@ -31,6 +32,12 @@ export default async function OrderDetailPage({ params }: PageProps) {
 
   if (!order) notFound();
   const typed = order as Order;
+  const customer = typed.customer as { phone?: string | null; address?: string | null } | null;
+  const addressParts = customer?.address
+    ?.split(",")
+    .map((p) => p.trim())
+    .filter(Boolean);
+  const fallbackCity = addressParts && addressParts.length > 1 ? addressParts[addressParts.length - 1] : null;
 
   let agents: Profile[] = [];
   if (owner) {
@@ -44,7 +51,10 @@ export default async function OrderDetailPage({ params }: PageProps) {
         ← Commandes
       </Link>
       <h1 className="mt-4 font-serif text-3xl text-luxury-graphite">
-        {(typed.customer as { name?: string } | null)?.name || typed.model || "Commande"}
+        {(typed.customer as { name?: string } | null)?.name ||
+          typed.delivery_name ||
+          typed.model ||
+          "Commande"}
       </h1>
       <p className="mt-2 font-ui text-sm text-luxury-muted">
         {SOURCE_LABELS[typed.source]} · {formatDate(typed.created_at)}
@@ -65,12 +75,42 @@ export default async function OrderDetailPage({ params }: PageProps) {
         </div>
       </dl>
 
+      <div className="mt-6 rounded-2xl border border-luxury-stone bg-white p-6">
+        <h2 className="font-serif text-xl text-luxury-graphite">Client & livraison</h2>
+        <dl className="mt-4 grid gap-3 sm:grid-cols-2">
+          <div>
+            <dt className="text-[11px] uppercase tracking-wider text-luxury-muted">Nom client</dt>
+            <dd className="mt-1 text-luxury-graphite">{typed.delivery_name || "—"}</dd>
+          </div>
+          <div>
+            <dt className="text-[11px] uppercase tracking-wider text-luxury-muted">Email client</dt>
+            <dd className="mt-1 text-luxury-graphite">{typed.delivery_email || "—"}</dd>
+          </div>
+          <div>
+            <dt className="text-[11px] uppercase tracking-wider text-luxury-muted">Téléphone</dt>
+            <dd className="mt-1 text-luxury-graphite">
+              {typed.delivery_phone || customer?.phone || "—"}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-[11px] uppercase tracking-wider text-luxury-muted">Rue / Adresse</dt>
+            <dd className="mt-1 text-luxury-graphite">{typed.delivery_street || customer?.address || "—"}</dd>
+          </div>
+          <div>
+            <dt className="text-[11px] uppercase tracking-wider text-luxury-muted">Code postal</dt>
+            <dd className="mt-1 text-luxury-graphite">{typed.delivery_postal_code || "—"}</dd>
+          </div>
+          <div>
+            <dt className="text-[11px] uppercase tracking-wider text-luxury-muted">Ville</dt>
+            <dd className="mt-1 text-luxury-graphite">{typed.delivery_city || fallbackCity || "—"}</dd>
+          </div>
+        </dl>
+      </div>
+
       {typed.configuration && (
         <div className="mt-6 rounded-2xl border border-luxury-stone bg-white p-6">
-          <h2 className="font-serif text-xl">Configuration</h2>
-          <pre className="mt-3 whitespace-pre-wrap font-ui text-sm text-luxury-muted">
-            {typed.configuration}
-          </pre>
+          <h2 className="mb-4 font-serif text-xl">Configuration</h2>
+          <ConfigurationView configuration={typed.configuration} />
         </div>
       )}
 
@@ -124,6 +164,60 @@ export default async function OrderDetailPage({ params }: PageProps) {
               type="number"
               step="1"
               defaultValue={typed.amount_paid}
+              className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
+            />
+          </label>
+          <label className="block sm:col-span-2">
+            <span className="text-[11px] uppercase tracking-wider text-luxury-muted">Nom client</span>
+            <input
+              name="delivery_name"
+              type="text"
+              defaultValue={typed.delivery_name ?? ""}
+              className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
+            />
+          </label>
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-luxury-muted">Email client</span>
+            <input
+              name="delivery_email"
+              type="email"
+              defaultValue={typed.delivery_email ?? ""}
+              className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
+            />
+          </label>
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-luxury-muted">Téléphone</span>
+            <input
+              name="delivery_phone"
+              type="text"
+              defaultValue={typed.delivery_phone ?? ""}
+              className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
+            />
+          </label>
+          <label className="block sm:col-span-2">
+            <span className="text-[11px] uppercase tracking-wider text-luxury-muted">Rue / Adresse</span>
+            <input
+              name="delivery_street"
+              type="text"
+              defaultValue={typed.delivery_street ?? ""}
+              className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
+            />
+          </label>
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-luxury-muted">Code postal</span>
+            <input
+              name="delivery_postal_code"
+              type="text"
+              defaultValue={typed.delivery_postal_code ?? ""}
+              className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
+            />
+          </label>
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-luxury-muted">Ville</span>
+            <input
+              name="delivery_city"
+              type="text"
+              defaultValue={typed.delivery_city ?? ""}
               className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
             />
           </label>

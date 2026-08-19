@@ -31,9 +31,10 @@ export async function updateSession(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
   const isBackoffice = pathname.startsWith("/backoffice");
+  const isVendedor = pathname.startsWith("/vendedor");
   const isLogin = pathname === "/login";
 
-  if (isBackoffice && !user) {
+  if ((isBackoffice || isVendedor) && !user) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = "/login";
     redirectUrl.searchParams.set("next", pathname);
@@ -41,11 +42,15 @@ export async function updateSession(request: NextRequest) {
   }
 
   if (isLogin && user) {
-    const next = request.nextUrl.searchParams.get("next") || "/backoffice";
-    const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = next.startsWith("/") ? next : "/backoffice";
-    redirectUrl.search = "";
-    return NextResponse.redirect(redirectUrl);
+    // Se há um ?next= explícito, respeitar
+    const next = request.nextUrl.searchParams.get("next");
+    if (next && next.startsWith("/") && !next.startsWith("//")) {
+      const redirectUrl = request.nextUrl.clone();
+      redirectUrl.pathname = next;
+      redirectUrl.search = "";
+      return NextResponse.redirect(redirectUrl);
+    }
+    // Caso contrário deixar o LoginForm redirecionar pelo role
   }
 
   return supabaseResponse;

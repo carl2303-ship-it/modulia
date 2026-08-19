@@ -6,10 +6,14 @@ type PageProps = {
 
 export default async function LoginPage({ searchParams }: PageProps) {
   const params = await searchParams;
+  // Respeitar ?next= apenas se for uma rota interna válida — caso contrário
+  // deixar o LoginForm redirecionar pelo role do utilizador
   const nextPath =
-    params.next && params.next.startsWith("/") && !params.next.startsWith("//")
+    params.next &&
+    params.next.startsWith("/") &&
+    !params.next.startsWith("//")
       ? params.next
-      : "/backoffice";
+      : undefined;
 
   return (
     <div className="flex min-h-screen items-center bg-luxury-papyrus px-6 py-16">

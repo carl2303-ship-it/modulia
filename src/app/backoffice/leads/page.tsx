@@ -7,7 +7,16 @@ import {
   LEAD_STATUS_LABELS,
   SOURCE_LABELS,
   type Lead,
+  type LeadStatus,
 } from "@/lib/crm/types";
+
+const LEAD_STATUS_BADGE: Record<LeadStatus, string> = {
+  new: "bg-orange-100 text-orange-800 border-orange-200",
+  contacted: "bg-green-100 text-green-800 border-green-200",
+  qualified: "bg-red-100 text-red-800 border-red-200",
+  converted: "bg-violet-100 text-violet-800 border-violet-200",
+  lost: "bg-slate-100 text-slate-700 border-slate-200",
+};
 
 export default async function LeadsPage() {
   const profile = await getCurrentProfile();
@@ -58,7 +67,13 @@ export default async function LeadsPage() {
                 </td>
                 <td className="px-4 py-3">{lead.model || "—"}</td>
                 <td className="px-4 py-3">{SOURCE_LABELS[lead.source]}</td>
-                <td className="px-4 py-3">{LEAD_STATUS_LABELS[lead.status]}</td>
+                <td className="px-4 py-3">
+                  <span
+                    className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-medium ${LEAD_STATUS_BADGE[lead.status]}`}
+                  >
+                    {LEAD_STATUS_LABELS[lead.status]}
+                  </span>
+                </td>
                 <td className="px-4 py-3">{formatEuro(lead.total_price_ttc)}</td>
                 <td className="px-4 py-3 text-luxury-muted">
                   {(lead.assignee as { full_name?: string } | null)?.full_name || "—"}

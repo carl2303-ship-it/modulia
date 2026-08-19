@@ -65,6 +65,12 @@ export type Order = {
   price_ttc: number;
   amount_paid: number;
   amount_due: number;
+  delivery_name: string | null;
+  delivery_email: string | null;
+  delivery_phone: string | null;
+  delivery_street: string | null;
+  delivery_postal_code: string | null;
+  delivery_city: string | null;
   notes: string | null;
   created_at: string;
   updated_at: string;

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentProfile, isOwner } from "@/lib/crm/auth";
 import { convertLeadToOrderAction, updateLeadAction } from "@/app/backoffice/actions";
+import { ConfigurationView } from "@/components/backoffice/ConfigurationView";
 import {
   formatDate,
   formatEuro,
@@ -12,6 +13,14 @@ import {
   type LeadStatus,
   type Profile,
 } from "@/lib/crm/types";
+
+const LEAD_STATUS_BADGE: Record<LeadStatus, string> = {
+  new: "bg-orange-100 text-orange-800 border-orange-200",
+  contacted: "bg-green-100 text-green-800 border-green-200",
+  qualified: "bg-red-100 text-red-800 border-red-200",
+  converted: "bg-violet-100 text-violet-800 border-violet-200",
+  lost: "bg-slate-100 text-slate-700 border-slate-200",
+};
 
 type PageProps = { params: Promise<{ id: string }> };
 
@@ -67,16 +76,20 @@ export default async function LeadDetailPage({ params }: PageProps) {
         </div>
         <div>
           <dt className="text-[11px] uppercase tracking-wider text-luxury-muted">Statut</dt>
-          <dd className="mt-1 text-luxury-graphite">{LEAD_STATUS_LABELS[typed.status]}</dd>
+          <dd className="mt-1">
+            <span
+              className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-medium ${LEAD_STATUS_BADGE[typed.status]}`}
+            >
+              {LEAD_STATUS_LABELS[typed.status]}
+            </span>
+          </dd>
         </div>
       </dl>
 
       {typed.configuration && (
         <div className="mt-6 rounded-2xl border border-luxury-stone bg-white p-6">
-          <h2 className="font-serif text-xl text-luxury-graphite">Configuration</h2>
-          <pre className="mt-3 whitespace-pre-wrap font-ui text-sm text-luxury-muted">
-            {typed.configuration}
-          </pre>
+          <h2 className="mb-4 font-serif text-xl text-luxury-graphite">Configuration</h2>
+          <ConfigurationView configuration={typed.configuration} />
         </div>
       )}
 

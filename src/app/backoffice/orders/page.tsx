@@ -18,7 +18,7 @@ export default async function OrdersPage() {
   let query = supabase
     .from("orders")
     .select(
-      "*, assignee:profiles!assigned_to(full_name), customer:customers(name, email)",
+      "*, assignee:profiles!assigned_to(full_name), customer:customers(name, email, phone, address)",
     )
     .order("created_at", { ascending: false });
 
@@ -29,6 +29,14 @@ export default async function OrdersPage() {
 
   const { data } = await query;
   const orders = (data ?? []) as Order[];
+  const getCityFromAddress = (address?: string | null) => {
+    if (!address) return null;
+    const parts = address
+      .split(",")
+      .map((p) => p.trim())
+      .filter(Boolean);
+    return parts.length > 1 ? parts[parts.length - 1] : null;
+  };
 
   return (
     <div>
@@ -43,6 +51,8 @@ export default async function OrdersPage() {
             <tr>
               <th className="px-4 py-3">Date</th>
               <th className="px-4 py-3">Client</th>
+              <th className="px-4 py-3">Téléphone</th>
+              <th className="px-4 py-3">Ville</th>
               <th className="px-4 py-3">Modèle</th>
               <th className="px-4 py-3">Pipeline</th>
               <th className="px-4 py-3">Paiement</th>
@@ -57,7 +67,17 @@ export default async function OrdersPage() {
               <tr key={order.id} className="border-b border-luxury-stone/60 last:border-0">
                 <td className="px-4 py-3 text-luxury-muted">{formatDate(order.created_at)}</td>
                 <td className="px-4 py-3">
-                  {(order.customer as { name?: string } | null)?.name || "—"}
+                  {(order.customer as { name?: string } | null)?.name || order.delivery_name || "—"}
+                </td>
+                <td className="px-4 py-3 text-luxury-muted">
+                  {order.delivery_phone ||
+                    (order.customer as { phone?: string | null } | null)?.phone ||
+                    "—"}
+                </td>
+                <td className="px-4 py-3 text-luxury-muted">
+                  {order.delivery_city ||
+                    getCityFromAddress((order.customer as { address?: string | null } | null)?.address) ||
+                    "—"}
                 </td>
                 <td className="px-4 py-3">{order.model || "—"}</td>
                 <td className="px-4 py-3">{PIPELINE_LABELS[order.pipeline_status]}</td>
@@ -77,7 +97,7 @@ export default async function OrdersPage() {
             ))}
             {orders.length === 0 && (
               <tr>
-                <td colSpan={9} className="px-4 py-10 text-center text-luxury-muted">
+                <td colSpan={11} className="px-4 py-10 text-center text-luxury-muted">
                   Aucune commande.
                 </td>
               </tr>

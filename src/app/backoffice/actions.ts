@@ -49,15 +49,32 @@ export async function convertLeadToOrderAction(formData: FormData) {
   if (leadError || !lead) throw new Error(leadError?.message || "Lead introuvable");
 
   let customerId = lead.customer_id as string | null;
+  let customerSnapshot: {
+    name: string | null;
+    email: string | null;
+    phone: string | null;
+    address: string | null;
+  } = {
+    name: lead.name ?? null,
+    email: lead.email ?? null,
+    phone: lead.phone ?? null,
+    address: null,
+  };
   if (!customerId) {
     const { data: existing } = await supabase
       .from("customers")
-      .select("id")
+      .select("id, name, email, phone, address")
       .ilike("email", lead.email)
       .maybeSingle();
 
     if (existing) {
       customerId = existing.id;
+      customerSnapshot = {
+        name: existing.name ?? lead.name ?? null,
+        email: existing.email ?? lead.email ?? null,
+        phone: existing.phone ?? lead.phone ?? null,
+        address: existing.address ?? null,
+      };
     } else {
       const { data: created, error: custError } = await supabase
         .from("customers")
@@ -67,10 +84,30 @@ export async function convertLeadToOrderAction(formData: FormData) {
           phone: lead.phone,
           created_by: profile.id,
         })
-        .select("id")
+        .select("id, name, email, phone, address")
         .single();
       if (custError || !created) throw new Error(custError?.message || "Client non créé");
       customerId = created.id;
+      customerSnapshot = {
+        name: created.name ?? lead.name ?? null,
+        email: created.email ?? lead.email ?? null,
+        phone: created.phone ?? lead.phone ?? null,
+        address: created.address ?? null,
+      };
+    }
+  } else {
+    const { data: linkedCustomer } = await supabase
+      .from("customers")
+      .select("name, email, phone, address")
+      .eq("id", customerId)
+      .maybeSingle();
+    if (linkedCustomer) {
+      customerSnapshot = {
+        name: linkedCustomer.name ?? lead.name ?? null,
+        email: linkedCustomer.email ?? lead.email ?? null,
+        phone: linkedCustomer.phone ?? lead.phone ?? null,
+        address: linkedCustomer.address ?? null,
+      };
     }
   }
 
@@ -90,6 +127,12 @@ export async function convertLeadToOrderAction(formData: FormData) {
       configuration: lead.configuration,
       price_ttc: price,
       amount_paid: 0,
+      delivery_name: customerSnapshot.name,
+      delivery_email: customerSnapshot.email,
+      delivery_phone: customerSnapshot.phone,
+      delivery_street: customerSnapshot.address,
+      delivery_postal_code: null,
+      delivery_city: null,
       notes: lead.message,
     })
     .select("id")
@@ -141,6 +184,12 @@ export async function updateOrderAction(formData: FormData) {
   const price_ttc = Number(formData.get("price_ttc") ?? 0);
   const amount_paid = Number(formData.get("amount_paid") ?? 0);
   const notes = String(formData.get("notes") ?? "");
+  const delivery_name = String(formData.get("delivery_name") ?? "").trim();
+  const delivery_email = String(formData.get("delivery_email") ?? "").trim();
+  const delivery_phone = String(formData.get("delivery_phone") ?? "").trim();
+  const delivery_street = String(formData.get("delivery_street") ?? "").trim();
+  const delivery_postal_code = String(formData.get("delivery_postal_code") ?? "").trim();
+  const delivery_city = String(formData.get("delivery_city") ?? "").trim();
   const assignedToRaw = String(formData.get("assigned_to") ?? "");
 
   const supabase = await createClient();
@@ -150,6 +199,12 @@ export async function updateOrderAction(formData: FormData) {
     price_ttc,
     amount_paid,
     notes: notes || null,
+    delivery_name: delivery_name || null,
+    delivery_email: delivery_email || null,
+    delivery_phone: delivery_phone || null,
+    delivery_street: delivery_street || null,
+    delivery_postal_code: delivery_postal_code || null,
+    delivery_city: delivery_city || null,
   };
   if (isOwner(profile) && assignedToRaw !== undefined) {
     patch.assigned_to = assignedToRaw === "" ? null : assignedToRaw;
