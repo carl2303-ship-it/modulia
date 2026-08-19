@@ -14,6 +14,8 @@ type SiteHeaderProps = {
 
 /** Header partilhado — fundo branco, texto preto, logo Modulia */
 export function SiteHeader(_props: SiteHeaderProps = {}) {
+  const { variant } = _props;
+  void variant;
   const t = useTranslations("nav");
   const [menuOpen, setMenuOpen] = useState(false);
 

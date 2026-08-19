@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useRef, useState, useTransition } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/config";
@@ -206,12 +207,12 @@ export function VendedorConfigurator({ profile }: Props) {
           )}
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a
+          <Link
             href="/backoffice/orders"
             className="rounded-full bg-luxury-graphite px-6 py-3 font-ui text-xs uppercase tracking-wider text-white hover:bg-luxury-forest"
           >
             Voir dans le backoffice
-          </a>
+          </Link>
           <button
             onClick={resetAll}
             className="rounded-full border border-luxury-stone px-6 py-3 font-ui text-xs uppercase tracking-wider text-luxury-graphite hover:border-luxury-forest hover:text-luxury-forest"
@@ -415,12 +416,12 @@ export function VendedorConfigurator({ profile }: Props) {
               {profile.role === "agent" ? "Commercial IAD" : "Showroom"}
             </p>
           </div>
-          <a
+          <Link
             href="/backoffice"
             className="font-ui text-xs uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
           >
             Backoffice →
-          </a>
+          </Link>
         </div>
       </header>
 
