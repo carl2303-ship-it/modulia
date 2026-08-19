@@ -8,9 +8,7 @@ import { ConfigSection } from "@/components/equilibro/ConfigSection";
 import { PriceBar } from "@/components/equilibro/PriceBar";
 import { getModelBySlug, getModels } from "@/data/models";
 import {
-  formatOptionPrice,
   getLocalizedFinitionCategories,
-  getLocalizedKitchenAppliances,
   getLocalizedKitchenOptions,
   getLocalizedOptionCategories,
   getLocalizedPoolModel,
@@ -83,10 +81,8 @@ export function VendedorConfigurator({ profile }: Props) {
   const allFinitions = getLocalizedFinitionCategories(locale).flatMap((c) => c.items);
   const allPaidOptions = getLocalizedOptionCategories(locale).flatMap((c) => c.items);
   const kitchenOptions = getLocalizedKitchenOptions(locale);
-  const kitchenAppliances = getLocalizedKitchenAppliances(locale);
   const poolModel = getLocalizedPoolModel(locale);
   const poolOptions = getLocalizedPoolOptions(locale);
-  const electroPremium = kitchenAppliances.find((a) => a.id === "electro-option");
 
   const formatMeters = (n: number) =>
     `${new Intl.NumberFormat(NUMBER_LOCALE[locale], {
@@ -126,11 +122,6 @@ export function VendedorConfigurator({ profile }: Props) {
   for (const id of kitchen.packs) {
     const pack = kitchenOptions.find((o) => o.id === id);
     if (pack) configSummaryLines.push(pack.title);
-  }
-  if (kitchen.appliances === "option" && electroPremium) {
-    configSummaryLines.push(
-      `${electroPremium.title} (+${formatOptionPrice(electroPremium, locale)})`,
-    );
   }
   if (pool.enabled) {
     configSummaryLines.push(poolModel.name);
