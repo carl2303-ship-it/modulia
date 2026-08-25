@@ -88,6 +88,16 @@ export function CreateUserForm() {
             className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
           />
         </label>
+        <label className="block sm:col-span-2">
+          <span className="text-[11px] uppercase tracking-wider text-luxury-muted">
+            IBAN (paiement commissions)
+          </span>
+          <input
+            name="iban"
+            placeholder="PT50 0002 0123 1234 5678 9015 4"
+            className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
+          />
+        </label>
       </div>
 
       {state?.error && <p className="font-ui text-sm text-red-600">{state.error}</p>}

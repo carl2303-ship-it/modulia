@@ -1,13 +1,20 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentProfile, isOwner } from "@/lib/crm/auth";
+import {
+  extractIadExternalRef,
+  isValidIadListingUrl,
+  titleFromIadUrl,
+} from "@/lib/crm/terrains";
 import type {
   CommissionPaymentStatus,
   LeadStatus,
   PaymentStatus,
   PipelineStatus,
+  TerrainStatus,
   UserRole,
 } from "@/lib/crm/types";
 
@@ -269,6 +276,7 @@ export async function createBackofficeUserAction(
   const full_name = String(formData.get("full_name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const agency = String(formData.get("agency") ?? "").trim();
+  const iban = String(formData.get("iban") ?? "").trim();
   const role = String(formData.get("role") ?? "agent") as UserRole;
   const commission_rate_pct = Number(formData.get("commission_rate_pct") ?? 0);
 
@@ -307,6 +315,7 @@ export async function createBackofficeUserAction(
       full_name,
       phone,
       agency,
+      iban,
       role,
       commission_rate_pct,
     }),
@@ -322,6 +331,11 @@ export async function createBackofficeUserAction(
     return { error: data.error || `Création impossible (${res.status})` };
   }
 
+  // Store optional financial data after user creation
+  if (data.id && iban) {
+    await supabase.from("profiles").update({ iban }).eq("id", data.id);
+  }
+
   revalidatePath("/backoffice/agents");
   revalidatePath("/backoffice");
   return { ok: true, id: data.id };
@@ -335,6 +349,7 @@ export async function updateAgentAction(formData: FormData) {
   const full_name = String(formData.get("full_name") ?? "");
   const phone = String(formData.get("phone") ?? "");
   const agency = String(formData.get("agency") ?? "");
+  const iban = String(formData.get("iban") ?? "");
   const role = String(formData.get("role") ?? "agent") as UserRole;
   const commission_rate_pct = Number(formData.get("commission_rate_pct") ?? 0);
   const active = formData.get("active") === "on" || formData.get("active") === "true";
@@ -346,6 +361,7 @@ export async function updateAgentAction(formData: FormData) {
       full_name,
       phone: phone || null,
       agency: agency || null,
+      iban: iban || null,
       role,
       commission_rate_pct,
       active,
@@ -428,4 +444,111 @@ export async function syncOptInToMailingListAction(formData: FormData) {
   }
 
   revalidatePath("/backoffice/mailing");
+}
+
+export async function createTerrainAction(formData: FormData) {
+  const profile = await getCurrentProfile();
+  if (!profile) throw new Error("Non authentifié");
+
+  const listing_url = String(formData.get("listing_url") ?? "").trim();
+  const titleRaw = String(formData.get("title") ?? "").trim();
+  const location = String(formData.get("location") ?? "").trim();
+  const areaRaw = String(formData.get("area_m2") ?? "").trim();
+  const priceRaw = String(formData.get("price_ttc") ?? "").trim();
+  const image_url = String(formData.get("image_url") ?? "").trim();
+  const description = String(formData.get("description") ?? "").trim();
+
+  if (!isValidIadListingUrl(listing_url)) {
+    throw new Error("Lien IAD invalide — utilisez une URL iadportugal.pt");
+  }
+
+  const external_ref = extractIadExternalRef(listing_url);
+  const title = titleRaw || titleFromIadUrl(listing_url) || "Terreno IAD";
+  if (!location) throw new Error("Localisation requise");
+
+  const area_m2 = areaRaw ? Number(areaRaw.replace(",", ".")) : null;
+  const price_ttc = priceRaw ? Number(priceRaw.replace(",", ".").replace(/\s/g, "")) : null;
+
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("terrains")
+    .insert({
+      created_by: profile.id,
+      listing_url,
+      external_ref,
+      title,
+      location,
+      area_m2: Number.isFinite(area_m2 as number) ? area_m2 : null,
+      price_ttc: Number.isFinite(price_ttc as number) ? price_ttc : null,
+      image_url: image_url || null,
+      description: description || null,
+      status: "published",
+    })
+    .select("id")
+    .single();
+
+  if (error) {
+    if (error.code === "23505") {
+      throw new Error("Cet annonce IAD est déjà enregistrée");
+    }
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/backoffice/terrains");
+  revalidatePath("/terrains");
+  redirect(`/backoffice/terrains/${data.id}`);
+}
+
+export async function updateTerrainAction(formData: FormData) {
+  const profile = await getCurrentProfile();
+  if (!profile) throw new Error("Non authentifié");
+
+  const id = String(formData.get("id") ?? "");
+  const listing_url = String(formData.get("listing_url") ?? "").trim();
+  const title = String(formData.get("title") ?? "").trim();
+  const location = String(formData.get("location") ?? "").trim();
+  const areaRaw = String(formData.get("area_m2") ?? "").trim();
+  const priceRaw = String(formData.get("price_ttc") ?? "").trim();
+  const image_url = String(formData.get("image_url") ?? "").trim();
+  const description = String(formData.get("description") ?? "").trim();
+  const status = String(formData.get("status") ?? "published") as TerrainStatus;
+
+  if (!id) throw new Error("Terrain introuvable");
+  if (!isValidIadListingUrl(listing_url)) {
+    throw new Error("Lien IAD invalide — utilisez une URL iadportugal.pt");
+  }
+  if (!title || !location) throw new Error("Titre et localisation requis");
+  if (!["published", "archived"].includes(status)) {
+    throw new Error("Statut invalide");
+  }
+
+  const area_m2 = areaRaw ? Number(areaRaw.replace(",", ".")) : null;
+  const price_ttc = priceRaw ? Number(priceRaw.replace(",", ".").replace(/\s/g, "")) : null;
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("terrains")
+    .update({
+      listing_url,
+      external_ref: extractIadExternalRef(listing_url),
+      title,
+      location,
+      area_m2: Number.isFinite(area_m2 as number) ? area_m2 : null,
+      price_ttc: Number.isFinite(price_ttc as number) ? price_ttc : null,
+      image_url: image_url || null,
+      description: description || null,
+      status,
+    })
+    .eq("id", id);
+
+  if (error) {
+    if (error.code === "23505") {
+      throw new Error("Cet annonce IAD est déjà enregistrée");
+    }
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/backoffice/terrains");
+  revalidatePath(`/backoffice/terrains/${id}`);
+  revalidatePath("/terrains");
 }

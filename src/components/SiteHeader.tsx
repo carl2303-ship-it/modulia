@@ -23,6 +23,7 @@ export function SiteHeader(_props: SiteHeaderProps = {}) {
     { id: "maisons", href: "/modelos", label: t("maisons") },
     { id: "bureaux", href: "/professionnels", label: t("bureaux") },
     { id: "piscines", href: "/piscine", label: t("piscines") },
+    { id: "terrains", href: "/terrains", label: t("terrains") },
     { id: "craft", href: "/#savoir-faire", label: t("craft") },
     { id: "contact", href: "/#contact", label: t("contact") },
   ];

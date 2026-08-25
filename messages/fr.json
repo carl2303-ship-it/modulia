@@ -7,6 +7,7 @@
     "maisons": "Maisons modulaires",
     "bureaux": "Bureaux professionnels",
     "piscines": "Piscines",
+    "terrains": "Terrains",
     "particuliers": "Particuliers",
     "personnaliser": "Personnaliser",
     "personnalisation": "Personnalisation",
@@ -494,5 +495,13 @@
     "specsEyebrow": "Caractéristiques",
     "specsTitle": "Fiche technique",
     "optionsLabel": "Options"
+  },
+  "terrains": {
+    "eyebrow": "Terrains",
+    "title": "Terrains prêts pour une maison Modulia",
+    "intro": "Sélection d'annonces IAD Portugal où une maison modulaire Modulia peut être implantée. Consultez le terrain, puis configurez votre maison.",
+    "seeListing": "Voir l'annonce IAD",
+    "configureHouse": "Configurer une maison",
+    "empty": "Aucun terrain publié pour le moment."
   }
 }

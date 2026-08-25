@@ -7,6 +7,7 @@
     "maisons": "Modular homes",
     "bureaux": "Professional offices",
     "piscines": "Pools",
+    "terrains": "Land plots",
     "particuliers": "Private clients",
     "personnaliser": "Customise",
     "personnalisation": "Personalisation",
@@ -494,5 +495,13 @@
     "specsEyebrow": "Specifications",
     "specsTitle": "Technical sheet",
     "optionsLabel": "Options"
+  },
+  "terrains": {
+    "eyebrow": "Land plots",
+    "title": "Plots ready for a Modulia home",
+    "intro": "A selection of IAD Portugal listings where a Modulia modular home can be installed. Browse the plot, then configure your house.",
+    "seeListing": "View IAD listing",
+    "configureHouse": "Configure a home",
+    "empty": "No plots published yet."
   }
 }

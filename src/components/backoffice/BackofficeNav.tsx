@@ -10,6 +10,7 @@ const NAV = [
   { href: "/backoffice", label: "Tableau de bord", ownerOnly: false },
   { href: "/backoffice/leads", label: "Leads", ownerOnly: false },
   { href: "/backoffice/orders", label: "Commandes", ownerOnly: false },
+  { href: "/backoffice/terrains", label: "Terrains", ownerOnly: false },
   { href: "/backoffice/customers", label: "Clients", ownerOnly: false },
   { href: "/backoffice/agents", label: "Commerciaux", ownerOnly: true },
   { href: "/backoffice/commissions", label: "Commissions", ownerOnly: false },

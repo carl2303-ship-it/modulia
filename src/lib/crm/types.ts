@@ -6,6 +6,7 @@ export type LeadStatus = "new" | "contacted" | "qualified" | "converted" | "lost
 export type PipelineStatus = "pending" | "ordered" | "in_production" | "installed";
 export type PaymentStatus = "unpaid" | "partial" | "paid";
 export type CommissionPaymentStatus = "a_pagar" | "pago";
+export type TerrainStatus = "published" | "archived";
 
 export type Profile = {
   id: string;
@@ -14,6 +15,7 @@ export type Profile = {
   email: string;
   phone: string | null;
   agency: string | null;
+  iban: string | null;
   commission_rate_pct: number;
   active: boolean;
   created_at: string;
@@ -101,6 +103,28 @@ export type MailingList = {
   created_at: string;
   updated_at: string;
   member_count?: number;
+};
+
+export type Terrain = {
+  id: string;
+  created_by: string | null;
+  listing_url: string;
+  external_ref: string | null;
+  title: string;
+  location: string;
+  area_m2: number | null;
+  price_ttc: number | null;
+  image_url: string | null;
+  description: string | null;
+  status: TerrainStatus;
+  created_at: string;
+  updated_at: string;
+  creator?: Profile | null;
+};
+
+export const TERRAIN_STATUS_LABELS: Record<TerrainStatus, string> = {
+  published: "Publié",
+  archived: "Archivé",
 };
 
 export const ROLE_LABELS: Record<UserRole, string> = {

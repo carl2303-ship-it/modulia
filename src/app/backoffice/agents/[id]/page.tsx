@@ -88,6 +88,16 @@ export default async function AgentDetailPage({ params }: PageProps) {
           />
         </label>
         <label className="block">
+          <span className="text-[11px] uppercase tracking-wider text-luxury-muted">
+            IBAN (paiement commissions)
+          </span>
+          <input
+            name="iban"
+            defaultValue={agent.iban ?? ""}
+            className="mt-2 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
+          />
+        </label>
+        <label className="block">
           <span className="text-[11px] uppercase tracking-wider text-luxury-muted">Rôle</span>
           <select
             name="role"

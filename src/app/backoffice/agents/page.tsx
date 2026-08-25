@@ -32,6 +32,7 @@ export default async function AgentsPage() {
               <th className="px-4 py-3">Email</th>
               <th className="px-4 py-3">Rôle</th>
               <th className="px-4 py-3">Agence</th>
+              <th className="px-4 py-3">IBAN</th>
               <th className="px-4 py-3">Commission %</th>
               <th className="px-4 py-3">Actif</th>
               <th className="px-4 py-3" />
@@ -44,6 +45,7 @@ export default async function AgentsPage() {
                 <td className="px-4 py-3">{agent.email}</td>
                 <td className="px-4 py-3">{ROLE_LABELS[agent.role]}</td>
                 <td className="px-4 py-3">{agent.agency || "—"}</td>
+                <td className="px-4 py-3">{agent.iban || "—"}</td>
                 <td className="px-4 py-3">{agent.commission_rate_pct} %</td>
                 <td className="px-4 py-3">{agent.active ? "Oui" : "Non"}</td>
                 <td className="px-4 py-3 text-right">
