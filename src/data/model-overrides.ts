@@ -105,7 +105,7 @@ export const MODEL_OVERRIDES: Record<ModelSlug, ModelOverride> = {
       "Module compact aux lignes arrondies, idéal pour un studio de jardin ou une résidence secondaire. Cuisine, salle de bains et espace de vie ouvert sur une terrasse bois.",
     priceFrom: 19_950,
     length: "5,90 m",
-    width: "4,50 m",
+    width: "2,25 m",
     area: "13,27 m²",
     capacity: "2 personnes",
     rooms: "Studio",

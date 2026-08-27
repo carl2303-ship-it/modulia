@@ -553,7 +553,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       },
     ],
     specs: [
-      { label: "Dimensions extérieures", value: "5,90 m × 4,50 m × 2,45 m" },
+      { label: "Dimensions extérieures", value: "5,90 m × 4,50 m × 2,12 m" },
       { label: "Surface intérieure", value: "26,55 m²" },
       { label: "Configuration", value: "Bar à gauche – Cuisine d'été à droite" },
       { label: "Capacité", value: "6 à 8 personnes" },
@@ -569,7 +569,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       { title: "Éclairage LED", description: "Ambiance chaude intégrée" },
     ],
     footerHighlights: [
-      "5,90 × 4,50 × 2,45 m",
+      "5,90 × 4,50 × 2,12 m",
       "26,55 m²",
       "6 à 8 personnes",
       "25 000 € TTC",
@@ -1518,7 +1518,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         },
       ],
       specs: [
-        { label: "Dimensões exteriores", value: "5,90 m × 4,50 m × 2,45 m" },
+        { label: "Dimensões exteriores", value: "5,90 m × 4,50 m × 2,12 m" },
         { label: "Área interior", value: "26,55 m²" },
         { label: "Configuração", value: "Bar à esquerda – Cozinha de verão à direita" },
         { label: "Capacidade", value: "6 a 8 pessoas" },
@@ -1533,7 +1533,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Arrumações", description: "Móveis e prateleiras" },
         { title: "Iluminação LED", description: "Ambiente quente integrado" },
       ],
-      footerHighlights: ["5,90 × 4,50 × 2,45 m", "26,55 m²", "6 a 8 pessoas", "25 000 € TTC"],
+      footerHighlights: ["5,90 × 4,50 × 2,12 m", "26,55 m²", "6 a 8 pessoas", "25 000 € TTC"],
     },
     en: {
       tagline: "Bar & summer kitchen — the ideal extension of your pool space",
@@ -1558,7 +1558,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         },
       ],
       specs: [
-        { label: "Exterior dimensions", value: "5.90 m × 4.50 m × 2.45 m" },
+        { label: "Exterior dimensions", value: "5.90 m × 4.50 m × 2.12 m" },
         { label: "Interior area", value: "26.55 m²" },
         { label: "Layout", value: "Bar on the left – Summer kitchen on the right" },
         { label: "Capacity", value: "6 to 8 people" },
@@ -1573,7 +1573,7 @@ export const OPTIONS_RICH_I18N: Record<string, Partial<Record<Locale, RichOverla
         { title: "Storage", description: "Cabinets and shelves" },
         { title: "LED lighting", description: "Integrated warm ambience" },
       ],
-      footerHighlights: ["5.90 × 4.50 × 2.45 m", "26.55 m²", "6 to 8 people", "€25,000 incl. VAT"],
+      footerHighlights: ["5.90 × 4.50 × 2.12 m", "26.55 m²", "6 to 8 people", "€25,000 incl. VAT"],
     },
   },
 };

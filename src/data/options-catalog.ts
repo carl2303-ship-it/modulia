@@ -343,7 +343,7 @@ export const POOL_OPTIONS: OptionItem[] = [
     price: 27500,
     priceType: "ttc",
     highlights: [
-      "5,90 × 4,50 × 2,45 m",
+      "5,90 × 4,50 × 2,12 m",
       "26,55 m² intérieurs",
       "Bar + cuisine d'été",
       "Barbecue, frigo & cave à vin",

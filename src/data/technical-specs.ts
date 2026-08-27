@@ -25,7 +25,7 @@ export const TECHNICAL_SPECS_SECTIONS: TechnicalSpecSection[] = [
     items: [
       "Longueur module : 5,90 à 11,80 m",
       "Largeur : 2,25 à 9 m",
-      "Hauteur intérieure : 2,10 à 2,15 m",
+      "Hauteur intérieure : 2,12 m",
       "Assemblage : modules juxtaposables ou superposables",
       "Surface : de 13 m² à plus de 100 m² selon configuration",
     ],

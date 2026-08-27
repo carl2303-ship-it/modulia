@@ -30,7 +30,7 @@ function buildSpecs(override: ModelOverride, locale: Locale): ModelSpec[] {
     },
     {
       label: localizeSpecLabel("Hauteur intérieure", locale),
-      value: localizeSpecValue(override.interiorHeight ?? "2,25 m", locale),
+      value: localizeSpecValue(override.interiorHeight ?? "2,12 m", locale),
     },
     {
       label: localizeSpecLabel("Surface intérieure", locale),

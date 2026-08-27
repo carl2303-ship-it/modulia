@@ -20,7 +20,7 @@ export const PLAN_IMAGE = assets.planImage;
 /** Características técnicas oficiais — fiche EQUILIBRO */
 export const TECHNICAL_SPECS = [
   { label: "Dimensions hors tout", value: "11,80 × 4,50 m" },
-  { label: "Hauteur intérieure", value: "2,25 m" },
+  { label: "Hauteur intérieure", value: "2,12 m" },
   { label: "Surface intérieure", value: "≈ 46 m²" },
   { label: "Capacité", value: "4 personnes" },
   { label: "Structure", value: "Acier galvanisé" },

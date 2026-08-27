@@ -373,6 +373,76 @@ export async function updateAgentAction(formData: FormData) {
   revalidatePath(`/backoffice/agents/${id}`);
 }
 
+export async function deleteBackofficeUserAction(
+  _prev: { ok?: boolean; error?: string } | null,
+  formData: FormData,
+): Promise<{ ok?: boolean; error?: string }> {
+  const profile = await getCurrentProfile();
+  if (!isOwner(profile)) {
+    return { error: "Réservé aux propriétaires" };
+  }
+
+  const id = String(formData.get("id") ?? "").trim();
+  if (!id) {
+    return { error: "Compte introuvable" };
+  }
+  if (id === profile.id) {
+    return { error: "Vous ne pouvez pas supprimer votre propre compte" };
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (!session?.access_token) {
+    return { error: "Session expirée — reconnectez-vous" };
+  }
+
+  // Prefer service role when available (Netlify / local)
+  if (process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    try {
+      const { createAdminClient } = await import("@/lib/supabase/admin");
+      const admin = createAdminClient();
+      const { error } = await admin.auth.admin.deleteUser(id);
+      if (error) {
+        return { error: error.message };
+      }
+    } catch (e) {
+      return { error: e instanceof Error ? e.message : "Suppression impossible" };
+    }
+    revalidatePath("/backoffice/agents");
+    revalidatePath("/backoffice");
+    redirect("/backoffice/agents");
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
+  if (!baseUrl) {
+    return { error: "Configuration Supabase manquante" };
+  }
+
+  const res = await fetch(`${baseUrl}/functions/v1/delete-backoffice-user`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${session.access_token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id }),
+  });
+
+  const data = (await res.json().catch(() => ({}))) as {
+    ok?: boolean;
+    error?: string;
+  };
+
+  if (!res.ok || !data.ok) {
+    return { error: data.error || `Suppression impossible (${res.status})` };
+  }
+
+  revalidatePath("/backoffice/agents");
+  revalidatePath("/backoffice");
+  redirect("/backoffice/agents");
+}
+
 export async function updateCustomerAction(formData: FormData) {
   const profile = await getCurrentProfile();
   if (!profile) throw new Error("Non authentifié");
@@ -418,6 +488,20 @@ export async function createMailingListAction(formData: FormData) {
     name,
     description: description || null,
   });
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/backoffice/mailing");
+}
+
+export async function deleteMailingListAction(formData: FormData) {
+  const profile = await getCurrentProfile();
+  if (!isOwner(profile)) throw new Error("Réservé aux propriétaires");
+
+  const listId = String(formData.get("list_id") ?? "").trim();
+  if (!listId) throw new Error("Liste introuvable");
+
+  const supabase = await createClient();
+  const { error } = await supabase.from("mailing_lists").delete().eq("id", listId);
   if (error) throw new Error(error.message);
 
   revalidatePath("/backoffice/mailing");

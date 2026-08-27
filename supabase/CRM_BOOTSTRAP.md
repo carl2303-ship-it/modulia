@@ -47,3 +47,17 @@ where email = 'agent@example.com';
 1. Se connecter sur `/login`
 2. Ouvrir `/backoffice`
 3. Sur le site public, « Espace pro » indique la session ; les demandes de devis sont auto-assignées
+
+## 5. Suppression de comptes (Commerciaux & comptes)
+
+Deux options (l’une suffit) :
+
+1. **Variable** `SUPABASE_SERVICE_ROLE_KEY` dans Netlify / `.env.local`  
+   (Dashboard Supabase → Settings → API → `service_role`)
+2. **Ou** déployer l’Edge Function :
+   ```bash
+   npx supabase login
+   npx supabase functions deploy delete-backoffice-user --project-ref yjnkhwgfxycbdmhfdtlp
+   ```
+
+Ensuite : `/backoffice/agents` → Éditer → « Supprimer définitivement ».

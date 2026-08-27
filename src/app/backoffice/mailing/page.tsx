@@ -5,6 +5,7 @@ import {
   createMailingListAction,
   syncOptInToMailingListAction,
 } from "@/app/backoffice/actions";
+import { DeleteMailingListButton } from "@/components/backoffice/DeleteMailingListButton";
 import type { MailingList } from "@/lib/crm/types";
 
 export default async function MailingPage() {
@@ -78,6 +79,7 @@ export default async function MailingPage() {
                       Sync opt-in
                     </button>
                   </form>
+                  <DeleteMailingListButton listId={list.id} listName={list.name} />
                 </div>
               </li>
             ))}
