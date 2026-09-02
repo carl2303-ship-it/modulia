@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getCurrentProfile, isOwner } from "@/lib/crm/auth";
+import { canEditOrderConfiguration } from "@/lib/crm/parse-order-configuration";
 import { updateOrderAction } from "@/app/backoffice/actions";
 import { ConfigurationView } from "@/components/backoffice/ConfigurationView";
 import {
@@ -32,6 +33,12 @@ export default async function OrderDetailPage({ params }: PageProps) {
 
   if (!order) notFound();
   const typed = order as Order;
+  const canEditConfiguration = canEditOrderConfiguration(
+    typed.pipeline_status,
+    typed.assigned_to,
+    profile?.id ?? "",
+    owner,
+  );
   const customer = typed.customer as { phone?: string | null; address?: string | null } | null;
   const addressParts = customer?.address
     ?.split(",")
@@ -109,8 +116,32 @@ export default async function OrderDetailPage({ params }: PageProps) {
 
       {typed.configuration && (
         <div className="mt-6 rounded-2xl border border-luxury-stone bg-white p-6">
-          <h2 className="mb-4 font-serif text-xl">Configuration</h2>
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <h2 className="font-serif text-xl">Configuration</h2>
+            {canEditConfiguration && (
+              <Link
+                href={`/vendedor/configurar?order=${typed.id}`}
+                className="rounded-full border border-luxury-forest px-4 py-2 font-ui text-xs uppercase tracking-wider text-luxury-forest hover:bg-luxury-forest hover:text-white"
+              >
+                Modifier la configuration
+              </Link>
+            )}
+          </div>
           <ConfigurationView configuration={typed.configuration} />
+        </div>
+      )}
+
+      {!typed.configuration && canEditConfiguration && (
+        <div className="mt-6 rounded-2xl border border-luxury-stone bg-white p-6">
+          <p className="font-ui text-sm text-luxury-muted">
+            Aucune configuration enregistrée pour cette commande.
+          </p>
+          <Link
+            href={`/vendedor/configurar?order=${typed.id}`}
+            className="mt-4 inline-block rounded-full border border-luxury-forest px-4 py-2 font-ui text-xs uppercase tracking-wider text-luxury-forest hover:bg-luxury-forest hover:text-white"
+          >
+            Ajouter une configuration
+          </Link>
         </div>
       )}
 

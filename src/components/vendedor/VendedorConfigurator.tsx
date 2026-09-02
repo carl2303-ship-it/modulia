@@ -34,27 +34,35 @@ import {
   type PoolSelection,
 } from "@/components/personnaliser/types";
 import type { Profile } from "@/lib/crm/types";
-import { submitReservationAction } from "@/app/vendedor/actions";
+import type { OrderEditPayload } from "@/lib/crm/order-edit";
+import { parseOrderConfiguration } from "@/lib/crm/parse-order-configuration";
+import { submitReservationAction, updateReservationAction } from "@/app/vendedor/actions";
 
 type Props = {
   profile: Profile;
+  editOrder?: OrderEditPayload | null;
 };
 
 const NUMBER_LOCALE: Record<Locale, string> = { fr: "fr-FR", pt: "pt-PT", en: "en-GB" };
 
 type Step = "configurar" | "cliente" | "confirmacao";
 
-export function VendedorConfigurator({ profile }: Props) {
+export function VendedorConfigurator({ profile, editOrder = null }: Props) {
   const t = useTranslations("personnaliser");
   const tCommon = useTranslations("common");
   const locale = useLocale() as Locale;
+  const isEditMode = Boolean(editOrder);
+  const parsedConfig = useMemo(
+    () => parseOrderConfiguration(editOrder?.configuration, locale),
+    [editOrder?.configuration, locale],
+  );
 
   const [step, setStep] = useState<Step>("configurar");
-  const [modelSlug, setModelSlug] = useState<string | null>(null);
-  const [finitions, setFinitions] = useState(() => buildDefaultFinitions(locale));
-  const [paid, setPaid] = useState<PaidSelection>(INITIAL_PAID);
-  const [kitchen, setKitchen] = useState<KitchenSelection>(INITIAL_KITCHEN);
-  const [pool, setPool] = useState<PoolSelection>(INITIAL_POOL);
+  const [modelSlug, setModelSlug] = useState<string | null>(() => parsedConfig.modelSlug);
+  const [finitions, setFinitions] = useState(() => parsedConfig.finitions);
+  const [paid, setPaid] = useState<PaidSelection>(() => parsedConfig.paid);
+  const [kitchen, setKitchen] = useState<KitchenSelection>(() => parsedConfig.kitchen);
+  const [pool, setPool] = useState<PoolSelection>(() => parsedConfig.pool);
   const [openSection, setOpenSection] = useState<string>("modele");
   const [detailOption, setDetailOption] = useState<OptionItem | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
@@ -155,9 +163,14 @@ export function VendedorConfigurator({ profile }: Props) {
     fd.set("model_name", model?.name ?? "");
     fd.set("configuration", configurationJson);
     fd.set("price_ttc", String(totalPrice));
+    if (isEditMode && editOrder) {
+      fd.set("order_id", editOrder.id);
+    }
 
     startTransition(async () => {
-      const result = await submitReservationAction(fd);
+      const result = isEditMode
+        ? await updateReservationAction(fd)
+        : await submitReservationAction(fd);
       if (result.success) {
         setOrderId(result.orderId);
         setStep("confirmacao");
@@ -188,9 +201,13 @@ export function VendedorConfigurator({ profile }: Props) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
         </div>
-        <h2 className="mt-6 font-serif text-3xl text-luxury-graphite">Commande enregistrée</h2>
+        <h2 className="mt-6 font-serif text-3xl text-luxury-graphite">
+          {isEditMode ? "Commande mise à jour" : "Commande enregistrée"}
+        </h2>
         <p className="mt-3 max-w-sm font-ui text-sm leading-relaxed text-luxury-muted">
-          La commande a bien été créée dans le backoffice.{" "}
+          {isEditMode
+            ? "Les modifications ont bien été enregistrées sur la commande existante."
+            : "La commande a bien été créée dans le backoffice."}{" "}
           {orderId && (
             <span className="font-medium text-luxury-graphite">
               Ref. #{orderId.slice(0, 8).toUpperCase()}
@@ -199,17 +216,19 @@ export function VendedorConfigurator({ profile }: Props) {
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
-            href="/backoffice/orders"
+            href={orderId ? `/backoffice/orders/${orderId}` : "/backoffice/orders"}
             className="rounded-full bg-luxury-graphite px-6 py-3 font-ui text-xs uppercase tracking-wider text-white hover:bg-luxury-forest"
           >
-            Voir dans le backoffice
+            {isEditMode ? "Retour à la commande" : "Voir dans le backoffice"}
           </Link>
-          <button
-            onClick={resetAll}
-            className="rounded-full border border-luxury-stone px-6 py-3 font-ui text-xs uppercase tracking-wider text-luxury-graphite hover:border-luxury-forest hover:text-luxury-forest"
-          >
-            Nouvelle configuration
-          </button>
+          {!isEditMode && (
+            <button
+              onClick={resetAll}
+              className="rounded-full border border-luxury-stone px-6 py-3 font-ui text-xs uppercase tracking-wider text-luxury-graphite hover:border-luxury-forest hover:text-luxury-forest"
+            >
+              Nouvelle configuration
+            </button>
+          )}
         </div>
       </div>
     );
@@ -228,15 +247,33 @@ export function VendedorConfigurator({ profile }: Props) {
               <p className="mt-0.5 font-ui text-xs text-luxury-muted">
                 {profile.full_name}
                 {" · "}
-                {profile.role === "agent" ? "Commercial IAD" : "Showroom"}
+                {profile.role === "agent" ? "Commercial IAD" : profile.role === "owner" ? "Propriétaire" : "Showroom"}
+                {isEditMode && editOrder && (
+                  <>
+                    {" · "}
+                    <span className="text-luxury-forest">
+                      Modification #{editOrder.id.slice(0, 8).toUpperCase()}
+                    </span>
+                  </>
+                )}
               </p>
             </div>
-            <button
-              onClick={() => setStep("configurar")}
-              className="font-ui text-xs uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
-            >
-              ← Modifier
-            </button>
+            <div className="flex items-center gap-4">
+              {isEditMode && editOrder && (
+                <Link
+                  href={`/backoffice/orders/${editOrder.id}`}
+                  className="font-ui text-xs uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
+                >
+                  Annuler
+                </Link>
+              )}
+              <button
+                onClick={() => setStep("configurar")}
+                className="font-ui text-xs uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
+              >
+                ← Modifier
+              </button>
+            </div>
           </div>
         </header>
 
@@ -267,7 +304,12 @@ export function VendedorConfigurator({ profile }: Props) {
           </div>
 
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-            <h2 className="font-serif text-2xl text-luxury-graphite">Informations client</h2>
+            <h2 className="font-serif text-2xl text-luxury-graphite">
+              {isEditMode ? "Mettre à jour le client" : "Informations client"}
+            </h2>
+            {isEditMode && editOrder && (
+              <input type="hidden" name="order_id" value={editOrder.id} />
+            )}
 
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block sm:col-span-2">
@@ -279,6 +321,7 @@ export function VendedorConfigurator({ profile }: Props) {
                   required
                   type="text"
                   autoComplete="name"
+                  defaultValue={editOrder?.delivery_name ?? ""}
                   className="mt-2 w-full rounded-xl border border-luxury-stone bg-white px-4 py-3 font-ui text-sm outline-none focus:border-luxury-forest"
                 />
               </label>
@@ -291,6 +334,7 @@ export function VendedorConfigurator({ profile }: Props) {
                   required
                   type="email"
                   autoComplete="email"
+                  defaultValue={editOrder?.delivery_email ?? ""}
                   className="mt-2 w-full rounded-xl border border-luxury-stone bg-white px-4 py-3 font-ui text-sm outline-none focus:border-luxury-forest"
                 />
               </label>
@@ -303,6 +347,7 @@ export function VendedorConfigurator({ profile }: Props) {
                   required
                   type="tel"
                   autoComplete="tel"
+                  defaultValue={editOrder?.delivery_phone ?? ""}
                   className="mt-2 w-full rounded-xl border border-luxury-stone bg-white px-4 py-3 font-ui text-sm outline-none focus:border-luxury-forest"
                 />
               </label>
@@ -314,6 +359,7 @@ export function VendedorConfigurator({ profile }: Props) {
                   name="client_street"
                   type="text"
                   autoComplete="street-address"
+                  defaultValue={editOrder?.delivery_street ?? ""}
                   className="mt-2 w-full rounded-xl border border-luxury-stone bg-white px-4 py-3 font-ui text-sm outline-none focus:border-luxury-forest"
                 />
               </label>
@@ -325,6 +371,7 @@ export function VendedorConfigurator({ profile }: Props) {
                   name="client_postal_code"
                   type="text"
                   autoComplete="postal-code"
+                  defaultValue={editOrder?.delivery_postal_code ?? ""}
                   className="mt-2 w-full rounded-xl border border-luxury-stone bg-white px-4 py-3 font-ui text-sm outline-none focus:border-luxury-forest"
                 />
               </label>
@@ -336,6 +383,7 @@ export function VendedorConfigurator({ profile }: Props) {
                   name="client_city"
                   type="text"
                   autoComplete="address-level2"
+                  defaultValue={editOrder?.delivery_city ?? ""}
                   className="mt-2 w-full rounded-xl border border-luxury-stone bg-white px-4 py-3 font-ui text-sm outline-none focus:border-luxury-forest"
                 />
               </label>
@@ -348,6 +396,7 @@ export function VendedorConfigurator({ profile }: Props) {
               <textarea
                 name="notes"
                 rows={3}
+                defaultValue={editOrder?.notes ?? ""}
                 className="mt-2 w-full rounded-xl border border-luxury-stone bg-white px-4 py-3 font-ui text-sm outline-none focus:border-luxury-forest"
                 placeholder="Informations complémentaires pour le backoffice…"
               />
@@ -357,6 +406,7 @@ export function VendedorConfigurator({ profile }: Props) {
               <input
                 name="marketing_opt_in"
                 type="checkbox"
+                defaultChecked={editOrder?.marketing_opt_in ?? false}
                 className="mt-0.5 h-4 w-4 rounded border-luxury-stone accent-luxury-forest"
               />
               <span className="font-ui text-xs leading-relaxed text-luxury-muted">
@@ -376,7 +426,11 @@ export function VendedorConfigurator({ profile }: Props) {
                 disabled={isPending}
                 className="rounded-full bg-luxury-forest px-8 py-3 font-ui text-xs uppercase tracking-wider text-white disabled:opacity-60"
               >
-                {isPending ? "Enregistrement…" : "Créer la commande"}
+                {isPending
+                  ? "Enregistrement…"
+                  : isEditMode
+                    ? "Enregistrer les modifications"
+                    : "Créer la commande"}
               </button>
               <button
                 type="button"
@@ -404,15 +458,34 @@ export function VendedorConfigurator({ profile }: Props) {
             <p className="font-ui text-[10px] text-luxury-muted">
               {profile.full_name}
               {" · "}
-              {profile.role === "agent" ? "Commercial IAD" : "Showroom"}
+              {profile.role === "agent" ? "Commercial IAD" : profile.role === "owner" ? "Propriétaire" : "Showroom"}
+              {isEditMode && editOrder && (
+                <>
+                  {" · "}
+                  <span className="text-luxury-forest">
+                    Modification #{editOrder.id.slice(0, 8).toUpperCase()}
+                  </span>
+                </>
+              )}
             </p>
           </div>
-          <Link
-            href="/backoffice"
-            className="font-ui text-xs uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
-          >
-            Backoffice →
-          </Link>
+          <div className="flex items-center gap-4">
+            {isEditMode && editOrder ? (
+              <Link
+                href={`/backoffice/orders/${editOrder.id}`}
+                className="font-ui text-xs uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
+              >
+                ← Commande
+              </Link>
+            ) : (
+              <Link
+                href="/backoffice"
+                className="font-ui text-xs uppercase tracking-wider text-luxury-muted hover:text-luxury-forest"
+              >
+                Backoffice →
+              </Link>
+            )}
+          </div>
         </div>
       </header>
 
@@ -440,10 +513,12 @@ export function VendedorConfigurator({ profile }: Props) {
                   {t("eyebrow")}
                 </p>
                 <h1 className="mt-3 font-serif text-3xl text-luxury-graphite lg:text-4xl">
-                  {t("title")}
+                  {isEditMode ? "Modifier la commande" : t("title")}
                 </h1>
                 <p className="mt-3 font-ui text-sm leading-relaxed text-luxury-muted">
-                  {t("intro")}
+                  {isEditMode
+                    ? "Ajustez le modèle, les options et les informations client — la commande existante sera mise à jour."
+                    : t("intro")}
                 </p>
                 {model && (
                   <div className="mt-6 flex flex-wrap gap-2">
@@ -528,7 +603,7 @@ export function VendedorConfigurator({ profile }: Props) {
 
       <PriceBar
         totalPrice={totalPrice}
-        ctaLabel="Infos client →"
+        ctaLabel={isEditMode ? "Client & enregistrer →" : "Infos client →"}
         onCtaClick={() => {
           if (!modelSlug) {
             setOpenSection("modele");

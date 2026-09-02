@@ -378,7 +378,7 @@ export async function deleteBackofficeUserAction(
   formData: FormData,
 ): Promise<{ ok?: boolean; error?: string }> {
   const profile = await getCurrentProfile();
-  if (!isOwner(profile)) {
+  if (!profile || !isOwner(profile)) {
     return { error: "Réservé aux propriétaires" };
   }
 

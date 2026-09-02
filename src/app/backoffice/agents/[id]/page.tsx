@@ -10,7 +10,7 @@ type PageProps = { params: Promise<{ id: string }> };
 
 export default async function AgentDetailPage({ params }: PageProps) {
   const profile = await getCurrentProfile();
-  if (!isOwner(profile)) redirect("/backoffice");
+  if (!profile || !isOwner(profile)) redirect("/backoffice");
 
   const { id } = await params;
   const supabase = await createClient();
