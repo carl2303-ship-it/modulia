@@ -138,6 +138,28 @@ export function OptionDetailView({
         </section>
       )}
 
+      {rich?.planImage && (
+        <section className="border-t border-luxury-stone/60 py-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <p className="font-ui text-[10px] uppercase tracking-[0.25em] text-luxury-muted">
+              Plan
+            </p>
+            <h2 className="mt-2 font-serif text-3xl text-luxury-graphite">
+              Plan &amp; dimensions
+            </h2>
+            <div className="mt-8 overflow-hidden rounded-3xl border border-luxury-stone bg-white p-4 shadow-luxury-sm">
+              <Image
+                src={rich.planImage}
+                alt={`${option.title} — plan`}
+                width={1200}
+                height={900}
+                className="h-auto w-full rounded-2xl"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       {rich?.variants && rich.variants.length > 0 && !option.includedChoice && (
         <section className="border-t border-luxury-stone/60 py-16">
           <div className="mx-auto max-w-7xl px-6">

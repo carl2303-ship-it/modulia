@@ -80,6 +80,10 @@ export const PROFESSIONAL_MODELS: ProfessionalModel[] = [
     heroImage: "/escritorios/bureau-6m.png",
     planImage: "/escritorios/bureau plan 6m.jpg",
     interiorImage: "/escritorios/bureau-interior.png",
+    gallery: [
+      { src: "/escritorios/bureau-interior-postes.jpg", label: "Postes de travail" },
+      { src: "/escritorios/bureau-interior-table.jpg", label: "Espace collaboratif" },
+    ],
     bathroomImages: [
       "/escritorios/bureau-sdb-wc.png",
       "/escritorios/bureau-sdb-lavabo.png",
@@ -110,6 +114,10 @@ export const PROFESSIONAL_MODELS: ProfessionalModel[] = [
     heroImage: "/escritorios/bureau-12m.png",
     planImage: "/escritorios/bureau plan 12m.jpg",
     interiorImage: "/escritorios/bureau-interior.png",
+    gallery: [
+      { src: "/escritorios/bureau-interior-postes.jpg", label: "Postes de travail" },
+      { src: "/escritorios/bureau-interior-table.jpg", label: "Espace collaboratif" },
+    ],
     bathroomImages: [
       "/escritorios/bureau-sdb-wc.png",
       "/escritorios/bureau-sdb-lavabo.png",

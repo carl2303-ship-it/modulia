@@ -182,6 +182,20 @@ export default async function PiscinePage() {
                     ))}
                   </div>
                 )}
+                {poolHouse.rich?.planImage && (
+                  <div className="mt-4 overflow-hidden rounded-2xl border border-luxury-stone/60 bg-white p-3">
+                    <Image
+                      src={poolHouse.rich.planImage}
+                      alt={`${poolHouse.title} — plan`}
+                      width={1000}
+                      height={750}
+                      className="h-auto w-full rounded-xl"
+                    />
+                    <p className="mt-2 text-center font-ui text-[10px] uppercase tracking-wider text-luxury-muted">
+                      {t("poolHousePlanLabel")}
+                    </p>
+                  </div>
+                )}
               </div>
               <div>
                 <p className="font-ui text-[10px] uppercase tracking-[0.35em] text-luxury-forest">

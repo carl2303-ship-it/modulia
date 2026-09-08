@@ -8,6 +8,7 @@
     "bureaux": "Professional offices",
     "piscines": "Pools",
     "terrains": "Land plots",
+    "galerie": "Gallery",
     "particuliers": "Private clients",
     "personnaliser": "Customise",
     "personnalisation": "Personalisation",
@@ -261,6 +262,7 @@
     "poolHouseTitle": "Pool House",
     "poolHouseIntro": "Modular bar and summer kitchen — the ideal lounge space by your Sofa Pool.",
     "poolHouseCta": "See details",
+    "poolHousePlanLabel": "Plan & dimensions",
     "architectureLabel": "Architecture",
     "dimensionsTitle": "Dimensions",
     "backToOptions": "All options"
@@ -503,5 +505,42 @@
     "seeListing": "View IAD listing",
     "configureHouse": "Configure a home",
     "empty": "No plots published yet."
+  },
+  "galerie": {
+    "eyebrow": "Inspiration",
+    "title": "Gallery",
+    "intro": "Get inspired for your project with our Portfolio.",
+    "close": "Close",
+    "prev": "Previous photo",
+    "next": "Next photo",
+    "items": {
+      "g01": "Module 01",
+      "g02": "Module 02",
+      "g03": "Module 03",
+      "g04": "Module 04",
+      "g05": "Module 05",
+      "g06": "Module 06",
+      "g07": "Module 07",
+      "g08": "Module 08",
+      "g09": "Module 09",
+      "g10": "Module 10",
+      "g11": "Module 11",
+      "g12": "Module 12",
+      "g13": "Module 13",
+      "g14": "Module 14",
+      "g15": "Module 15",
+      "g16": "Module 16",
+      "g17": "Module 17",
+      "g18": "Module 18",
+      "g19": "Module 19",
+      "g20": "Module 20",
+      "g21": "Module 21",
+      "g22": "Module 22",
+      "g23": "Module 23",
+      "g24": "Module 24",
+      "g25": "Module 25",
+      "g26": "Module 26",
+      "g27": "Module 27"
+    }
   }
 }

@@ -8,6 +8,7 @@
     "bureaux": "Escritórios profissionais",
     "piscines": "Piscinas",
     "terrains": "Terrenos",
+    "galerie": "Galeria",
     "particuliers": "Particulares",
     "personnaliser": "Personalizar",
     "personnalisation": "Personalização",
@@ -261,6 +262,7 @@
     "poolHouseTitle": "Pool House",
     "poolHouseIntro": "Bar e cozinha de verão modulares — o espaço de lazer ideal junto à sua Sofa Pool.",
     "poolHouseCta": "Ver detalhe",
+    "poolHousePlanLabel": "Planta e dimensões",
     "architectureLabel": "Arquitetura",
     "dimensionsTitle": "Dimensões",
     "backToOptions": "Todas as opções"
@@ -503,5 +505,42 @@
     "seeListing": "Ver anúncio IAD",
     "configureHouse": "Configurar uma casa",
     "empty": "Nenhum terreno publicado de momento."
+  },
+  "galerie": {
+    "eyebrow": "Inspiração",
+    "title": "Galeria",
+    "intro": "Inspire-se para o seu projeto com o nosso Portfolio.",
+    "close": "Fechar",
+    "prev": "Foto anterior",
+    "next": "Foto seguinte",
+    "items": {
+      "g01": "Módulo 01",
+      "g02": "Módulo 02",
+      "g03": "Módulo 03",
+      "g04": "Módulo 04",
+      "g05": "Módulo 05",
+      "g06": "Módulo 06",
+      "g07": "Módulo 07",
+      "g08": "Módulo 08",
+      "g09": "Módulo 09",
+      "g10": "Módulo 10",
+      "g11": "Módulo 11",
+      "g12": "Módulo 12",
+      "g13": "Módulo 13",
+      "g14": "Módulo 14",
+      "g15": "Módulo 15",
+      "g16": "Módulo 16",
+      "g17": "Módulo 17",
+      "g18": "Módulo 18",
+      "g19": "Módulo 19",
+      "g20": "Módulo 20",
+      "g21": "Módulo 21",
+      "g22": "Módulo 22",
+      "g23": "Módulo 23",
+      "g24": "Módulo 24",
+      "g25": "Módulo 25",
+      "g26": "Módulo 26",
+      "g27": "Módulo 27"
+    }
   }
 }

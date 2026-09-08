@@ -219,6 +219,16 @@ function localizeModel(model: ProfessionalModel, locale: Locale): ProfessionalMo
 
   const pack = locale === "pt" ? SHARED_PT : SHARED_EN;
   const is12 = model.slug === "bureau-12m";
+  const galleryLabels: Record<string, string> =
+    locale === "pt"
+      ? {
+          "Postes de travail": "Postos de trabalho",
+          "Espace collaboratif": "Espaço colaborativo",
+        }
+      : {
+          "Postes de travail": "Workstations",
+          "Espace collaboratif": "Collaborative space",
+        };
 
   return {
     ...model,
@@ -230,6 +240,10 @@ function localizeModel(model: ProfessionalModel, locale: Locale): ProfessionalMo
     infrastructure: pack.infrastructure,
     useCases: pack.useCases,
     options: pack.options,
+    gallery: model.gallery?.map((item) => ({
+      ...item,
+      label: galleryLabels[item.label] ?? item.label,
+    })),
     specs: model.specs.map((spec) => ({
       label: pack.specs[spec.label] ?? spec.label,
       value: pack.specs[spec.value] ?? spec.value,

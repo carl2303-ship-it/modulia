@@ -40,6 +40,8 @@ export type OptionRichContent = {
   includes?: OptionInclude[];
   footerHighlights?: string[];
   gallery?: string[];
+  /** Plan coté (ex. pool house) */
+  planImage?: string;
   /** Personnalisations incluses liées à cette option (ex. lames pour terrasse) */
   personalizationIds?: string[];
 };
@@ -581,6 +583,7 @@ export const OPTIONS_RICH: Record<string, OptionRichContent> = {
       "/piscina/pool-house-4.png",
       "/piscina/pool-house-fiche.png",
     ],
+    planImage: "/piscina/pool-house-plan.jpg",
   },
 };
 

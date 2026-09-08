@@ -129,7 +129,11 @@ export async function ProfessionalOfficeSection({
                 </div>
               )}
               {model.gallery && model.gallery.length > 0 && (
-                <div className="grid gap-4 sm:grid-cols-3">
+                <div
+                  className={`grid gap-4 ${
+                    model.gallery.length <= 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"
+                  }`}
+                >
                   {model.gallery.map((item) => (
                     <div
                       key={item.src}
