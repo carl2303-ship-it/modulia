@@ -61,3 +61,10 @@ Deux options (l’une suffit) :
    ```
 
 Ensuite : `/backoffice/agents` → Éditer → « Supprimer définitivement ».
+
+## 6. Galerie (portfolio)
+
+Appliquer aussi `supabase/migrations/20260909140000_gallery_items.sql`
+(table `gallery_items` + bucket Storage `gallery`).
+
+Puis : `/backoffice/galerie` (owner) → importer g01–g49 ou uploader photos/vidéos.

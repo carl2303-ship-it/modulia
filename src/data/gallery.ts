@@ -1,16 +1,33 @@
-export type GalleryItem = {
+import type { GalleryItemRow, GalleryMediaType } from "@/lib/crm/types";
+
+export type GalleryDisplayItem = {
   id: string;
   src: string;
-  /** Clé i18n dans messages.galerie.items.* */
-  labelKey: string;
+  type: GalleryMediaType;
+  poster?: string;
+  label: string;
 };
 
-/** Photos exclusives de la galerie Modulia */
-export const GALLERY_ITEMS: GalleryItem[] = Array.from({ length: 27 }, (_, i) => {
-  const n = String(i + 1).padStart(2, "0");
+/** Fallback local si la table gallery_items est vide / non migrée */
+export const STATIC_GALLERY_FALLBACK: GalleryDisplayItem[] = Array.from(
+  { length: 49 },
+  (_, i) => {
+    const n = String(i + 1).padStart(2, "0");
+    return {
+      id: `static-g${n}`,
+      src: `/galerie/g${n}.jpg`,
+      type: "image" as const,
+      label: `Module ${n}`,
+    };
+  },
+);
+
+export function toGalleryDisplayItem(row: GalleryItemRow): GalleryDisplayItem {
   return {
-    id: `g${n}`,
-    src: `/galerie/g${n}.jpg`,
-    labelKey: `g${n}`,
+    id: row.id,
+    src: row.media_url,
+    type: row.media_type,
+    poster: row.poster_url ?? undefined,
+    label: row.title || (row.media_type === "video" ? "Vidéo" : "Photo"),
   };
-});
+}

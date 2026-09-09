@@ -636,3 +636,159 @@ export async function updateTerrainAction(formData: FormData) {
   revalidatePath(`/backoffice/terrains/${id}`);
   revalidatePath("/terrains");
 }
+
+function detectMediaType(file: File): "image" | "video" {
+  if (file.type.startsWith("video/")) return "video";
+  return "image";
+}
+
+export async function createGalleryItemAction(formData: FormData) {
+  const profile = await getCurrentProfile();
+  if (!isOwner(profile)) throw new Error("Réservé aux propriétaires");
+
+  const title = String(formData.get("title") ?? "").trim();
+  const published =
+    formData.get("published") === "on" || formData.get("published") === "true";
+  const file = formData.get("file");
+  const externalUrl = String(formData.get("media_url") ?? "").trim();
+
+  const supabase = await createClient();
+  let media_url = externalUrl;
+  let media_type: "image" | "video" = "image";
+
+  if (file instanceof File && file.size > 0) {
+    media_type = detectMediaType(file);
+    const ext = file.name.split(".").pop()?.toLowerCase() || (media_type === "video" ? "mp4" : "jpg");
+    const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    const { error: uploadError } = await supabase.storage
+      .from("gallery")
+      .upload(path, file, {
+        contentType: file.type || undefined,
+        upsert: false,
+      });
+    if (uploadError) throw new Error(uploadError.message);
+
+    const { data: publicData } = supabase.storage.from("gallery").getPublicUrl(path);
+    media_url = publicData.publicUrl;
+  } else if (media_url) {
+    const lower = media_url.toLowerCase();
+    if (/\.(mp4|webm|mov)(\?|$)/.test(lower) || lower.includes("video")) {
+      media_type = "video";
+    }
+  }
+
+  if (!media_url) throw new Error("Ajoutez un fichier ou une URL");
+
+  const { data: maxRow } = await supabase
+    .from("gallery_items")
+    .select("sort_order")
+    .order("sort_order", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const sort_order = (maxRow?.sort_order ?? 0) + 10;
+
+  const { error } = await supabase.from("gallery_items").insert({
+    title: title || (media_type === "video" ? "Vidéo" : "Photo"),
+    media_type,
+    media_url,
+    sort_order,
+    published,
+    created_by: profile!.id,
+  });
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/backoffice/galerie");
+  revalidatePath("/galerie");
+  redirect("/backoffice/galerie");
+}
+
+export async function updateGalleryItemAction(formData: FormData) {
+  const profile = await getCurrentProfile();
+  if (!isOwner(profile)) throw new Error("Réservé aux propriétaires");
+
+  const id = String(formData.get("id") ?? "").trim();
+  if (!id) throw new Error("Élément introuvable");
+
+  const title = String(formData.get("title") ?? "").trim();
+  const sort_order = Number(formData.get("sort_order") ?? 0);
+  const published =
+    formData.get("published") === "on" || formData.get("published") === "true";
+
+  const supabase = await createClient();
+  const { error } = await supabase
+    .from("gallery_items")
+    .update({
+      title,
+      sort_order: Number.isFinite(sort_order) ? sort_order : 0,
+      published,
+    })
+    .eq("id", id);
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/backoffice/galerie");
+  revalidatePath("/galerie");
+}
+
+export async function deleteGalleryItemAction(formData: FormData) {
+  const profile = await getCurrentProfile();
+  if (!isOwner(profile)) throw new Error("Réservé aux propriétaires");
+
+  const id = String(formData.get("id") ?? "").trim();
+  if (!id) throw new Error("Élément introuvable");
+
+  const supabase = await createClient();
+  const { data: row } = await supabase
+    .from("gallery_items")
+    .select("media_url")
+    .eq("id", id)
+    .maybeSingle();
+
+  const { error } = await supabase.from("gallery_items").delete().eq("id", id);
+  if (error) throw new Error(error.message);
+
+  // Best-effort: remove from storage if URL belongs to gallery bucket
+  const url = row?.media_url as string | undefined;
+  if (url?.includes("/storage/v1/object/public/gallery/")) {
+    const path = url.split("/storage/v1/object/public/gallery/")[1];
+    if (path) {
+      await supabase.storage.from("gallery").remove([decodeURIComponent(path)]);
+    }
+  }
+
+  revalidatePath("/backoffice/galerie");
+  revalidatePath("/galerie");
+}
+
+export async function importStaticGalleryAction() {
+  const profile = await getCurrentProfile();
+  if (!isOwner(profile)) throw new Error("Réservé aux propriétaires");
+
+  const supabase = await createClient();
+  const { count } = await supabase
+    .from("gallery_items")
+    .select("id", { count: "exact", head: true });
+
+  if ((count ?? 0) > 0) {
+    throw new Error("La galerie contient déjà des éléments — import annulé");
+  }
+
+  const rows = Array.from({ length: 49 }, (_, i) => {
+    const n = String(i + 1).padStart(2, "0");
+    return {
+      title: `Module ${n}`,
+      media_type: "image" as const,
+      media_url: `/galerie/g${n}.jpg`,
+      sort_order: (i + 1) * 10,
+      published: true,
+      created_by: profile!.id,
+    };
+  });
+
+  const { error } = await supabase.from("gallery_items").insert(rows);
+  if (error) throw new Error(error.message);
+
+  revalidatePath("/backoffice/galerie");
+  revalidatePath("/galerie");
+  redirect("/backoffice/galerie");
+}

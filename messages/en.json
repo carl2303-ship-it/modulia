@@ -513,6 +513,7 @@
     "close": "Close",
     "prev": "Previous photo",
     "next": "Next photo",
+    "empty": "The gallery will be available soon.",
     "items": {
       "g01": "Module 01",
       "g02": "Module 02",
@@ -540,7 +541,30 @@
       "g24": "Module 24",
       "g25": "Module 25",
       "g26": "Module 26",
-      "g27": "Module 27"
-    }
+      "g27": "Module 27",
+      "g28": "Module 28",
+      "g29": "Module 29",
+      "g30": "Module 30",
+      "g31": "Module 31",
+      "g32": "Module 32",
+      "g33": "Module 33",
+      "g34": "Module 34",
+      "g35": "Module 35",
+      "g36": "Module 36",
+      "g37": "Module 37",
+      "g38": "Module 38",
+      "g39": "Module 39",
+      "g40": "Module 40",
+      "g41": "Module 41",
+      "g42": "Module 42",
+      "g43": "Module 43",
+      "g44": "Module 44",
+      "g45": "Module 45",
+      "g46": "Module 46",
+      "g47": "Module 47",
+      "g48": "Module 48",
+      "g49": "Module 49"
+    },
+    "videoBadge": "Video"
   }
 }

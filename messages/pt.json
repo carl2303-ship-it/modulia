@@ -513,6 +513,7 @@
     "close": "Fechar",
     "prev": "Foto anterior",
     "next": "Foto seguinte",
+    "empty": "A galeria estará disponível em breve.",
     "items": {
       "g01": "Módulo 01",
       "g02": "Módulo 02",
@@ -540,7 +541,30 @@
       "g24": "Módulo 24",
       "g25": "Módulo 25",
       "g26": "Módulo 26",
-      "g27": "Módulo 27"
-    }
+      "g27": "Módulo 27",
+      "g28": "Módulo 28",
+      "g29": "Módulo 29",
+      "g30": "Módulo 30",
+      "g31": "Módulo 31",
+      "g32": "Módulo 32",
+      "g33": "Módulo 33",
+      "g34": "Módulo 34",
+      "g35": "Módulo 35",
+      "g36": "Módulo 36",
+      "g37": "Módulo 37",
+      "g38": "Módulo 38",
+      "g39": "Módulo 39",
+      "g40": "Módulo 40",
+      "g41": "Módulo 41",
+      "g42": "Módulo 42",
+      "g43": "Módulo 43",
+      "g44": "Módulo 44",
+      "g45": "Módulo 45",
+      "g46": "Módulo 46",
+      "g47": "Módulo 47",
+      "g48": "Módulo 48",
+      "g49": "Módulo 49"
+    },
+    "videoBadge": "Vídeo"
   }
 }

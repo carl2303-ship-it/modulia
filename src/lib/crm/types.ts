@@ -122,6 +122,21 @@ export type Terrain = {
   creator?: Profile | null;
 };
 
+export type GalleryMediaType = "image" | "video";
+
+export type GalleryItemRow = {
+  id: string;
+  title: string;
+  media_type: GalleryMediaType;
+  media_url: string;
+  poster_url: string | null;
+  sort_order: number;
+  published: boolean;
+  created_by: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 export const TERRAIN_STATUS_LABELS: Record<TerrainStatus, string> = {
   published: "Publié",
   archived: "Archivé",
