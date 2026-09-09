@@ -5,6 +5,10 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  serverActions: {
+    // Gallery uploads (photos/vidéos) — aligné avec le bucket Supabase (100 Mo)
+    bodySizeLimit: "100mb",
+  },
   async redirects() {
     const finitionSlugs = [
       "decor-exterior",

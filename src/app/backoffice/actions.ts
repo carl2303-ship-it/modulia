@@ -637,11 +637,6 @@ export async function updateTerrainAction(formData: FormData) {
   revalidatePath("/terrains");
 }
 
-function detectMediaType(file: File): "image" | "video" {
-  if (file.type.startsWith("video/")) return "video";
-  return "image";
-}
-
 export async function createGalleryItemAction(formData: FormData) {
   const profile = await getCurrentProfile();
   if (!isOwner(profile)) throw new Error("Réservé aux propriétaires");
@@ -649,36 +644,19 @@ export async function createGalleryItemAction(formData: FormData) {
   const title = String(formData.get("title") ?? "").trim();
   const published =
     formData.get("published") === "on" || formData.get("published") === "true";
-  const file = formData.get("file");
-  const externalUrl = String(formData.get("media_url") ?? "").trim();
-
-  const supabase = await createClient();
-  let media_url = externalUrl;
-  let media_type: "image" | "video" = "image";
-
-  if (file instanceof File && file.size > 0) {
-    media_type = detectMediaType(file);
-    const ext = file.name.split(".").pop()?.toLowerCase() || (media_type === "video" ? "mp4" : "jpg");
-    const path = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-    const { error: uploadError } = await supabase.storage
-      .from("gallery")
-      .upload(path, file, {
-        contentType: file.type || undefined,
-        upsert: false,
-      });
-    if (uploadError) throw new Error(uploadError.message);
-
-    const { data: publicData } = supabase.storage.from("gallery").getPublicUrl(path);
-    media_url = publicData.publicUrl;
-  } else if (media_url) {
-    const lower = media_url.toLowerCase();
-    if (/\.(mp4|webm|mov)(\?|$)/.test(lower) || lower.includes("video")) {
-      media_type = "video";
-    }
-  }
+  const media_url = String(formData.get("media_url") ?? "").trim();
+  const media_type_raw = String(formData.get("media_type") ?? "image").trim();
+  let media_type: "image" | "video" =
+    media_type_raw === "video" ? "video" : "image";
 
   if (!media_url) throw new Error("Ajoutez un fichier ou une URL");
 
+  const lower = media_url.toLowerCase();
+  if (media_type === "image" && /\.(mp4|webm|mov)(\?|$)/.test(lower)) {
+    media_type = "video";
+  }
+
+  const supabase = await createClient();
   const { data: maxRow } = await supabase
     .from("gallery_items")
     .select("sort_order")
@@ -700,7 +678,6 @@ export async function createGalleryItemAction(formData: FormData) {
 
   revalidatePath("/backoffice/galerie");
   revalidatePath("/galerie");
-  redirect("/backoffice/galerie");
 }
 
 export async function updateGalleryItemAction(formData: FormData) {
@@ -725,6 +702,56 @@ export async function updateGalleryItemAction(formData: FormData) {
     })
     .eq("id", id);
   if (error) throw new Error(error.message);
+
+  revalidatePath("/backoffice/galerie");
+  revalidatePath("/galerie");
+}
+
+export async function moveGalleryItemAction(formData: FormData) {
+  const profile = await getCurrentProfile();
+  if (!isOwner(profile)) throw new Error("Réservé aux propriétaires");
+
+  const id = String(formData.get("id") ?? "").trim();
+  const direction = String(formData.get("direction") ?? "").trim();
+  if (!id || (direction !== "up" && direction !== "down")) {
+    throw new Error("Paramètres invalides");
+  }
+
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("gallery_items")
+    .select("id, sort_order")
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: false });
+  if (error) throw new Error(error.message);
+
+  const rows = data ?? [];
+  const index = rows.findIndex((row) => row.id === id);
+  if (index < 0) throw new Error("Élément introuvable");
+
+  const swapIndex = direction === "up" ? index - 1 : index + 1;
+  if (swapIndex < 0 || swapIndex >= rows.length) return;
+
+  const current = rows[index];
+  const neighbor = rows[swapIndex];
+  const currentOrder = current.sort_order;
+  const neighborOrder = neighbor.sort_order;
+
+  // If equal, force distinct values so swap is visible
+  const nextCurrent = neighborOrder === currentOrder ? neighborOrder + (direction === "up" ? -1 : 1) : neighborOrder;
+  const nextNeighbor = neighborOrder === currentOrder ? currentOrder : currentOrder;
+
+  const { error: errA } = await supabase
+    .from("gallery_items")
+    .update({ sort_order: nextCurrent })
+    .eq("id", current.id);
+  if (errA) throw new Error(errA.message);
+
+  const { error: errB } = await supabase
+    .from("gallery_items")
+    .update({ sort_order: nextNeighbor })
+    .eq("id", neighbor.id);
+  if (errB) throw new Error(errB.message);
 
   revalidatePath("/backoffice/galerie");
   revalidatePath("/galerie");
@@ -765,13 +792,16 @@ export async function importStaticGalleryAction() {
   if (!isOwner(profile)) throw new Error("Réservé aux propriétaires");
 
   const supabase = await createClient();
-  const { count } = await supabase
+  const { data: existing, error: existingError } = await supabase
     .from("gallery_items")
-    .select("id", { count: "exact", head: true });
+    .select("media_url, sort_order");
+  if (existingError) throw new Error(existingError.message);
 
-  if ((count ?? 0) > 0) {
-    throw new Error("La galerie contient déjà des éléments — import annulé");
-  }
+  const existingUrls = new Set((existing ?? []).map((row) => row.media_url));
+  const maxOrder = (existing ?? []).reduce(
+    (max, row) => Math.max(max, row.sort_order ?? 0),
+    0,
+  );
 
   const rows = Array.from({ length: 49 }, (_, i) => {
     const n = String(i + 1).padStart(2, "0");
@@ -779,11 +809,15 @@ export async function importStaticGalleryAction() {
       title: `Module ${n}`,
       media_type: "image" as const,
       media_url: `/galerie/g${n}.jpg`,
-      sort_order: (i + 1) * 10,
+      sort_order: maxOrder + (i + 1) * 10,
       published: true,
       created_by: profile!.id,
     };
-  });
+  }).filter((row) => !existingUrls.has(row.media_url));
+
+  if (rows.length === 0) {
+    throw new Error("Toutes les photos g01–g49 sont déjà importées");
+  }
 
   const { error } = await supabase.from("gallery_items").insert(rows);
   if (error) throw new Error(error.message);

@@ -1,13 +1,18 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import {
-  deleteGalleryItemAction,
-  importStaticGalleryAction,
-  updateGalleryItemAction,
-} from "@/app/backoffice/actions";
+import { importStaticGalleryAction } from "@/app/backoffice/actions";
+import { GalleryManager } from "@/components/backoffice/GalleryManager";
 import { getCurrentProfile, isOwner } from "@/lib/crm/auth";
 import { createClient } from "@/lib/supabase/server";
 import type { GalleryItemRow } from "@/lib/crm/types";
+
+const SUPABASE_SQL_URL =
+  "https://supabase.com/dashboard/project/yjnkhwgfxycbdmhfdtlp/sql/new";
+
+const STATIC_GALLERY_URLS = Array.from({ length: 49 }, (_, i) => {
+  const n = String(i + 1).padStart(2, "0");
+  return `/galerie/g${n}.jpg`;
+});
 
 export default async function GalerieBackofficePage() {
   const profile = await getCurrentProfile();
@@ -21,7 +26,10 @@ export default async function GalerieBackofficePage() {
     .order("created_at", { ascending: false });
 
   const items = (error ? [] : data ?? []) as GalleryItemRow[];
-  const tableMissing = Boolean(error);
+  const existingUrls = new Set(items.map((item) => item.media_url));
+  const missingStaticCount = STATIC_GALLERY_URLS.filter(
+    (url) => !existingUrls.has(url),
+  ).length;
 
   return (
     <div>
@@ -29,129 +37,76 @@ export default async function GalerieBackofficePage() {
         <div>
           <h1 className="font-serif text-3xl text-luxury-graphite">Galerie</h1>
           <p className="mt-2 font-ui text-sm text-luxury-muted">
-            Photos et vidéos du portfolio public (/galerie)
+            Ajouter, réordonner et supprimer les photos / vidéos du portfolio public
           </p>
         </div>
-        <Link
-          href="/backoffice/galerie/new"
-          className="rounded-full bg-luxury-forest px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-white"
-        >
-          Ajouter un média
-        </Link>
+        {!error && (
+          <Link
+            href="/backoffice/galerie/new"
+            className="rounded-full bg-luxury-forest px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-white"
+          >
+            Ajouter un média
+          </Link>
+        )}
       </div>
 
-      {tableMissing && (
-        <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 font-ui text-sm text-amber-900">
-          Table <code>gallery_items</code> introuvable. Appliquez la migration{" "}
-          <code>supabase/migrations/20260909140000_gallery_items.sql</code> dans
-          Supabase (SQL Editor), puis rechargez cette page.
+      {error && (
+        <div className="mt-6 space-y-4 rounded-2xl border border-amber-300 bg-amber-50 p-6">
+          <p className="font-serif text-xl text-amber-950">
+            Étape 1 obligatoire — créer la table Galerie
+          </p>
+          <p className="font-ui text-sm leading-relaxed text-amber-950/90">
+            La table <code className="rounded bg-amber-100 px-1">gallery_items</code>{" "}
+            n’est pas accessible. Ouvrez le{" "}
+            <a
+              href={SUPABASE_SQL_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-luxury-forest underline"
+            >
+              SQL Editor Supabase
+            </a>
+            , exécutez{" "}
+            <code className="rounded bg-amber-100 px-1">
+              20260909140000_gallery_items.sql
+            </code>
+            , puis rechargez.
+          </p>
+          <p className="font-ui text-[11px] text-amber-900/70">
+            {error.code ? `${error.code} — ` : ""}
+            {error.message}
+          </p>
         </div>
       )}
 
-      {!tableMissing && items.length === 0 && (
-        <div className="mt-6 rounded-2xl border border-luxury-stone bg-white p-6">
-          <p className="font-ui text-sm text-luxury-muted">
-            Aucun élément en base. Le site public affiche encore le fallback local
-            (g01–g49). Importez-les en un clic, ou ajoutez de nouveaux médias.
+      {!error && missingStaticCount > 0 && (
+        <div className="mt-6 rounded-2xl border-2 border-luxury-forest/30 bg-white p-6">
+          <p className="font-serif text-xl text-luxury-graphite">
+            Importer les photos du site ({missingStaticCount} manquantes)
           </p>
-          <form action={importStaticGalleryAction} className="mt-4">
+          <p className="mt-2 max-w-2xl font-ui text-sm leading-relaxed text-luxury-muted">
+            Vous avez déjà {items.length} média(s) en base (ex. vidéos). Ce bouton
+            ajoute seulement les photos locales g01–g49 qui ne sont pas encore
+            présentes, sans écraser vos vidéos.
+          </p>
+          <form action={importStaticGalleryAction} className="mt-5">
             <button
               type="submit"
-              className="rounded-full border border-luxury-forest px-5 py-2.5 font-ui text-xs uppercase tracking-wider text-luxury-forest hover:bg-luxury-forest/5"
+              className="rounded-full bg-luxury-forest px-8 py-3.5 font-ui text-sm uppercase tracking-wider text-white"
             >
-              Importer g01–g49
+              Importer g01–g49 pour les gérer
             </button>
           </form>
         </div>
       )}
 
-      {items.length > 0 && (
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((item) => (
-            <article
-              key={item.id}
-              className="overflow-hidden rounded-2xl border border-luxury-stone bg-white"
-            >
-              <div className="relative aspect-[4/3] bg-luxury-stone/30">
-                {item.media_type === "video" ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={item.poster_url || item.media_url}
-                    alt={item.title}
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={item.media_url}
-                    alt={item.title}
-                    className="h-full w-full object-cover"
-                  />
-                )}
-                <span className="absolute left-3 top-3 rounded-full bg-luxury-graphite/80 px-2.5 py-1 font-ui text-[10px] uppercase tracking-wider text-white">
-                  {item.media_type === "video" ? "Vidéo" : "Photo"}
-                </span>
-                {!item.published && (
-                  <span className="absolute right-3 top-3 rounded-full bg-amber-600/90 px-2.5 py-1 font-ui text-[10px] uppercase tracking-wider text-white">
-                    Brouillon
-                  </span>
-                )}
-              </div>
-
-              <form action={updateGalleryItemAction} className="space-y-3 p-4">
-                <input type="hidden" name="id" value={item.id} />
-                <label className="block">
-                  <span className="text-[11px] uppercase tracking-wider text-luxury-muted">
-                    Titre
-                  </span>
-                  <input
-                    name="title"
-                    defaultValue={item.title}
-                    className="mt-1 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
-                  />
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  <label className="block">
-                    <span className="text-[11px] uppercase tracking-wider text-luxury-muted">
-                      Ordre
-                    </span>
-                    <input
-                      name="sort_order"
-                      type="number"
-                      defaultValue={item.sort_order}
-                      className="mt-1 w-full rounded-xl border border-luxury-stone px-3 py-2 text-sm"
-                    />
-                  </label>
-                  <label className="mt-6 flex items-center gap-2 font-ui text-sm text-luxury-graphite">
-                    <input
-                      type="checkbox"
-                      name="published"
-                      defaultChecked={item.published}
-                      className="rounded border-luxury-stone"
-                    />
-                    Publié
-                  </label>
-                </div>
-                <div className="flex flex-wrap items-center gap-3 pt-1">
-                  <button
-                    type="submit"
-                    className="rounded-full bg-luxury-forest px-4 py-2 font-ui text-[11px] uppercase tracking-wider text-white"
-                  >
-                    Enregistrer
-                  </button>
-                  <button
-                    formAction={deleteGalleryItemAction}
-                    type="submit"
-                    className="font-ui text-[11px] uppercase tracking-wider text-red-700 hover:underline"
-                  >
-                    Supprimer
-                  </button>
-                </div>
-              </form>
-            </article>
-          ))}
-        </div>
+      {!error && items.length === 0 && missingStaticCount === 0 && (
+        <p className="mt-8 font-ui text-sm text-luxury-muted">
+          Aucun média. Ajoutez une photo ou une vidéo.
+        </p>
       )}
+
+      {items.length > 0 && <GalleryManager items={items} />}
     </div>
   );
 }

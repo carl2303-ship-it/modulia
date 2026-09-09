@@ -16,16 +16,26 @@ type IncomingLead = {
 
 export function OwnerLeadAlerts({ enabled }: OwnerLeadAlertsProps) {
   const [lastLead, setLastLead] = useState<IncomingLead | null>(null);
-  const [permission, setPermission] = useState<NotificationPermission | "unsupported">(
-    typeof window !== "undefined" && "Notification" in window
-      ? Notification.permission
-      : "unsupported",
-  );
+  const [permission, setPermission] = useState<
+    NotificationPermission | "unsupported" | null
+  >(null);
 
   const canAskPermission = useMemo(
-    () => permission !== "unsupported" && permission !== "granted",
+    () =>
+      permission !== null &&
+      permission !== "unsupported" &&
+      permission !== "granted",
     [permission],
   );
+
+  useEffect(() => {
+    if (!enabled) return;
+    if ("Notification" in window) {
+      setPermission(Notification.permission);
+    } else {
+      setPermission("unsupported");
+    }
+  }, [enabled]);
 
   useEffect(() => {
     if (!enabled) return;
