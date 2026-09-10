@@ -17,7 +17,7 @@ export default async function AgentsPage() {
     <div>
       <h1 className="font-serif text-3xl text-luxury-graphite">Commerciaux & comptes</h1>
       <p className="mt-2 font-ui text-sm text-luxury-muted">
-        Créez les accès (commerciaux IAD, showroom, propriétaires) et gérez commissions / rôles.
+        Créez les accès (commerciaux IAD, showroom, propriétaires), modifiez les mots de passe et gérez commissions / rôles.
       </p>
 
       <div className="mt-8">

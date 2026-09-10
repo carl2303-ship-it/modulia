@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getCurrentProfile, isOwner } from "@/lib/crm/auth";
 import { updateAgentAction } from "@/app/backoffice/actions";
 import { DeleteAccountForm } from "@/components/backoffice/DeleteAccountForm";
+import { ResetPasswordForm } from "@/components/backoffice/ResetPasswordForm";
 import { formatEuro, ROLE_LABELS, type Profile, type UserRole } from "@/lib/crm/types";
 
 type PageProps = { params: Promise<{ id: string }> };
@@ -137,6 +138,11 @@ export default async function AgentDetailPage({ params }: PageProps) {
           Enregistrer
         </button>
       </form>
+
+      <ResetPasswordForm
+        userId={agent.id}
+        label={agent.full_name || agent.email}
+      />
 
       {profile.id !== agent.id ? (
         <DeleteAccountForm
