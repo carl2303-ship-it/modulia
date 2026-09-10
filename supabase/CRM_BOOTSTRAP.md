@@ -48,19 +48,20 @@ where email = 'agent@example.com';
 2. Ouvrir `/backoffice`
 3. Sur le site public, « Espace pro » indique la session ; les demandes de devis sont auto-assignées
 
-## 5. Suppression de comptes (Commerciaux & comptes)
+## 5. Mot de passe & suppression de comptes (Commerciaux & comptes)
 
-Deux options (l’une suffit) :
+Deux options (l’une suffit) pour modifier un mot de passe ou supprimer un compte :
 
 1. **Variable** `SUPABASE_SERVICE_ROLE_KEY` dans Netlify / `.env.local`  
    (Dashboard Supabase → Settings → API → `service_role`)
-2. **Ou** déployer l’Edge Function :
+2. **Ou** déployer les Edge Functions :
    ```bash
    npx supabase login
    npx supabase functions deploy delete-backoffice-user --project-ref yjnkhwgfxycbdmhfdtlp
+   npx supabase functions deploy update-backoffice-password --project-ref yjnkhwgfxycbdmhfdtlp
    ```
 
-Ensuite : `/backoffice/agents` → Éditer → « Supprimer définitivement ».
+Ensuite : `/backoffice/agents` → Éditer → « Modifier le mot de passe » ou « Supprimer définitivement ».
 
 ## 6. Galerie (portfolio)
 

@@ -373,6 +373,91 @@ export async function updateAgentAction(formData: FormData) {
   revalidatePath(`/backoffice/agents/${id}`);
 }
 
+export async function updateBackofficePasswordAction(
+  _prev: { ok?: boolean; error?: string } | null,
+  formData: FormData,
+): Promise<{ ok?: boolean; error?: string }> {
+  const profile = await getCurrentProfile();
+  if (!profile || !isOwner(profile)) {
+    return { error: "Réservé aux propriétaires" };
+  }
+
+  const id = String(formData.get("id") ?? "").trim();
+  const password = String(formData.get("password") ?? "");
+  const passwordConfirm = String(formData.get("password_confirm") ?? "");
+
+  if (!id) {
+    return { error: "Compte introuvable" };
+  }
+  if (password.length < 8) {
+    return { error: "Mot de passe: 8 caractères minimum" };
+  }
+  if (password !== passwordConfirm) {
+    return { error: "Les mots de passe ne correspondent pas" };
+  }
+
+  const supabase = await createClient();
+  const { data: target, error: targetError } = await supabase
+    .from("profiles")
+    .select("id")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (targetError || !target) {
+    return { error: "Compte introuvable" };
+  }
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (!session?.access_token) {
+    return { error: "Session expirée — reconnectez-vous" };
+  }
+
+  if (process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    try {
+      const { createAdminClient } = await import("@/lib/supabase/admin");
+      const admin = createAdminClient();
+      const { error } = await admin.auth.admin.updateUserById(id, { password });
+      if (error) {
+        return { error: error.message };
+      }
+    } catch (e) {
+      return { error: e instanceof Error ? e.message : "Mise à jour impossible" };
+    }
+    revalidatePath(`/backoffice/agents/${id}`);
+    revalidatePath("/backoffice/agents");
+    return { ok: true };
+  }
+
+  const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "");
+  if (!baseUrl) {
+    return { error: "Configuration Supabase manquante" };
+  }
+
+  const res = await fetch(`${baseUrl}/functions/v1/update-backoffice-password`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${session.access_token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id, password }),
+  });
+
+  const data = (await res.json().catch(() => ({}))) as {
+    ok?: boolean;
+    error?: string;
+  };
+
+  if (!res.ok || !data.ok) {
+    return { error: data.error || `Mise à jour impossible (${res.status})` };
+  }
+
+  revalidatePath(`/backoffice/agents/${id}`);
+  revalidatePath("/backoffice/agents");
+  return { ok: true };
+}
+
 export async function deleteBackofficeUserAction(
   _prev: { ok?: boolean; error?: string } | null,
   formData: FormData,
